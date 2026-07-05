@@ -1,0 +1,18 @@
+{
+  "adapter_id": "logic-evidence",
+  "capture_modes": [
+    "evidence_scan"
+  ],
+  "daw": "logic_pro",
+  "known_limitations": [
+    "No Logic project file is read: every TRACK is a reconstruction from exported evidence, never parsed session state.",
+    "Role inference is heuristic; benchmarked at 99.3% accuracy over 6467 weighted filename instances, an in-sample vocabulary-coverage figure rather than held-out generalization (docs/evaluation.md).",
+    "Plug-in chains, sends and bus routing enter only as user channel-strip notes (ANNOTATED / MANUAL); identity, order and parameters are never observed.",
+    "Automation, mixer state, track stacks and VCA assignments are HIDDEN: printed into the stems and not recoverable from them.",
+    "Mixer channels are never observed: TRACK entities carry availability channel=UNKNOWN instead of fabricated CHANNELs."
+  ],
+  "live_observation": "NONE",
+  "read": "Evidence-only: exported audio OBSERVED (OFFICIAL_EXPORT); track structure INFERRED (HEURISTIC, benchmarked); plugin chains, sends and buses ANNOTATED-only (MANUAL notes); automation and mixer state HIDDEN.",
+  "render": "NONE",
+  "write": "NONE"
+}

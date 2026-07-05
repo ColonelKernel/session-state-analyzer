@@ -1,0 +1,129 @@
+{
+  "adapter": "logic-session-evidence-explorer",
+  "adapter_version": "0.1.0",
+  "daw": "logic_pro",
+  "daw_version": "11",
+  "live_observation": {},
+  "manifest_version": "0.2.0",
+  "notes": [
+    "Evidence-only adapter: no Logic project file is parsed; the DAW is never observed live, written to, or asked to render.",
+    "Role inference is HEURISTIC with calibrated confidences: 99.3% over 6467 weighted filename instances (in-sample vocabulary coverage, not held-out generalization — see docs/evaluation.md).",
+    "Empty write/live_observation/render sections mean support NONE for every domain, not an unexamined gap."
+  ],
+  "read": {
+    "audio_content": {
+      "fields": {
+        "audio_content": {
+          "applicability": "APPLICABLE",
+          "capture_method": "exported_audio",
+          "source_stability": "OFFICIAL_EXPORT",
+          "support": "FULL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "automation": {
+      "fields": {
+        "automation": {
+          "applicability": "APPLICABLE",
+          "capture_method": null,
+          "source_stability": null,
+          "support": "NONE",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        }
+      }
+    },
+    "mixer_state": {
+      "fields": {
+        "mute": {
+          "applicability": "APPLICABLE",
+          "capture_method": null,
+          "source_stability": null,
+          "support": "NONE",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        },
+        "pan": {
+          "applicability": "APPLICABLE",
+          "capture_method": null,
+          "source_stability": null,
+          "support": "NONE",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        },
+        "solo": {
+          "applicability": "APPLICABLE",
+          "capture_method": null,
+          "source_stability": null,
+          "support": "NONE",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        },
+        "volume_db": {
+          "applicability": "APPLICABLE",
+          "capture_method": null,
+          "source_stability": null,
+          "support": "NONE",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        }
+      }
+    },
+    "plugin_chain": {
+      "fields": {
+        "plugin_chain": {
+          "applicability": "APPLICABLE",
+          "capture_method": "channel_strip_note",
+          "source_stability": "MANUAL",
+          "support": "PARTIAL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "routing": {
+      "fields": {
+        "bus_routing": {
+          "applicability": "APPLICABLE",
+          "capture_method": "channel_strip_note",
+          "source_stability": "MANUAL",
+          "support": "PARTIAL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "sends": {
+          "applicability": "APPLICABLE",
+          "capture_method": "channel_strip_note",
+          "source_stability": "MANUAL",
+          "support": "PARTIAL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "structure": {
+      "fields": {
+        "role": {
+          "applicability": "APPLICABLE",
+          "capture_method": "filename_role_inference",
+          "source_stability": "HEURISTIC",
+          "support": "PARTIAL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "track_name": {
+          "applicability": "APPLICABLE",
+          "capture_method": "filename_normalization",
+          "source_stability": "HEURISTIC",
+          "support": "PARTIAL",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        }
+      }
+    }
+  },
+  "render": {},
+  "write": {}
+}

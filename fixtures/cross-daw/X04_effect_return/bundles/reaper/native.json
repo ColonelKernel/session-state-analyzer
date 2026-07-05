@@ -1,0 +1,142 @@
+{
+  "project_name": "x04",
+  "source_file": "/Volumes/Mac-Storage/GitHub/SessionStateExplorer/fixtures/cross-daw/X04_effect_return/inputs/reaper/x04.rpp",
+  "header_platform": "7.0/win64",
+  "tempo": 120.0,
+  "time_sig_num": 4,
+  "time_sig_denom": 4,
+  "sample_rate": 44100,
+  "sample_rate_use": false,
+  "tracks": [
+    {
+      "id": "track-0",
+      "index": 0,
+      "name": "Lead Vox",
+      "role": "Vocal",
+      "volume": 1.0,
+      "volume_db": 0.0,
+      "pan": 0.0,
+      "pan_mode": null,
+      "pan_law": -1.0,
+      "width": 1.0,
+      "mute": false,
+      "solo": false,
+      "solo_mode": 0,
+      "solo_defeat": false,
+      "main_send": true,
+      "color": "#c04000",
+      "media_items": [
+        {
+          "id": "item-0-0",
+          "track_id": "track-0",
+          "name": "Lead Vox take",
+          "position": 0.0,
+          "length": 2.0,
+          "source_file": "audio/lead_vox.wav",
+          "source_type": "WAVE",
+          "raw_lines": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Lead Vox take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      ],
+      "fx": [
+        {
+          "id": "fx-0-0",
+          "track_id": "track-0",
+          "index": 0,
+          "name": "VST: ReaEQ (Cockos)",
+          "fx_type": "VST",
+          "family": "EQ",
+          "enabled": true,
+          "offline": false,
+          "chain": "main",
+          "preset": null,
+          "raw_line": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      ],
+      "raw_lines": [
+        "    NAME \"Lead Vox\"",
+        "    PEAKCOL 16793792",
+        "    VOLPAN 1 0 -1 -1 1",
+        "    MUTESOLO 0 0 0",
+        "    MAINSEND 1 0",
+        "    <ITEM",
+        "    <FXCHAIN",
+        "      BYPASS 0 0 0",
+        "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+        "      WAK 0 0",
+        "    >",
+        "  >"
+      ]
+    },
+    {
+      "id": "track-1",
+      "index": 1,
+      "name": "Reverb Bus",
+      "role": "Bus",
+      "volume": 1.0,
+      "volume_db": 0.0,
+      "pan": 0.0,
+      "pan_mode": null,
+      "pan_law": -1.0,
+      "width": 1.0,
+      "mute": false,
+      "solo": false,
+      "solo_mode": 0,
+      "solo_defeat": false,
+      "main_send": true,
+      "color": "#c04040",
+      "media_items": [],
+      "fx": [
+        {
+          "id": "fx-1-0",
+          "track_id": "track-1",
+          "index": 0,
+          "name": "VST: ReaVerbate (Cockos)",
+          "fx_type": "VST",
+          "family": "Ambience",
+          "enabled": true,
+          "offline": false,
+          "chain": "main",
+          "preset": null,
+          "raw_line": "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      ],
+      "raw_lines": [
+        "    NAME \"Reverb Bus\"",
+        "    PEAKCOL 20988096",
+        "    VOLPAN 1 0 -1 -1 1",
+        "    MUTESOLO 0 0 0",
+        "    MAINSEND 1 0",
+        "    <FXCHAIN",
+        "      BYPASS 0 0 0",
+        "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0",
+        "      WAK 0 0",
+        "    >",
+        "    AUXRECV 0 0 1 0 0 0 0 0 0",
+        "  >"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-0",
+      "source_track_id": "track-0",
+      "source_name": null,
+      "target_track_id": "track-1",
+      "target_name": "Reverb Bus",
+      "route_type": "send",
+      "send_mode": 0,
+      "volume": 1.0,
+      "volume_db": 0.0,
+      "pan": 0.0,
+      "mute": false,
+      "raw_line": "    AUXRECV 0 0 1 0 0 0 0 0 0"
+    }
+  ],
+  "warnings": []
+}

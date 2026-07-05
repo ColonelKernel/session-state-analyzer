@@ -1,0 +1,601 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "ableton_live:x04_effect_return:ef1dce699726",
+  "created_at": "2026-07-05T18:36:09+00:00",
+  "source": {
+    "daw": "ableton_live",
+    "daw_version": null,
+    "adapter": "ableton-session-state-explorer",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "session_json"
+    ]
+  },
+  "project": "ableton:project",
+  "entities": [
+    {
+      "id": "ableton:project",
+      "entity_type": "PROJECT",
+      "name": "X04 Effect Return",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 120.0,
+        "time_signature": "4/4"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:track-1",
+      "entity_type": "TRACK",
+      "name": "Lead Vox",
+      "semantic_roles": [
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 0,
+        "color": "#E5C33F"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "semantic_roles": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:track-1:channel",
+      "entity_type": "CHANNEL",
+      "name": "Lead Vox",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -2.0,
+        "pan": 0.0
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:return-1",
+      "entity_type": "CHANNEL",
+      "name": "Reverb Return",
+      "semantic_roles": [
+        "effect_return"
+      ],
+      "properties": {
+        "index": 0,
+        "volume_db": 0.0
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "return",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "semantic_roles": "prov:0003"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:master-1",
+      "entity_type": "CHANNEL",
+      "name": "Master",
+      "semantic_roles": [
+        "main_output"
+      ],
+      "properties": {
+        "index": 0,
+        "volume_db": 0.0
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "master",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:device-1",
+      "entity_type": "PROCESSOR",
+      "name": "EQ Eight",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "audio_effect",
+        "enabled": true,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio_effect",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "family": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:device-2",
+      "entity_type": "PROCESSOR",
+      "name": "Reverb",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "audio_effect",
+        "enabled": true,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio_effect",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "family": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:device-2-param-1",
+      "entity_type": "PARAMETER",
+      "name": "Decay Time",
+      "semantic_roles": [],
+      "properties": {
+        "value": 2.8,
+        "unit": "s",
+        "is_automated": false,
+        "is_visible_to_host": true
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "parameter",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "ableton:clip-1",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Lead Vox take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "start_time_beats": 0.0,
+        "length_beats": 16.0,
+        "warp_enabled": true,
+        "audio_file": "audio/lead_vox.wav"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_lead_vox_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "lead_vox.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/lead_vox.wav"
+      },
+      "native": {
+        "daw": "ableton_live",
+        "native_type": "audio_file",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "ableton:track-1",
+      "target": "ableton:track-1:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "ableton:track-1:channel",
+      "target": "ableton:device-1",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "ableton:return-1",
+      "target": "ableton:device-2",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "CONTAINS",
+      "source": "ableton:device-2",
+      "target": "ableton:device-2-param-1",
+      "properties": {
+        "kind": "parameter"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0005",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "ableton:track-1",
+      "target": "ableton:clip-1",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0006",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "ableton:clip-1",
+      "target": "asset:audio_lead_vox_wav",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0007",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "ableton:track-1:channel",
+      "target": "ableton:return-1",
+      "properties": {
+        "route_type": "send",
+        "volume_db": -12.0,
+        "enabled": true,
+        "send_name": "A Reverb"
+      },
+      "prov_ref": "prov:0001"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": {
+    "read": {
+      "structure": {
+        "fields": {
+          "tracks": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "scenes": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "clips": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "group_membership": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "set_name": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "channel": {
+        "fields": {
+          "mute": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "solo": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "armed": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "volume_db": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "pan": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "color": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "sends": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "return_tracks": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "main_chain": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "processing": {
+        "fields": {
+          "device_chains": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "rack_recursion": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "device_enabled": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "parameters": {
+        "fields": {
+          "parameter_names": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "parameter_values": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "automation": {
+        "fields": {
+          "automation_state": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      }
+    },
+    "write": {},
+    "live_observation": {
+      "session": {
+        "fields": {
+          "current_set_snapshot": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          },
+          "transport_state": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": "extension_json",
+            "source_stability": "SUPPORTED_INTEGRATION",
+            "tested_daw_version": "12.4.5 beta",
+            "validation_status": "TESTED"
+          }
+        }
+      }
+    },
+    "render": {},
+    "manifest_version": "0.2.0",
+    "daw": "ableton_live",
+    "daw_version": "12.4.5 beta",
+    "adapter": "ableton-session-state-explorer",
+    "adapter_version": "0.1.0",
+    "notes": [
+      "Read pathway: the Session State Exporter Live extension (official Extensions SDK 1.0.0-beta) — SUPPORTED_INTEGRATION.",
+      "Hand-authored session_json uploads use the same schema but are MANUAL-stability captures; the bundle's provenance records carry that distinction.",
+      "Write and render are NONE: no offline Live Set authoring path exists, and fabricating .als files would overstate compatibility."
+    ]
+  },
+  "coverage": {
+    "structure": {
+      "applicable": 3,
+      "observed": 3,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 3,
+      "observed": 3,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 1,
+      "observed": 1,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "session_json",
+      "source_stability": "MANUAL",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "INFERRED",
+      "capture_method": "session_json",
+      "source_stability": "MANUAL",
+      "source_ref": null,
+      "confidence": 0.5,
+      "explanation": "keyword classifier",
+      "warnings": []
+    },
+    {
+      "id": "prov:0003",
+      "evidence": "INFERRED",
+      "capture_method": "session_json",
+      "source_stability": "MANUAL",
+      "source_ref": null,
+      "confidence": 0.5,
+      "explanation": "return tracks read as Bus by construction",
+      "warnings": []
+    }
+  ],
+  "extensions": {
+    "ableton_live": {
+      "metadata": {
+        "source_artifact": "session_json",
+        "native_metadata": {
+          "source": "x04-fixture",
+          "daw_dialect": "ableton-style",
+          "fixture": "X04_effect_return"
+        }
+      },
+      "native_file": {
+        "path": "native.json",
+        "sha256": "ef1dce699726f428f0ad038f89390071a92fd12fa715046afde8f12a20a1a26c"
+      }
+    }
+  },
+  "warnings": [
+    "Hand-authored X04 fixture session implementing the effect-return intent; not an imported Live Set."
+  ],
+  "failures": []
+}

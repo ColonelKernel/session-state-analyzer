@@ -1,0 +1,147 @@
+# GENERATED from session_explorer/registry/concepts.py — do not edit.
+# The Python module is the source of truth; this file exists for humans.
+concepts:
+  - concept_id: effect_return
+    description: "A shared effect processing destination fed by sends and summed into the main output — the 'one reverb, many sources' strategy."
+    implementations:
+      ableton_live:
+        native_type: return_track
+        wire_types: [return]
+        notes: "Dedicated Return Track fed by per-track sends A/B/C."
+      cubase:
+        native_type: fx_channel
+        wire_types: [return]
+        notes: "FX Channel track targeted by channel sends."
+      logic_pro:
+        native_type: aux_channel_strip
+        wire_types: []
+        notes: "Aux channel strip fed by a bus send. Never on the wire: the evidence adapter cannot observe channel strips, so the mechanism arrives as annotations on inferred tracks."
+      reaper:
+        native_type: media_track
+        wire_types: []
+        notes: "A plain media track carrying receives (AUXRECV) and the effect FX. No dedicated native type exists; recognition is topological (receives sends + effect processor)."
+    equivalence:
+      ableton_live: FUNCTIONAL
+      cubase: FUNCTIONAL
+      logic_pro: FUNCTIONAL
+      reaper: FUNCTIONAL
+  - concept_id: main_output
+    description: "The session's final summing destination (master / stereo out)."
+    implementations:
+      ableton_live:
+        native_type: master_track
+        wire_types: [master]
+      cubase:
+        native_type: output_channel
+        wire_types: [master]
+      logic_pro:
+        native_type: stereo_out_channel_strip
+        wire_types: []
+        notes: "Exists in Logic, never observed by the evidence adapter."
+      reaper:
+        native_type: master_track
+        wire_types: []
+        notes: "The .rpp track list omits the master; only the per-track MAINSEND flag witnesses routing to it."
+    equivalence:
+      ableton_live: CLOSE
+      cubase: CLOSE
+      logic_pro: UNKNOWN
+      reaper: STRUCTURAL
+  - concept_id: submix
+    description: "An intermediate summing stage for a group of sources."
+    implementations:
+      ableton_live:
+        native_type: group_track
+        wire_types: [group]
+      cubase:
+        native_type: group_channel
+        wire_types: [group]
+      logic_pro:
+        native_type: track_stack
+        wire_types: []
+        notes: "Summing stacks are HIDDEN to the evidence adapter."
+      reaper:
+        native_type: media_track
+        wire_types: []
+        notes: "Folder parents / receive buses; generic structure only."
+    equivalence:
+      ableton_live: CLOSE
+      cubase: CLOSE
+      logic_pro: NONE
+      reaper: STRUCTURAL
+  - concept_id: scene
+    description: "A horizontal launchable row of clips (session-view scene)."
+    implementations:
+      ableton_live:
+        native_type: scene
+        wire_types: [scene]
+    equivalence:
+      ableton_live: EXACT
+      cubase: NONE
+      logic_pro: NONE
+      reaper: NONE
+  - concept_id: audio_source
+    description: "A lane that generates or carries source audio material."
+    implementations:
+      ableton_live:
+        native_type: audio_track
+        wire_types: [audio]
+      cubase:
+        native_type: audio_track
+        wire_types: [audio]
+      logic_pro:
+        native_type: inferred_track
+        wire_types: [inferred]
+        notes: "A reconstruction from an exported stem, not a parsed track."
+      reaper:
+        native_type: media_track
+        wire_types: [audio]
+    equivalence:
+      ableton_live: CLOSE
+      cubase: CLOSE
+      logic_pro: PARTIAL
+      reaper: CLOSE
+  - concept_id: track
+    description: "The organizational lane: owns content and arrangement."
+    implementations:
+      ableton_live:
+        native_type: track
+        wire_types: [audio, midi, group]
+      cubase:
+        native_type: track
+        wire_types: [audio, midi, group]
+      logic_pro:
+        native_type: inferred_track
+        wire_types: [inferred]
+      reaper:
+        native_type: media_track
+        wire_types: [audio]
+    equivalence:
+      ableton_live: CLOSE
+      cubase: CLOSE
+      logic_pro: PARTIAL
+      reaper: CLOSE
+  - concept_id: channel
+    description: "The signal path: owns mixer state and routing."
+    implementations:
+      ableton_live:
+        native_type: mixer_section
+        wire_types: []
+        notes: "Implicit mixer strip of every track; adapter splits it out."
+      cubase:
+        native_type: channel
+        wire_types: []
+        notes: "DAWproject models Channel explicitly inside Track."
+      logic_pro:
+        native_type: channel_strip
+        wire_types: []
+        notes: "Never observed: TRACKs carry availability channel=UNKNOWN."
+      reaper:
+        native_type: media_track
+        wire_types: []
+        notes: "Fused into the media track; adapter splits TRACK/CHANNEL."
+    equivalence:
+      ableton_live: CLOSE
+      cubase: EXACT
+      logic_pro: NONE
+      reaper: STRUCTURAL

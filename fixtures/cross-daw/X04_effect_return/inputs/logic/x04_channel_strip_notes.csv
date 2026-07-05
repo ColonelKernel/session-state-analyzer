@@ -1,0 +1,3 @@
+track_name,role,plugins,sends,bus,notes
+Lead Vox,Vocal,"Channel EQ; Compressor","Reverb","Bus 1","Lead vocal sends to the shared reverb return via Bus 1"
+Reverb Return,Effect Return,"Space Designer","","Stereo Out","Aux channel strip fed by Bus 1; carries the shared Space Designer reverb and routes to Stereo Out"

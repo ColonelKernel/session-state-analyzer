@@ -1,0 +1,41 @@
+<REAPER_PROJECT 0.1 "7.0/win64" 1700000000
+  TEMPO 120 4 4
+  SAMPLERATE 44100 0 0
+  <TRACK {X04-GUID-00}
+    NAME "Lead Vox"
+    PEAKCOL 16793792
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0
+      LENGTH 2.0
+      NAME "Lead Vox take"
+      <SOURCE WAVE
+        FILE "audio/lead_vox.wav"
+      >
+    >
+    <FXCHAIN
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" plugin.dll 0 "" 0
+        ZmFrZWNodW5r
+      >
+      WAK 0 0
+    >
+  >
+  <TRACK {X04-GUID-01}
+    NAME "Reverb Bus"
+    PEAKCOL 20988096
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    MAINSEND 1 0
+    <FXCHAIN
+      BYPASS 0 0 0
+      <VST "VST: ReaVerbate (Cockos)" plugin.dll 0 "" 0
+        ZmFrZWNodW5r
+      >
+      WAK 0 0
+    >
+    AUXRECV 0 0 1 0 0 0 0 0 0
+  >
+>

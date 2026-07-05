@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "session_name": "X04 Effect Return",
+  "daw_name": "Logic Pro",
+  "daw_version": "11",
+  "source_type": "logic_exports",
+  "audio_files": [
+    {
+      "file_name": "Lead Vox.wav",
+      "role": "Vocal",
+      "notes": "Dry lead vocal stem, printed pre-send"
+    },
+    {
+      "file_name": "Reverb Return.wav",
+      "role": "Effect Return",
+      "notes": "Printed aux return: the shared reverb destination, bounced solo"
+    }
+  ],
+  "notes": "Hand-authored X04 fixture evidence: two synthesized stems implementing the effect-return intent. Sends, buses and plug-ins are asserted by channel-strip notes (ANNOTATED), never observed in Logic."
+}

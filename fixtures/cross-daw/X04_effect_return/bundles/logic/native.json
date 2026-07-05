@@ -1,0 +1,228 @@
+{
+  "dialect": "logic",
+  "model": {
+    "audio_files": [
+      {
+        "confidence": 0.9,
+        "descriptor_id": "descriptor_1",
+        "duration_seconds": 1.0,
+        "file_name": "Lead Vox.wav",
+        "file_path": "inputs/logic/Lead Vox.wav",
+        "id": "audio_1",
+        "inferred_role": "Vocal",
+        "inferred_track_name": "Lead Vox",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Role set by session manifest.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.9,
+        "descriptor_id": "descriptor_2",
+        "duration_seconds": 1.0,
+        "file_name": "Reverb Return.wav",
+        "file_path": "inputs/logic/Reverb Return.wav",
+        "id": "audio_2",
+        "inferred_role": "Effect Return",
+        "inferred_track_name": "Reverb Return",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Role set by session manifest.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      }
+    ],
+    "channel_strip_notes": [
+      {
+        "bus": "Bus 1",
+        "confidence": 0.5,
+        "id": "note_1",
+        "notes": "Lead vocal sends to the shared reverb return via Bus 1",
+        "plugins": [
+          "Channel EQ",
+          "Compressor"
+        ],
+        "role": "Vocal",
+        "sends": [
+          "Reverb"
+        ],
+        "track_name": "Lead Vox"
+      },
+      {
+        "bus": "Stereo Out",
+        "confidence": 0.5,
+        "id": "note_2",
+        "notes": "Aux channel strip fed by Bus 1; carries the shared Space Designer reverb and routes to Stereo Out",
+        "plugins": [
+          "Space Designer"
+        ],
+        "role": "Effect Return",
+        "sends": [],
+        "track_name": "Reverb Return"
+      }
+    ],
+    "daw_name": "Logic Pro",
+    "daw_version": "11",
+    "descriptors": [
+      {
+        "active_duration_seconds": 1.0,
+        "active_rms_mean": 0.042338,
+        "activity_ratio": 1.0,
+        "duration_seconds": 1.0,
+        "dynamic_range_active_db": 7.321601,
+        "dynamic_range_approx": 7.321601,
+        "estimated_tempo": 117.453835,
+        "file_name": "Lead Vox.wav",
+        "id": "descriptor_1",
+        "integrated_loudness_lufs": -26.654906,
+        "onset_strength_mean": 0.028157,
+        "peak_amplitude": 0.098358,
+        "rms_mean": 0.042338,
+        "rms_std": 0.020265,
+        "sample_rate": 22050,
+        "source_id": "audio_1",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 437.54845,
+        "spectral_centroid_mean": 475.069807,
+        "spectral_rolloff_mean": 452.686657,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.038563
+      },
+      {
+        "active_duration_seconds": 1.0,
+        "active_rms_mean": 0.042339,
+        "activity_ratio": 1.0,
+        "duration_seconds": 1.0,
+        "dynamic_range_active_db": 7.32409,
+        "dynamic_range_approx": 7.32409,
+        "estimated_tempo": 215.332031,
+        "file_name": "Reverb Return.wav",
+        "id": "descriptor_2",
+        "integrated_loudness_lufs": -26.723887,
+        "onset_strength_mean": 0.035007,
+        "peak_amplitude": 0.098389,
+        "rms_mean": 0.042339,
+        "rms_std": 0.020263,
+        "sample_rate": 22050,
+        "source_id": "audio_2",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 439.16468,
+        "spectral_centroid_mean": 365.351578,
+        "spectral_rolloff_mean": 337.190385,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.02892
+      }
+    ],
+    "hidden_state_markers": [
+      {
+        "consequence": "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state.",
+        "description": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
+        "hidden_state_type": "hidden_automation",
+        "id": "hidden_1",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "session"
+      },
+      {
+        "consequence": "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves.",
+        "description": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
+        "hidden_state_type": "hidden_routing",
+        "id": "hidden_2",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "session"
+      }
+    ],
+    "inferred_tracks": [
+      {
+        "channel_strip_note_ids": [
+          "note_1"
+        ],
+        "confidence": 0.9,
+        "descriptor_id": "descriptor_1",
+        "hidden_fields": [
+          "automation",
+          "track_stack"
+        ],
+        "id": "track_1",
+        "inferred_fields": [
+          "role",
+          "track_name",
+          "plugin_chain",
+          "sends",
+          "bus_routing"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Lead Vox",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Vocal",
+        "source_audio_id": "audio_1",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [
+          "note_2"
+        ],
+        "confidence": 0.9,
+        "descriptor_id": "descriptor_2",
+        "hidden_fields": [
+          "automation",
+          "sends",
+          "track_stack"
+        ],
+        "id": "track_2",
+        "inferred_fields": [
+          "role",
+          "track_name",
+          "plugin_chain",
+          "bus_routing"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Reverb Return",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Effect Return",
+        "source_audio_id": "audio_2",
+        "warnings": []
+      }
+    ],
+    "metadata": {},
+    "midi_evidence": null,
+    "musicxml_evidence": null,
+    "recommendations": [],
+    "reference_comparisons": [],
+    "reference_tracks": [],
+    "schema_version": "0.1.0",
+    "session_name": "X04 Effect Return",
+    "source_type": "logic_exports",
+    "stem_sum_reconciliation": null,
+    "warnings": []
+  },
+  "model_name": "SessionEvidence"
+}

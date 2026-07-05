@@ -23,7 +23,11 @@ import streamlit as st
 
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.workbench import state
-from session_explorer.workbench.pages import canonical_graph, entity_inspector
+from session_explorer.workbench.pages import (
+    alignment,
+    canonical_graph,
+    entity_inspector,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FIXTURES_ROOT = REPO_ROOT / "fixtures" / "adapters"
@@ -106,11 +110,15 @@ def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
 # ---------------------------------------------------------------------------
 
 if view == "Canonical":
-    graph_tab, inspector_tab = st.tabs(["Graph", "Entity inspector"])
+    graph_tab, inspector_tab, alignment_tab = st.tabs(
+        ["Graph", "Entity inspector", "X04 alignment"]
+    )
     with graph_tab:
         canonical_graph.render(bundles, layer)
     with inspector_tab:
         entity_inspector.render(bundles)
+    with alignment_tab:
+        alignment.render()
 
 elif view == "Native":
     st.header("Native payload")

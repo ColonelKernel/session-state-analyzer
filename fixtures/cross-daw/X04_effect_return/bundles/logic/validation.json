@@ -1,0 +1,19 @@
+{
+  "errors": [],
+  "stats": {
+    "entities": 10,
+    "entities_by_type": {
+      "ANNOTATION": 2,
+      "MEDIA_ASSET": 2,
+      "PROCESSOR": 3,
+      "PROJECT": 1,
+      "TRACK": 2
+    },
+    "failures": 0,
+    "provenance_records": 9,
+    "relationships": 3,
+    "warnings_in_snapshot": 2
+  },
+  "valid": true,
+  "warnings": []
+}

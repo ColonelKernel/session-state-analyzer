@@ -1,0 +1,116 @@
+{
+  "dialect": "ableton",
+  "model_name": "ProjectState",
+  "model": {
+    "schema_version": "0.1.0",
+    "project_name": "X04 Effect Return",
+    "tempo": 120.0,
+    "time_signature": "4/4",
+    "scenes": [],
+    "tracks": [
+      {
+        "id": "track-1",
+        "index": 0,
+        "name": "Lead Vox",
+        "track_type": "audio",
+        "role": "Vocal",
+        "color": "#E5C33F",
+        "volume_db": -2.0,
+        "pan": 0.0,
+        "mute": null,
+        "solo": null,
+        "armed": null,
+        "clips": [
+          {
+            "id": "clip-1",
+            "track_id": "track-1",
+            "scene_id": null,
+            "name": "Lead Vox take",
+            "clip_type": "audio",
+            "start_time_beats": 0.0,
+            "length_beats": 16.0,
+            "loop_start_beats": null,
+            "loop_end_beats": null,
+            "warp_enabled": true,
+            "audio_file": "audio/lead_vox.wav",
+            "midi_note_count": null,
+            "raw_source": {}
+          }
+        ],
+        "devices": [
+          {
+            "id": "device-1",
+            "track_id": "track-1",
+            "index": 0,
+            "name": "EQ Eight",
+            "device_type": "audio_effect",
+            "device_family": "EQ",
+            "enabled": true,
+            "preset_name": null,
+            "parameters": [],
+            "raw_source": {}
+          }
+        ],
+        "sends": [
+          {
+            "id": "send-1",
+            "source_track_id": "track-1",
+            "target_return_id": "return-1",
+            "send_name": "A Reverb",
+            "level_db": -12.0,
+            "enabled": true
+          }
+        ],
+        "group_id": null,
+        "raw_source": {}
+      }
+    ],
+    "return_tracks": [
+      {
+        "id": "return-1",
+        "index": 0,
+        "name": "Reverb Return",
+        "devices": [
+          {
+            "id": "device-2",
+            "track_id": "return-1",
+            "index": 0,
+            "name": "Reverb",
+            "device_type": "audio_effect",
+            "device_family": "Ambience",
+            "enabled": true,
+            "preset_name": null,
+            "parameters": [
+              {
+                "id": "device-2-param-1",
+                "device_id": "device-2",
+                "name": "Decay Time",
+                "value": 2.8,
+                "normalized_value": null,
+                "unit": "s",
+                "is_automated": false,
+                "is_visible_to_host": true
+              }
+            ],
+            "raw_source": {}
+          }
+        ],
+        "volume_db": 0.0
+      }
+    ],
+    "master_track": {
+      "id": "master-1",
+      "name": "Master",
+      "devices": [],
+      "volume_db": 0.0
+    },
+    "warnings": [
+      "Hand-authored X04 fixture session implementing the effect-return intent; not an imported Live Set."
+    ],
+    "metadata": {
+      "source": "x04-fixture",
+      "daw_dialect": "ableton-style",
+      "fixture": "X04_effect_return"
+    }
+  }
+}

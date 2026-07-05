@@ -1,0 +1,818 @@
+{
+  "automation": [],
+  "capabilities": {
+    "adapter": "logic-session-evidence-explorer",
+    "adapter_version": "0.1.0",
+    "daw": "logic_pro",
+    "daw_version": "11",
+    "live_observation": {},
+    "manifest_version": "0.2.0",
+    "notes": [
+      "Evidence-only adapter: no Logic project file is parsed; the DAW is never observed live, written to, or asked to render.",
+      "Role inference is HEURISTIC with calibrated confidences: 99.3% over 6467 weighted filename instances (in-sample vocabulary coverage, not held-out generalization — see docs/evaluation.md).",
+      "Empty write/live_observation/render sections mean support NONE for every domain, not an unexamined gap."
+    ],
+    "read": {
+      "audio_content": {
+        "fields": {
+          "audio_content": {
+            "applicability": "APPLICABLE",
+            "capture_method": "exported_audio",
+            "source_stability": "OFFICIAL_EXPORT",
+            "support": "FULL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "automation": {
+        "fields": {
+          "automation": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          }
+        }
+      },
+      "mixer_state": {
+        "fields": {
+          "mute": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "pan": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "solo": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "volume_db": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          }
+        }
+      },
+      "plugin_chain": {
+        "fields": {
+          "plugin_chain": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "bus_routing": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          },
+          "sends": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "structure": {
+        "fields": {
+          "role": {
+            "applicability": "APPLICABLE",
+            "capture_method": "filename_role_inference",
+            "source_stability": "HEURISTIC",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          },
+          "track_name": {
+            "applicability": "APPLICABLE",
+            "capture_method": "filename_normalization",
+            "source_stability": "HEURISTIC",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      }
+    },
+    "render": {},
+    "write": {}
+  },
+  "coverage": {
+    "channel": {
+      "applicable": 0,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 3,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 0,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "structure": {
+      "applicable": 2,
+      "hidden": 0,
+      "inferred": 2,
+      "observed": 0,
+      "unsupported": 0
+    }
+  },
+  "created_at": "2026-07-05T18:36:55.377076+00:00",
+  "entities": [
+    {
+      "availability": {},
+      "entity_type": "PROJECT",
+      "id": "logic:project",
+      "name": "X04 Effect Return",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "project",
+        "properties": {}
+      },
+      "properties": {},
+      "prov": {
+        "*": "prov:0001"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_1",
+      "name": "Lead Vox",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [
+            "logic:note_1"
+          ],
+          "descriptor_id": "logic:descriptor_1",
+          "hidden_fields": [
+            "automation",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name",
+            "plugin_chain",
+            "sends",
+            "bus_routing"
+          ],
+          "linked_midi_track_names": [],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_1"
+        }
+      },
+      "properties": {
+        "index": 0
+      },
+      "prov": {
+        "*": "prov:0002",
+        "bus_routing": "prov:0006",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0005",
+        "plugin_chain": "prov:0006",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0004",
+        "sends": "prov:0006"
+      },
+      "semantic_roles": [
+        "vocal_source"
+      ]
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_2",
+      "name": "Reverb Return",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [
+            "logic:note_2"
+          ],
+          "descriptor_id": "logic:descriptor_2",
+          "hidden_fields": [
+            "automation",
+            "sends",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name",
+            "plugin_chain",
+            "bus_routing"
+          ],
+          "linked_midi_track_names": [],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_2"
+        }
+      },
+      "properties": {
+        "index": 1
+      },
+      "prov": {
+        "*": "prov:0002",
+        "bus_routing": "prov:0006",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0005",
+        "plugin_chain": "prov:0006",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0004"
+      },
+      "semantic_roles": [
+        "effect_return"
+      ]
+    },
+    {
+      "availability": {},
+      "entity_type": "PROCESSOR",
+      "id": "logic:track_1:plugin_1",
+      "name": "Channel EQ",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "logic_stock",
+        "properties": {
+          "catalog_generation": "current",
+          "catalog_name": "Channel EQ",
+          "note_id": "logic:note_1"
+        }
+      },
+      "properties": {
+        "chain": "main",
+        "family": "eq",
+        "kind": "logic_stock"
+      },
+      "prov": {
+        "*": "prov:0007"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "PROCESSOR",
+      "id": "logic:track_1:plugin_2",
+      "name": "Compressor",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "logic_stock",
+        "properties": {
+          "catalog_generation": "current",
+          "catalog_name": "Compressor",
+          "note_id": "logic:note_1"
+        }
+      },
+      "properties": {
+        "chain": "main",
+        "family": "dynamics",
+        "kind": "logic_stock"
+      },
+      "prov": {
+        "*": "prov:0007"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "PROCESSOR",
+      "id": "logic:track_2:plugin_1",
+      "name": "Space Designer",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "logic_stock",
+        "properties": {
+          "catalog_generation": "current",
+          "catalog_name": "Space Designer",
+          "note_id": "logic:note_2"
+        }
+      },
+      "properties": {
+        "chain": "main",
+        "family": "reverb",
+        "kind": "logic_stock"
+      },
+      "prov": {
+        "*": "prov:0007"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "ANNOTATION",
+      "id": "logic:note_1",
+      "name": "Lead Vox",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "channel_strip_note",
+        "properties": {}
+      },
+      "properties": {
+        "bus": "Bus 1",
+        "notes": "Lead vocal sends to the shared reverb return via Bus 1",
+        "plugins": [
+          "Channel EQ",
+          "Compressor"
+        ],
+        "role": "Vocal",
+        "sends": [
+          "Reverb"
+        ]
+      },
+      "prov": {
+        "*": "prov:0008"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "ANNOTATION",
+      "id": "logic:note_2",
+      "name": "Reverb Return",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "channel_strip_note",
+        "properties": {}
+      },
+      "properties": {
+        "bus": "Stereo Out",
+        "notes": "Aux channel strip fed by Bus 1; carries the shared Space Designer reverb and routes to Stereo Out",
+        "plugins": [
+          "Space Designer"
+        ],
+        "role": "Effect Return"
+      },
+      "prov": {
+        "*": "prov:0008"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_1",
+      "name": "Lead Vox.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.9,
+          "descriptor_id": "logic:descriptor_1",
+          "duration_seconds": 1.0,
+          "file_name": "Lead Vox.wav",
+          "file_path": "inputs/logic/Lead Vox.wav",
+          "id": "logic:audio_1",
+          "inferred_role": "Vocal",
+          "inferred_track_name": "Lead Vox",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "Role set by session manifest.",
+          "sample_rate": 22050,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 1.0,
+        "inferred_role": "Vocal",
+        "inferred_track_name": "Lead Vox",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "inputs/logic/Lead Vox.wav",
+        "sample_rate": 22050
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0009",
+        "inferred_track_name": "prov:0009"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_2",
+      "name": "Reverb Return.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.9,
+          "descriptor_id": "logic:descriptor_2",
+          "duration_seconds": 1.0,
+          "file_name": "Reverb Return.wav",
+          "file_path": "inputs/logic/Reverb Return.wav",
+          "id": "logic:audio_2",
+          "inferred_role": "Effect Return",
+          "inferred_track_name": "Reverb Return",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "Role set by session manifest.",
+          "sample_rate": 22050,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 1.0,
+        "inferred_role": "Effect Return",
+        "inferred_track_name": "Reverb Return",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "inputs/logic/Reverb Return.wav",
+        "sample_rate": 22050
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0009",
+        "inferred_track_name": "prov:0009"
+      },
+      "semantic_roles": []
+    }
+  ],
+  "extensions": {
+    "logic_pro": {
+      "descriptors": [
+        {
+          "active_duration_seconds": 1.0,
+          "active_rms_mean": 0.042338,
+          "activity_ratio": 1.0,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 1.0,
+          "dynamic_range_active_db": 7.321601,
+          "dynamic_range_db": 7.321601,
+          "estimated_tempo": 117.453835,
+          "extra": {},
+          "file_name": "Lead Vox.wav",
+          "file_path": null,
+          "id": "logic:descriptor_1",
+          "integrated_loudness_lufs": -26.654906,
+          "node_id": null,
+          "onset_strength_mean": 0.028157,
+          "peak_amplitude": 0.098358,
+          "rms_mean": 0.042338,
+          "rms_std": 0.020265,
+          "sample_rate": 22050,
+          "source_id": "logic:audio_1",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 437.54845,
+          "spectral_centroid_mean": 475.069807,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 452.686657,
+          "stereo_width_ratio": null,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.038563
+        },
+        {
+          "active_duration_seconds": 1.0,
+          "active_rms_mean": 0.042339,
+          "activity_ratio": 1.0,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 1.0,
+          "dynamic_range_active_db": 7.32409,
+          "dynamic_range_db": 7.32409,
+          "estimated_tempo": 215.332031,
+          "extra": {},
+          "file_name": "Reverb Return.wav",
+          "file_path": null,
+          "id": "logic:descriptor_2",
+          "integrated_loudness_lufs": -26.723887,
+          "node_id": null,
+          "onset_strength_mean": 0.035007,
+          "peak_amplitude": 0.098389,
+          "rms_mean": 0.042339,
+          "rms_std": 0.020263,
+          "sample_rate": 22050,
+          "source_id": "logic:audio_2",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 439.16468,
+          "spectral_centroid_mean": 365.351578,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 337.190385,
+          "stereo_width_ratio": null,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.02892
+        }
+      ],
+      "evidence": {
+        "audio_files": [
+          {
+            "confidence": 0.9,
+            "descriptor_id": "logic:descriptor_1",
+            "duration_seconds": 1.0,
+            "file_name": "Lead Vox.wav",
+            "file_path": "inputs/logic/Lead Vox.wav",
+            "id": "logic:audio_1",
+            "inferred_role": "Vocal",
+            "inferred_track_name": "Lead Vox",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "Role set by session manifest.",
+            "sample_rate": 22050,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          },
+          {
+            "confidence": 0.9,
+            "descriptor_id": "logic:descriptor_2",
+            "duration_seconds": 1.0,
+            "file_name": "Reverb Return.wav",
+            "file_path": "inputs/logic/Reverb Return.wav",
+            "id": "logic:audio_2",
+            "inferred_role": "Effect Return",
+            "inferred_track_name": "Reverb Return",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "Role set by session manifest.",
+            "sample_rate": 22050,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          }
+        ],
+        "channel_strip_notes": [
+          {
+            "bus": "Bus 1",
+            "confidence": 0.5,
+            "id": "logic:note_1",
+            "notes": "Lead vocal sends to the shared reverb return via Bus 1",
+            "plugins": [
+              "Channel EQ",
+              "Compressor"
+            ],
+            "role": "Vocal",
+            "sends": [
+              "Reverb"
+            ],
+            "track_name": "Lead Vox"
+          },
+          {
+            "bus": "Stereo Out",
+            "confidence": 0.5,
+            "id": "logic:note_2",
+            "notes": "Aux channel strip fed by Bus 1; carries the shared Space Designer reverb and routes to Stereo Out",
+            "plugins": [
+              "Space Designer"
+            ],
+            "role": "Effect Return",
+            "sends": [],
+            "track_name": "Reverb Return"
+          }
+        ],
+        "midi_evidence": null,
+        "musicxml_evidence": null,
+        "reference_comparisons": [],
+        "reference_tracks": [],
+        "stem_sum_reconciliation": null
+      },
+      "hidden_state_markers": [
+        {
+          "consequence": "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state.",
+          "description": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
+          "hidden_state_type": "hidden_automation",
+          "id": "logic:hidden_1",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic_pro:project"
+        },
+        {
+          "consequence": "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves.",
+          "description": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
+          "hidden_state_type": "hidden_routing",
+          "id": "logic:hidden_2",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic_pro:project"
+        }
+      ],
+      "metadata": {
+        "daw_version": "11",
+        "source_artifact": "exported_audio",
+        "source_type": "logic_exports"
+      },
+      "native_file": {
+        "path": "native.json",
+        "sha256": "3084cab9e5347bf1d6d9b2199f2b99ca8d03d7451e3c9ddf8fb686a8404618a8"
+      }
+    }
+  },
+  "failures": [],
+  "modulation": [],
+  "project": "logic:project",
+  "provenance": [
+    {
+      "capture_method": "evidence_scan",
+      "confidence": null,
+      "evidence": "OBSERVED",
+      "explanation": null,
+      "id": "prov:0001",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.9,
+      "evidence": "INFERRED",
+      "explanation": "Track reconstructed from exported audio evidence; no Logic project file was read.",
+      "id": "prov:0002",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": null,
+      "evidence": "OBSERVED",
+      "explanation": null,
+      "id": "prov:0003",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.9,
+      "evidence": "INFERRED",
+      "explanation": "Role set by session manifest.",
+      "id": "prov:0004",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.9,
+      "evidence": "INFERRED",
+      "explanation": null,
+      "id": "prov:0005",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "channel_strip_note",
+      "confidence": 0.5,
+      "evidence": "ANNOTATED",
+      "explanation": "Asserted by a user channel-strip note, not extracted from Logic.",
+      "id": "prov:0006",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "channel_strip_note",
+      "confidence": 0.5,
+      "evidence": "ANNOTATED",
+      "explanation": "Plug-in asserted by a user channel-strip note; identity, order and settings were never observed in Logic.",
+      "id": "prov:0007",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "channel_strip_note",
+      "confidence": 0.5,
+      "evidence": "ANNOTATED",
+      "explanation": "User-asserted channel-strip description; never a DAW fact.",
+      "id": "prov:0008",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": 0.9,
+      "evidence": "INFERRED",
+      "explanation": "Role set by session manifest.",
+      "id": "prov:0009",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0007",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "logic:track_1",
+      "target": "logic:track_1:plugin_1"
+    },
+    {
+      "id": "rel:0002",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0007",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "logic:track_1",
+      "target": "logic:track_1:plugin_2"
+    },
+    {
+      "id": "rel:0003",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0007",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "logic:track_2",
+      "target": "logic:track_2:plugin_1"
+    }
+  ],
+  "schema_version": "0.2.0",
+  "snapshot_id": "logic_pro:sha256:63e234eca9de4302",
+  "source": {
+    "adapter": "logic-session-evidence-explorer",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "evidence_scan"
+    ],
+    "daw": "logic_pro",
+    "daw_version": "11"
+  },
+  "temporal_state": {},
+  "warnings": [
+    "hidden-state marker 'logic:hidden_1' targets unknown entity 'logic_pro:project'; recorded in extensions only.",
+    "hidden-state marker 'logic:hidden_2' targets unknown entity 'logic_pro:project'; recorded in extensions only."
+  ]
+}
