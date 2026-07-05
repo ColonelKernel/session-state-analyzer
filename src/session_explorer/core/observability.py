@@ -55,6 +55,9 @@ OBSERVATION_MODEL: dict[str, dict[str, dict[str, list[str]]]] = {
                 "sends",
                 "bus_routing",
                 "track_stack",
+                # mixer_state is a canonical-schema generalization: stems do
+                # not reveal fader/pan state either.
+                "mixer_state",
             ],
         },
         "midi_export": {

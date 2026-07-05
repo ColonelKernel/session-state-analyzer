@@ -106,6 +106,9 @@ _DEFAULT_NODE_STYLES: Dict[str, NodeStyle] = {
     "audio_file": NodeStyle(color="#B7E4C7", shape="triangle", size=12, legend="Audio file"),
     "device": NodeStyle(color="#E76F51", shape="box", size=16, legend="Device"),
     "fx": NodeStyle(color="#b279a2", shape="diamond", size=16, legend="FX"),
+    # Canonical vocabulary: one type for device/FX/plug-in across dialects.
+    "processor": NodeStyle(color="#E76F51", shape="box", size=16, legend="Processor"),
+    "unresolved_route": NodeStyle(shape="hexagon", size=14, legend="Unresolved route"),
     "parameter": NodeStyle(color="#CCCCCC", shape="dot", size=8, legend="Parameter"),
     "send": NodeStyle(color="#F4A261", shape="triangleDown", size=12, legend="Send"),
     "bus_or_target": NodeStyle(color="#9d755d", shape="hexagon", size=16, legend="Route / bus"),
@@ -177,16 +180,23 @@ def registered_node_types() -> List[str]:
 def node_color(data: dict) -> str:
     """Resolve a node's fill colour.
 
-    Observability wins over node type: a node that declares its epistemic
-    class is coloured by it (the Logic affordance); otherwise the type colour
-    applies (the REAPER/Ableton affordance); grey when neither is known.
+    A node whose epistemic class *deviates* from plain observation (inferred /
+    annotation / hidden / derived) is coloured by that class — the Logic
+    affordance, and the signal that matters. Observed nodes keep their type
+    colour (the REAPER/Ableton affordance); observed nodes of colourless
+    evidence types fall back to the observed colour; grey when nothing is
+    known.
     """
 
     observability = data.get("observability")
-    if observability:
+    if observability and observability != "observed":
         return OBSERVABILITY_COLORS.get(observability, OBSERVABILITY_COLORS["unknown"])
     style = get_node_style(data.get("type"))
-    return style.color or OBSERVABILITY_COLORS["unknown"]
+    if style.color:
+        return style.color
+    if observability:
+        return OBSERVABILITY_COLORS.get(observability, OBSERVABILITY_COLORS["unknown"])
+    return OBSERVABILITY_COLORS["unknown"]
 
 
 def node_font_color(data: dict) -> str:

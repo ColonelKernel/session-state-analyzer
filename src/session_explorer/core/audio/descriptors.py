@@ -32,6 +32,10 @@ from .essentia_adapter import maybe_extract_highlevel
 # --- optional backends, imported defensively --------------------------------
 try:  # pragma: no cover - exercised implicitly by environment
     import librosa
+
+    # librosa 0.10+ lazy-loads submodules; librosa.feature.rhythm must be
+    # imported explicitly or the tempo call below raises AttributeError.
+    import librosa.feature.rhythm
     import numpy as np
 
     LIBROSA_AVAILABLE = True
@@ -235,10 +239,6 @@ def extract_descriptors(
         onset_env = librosa.onset.onset_strength(y=y, sr=sr)
         result.onset_strength_mean = _f(np.mean(onset_env))
         if estimate_tempo:
-            # librosa 0.10+ lazy-loads submodules; librosa.feature.rhythm must
-            # be imported explicitly or the tempo call raises AttributeError.
-            import librosa.feature.rhythm
-
             tempo = librosa.feature.rhythm.tempo(onset_envelope=onset_env, sr=sr)
             result.estimated_tempo = _f(
                 tempo[0] if hasattr(tempo, "__len__") else tempo
