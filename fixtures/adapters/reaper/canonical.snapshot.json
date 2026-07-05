@@ -1,0 +1,2526 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "reaper:rpp:0be2dc3f8b93b5c8",
+  "created_at": "2026-07-03T17:01:27.355225+00:00",
+  "source": {
+    "daw": "reaper",
+    "daw_version": "7.0",
+    "adapter": "session-state-explorer-reaper",
+    "adapter_version": "0.3.0",
+    "capture_modes": [
+      "file_parse"
+    ]
+  },
+  "project": "reaper:project",
+  "entities": [
+    {
+      "id": "reaper:project",
+      "entity_type": "PROJECT",
+      "name": "example_project",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 120.0,
+        "time_signature": "4/4",
+        "sample_rate": 44100,
+        "source_file": "data/examples/example_project.rpp"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-0",
+      "entity_type": "TRACK",
+      "name": "Lead Vox",
+      "semantic_roles": [
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 0,
+        "color": "#c04000"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Lead Vox\"",
+            "    PEAKCOL 16793792",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0003"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-0:channel",
+      "entity_type": "CHANNEL",
+      "name": "Lead Vox",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-1",
+      "entity_type": "TRACK",
+      "name": "BGV",
+      "semantic_roles": [
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 1,
+        "color": "#c06000"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"BGV\"",
+            "    PEAKCOL 16801984",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-1:channel",
+      "entity_type": "CHANNEL",
+      "name": "BGV",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-2",
+      "entity_type": "TRACK",
+      "name": "Kick",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 2,
+        "color": "#0080c0"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Kick\"",
+            "    PEAKCOL 29392896",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0005"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-2:channel",
+      "entity_type": "CHANNEL",
+      "name": "Kick",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-3",
+      "entity_type": "TRACK",
+      "name": "Snare",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 3,
+        "color": "#00a0c0"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Snare\"",
+            "    PEAKCOL 29401088",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"Plate Reverb\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-3:channel",
+      "entity_type": "CHANNEL",
+      "name": "Snare",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-4",
+      "entity_type": "TRACK",
+      "name": "Bass",
+      "semantic_roles": [
+        "bass_source"
+      ],
+      "properties": {
+        "index": 4,
+        "color": "#400080"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Bass\"",
+            "    PEAKCOL 25165888",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0007"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-4:channel",
+      "entity_type": "CHANNEL",
+      "name": "Bass",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-5",
+      "entity_type": "TRACK",
+      "name": "Guitar",
+      "semantic_roles": [
+        "guitar_source"
+      ],
+      "properties": {
+        "index": 5,
+        "color": "#608000"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Guitar\"",
+            "    PEAKCOL 16810080",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaDelay (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0008"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-5:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-6",
+      "entity_type": "TRACK",
+      "name": "Synth Pad",
+      "semantic_roles": [
+        "keys_source"
+      ],
+      "properties": {
+        "index": 6,
+        "color": "#c04040"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Synth Pad\"",
+            "    PEAKCOL 20988096",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaDelay (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"Tape Saturation\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaXcomp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"Stereo Width Utility\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0009"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-6:channel",
+      "entity_type": "CHANNEL",
+      "name": "Synth Pad",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-7",
+      "entity_type": "TRACK",
+      "name": "Perc",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 7,
+        "color": "#0060c0"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Perc\"",
+            "    PEAKCOL 29384704",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <ITEM",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"Room Reverb\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0010"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-7:channel",
+      "entity_type": "CHANNEL",
+      "name": "Perc",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-8",
+      "entity_type": "TRACK",
+      "name": "Drum Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 8,
+        "color": "#606060"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "raw_source": [
+            "    NAME \"Drum Bus\"",
+            "    PEAKCOL 23093344",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    <FXCHAIN",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0",
+            "      WAK 0 0",
+            "    >",
+            "    AUXRECV 2 0 1 0 0 0 0 0 0",
+            "    AUXRECV 3 0 1 0 0 0 0 0 0",
+            "    AUXRECV 7 0 1 0 0 0 0 0 0",
+            "    AUXRECV 99 0 1 0 0 0 0 0 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0011"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-8:channel",
+      "entity_type": "CHANNEL",
+      "name": "Drum Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-0-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-1-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-1-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaVerbate (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-2-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-2-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-3-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-3-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-3-2",
+      "entity_type": "PROCESSOR",
+      "name": "Plate Reverb",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"Plate Reverb\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-5-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-5-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaDelay (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaDelay (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-2",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaVerbate (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaVerbate (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-3",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaDelay (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaDelay (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-4",
+      "entity_type": "PROCESSOR",
+      "name": "Tape Saturation",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Saturation",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"Tape Saturation\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-5",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaXcomp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaXcomp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-6-6",
+      "entity_type": "PROCESSOR",
+      "name": "Stereo Width Utility",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Utility",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"Stereo Width Utility\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-7-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-7-1",
+      "entity_type": "PROCESSOR",
+      "name": "Room Reverb",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"Room Reverb\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-8-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" plugin.dll 0 \"\" 0"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-0-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Lead Vox take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/lead_vox.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Lead Vox take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_lead_vox_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "lead_vox.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/lead_vox.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-1-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "BGV take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/bgv.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"BGV take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_bgv_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "bgv.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/bgv.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-2-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Kick take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/kick.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Kick take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_kick_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "kick.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/kick.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-3-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Snare take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/snare.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Snare take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_snare_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "snare.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/snare.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-4-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Bass take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/bass.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Bass take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_bass_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "bass.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/bass.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-5-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Guitar take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/guitar.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Guitar take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_guitar_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "guitar.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/guitar.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-7-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Perc take",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 2.0,
+        "source_type": "WAVE",
+        "audio_file": "audio/perc.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      LENGTH 2.0",
+            "      NAME \"Perc take\"",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_perc_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "perc.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/perc.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:route-3",
+      "entity_type": "ROUTING_ENDPOINT",
+      "name": "track index 99 (out of range)",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "reaper",
+        "native_type": "routing_endpoint",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {
+        "identity": "UNKNOWN"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-0",
+      "target": "reaper:track-0:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-1",
+      "target": "reaper:track-1:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-2",
+      "target": "reaper:track-2:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-3",
+      "target": "reaper:track-3:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0005",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-4",
+      "target": "reaper:track-4:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0006",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-5",
+      "target": "reaper:track-5:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0007",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-6",
+      "target": "reaper:track-6:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0008",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-7",
+      "target": "reaper:track-7:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0009",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-8",
+      "target": "reaper:track-8:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0010",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-0:channel",
+      "target": "reaper:fx-0-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0011",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-1:channel",
+      "target": "reaper:fx-1-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0012",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-1:channel",
+      "target": "reaper:fx-1-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0013",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-2:channel",
+      "target": "reaper:fx-2-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0014",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-2:channel",
+      "target": "reaper:fx-2-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0015",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:fx-3-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0016",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:fx-3-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0017",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:fx-3-2",
+      "properties": {
+        "index": 2
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0018",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0019",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0020",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-5:channel",
+      "target": "reaper:fx-5-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0021",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-5:channel",
+      "target": "reaper:fx-5-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0022",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0023",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0024",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-2",
+      "properties": {
+        "index": 2
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0025",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-3",
+      "properties": {
+        "index": 3
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0026",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-4",
+      "properties": {
+        "index": 4
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0027",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-5",
+      "properties": {
+        "index": 5
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0028",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:fx-6-6",
+      "properties": {
+        "index": 6
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0029",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-7:channel",
+      "target": "reaper:fx-7-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0030",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-7:channel",
+      "target": "reaper:fx-7-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0031",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-8:channel",
+      "target": "reaper:fx-8-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0032",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-0",
+      "target": "reaper:item-0-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0033",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-0-0",
+      "target": "asset:audio_lead_vox_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0034",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-1",
+      "target": "reaper:item-1-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0035",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-1-0",
+      "target": "asset:audio_bgv_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0036",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-2",
+      "target": "reaper:item-2-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0037",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-2-0",
+      "target": "asset:audio_kick_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0038",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-3",
+      "target": "reaper:item-3-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0039",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-3-0",
+      "target": "asset:audio_snare_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0040",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-4",
+      "target": "reaper:item-4-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0041",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-4-0",
+      "target": "asset:audio_bass_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0042",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-5",
+      "target": "reaper:item-5-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0043",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-5-0",
+      "target": "asset:audio_guitar_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0044",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-7",
+      "target": "reaper:item-7-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0045",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-7-0",
+      "target": "asset:audio_perc_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0046",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-2:channel",
+      "target": "reaper:track-8:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0047",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:track-8:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0048",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-7:channel",
+      "target": "reaper:track-8:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0049",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:route-3",
+      "target": "reaper:track-8:channel",
+      "properties": {
+        "route_type": "unresolved",
+        "send_mode": 0,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false
+      },
+      "prov_ref": "prov:0002"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": {
+    "read": {
+      "structure": {
+        "fields": {
+          "tracks": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_name": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_color": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_role": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "name_keyword_heuristic",
+            "source_stability": "HEURISTIC",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_tempo": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_time_signature": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_sample_rate": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "folder_hierarchy": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "channel": {
+        "fields": {
+          "volume": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "mute": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo_defeat": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan_law": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "width": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "main_send": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "sends": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_volume": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_pan": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_mute": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "unresolved_sources": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "hardware_outputs": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "processing": {
+        "fields": {
+          "fx_chain": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_bypass": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_offline": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_preset": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "record_input_fx": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_family": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "fx_knowledge_and_keywords",
+            "source_stability": "HEURISTIC",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_parameters": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "plugin_internal_state": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "temporal": {
+        "fields": {
+          "media_items": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_position": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_length": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_source_file": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_source_type": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "take_fx": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "item_fades": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "automation": {
+        "fields": {
+          "envelopes": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "tempo_map": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      }
+    },
+    "write": {},
+    "live_observation": {},
+    "render": {},
+    "manifest_version": "0.2.0",
+    "daw": "reaper",
+    "daw_version": "7.0",
+    "adapter": "session-state-explorer-reaper",
+    "adapter_version": "0.3.0",
+    "notes": [
+      "Capabilities describe the .rpp file-parse pathway only.",
+      "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",
+      "validation_status=TESTED means the field is exercised by this repo's test suite against REAPER 7 fixtures, including the lossless round-trip gate."
+    ]
+  },
+  "coverage": {
+    "structure": {
+      "applicable": 9,
+      "observed": 9,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 9,
+      "observed": 9,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 22,
+      "observed": 22,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 4,
+      "observed": 4,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "file_parse",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "OBSERVED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0003",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Lead Vox' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0004",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'BGV' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0005",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Kick' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0006",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Snare' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0007",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Bass' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0008",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0009",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Synth Pad' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0010",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Perc' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0011",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Drum Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    }
+  ],
+  "extensions": {
+    "reaper": {
+      "time_sig_num": 4,
+      "time_sig_denom": 4,
+      "header_platform": "7.0/win64",
+      "sample_rate_use": false,
+      "metadata": {
+        "source_artifact": "rpp_file"
+      },
+      "native_file": {
+        "path": "native.json",
+        "sha256": "0be2dc3f8b93b5c8874b158b91a480b66d3b399541a8a143b80b3b76edec6c56"
+      }
+    }
+  },
+  "warnings": [
+    "Could not resolve source track for AUXRECV line."
+  ],
+  "failures": []
+}

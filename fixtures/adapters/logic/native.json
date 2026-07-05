@@ -1,0 +1,467 @@
+{
+  "dialect": "logic",
+  "model": {
+    "audio_files": [
+      {
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "01_Drums_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/01_Drums_Bounce.wav",
+        "id": "audio_1",
+        "inferred_role": "Drums",
+        "inferred_track_name": "Drums Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains drums keyword 'drums'.",
+        "sample_rate": 22050,
+        "track_index": 1,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "02_Bass_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/02_Bass_Bounce.wav",
+        "id": "audio_2",
+        "inferred_role": "Bass",
+        "inferred_track_name": "Bass Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains bass keyword 'bass'.",
+        "sample_rate": 22050,
+        "track_index": 2,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.85,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "03_Electric_Guitar_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/03_Electric_Guitar_Bounce.wav",
+        "id": "audio_3",
+        "inferred_role": "Guitar",
+        "inferred_track_name": "Electric Guitar Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains guitar keyword 'electric guitar'.",
+        "sample_rate": 22050,
+        "track_index": 3,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "04_Synth_Pad_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/04_Synth_Pad_Bounce.wav",
+        "id": "audio_4",
+        "inferred_role": "Keys",
+        "inferred_track_name": "Synth Pad Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains keys keyword 'synth'.",
+        "sample_rate": 22050,
+        "track_index": 4,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "05_Lead_Vocal_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/05_Lead_Vocal_Bounce.wav",
+        "id": "audio_5",
+        "inferred_role": "Vocal",
+        "inferred_track_name": "Lead Vocal Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains vocal keyword 'vocal'.",
+        "sample_rate": 22050,
+        "track_index": 5,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.85,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "06_Backing_Vocals_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/06_Backing_Vocals_Bounce.wav",
+        "id": "audio_6",
+        "inferred_role": "Vocal",
+        "inferred_track_name": "Backing Vocals Bounce",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains vocal keyword 'backing vocal'.",
+        "sample_rate": 22050,
+        "track_index": 6,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "duration_seconds": 2.0,
+        "file_name": "Stereo_Mix_Bounce.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_demo/Stereo_Mix_Bounce.wav",
+        "id": "audio_7",
+        "inferred_role": "Mixdown",
+        "inferred_track_name": "Stereo Mix Bounce",
+        "is_mixdown": true,
+        "is_reference": false,
+        "role_explanation": "Filename contains mixdown keyword 'stereo mix'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      }
+    ],
+    "channel_strip_notes": [
+      {
+        "bus": "Vocal Bus",
+        "confidence": 0.5,
+        "id": "note_1",
+        "notes": "Main lead vocal chain (synthetic demo)",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "DeEsser 2",
+          "Tape Delay"
+        ],
+        "role": "Vocal",
+        "sends": [
+          "Vocal Verb",
+          "Slap Delay"
+        ],
+        "track_name": "Lead Vocal"
+      },
+      {
+        "bus": "Drum Bus",
+        "confidence": 0.5,
+        "id": "note_2",
+        "notes": "Printed drum stem (synthetic demo)",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "Saturation"
+        ],
+        "role": "Drums",
+        "sends": [
+          "Room Verb"
+        ],
+        "track_name": "Drums"
+      }
+    ],
+    "daw_name": "Logic Pro",
+    "daw_version": "11",
+    "descriptors": [],
+    "hidden_state_markers": [
+      {
+        "consequence": "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state.",
+        "description": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
+        "hidden_state_type": "hidden_automation",
+        "id": "hidden_1",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "session"
+      },
+      {
+        "consequence": "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves.",
+        "description": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
+        "hidden_state_type": "hidden_routing",
+        "id": "hidden_2",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "session"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_3",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_2"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_4",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_3"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_5",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_4"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_6",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_6"
+      }
+    ],
+    "inferred_tracks": [
+      {
+        "channel_strip_note_ids": [
+          "note_2"
+        ],
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "automation",
+          "track_stack"
+        ],
+        "id": "track_1",
+        "inferred_fields": [
+          "role",
+          "track_name",
+          "plugin_chain",
+          "sends",
+          "bus_routing"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Drums Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Drums",
+        "source_audio_id": "audio_1",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_2",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Bass Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Bass",
+        "source_audio_id": "audio_2",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.85,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_3",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Electric Guitar Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Guitar",
+        "source_audio_id": "audio_3",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_4",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Synth Pad Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Keys",
+        "source_audio_id": "audio_4",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [
+          "note_1"
+        ],
+        "confidence": 0.75,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "automation",
+          "track_stack"
+        ],
+        "id": "track_5",
+        "inferred_fields": [
+          "role",
+          "track_name",
+          "plugin_chain",
+          "sends",
+          "bus_routing"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Lead Vocal Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Vocal",
+        "source_audio_id": "audio_5",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.85,
+        "descriptor_id": null,
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_6",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Backing Vocals Bounce",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Vocal",
+        "source_audio_id": "audio_6",
+        "warnings": []
+      }
+    ],
+    "metadata": {
+      "audio_dir": "$TMPDIR/logic_session_evidence_demo",
+      "synthetic": true
+    },
+    "midi_evidence": null,
+    "musicxml_evidence": null,
+    "recommendations": [
+      {
+        "caveat": "A vocal-like filename is not proof of a vocal recording, and printed processing cannot be recovered from stem audio alone.",
+        "confidence": 0.7,
+        "explanation": "The graph contains a vocal-like stem, but there is no visible evidence of EQ, compression, de-essing, ambience sends, or other vocal-chain decisions.",
+        "id": "rec_1",
+        "related_node_ids": [
+          "audio_6"
+        ],
+        "severity": "suggestion",
+        "suggested_action": "Add channel-strip notes or screenshots for the vocal chain if you want the session graph to represent editable production intent.",
+        "title": "Vocal processing state is under-documented."
+      },
+      {
+        "caveat": "A reference is a point of comparison, not an objective target.",
+        "confidence": 0.6,
+        "explanation": "A stereo mixdown is available, but no reference track was supplied. A reference could help compare spectral balance, dynamics, and production intent without treating one mix as objectively correct.",
+        "id": "rec_2",
+        "related_node_ids": [
+          "audio_7"
+        ],
+        "severity": "info",
+        "suggested_action": "Upload a reference track and add a short note about what qualities it represents.",
+        "title": "Reference-aware evaluation could be added."
+      }
+    ],
+    "reference_comparisons": [],
+    "reference_tracks": [],
+    "schema_version": "0.1.0",
+    "session_name": "Logic Indie Mix Evidence Demo",
+    "source_type": "synthetic_demo",
+    "stem_sum_reconciliation": null,
+    "warnings": [
+      "Demo audio is synthetic (generated tones/noise), not a real Logic export."
+    ]
+  },
+  "model_name": "SessionEvidence"
+}
