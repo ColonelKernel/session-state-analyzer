@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+.venv/
+venv/
+.pytest_cache/
+.DS_Store
+
+# TypeScript extension
+extension/session-state-exporter/node_modules/
+extension/session-state-exporter/dist/
+
+# Streamlit
+.streamlit/secrets.toml

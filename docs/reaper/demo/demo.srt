@@ -1,0 +1,30 @@
+1
+00:00:00,200 --> 00:00:14,662
+DAW sessions contain rich production knowledge — but most AI music systems only
+see rendered audio. The session structure itself is thrown away.
+
+2
+00:00:15,262 --> 00:00:29,700
+Session State Explorer parses a REAPER project into an interpretable graph of its
+DAW state — tracks, items, FX, routes, tempo, and what it could not observe.
+
+3
+00:00:30,300 --> 00:00:45,363
+Tracks, clips, FX, routes and audio files become nodes and edges. Views can be
+filtered; unresolved routes mark partially observable session state.
+
+4
+00:00:45,963 --> 00:00:59,684
+Simple acoustic descriptors — loudness, spectral shape, dynamics — connect
+session structure to acoustic outcome.
+
+5
+00:01:00,284 --> 00:01:14,698
+From the graph, it suggests actions — each with an explanation, a suggested
+action, and an explicit caveat: heuristics, not objective mixing rules.
+
+6
+00:01:15,298 --> 00:01:29,698
+A first step toward DAW-state representations that support creativity rather than
+replace producers. The whole session exports as JSON for further research.
+
