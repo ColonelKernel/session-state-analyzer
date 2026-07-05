@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "canonical-snapshot"
+version = "0.2.0"
+description = "The v0.2 canonical DAW snapshot contract: flat entities+relationships with explicit evidence, availability, and source-stability — the wire format between the four DAW session-state explorer adapters and the Session State Analyzer"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Zachary Scheffler" }]
+keywords = ["daw", "session-state", "schema", "provenance", "observability"]
+dependencies = [
+    "pydantic>=2.5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
