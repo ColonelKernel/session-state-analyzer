@@ -1,0 +1,6 @@
+# The workbench is a single-entry-point app (app.py dispatches its two pages
+# as tabs). Its pages/ directory holds plain render modules, not Streamlit
+# multipage scripts — keep Streamlit from auto-building sidebar navigation
+# out of them.
+[client]
+showSidebarNavigation = false
