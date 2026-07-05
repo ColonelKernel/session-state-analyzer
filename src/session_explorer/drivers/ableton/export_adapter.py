@@ -28,9 +28,9 @@ from types import ModuleType
 from typing import Optional
 
 from ...core.graph import build_session_graph, graph_to_dict
+from ...core.utils import to_pretty_json
 from .mapper import to_canonical
 from .native_models import ExportResult, ProjectState
-from .utils_json import to_pretty_json
 
 # Candidate module names for a public Ableton Live Set export package.
 # None of these currently exist on PyPI; the list documents what we probe for
