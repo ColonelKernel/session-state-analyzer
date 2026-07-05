@@ -11,10 +11,10 @@
       "session_json"
     ]
   },
-  "project": "ableton_live:project",
+  "project": "ableton:project",
   "entities": [
     {
-      "id": "ableton_live:project",
+      "id": "ableton:project",
       "entity_type": "PROJECT",
       "name": "Indie Vocal Production Sketch",
       "semantic_roles": [],
@@ -2111,7 +2111,7 @@
     {
       "id": "rel:0046",
       "rel_type": "CONTAINS",
-      "source": "ableton_live:project",
+      "source": "ableton:project",
       "target": "ableton:scene-1",
       "properties": {
         "kind": "scene"
@@ -2121,7 +2121,7 @@
     {
       "id": "rel:0047",
       "rel_type": "CONTAINS",
-      "source": "ableton_live:project",
+      "source": "ableton:project",
       "target": "ableton:scene-2",
       "properties": {
         "kind": "scene"
@@ -2131,7 +2131,7 @@
     {
       "id": "rel:0048",
       "rel_type": "CONTAINS",
-      "source": "ableton_live:project",
+      "source": "ableton:project",
       "target": "ableton:scene-3",
       "properties": {
         "kind": "scene"

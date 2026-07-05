@@ -104,9 +104,42 @@ def test_logic_stock_instrument_names_ground_roles():
     assert result.role == "Drums"
     assert not roles.looks_like_mixdown("Ultrabeat_Bounce.wav")
     assert roles.infer_role("Alchemy.wav").role == "Keys"
-    # Abstaining entries never produce a role: "Sample Alchemy" (a sampler
-    # that can play anything) must shadow the shorter "Alchemy" it contains.
+    result = roles.infer_role("Sculpture.wav")
+    assert result.role == "Keys"
+    assert "stock instrument" in result.explanation
+
+
+def test_ambiguous_instruments_abstain():
+    # Sampler/Quick Sampler can host anything: abstention is correct.
+    assert roles.infer_role("Quick Sampler.wav").role == "Unknown"
+    assert roles.infer_role("Sampler.wav").role == "Unknown"
+
+
+def test_longer_abstaining_name_shadows_contained_instrument():
+    # "Sample Alchemy" (abstain) contains "Alchemy" (Keys): the longest match
+    # must win or the abstention policy is bypassed.
     assert roles.infer_role("Sample Alchemy.wav").role == "Unknown"
+
+
+def test_keywords_take_precedence_over_instrument_names():
+    # An explicit role keyword OUTSIDE the instrument name disambiguates.
+    result = roles.infer_role("Alchemy Bass.wav")
+    assert result.role == "Bass"
+    assert result.confidence == 0.75
+    assert "keyword" in result.explanation
+
+
+def test_stock_instrument_name_credited_over_contained_keyword():
+    # A documented stock instrument name whose own tokens contain a role
+    # keyword (e.g. "Studio Horns" contains "horn") must be credited to the
+    # catalog — 0.80 with a named explanation — not shadowed at 0.75 by the
+    # bare keyword.
+    for name, role in [("Studio Horns", "Brass"), ("Studio Strings", "Strings"),
+                       ("Studio Bass", "Bass"), ("Studio Piano", "Keys")]:
+        result = roles.infer_role(f"{name}.wav")
+        assert result.role == role, name
+        assert result.confidence == 0.8, name
+        assert f"stock instrument name '{name}'" in result.explanation, name
 
 
 def test_role_inference_result_expressible_as_provenance():

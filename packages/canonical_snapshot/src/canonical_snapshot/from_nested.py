@@ -187,6 +187,10 @@ def flatten_session(
     """
 
     daw = source.daw
+    # Id namespace comes from the nested session's dialect, matching every id
+    # the adapter mapper already emitted ("ableton:track-1"), NOT from
+    # source.daw ("ableton_live") — one snapshot, one namespace.
+    namespace = session.dialect or daw
     default_capture = source.capture_modes[0] if source.capture_modes else "unknown"
     store = _ProvStore(default_capture, default_stability)
 
@@ -223,7 +227,7 @@ def flatten_session(
         return rel
 
     # -- PROJECT ------------------------------------------------------------
-    project_id = f"{daw}:project"
+    project_id = f"{namespace}:project"
     project_prov = store.add("OBSERVED")
     project = add_entity(
         Entity(

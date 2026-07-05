@@ -1,6 +1,6 @@
 """Rule engine + core cross-DAW rule pack tests."""
 
-from session_explorer.core.driver import Rule
+from session_explorer.core.recommend import Rule
 from session_explorer.core.ids import reset_id_counters
 from session_explorer.core.models import Recommendation, Route, Track
 from session_explorer.core.recommend import (

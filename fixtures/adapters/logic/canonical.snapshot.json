@@ -162,12 +162,9 @@
   "created_at": "2026-07-05T15:44:56.169189+00:00",
   "entities": [
     {
-      "availability": {
-        "automation": "INACCESSIBLE",
-        "routing": "INACCESSIBLE"
-      },
+      "availability": {},
       "entity_type": "PROJECT",
-      "id": "logic_pro:project",
+      "id": "logic:project",
       "name": "Logic Indie Mix Evidence Demo",
       "native": {
         "daw": "logic_pro",
@@ -176,9 +173,7 @@
       },
       "properties": {},
       "prov": {
-        "*": "prov:0001",
-        "automation": "prov:0015",
-        "routing": "prov:0016"
+        "*": "prov:0001"
       },
       "semantic_roles": []
     },
@@ -277,7 +272,7 @@
         "duration_seconds": "prov:0003",
         "file_name": "prov:0003",
         "name": "prov:0005",
-        "plugin_chain": "prov:0017",
+        "plugin_chain": "prov:0015",
         "sample_rate": "prov:0003",
         "semantic_roles": "prov:0007"
       },
@@ -327,7 +322,7 @@
         "duration_seconds": "prov:0003",
         "file_name": "prov:0003",
         "name": "prov:0010",
-        "plugin_chain": "prov:0017",
+        "plugin_chain": "prov:0015",
         "sample_rate": "prov:0003",
         "semantic_roles": "prov:0009"
       },
@@ -377,7 +372,7 @@
         "duration_seconds": "prov:0003",
         "file_name": "prov:0003",
         "name": "prov:0005",
-        "plugin_chain": "prov:0017",
+        "plugin_chain": "prov:0015",
         "sample_rate": "prov:0003",
         "semantic_roles": "prov:0011"
       },
@@ -480,7 +475,7 @@
         "duration_seconds": "prov:0003",
         "file_name": "prov:0003",
         "name": "prov:0010",
-        "plugin_chain": "prov:0017",
+        "plugin_chain": "prov:0015",
         "sample_rate": "prov:0003",
         "semantic_roles": "prov:0013"
       },
@@ -678,7 +673,7 @@
         ]
       },
       "prov": {
-        "*": "prov:0018"
+        "*": "prov:0016"
       },
       "semantic_roles": []
     },
@@ -706,7 +701,7 @@
         ]
       },
       "prov": {
-        "*": "prov:0018"
+        "*": "prov:0016"
       },
       "semantic_roles": []
     },
@@ -747,8 +742,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0019",
-        "inferred_track_name": "prov:0019"
+        "inferred_role": "prov:0017",
+        "inferred_track_name": "prov:0017"
       },
       "semantic_roles": []
     },
@@ -789,8 +784,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0020",
-        "inferred_track_name": "prov:0020"
+        "inferred_role": "prov:0018",
+        "inferred_track_name": "prov:0018"
       },
       "semantic_roles": []
     },
@@ -831,8 +826,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0021",
-        "inferred_track_name": "prov:0021"
+        "inferred_role": "prov:0019",
+        "inferred_track_name": "prov:0019"
       },
       "semantic_roles": []
     },
@@ -873,8 +868,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0022",
-        "inferred_track_name": "prov:0022"
+        "inferred_role": "prov:0020",
+        "inferred_track_name": "prov:0020"
       },
       "semantic_roles": []
     },
@@ -915,8 +910,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0023",
-        "inferred_track_name": "prov:0023"
+        "inferred_role": "prov:0021",
+        "inferred_track_name": "prov:0021"
       },
       "semantic_roles": []
     },
@@ -957,8 +952,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0024",
-        "inferred_track_name": "prov:0024"
+        "inferred_role": "prov:0022",
+        "inferred_track_name": "prov:0022"
       },
       "semantic_roles": []
     },
@@ -999,8 +994,8 @@
       },
       "prov": {
         "*": "prov:0003",
-        "inferred_role": "prov:0025",
-        "inferred_track_name": "prov:0025"
+        "inferred_role": "prov:0023",
+        "inferred_track_name": "prov:0023"
       },
       "semantic_roles": []
     }
@@ -1298,7 +1293,7 @@
   },
   "failures": [],
   "modulation": [],
-  "project": "logic_pro:project",
+  "project": "logic:project",
   "provenance": [
     {
       "capture_method": "evidence_scan",
@@ -1444,32 +1439,8 @@
       "capture_method": "evidence_scan",
       "confidence": null,
       "evidence": "HIDDEN",
-      "explanation": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
-      "id": "prov:0015",
-      "source_ref": null,
-      "source_stability": "OFFICIAL_EXPORT",
-      "warnings": [
-        "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state."
-      ]
-    },
-    {
-      "capture_method": "evidence_scan",
-      "confidence": null,
-      "evidence": "HIDDEN",
-      "explanation": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
-      "id": "prov:0016",
-      "source_ref": null,
-      "source_stability": "OFFICIAL_EXPORT",
-      "warnings": [
-        "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves."
-      ]
-    },
-    {
-      "capture_method": "evidence_scan",
-      "confidence": null,
-      "evidence": "HIDDEN",
       "explanation": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
-      "id": "prov:0017",
+      "id": "prov:0015",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": [
@@ -1481,7 +1452,7 @@
       "confidence": 0.5,
       "evidence": "ANNOTATED",
       "explanation": "User-asserted channel-strip description; never a DAW fact.",
-      "id": "prov:0018",
+      "id": "prov:0016",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1491,7 +1462,7 @@
       "confidence": 0.75,
       "evidence": "INFERRED",
       "explanation": "Filename contains drums keyword 'drums'.",
-      "id": "prov:0019",
+      "id": "prov:0017",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1501,7 +1472,7 @@
       "confidence": 0.75,
       "evidence": "INFERRED",
       "explanation": "Filename contains bass keyword 'bass'.",
-      "id": "prov:0020",
+      "id": "prov:0018",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1511,7 +1482,7 @@
       "confidence": 0.85,
       "evidence": "INFERRED",
       "explanation": "Filename contains guitar keyword 'electric guitar'.",
-      "id": "prov:0021",
+      "id": "prov:0019",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1521,7 +1492,7 @@
       "confidence": 0.75,
       "evidence": "INFERRED",
       "explanation": "Filename contains keys keyword 'synth'.",
-      "id": "prov:0022",
+      "id": "prov:0020",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1531,7 +1502,7 @@
       "confidence": 0.75,
       "evidence": "INFERRED",
       "explanation": "Filename contains vocal keyword 'vocal'.",
-      "id": "prov:0023",
+      "id": "prov:0021",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1541,7 +1512,7 @@
       "confidence": 0.85,
       "evidence": "INFERRED",
       "explanation": "Filename contains vocal keyword 'backing vocal'.",
-      "id": "prov:0024",
+      "id": "prov:0022",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1551,7 +1522,7 @@
       "confidence": 0.75,
       "evidence": "INFERRED",
       "explanation": "Filename contains mixdown keyword 'stereo mix'.",
-      "id": "prov:0025",
+      "id": "prov:0023",
       "source_ref": null,
       "source_stability": "OFFICIAL_EXPORT",
       "warnings": []
@@ -1630,7 +1601,7 @@
     }
   ],
   "schema_version": "0.2.0",
-  "snapshot_id": "logic_pro:sha256:3e0b213f30c1e414",
+  "snapshot_id": "logic_pro:sha256:4fd641fdad50ecb7",
   "source": {
     "adapter": "logic-session-evidence-explorer",
     "adapter_version": "0.1.0",
@@ -1642,6 +1613,8 @@
   },
   "temporal_state": {},
   "warnings": [
-    "Demo audio is synthetic (generated tones/noise), not a real Logic export."
+    "Demo audio is synthetic (generated tones/noise), not a real Logic export.",
+    "hidden-state marker 'logic:hidden_1' targets unknown entity 'logic_pro:project'; recorded in extensions only.",
+    "hidden-state marker 'logic:hidden_2' targets unknown entity 'logic_pro:project'; recorded in extensions only."
   ]
 }

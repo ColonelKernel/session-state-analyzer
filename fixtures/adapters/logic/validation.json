@@ -10,9 +10,9 @@
       "TRACK": 6
     },
     "failures": 0,
-    "provenance_records": 25,
+    "provenance_records": 23,
     "relationships": 7,
-    "warnings_in_snapshot": 1
+    "warnings_in_snapshot": 3
   },
   "valid": true,
   "warnings": []

@@ -15,13 +15,32 @@ all three prototypes shared.
 
 from __future__ import annotations
 
-from typing import Optional
+from dataclasses import dataclass, field
+from typing import Callable, Optional
 
-from .driver import Rule
 from .ids import make_id
 from .models import CanonicalSession, Recommendation, Track
 from .observability import hidden_fields
 from .roles import DEFAULT_KEYWORDS, AMBIENCE_FAMILIES
+
+@dataclass
+class Rule:
+    """One recommendation rule.
+
+    ``requires`` names canonical state fields (see
+    ``observability.SESSION_STATE_FIELDS``); the engine skips the rule — with
+    an info note instead of silence — when the session's dialect hides one of
+    them, turning partial observability into visible behavior.
+
+    Moved here from the retired driver registry (the analyzer no longer hosts
+    dialect drivers; adapter repos own their rule packs).
+    """
+
+    rule_id: str
+    fn: Callable[[CanonicalSession], list[Recommendation]]
+    requires: list[str] = field(default_factory=list)
+    description: str = ""
+
 
 _SEVERITY_ORDER = {"warning": 0, "suggestion": 1, "info": 2}
 
