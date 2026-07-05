@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "session-state-explorer"
+name = "session-state-analyzer"
 version = "1.0.0"
-description = "Unified DAW session-state explorer: interpretable, partially observable session graphs for Ableton Live, Cubase, REAPER, and Logic Pro"
+description = "Session State Analyzer: the analytical layer over four DAW session-state explorer adapters — interpretable, partially observable session graphs for Ableton Live, Cubase, REAPER, and Logic Pro"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
