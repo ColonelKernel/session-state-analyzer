@@ -25,6 +25,7 @@ from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.workbench import state
 from session_explorer.workbench.pages import (
     alignment,
+    atlas,
     canonical_graph,
     entity_inspector,
 )
@@ -110,8 +111,8 @@ def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
 # ---------------------------------------------------------------------------
 
 if view == "Canonical":
-    graph_tab, inspector_tab, alignment_tab = st.tabs(
-        ["Graph", "Entity inspector", "X04 alignment"]
+    graph_tab, inspector_tab, alignment_tab, atlas_tab = st.tabs(
+        ["Graph", "Entity inspector", "X04 alignment", "Observability atlas"]
     )
     with graph_tab:
         canonical_graph.render(bundles, layer)
@@ -119,6 +120,8 @@ if view == "Canonical":
         entity_inspector.render(bundles)
     with alignment_tab:
         alignment.render()
+    with atlas_tab:
+        atlas.render(bundles)
 
 elif view == "Native":
     st.header("Native payload")

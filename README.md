@@ -37,11 +37,20 @@ DAW artifact. Install the UI extras and run the single entry point:
 The sidebar selects bundles (discovered under `fixtures/adapters/`), the
 graph layer (`organizational` / `signal_flow` / `all`), and the view:
 
-- **Canonical** — two tabs: *Graph* (all selected snapshots side by side in
+- **Canonical** — four tabs: *Graph* (all selected snapshots side by side in
   one canonical graph, coloured by entity type with observability overriding
-  where a value is inferred/annotated/hidden) and *Entity inspector* (one
+  where a value is inferred/annotated/hidden); *Entity inspector* (one
   entity, three panels: canonical / native / evidence — every value traceable
-  to its provenance record, every unobservable field stated).
+  to its provenance record, every unobservable field stated); *X04 alignment*
+  (one production strategy, four native mechanisms, aligned); and
+  *Observability atlas* (the P5 flagship — measured per-domain observability
+  across the loaded DAWs as ten canonical domains × N columns, each cell a
+  stacked observed/inferred/annotated/hidden/unsupported bar with direct,
+  recovered, and hidden ratios. Click a domain × DAW to drill into the exact
+  entities and fields behind the numbers beside the adapter's *declared* read
+  capability; an unknown-state map per DAW categorizes everything a snapshot
+  admits it cannot see. Modulation, and Native Features where a DAW ships no
+  extension payload, render NOT_APPLICABLE — the gaps are shown, not hidden).
 - **Native** — the bundle's verbatim `native.json` beside the registry's
   per-DAW presentation vocabulary.
 - **Evidence** — the deduplicated provenance store as a table, plus the
