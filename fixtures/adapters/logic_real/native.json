@@ -39,10 +39,27 @@
       {
         "confidence": 0.75,
         "descriptor_id": "descriptor_3",
+        "duration_seconds": 203.4436961451247,
+        "file_name": "Lincoln Stereo Mix.aif",
+        "file_path": "./Lincoln Stereo Mix.aif",
+        "id": "audio_3",
+        "inferred_role": "Mixdown",
+        "inferred_track_name": "Lincoln Stereo Mix",
+        "is_mixdown": true,
+        "is_reference": false,
+        "role_explanation": "Filename contains mixdown keyword 'stereo mix'.",
+        "sample_rate": 44100,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_4",
         "duration_seconds": 49.04843537414966,
         "file_name": "Mellotron Strings & Flute_1.wav",
         "file_path": "./Mellotron Strings & Flute_1.wav",
-        "id": "audio_3",
+        "id": "audio_4",
         "inferred_role": "Strings",
         "inferred_track_name": "Mellotron Strings & Flute 1",
         "is_mixdown": false,
@@ -55,11 +72,11 @@
       },
       {
         "confidence": 0.75,
-        "descriptor_id": "descriptor_4",
+        "descriptor_id": "descriptor_5",
         "duration_seconds": 87.68643990929705,
         "file_name": "Rhythm Guitar_1.wav",
         "file_path": "./Rhythm Guitar_1.wav",
-        "id": "audio_4",
+        "id": "audio_5",
         "inferred_role": "Guitar",
         "inferred_track_name": "Rhythm Guitar 1",
         "is_mixdown": false,
@@ -71,7 +88,124 @@
         "warnings": []
       }
     ],
-    "channel_strip_notes": [],
+    "channel_strip_notes": [
+      {
+        "bus": "Bus 6",
+        "confidence": 0.5,
+        "id": "note_1",
+        "notes": "Sampler instrument; fader -10.2 dB, pan -21; read from the open project's mixer",
+        "plugins": [
+          "Channel EQ",
+          "Pedalboard",
+          "Amp Designer"
+        ],
+        "role": "Strings",
+        "sends": [
+          "Small Plate"
+        ],
+        "track_name": "Mellotron Strings & Flute"
+      },
+      {
+        "bus": "Bus 1",
+        "confidence": 0.5,
+        "id": "note_2",
+        "notes": "Logic Drummer (Session Player) track; Drum Kit Designer; fader -6.0",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "Multipressor",
+          "Phat FX"
+        ],
+        "role": "Drums",
+        "sends": [
+          "Small Chamber"
+        ],
+        "track_name": "Heavy Kit"
+      },
+      {
+        "bus": "Bus 1",
+        "confidence": 0.5,
+        "id": "note_3",
+        "notes": "Second Drummer track (no stem exported); fader -6.0",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "Multipressor"
+        ],
+        "role": "Drums",
+        "sends": [
+          "Small Chamber"
+        ],
+        "track_name": "Brooklyn"
+      },
+      {
+        "bus": "Bus 1",
+        "confidence": 0.5,
+        "id": "note_4",
+        "notes": "Third Drummer track (no stem exported); fader -6.0",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "Multipressor"
+        ],
+        "role": "Drums",
+        "sends": [
+          "Small Chamber"
+        ],
+        "track_name": "Brooklyn 2"
+      },
+      {
+        "bus": "Bus 4",
+        "confidence": 0.5,
+        "id": "note_5",
+        "notes": "Input fed FROM Bus 4 (bus-fed audio track); fader -9.6, pan +20",
+        "plugins": [
+          "Channel EQ",
+          "Compressor",
+          "Stereo Delay"
+        ],
+        "role": "Guitar",
+        "sends": [],
+        "track_name": "Rhythm Guitar"
+      },
+      {
+        "bus": null,
+        "confidence": 0.5,
+        "id": "note_6",
+        "notes": "Recorded via audio input In 1; fader -9.4",
+        "plugins": [
+          "Noise Gate",
+          "Clip Distortion",
+          "Bass Amp Designer",
+          "Channel EQ"
+        ],
+        "role": "Bass",
+        "sends": [],
+        "track_name": "Bass"
+      },
+      {
+        "bus": "Bus 8 (organ send shares Small Hall)",
+        "confidence": 0.5,
+        "id": "note_7",
+        "notes": "JUPITER-8 software instrument with Arpeggiator MIDI FX (generative state); no stem exported",
+        "plugins": [],
+        "role": "Keys",
+        "sends": [],
+        "track_name": "Jupiter Keys"
+      },
+      {
+        "bus": "Bus 8",
+        "confidence": 0.5,
+        "id": "note_8",
+        "notes": "Vintage B3 instrument; no stem exported",
+        "plugins": [],
+        "role": "Keys",
+        "sends": [
+          "Small Hall"
+        ],
+        "track_name": "Bebop Organ"
+      }
+    ],
     "daw_name": "Logic Pro",
     "daw_version": null,
     "descriptors": [
@@ -126,6 +260,31 @@
         "zero_crossing_rate_mean": 0.048639
       },
       {
+        "active_duration_seconds": 71.955263,
+        "active_rms_mean": 0.075346,
+        "activity_ratio": 0.353686,
+        "duration_seconds": 203.443696,
+        "dynamic_range_active_db": 21.875557,
+        "dynamic_range_approx": 30.860874,
+        "estimated_tempo": 101.332721,
+        "file_name": "Lincoln Stereo Mix.aif",
+        "id": "descriptor_3",
+        "integrated_loudness_lufs": -17.85786,
+        "onset_strength_mean": 0.408909,
+        "peak_amplitude": 0.935057,
+        "rms_mean": 0.026779,
+        "rms_std": 0.046835,
+        "sample_rate": 44100,
+        "source_id": "audio_3",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 1170.002241,
+        "spectral_centroid_mean": 954.847787,
+        "spectral_rolloff_mean": 2001.947694,
+        "stereo_width_ratio": 0.398133,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.018499
+      },
+      {
         "active_duration_seconds": 49.048435,
         "active_rms_mean": 0.151344,
         "activity_ratio": 1.0,
@@ -134,14 +293,14 @@
         "dynamic_range_approx": 14.002291,
         "estimated_tempo": 123.046875,
         "file_name": "Mellotron Strings & Flute_1.wav",
-        "id": "descriptor_3",
+        "id": "descriptor_4",
         "integrated_loudness_lufs": -13.195818,
         "onset_strength_mean": 0.730428,
         "peak_amplitude": 0.758717,
         "rms_mean": 0.151344,
         "rms_std": 0.033246,
         "sample_rate": 44100,
-        "source_id": "audio_3",
+        "source_id": "audio_4",
         "source_type": "audio_evidence",
         "spectral_bandwidth_mean": 1217.322165,
         "spectral_centroid_mean": 1235.468794,
@@ -159,14 +318,14 @@
         "dynamic_range_approx": 14.714177,
         "estimated_tempo": 101.332721,
         "file_name": "Rhythm Guitar_1.wav",
-        "id": "descriptor_4",
+        "id": "descriptor_5",
         "integrated_loudness_lufs": -12.720046,
         "onset_strength_mean": 0.652433,
         "peak_amplitude": 0.632865,
         "rms_mean": 0.116306,
         "rms_std": 0.07474,
         "sample_rate": 44100,
-        "source_id": "audio_4",
+        "source_id": "audio_5",
         "source_type": "audio_evidence",
         "spectral_bandwidth_mean": 1102.826982,
         "spectral_centroid_mean": 1200.227535,
@@ -204,71 +363,16 @@
           "partner-provided session metadata"
         ],
         "target_id": "session"
-      },
-      {
-        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
-        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
-        "hidden_state_type": "hidden_plugin_chain",
-        "id": "hidden_3",
-        "possible_sources": [
-          "user channel-strip notes",
-          "screenshots",
-          "manual export documentation",
-          "future DAW integration",
-          "partner-provided session metadata"
-        ],
-        "target_id": "track_1"
-      },
-      {
-        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
-        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
-        "hidden_state_type": "hidden_plugin_chain",
-        "id": "hidden_4",
-        "possible_sources": [
-          "user channel-strip notes",
-          "screenshots",
-          "manual export documentation",
-          "future DAW integration",
-          "partner-provided session metadata"
-        ],
-        "target_id": "track_2"
-      },
-      {
-        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
-        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
-        "hidden_state_type": "hidden_plugin_chain",
-        "id": "hidden_5",
-        "possible_sources": [
-          "user channel-strip notes",
-          "screenshots",
-          "manual export documentation",
-          "future DAW integration",
-          "partner-provided session metadata"
-        ],
-        "target_id": "track_3"
-      },
-      {
-        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
-        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
-        "hidden_state_type": "hidden_plugin_chain",
-        "id": "hidden_6",
-        "possible_sources": [
-          "user channel-strip notes",
-          "screenshots",
-          "manual export documentation",
-          "future DAW integration",
-          "partner-provided session metadata"
-        ],
-        "target_id": "track_4"
       }
     ],
     "inferred_tracks": [
       {
-        "channel_strip_note_ids": [],
+        "channel_strip_note_ids": [
+          "note_6"
+        ],
         "confidence": 0.75,
         "descriptor_id": "descriptor_1",
         "hidden_fields": [
-          "plugin_chain",
           "automation",
           "sends",
           "bus_routing",
@@ -277,7 +381,8 @@
         "id": "track_1",
         "inferred_fields": [
           "role",
-          "track_name"
+          "track_name",
+          "plugin_chain"
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
@@ -292,20 +397,22 @@
         "warnings": []
       },
       {
-        "channel_strip_note_ids": [],
+        "channel_strip_note_ids": [
+          "note_2"
+        ],
         "confidence": 0.2,
         "descriptor_id": "descriptor_2",
         "hidden_fields": [
-          "plugin_chain",
           "automation",
-          "sends",
-          "bus_routing",
           "track_stack"
         ],
         "id": "track_2",
         "inferred_fields": [
           "role",
-          "track_name"
+          "track_name",
+          "plugin_chain",
+          "sends",
+          "bus_routing"
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
@@ -320,20 +427,22 @@
         "warnings": []
       },
       {
-        "channel_strip_note_ids": [],
+        "channel_strip_note_ids": [
+          "note_1"
+        ],
         "confidence": 0.75,
-        "descriptor_id": "descriptor_3",
+        "descriptor_id": "descriptor_4",
         "hidden_fields": [
-          "plugin_chain",
           "automation",
-          "sends",
-          "bus_routing",
           "track_stack"
         ],
         "id": "track_3",
         "inferred_fields": [
           "role",
-          "track_name"
+          "track_name",
+          "plugin_chain",
+          "sends",
+          "bus_routing"
         ],
         "linked_midi_track_names": [
           "Mellotron Strings & Flute",
@@ -347,24 +456,26 @@
           "sample_rate"
         ],
         "role": "Strings",
-        "source_audio_id": "audio_3",
+        "source_audio_id": "audio_4",
         "warnings": []
       },
       {
-        "channel_strip_note_ids": [],
+        "channel_strip_note_ids": [
+          "note_5"
+        ],
         "confidence": 0.75,
-        "descriptor_id": "descriptor_4",
+        "descriptor_id": "descriptor_5",
         "hidden_fields": [
-          "plugin_chain",
           "automation",
           "sends",
-          "bus_routing",
           "track_stack"
         ],
         "id": "track_4",
         "inferred_fields": [
           "role",
-          "track_name"
+          "track_name",
+          "plugin_chain",
+          "bus_routing"
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
@@ -375,7 +486,7 @@
           "sample_rate"
         ],
         "role": "Guitar",
-        "source_audio_id": "audio_4",
+        "source_audio_id": "audio_5",
         "warnings": []
       }
     ],
@@ -408,19 +519,16 @@
     "musicxml_evidence": null,
     "recommendations": [
       {
-        "caveat": "This prototype treats notes as user-provided evidence, not automatically extracted Logic-native state.",
-        "confidence": 0.8,
-        "explanation": "The exported stems reveal audio evidence, but not the Logic channel-strip state. Adding simple notes about plug-ins, sends, and buses would make the graph more useful for explaining production decisions.",
+        "caveat": "A reference is a point of comparison, not an objective target.",
+        "confidence": 0.6,
+        "explanation": "A stereo mixdown is available, but no reference track was supplied. A reference could help compare spectral balance, dynamics, and production intent without treating one mix as objectively correct.",
         "id": "rec_1",
         "related_node_ids": [
-          "audio_1",
-          "audio_2",
-          "audio_3",
-          "audio_4"
+          "audio_3"
         ],
-        "severity": "suggestion",
-        "suggested_action": "Export or manually enter basic channel-strip notes for each stem: plug-ins, sends, bus, and production role.",
-        "title": "Add channel-strip notes to improve DAW-state interpretability."
+        "severity": "info",
+        "suggested_action": "Upload a reference track and add a short note about what qualities it represents.",
+        "title": "Reference-aware evaluation could be added."
       },
       {
         "caveat": "Name matching is heuristic and may miss valid pairings.",
@@ -433,19 +541,21 @@
         "title": "Some musical parts are not linked to audio evidence."
       },
       {
-        "caveat": "Routing cannot be reliably recovered from stem audio alone; this is a documentation prompt.",
-        "confidence": 0.65,
-        "explanation": "The session contains multiple stems, but no bus, send, or track-stack information. The graph therefore represents a flattened export rather than the full Logic mix structure.",
+        "caveat": "A high residual can also come from missing stems or misaligned exports; it identifies a gap, not its cause.",
+        "confidence": 0.6,
+        "explanation": "Summing the exported stems and fitting a single gain leaves a residual of -0.02 dB relative to the mixdown; the residual is largest in 500-1000Hz, 250-500Hz, 1000-2000Hz. This is signal evidence that bus or master processing, automation, or additional content separates the stem exports from the final mix.",
         "id": "rec_3",
         "related_node_ids": [
+          "audio_3",
+          "reconciliation_1",
           "audio_1",
           "audio_2",
-          "audio_3",
-          "audio_4"
+          "audio_4",
+          "audio_5"
         ],
-        "severity": "warning",
-        "suggested_action": "Add bus/send notes or export grouped stems such as drums, vocals, guitars, and effects returns.",
-        "title": "Routing graph is probably incomplete."
+        "severity": "info",
+        "suggested_action": "Document any bus/master processing, or re-export full-length, bar-1-aligned stems if the mismatch is unexpected.",
+        "title": "Mixdown contains processing not present in the stem sum."
       }
     ],
     "reference_comparisons": [],
@@ -453,7 +563,36 @@
     "schema_version": "0.1.0",
     "session_name": "Lincoln's Come in Fives (Berklee, real session evidence)",
     "source_type": "logic_exports",
-    "stem_sum_reconciliation": null,
+    "stem_sum_reconciliation": {
+      "band_residuals_db": {
+        "1000-2000Hz": 0.02,
+        "120-250Hz": -0.02,
+        "2000-4000Hz": 0.01,
+        "250-500Hz": 0.05,
+        "4000-8000Hz": -0.04,
+        "500-1000Hz": 0.06,
+        "60-120Hz": -0.03,
+        "8000-16000Hz": -0.31
+      },
+      "correlation": 0.0616,
+      "fitted_gain": 0.026474,
+      "id": "reconciliation_1",
+      "interpretation": "Substantial residual: the mixdown contains processing or content not present in the stem sum — or stems are missing or misaligned.",
+      "mixdown_audio_id": "audio_3",
+      "residual_db": -0.02,
+      "stem_audio_ids": [
+        "audio_1",
+        "audio_2",
+        "audio_4",
+        "audio_5"
+      ],
+      "warnings": [
+        "Stem audio_1 duration differs from the mixdown by more than 1%; signals were truncated to the shorter length. For a reliable result, export with Range set to extend to the project end (not 'Trim Silence at File End' or a cycle range) and identical Include Audio Tail settings.",
+        "Stem audio_2 duration differs from the mixdown by more than 1%; signals were truncated to the shorter length. For a reliable result, export with Range set to extend to the project end (not 'Trim Silence at File End' or a cycle range) and identical Include Audio Tail settings.",
+        "Stem audio_4 duration differs from the mixdown by more than 1%; signals were truncated to the shorter length. For a reliable result, export with Range set to extend to the project end (not 'Trim Silence at File End' or a cycle range) and identical Include Audio Tail settings.",
+        "Stem audio_5 duration differs from the mixdown by more than 1%; signals were truncated to the shorter length. For a reliable result, export with Range set to extend to the project end (not 'Trim Silence at File End' or a cycle range) and identical Include Audio Tail settings."
+      ]
+    },
     "warnings": []
   },
   "model_name": "SessionEvidence"
