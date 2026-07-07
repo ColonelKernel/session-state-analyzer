@@ -1,0 +1,22 @@
+{
+  "id": "intervention:effect_send",
+  "description": "Add a post-fader effect send from the vocal channel to a shared plate-reverb return.",
+  "semantic_role": "SEND_LEVEL",
+  "native_implementations": {
+    "cubase": "<Send destination=\"ch-fx1\" type=\"post\"> on the vox channel, feeding the 'FX 1 - Plate' FX-return channel (REVerence plate reverb, routed to the Stereo Out)."
+  },
+  "before": {
+    "id": "obs:routing_a",
+    "snapshot_id": "cubase:routing_a:56a5a49aedc7",
+    "render_id": "render:routing_a",
+    "fixture_id": "before",
+    "intervention_id": null
+  },
+  "after": {
+    "id": "obs:routing_b",
+    "snapshot_id": "cubase:routing_b:0f455cc198d1",
+    "render_id": "render:routing_b",
+    "fixture_id": "after",
+    "intervention_id": "intervention:effect_send"
+  }
+}

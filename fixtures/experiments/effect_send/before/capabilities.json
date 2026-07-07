@@ -1,0 +1,343 @@
+{
+  "read": {
+    "structure": {
+      "fields": {
+        "track_name": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "track_type": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "hierarchy": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "folder_group_channel": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "track_color": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "channel": {
+      "fields": {
+        "volume": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "pan": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "mute": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "solo": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "processing": {
+      "fields": {
+        "insert_identity": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "insert_order": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "bypass_state": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "plugin_preset": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "plugin_parameters": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "routing": {
+      "fields": {
+        "output_routing": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "sends": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "send_levels": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "input_routing": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "musical_content": {
+      "fields": {
+        "tempo": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "time_signature": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "midi_notes": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "automation": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "markers": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "dawproject_export",
+          "source_stability": "OFFICIAL_EXPORT",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "cpr_evidence": {
+      "fields": {
+        "container_identification": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "cpr_evidence_scan",
+          "source_stability": "REVERSE_ENGINEERED",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "plugin_name_candidates": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "cpr_evidence_scan",
+          "source_stability": "REVERSE_ENGINEERED",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "app_version": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "cpr_evidence_scan",
+          "source_stability": "REVERSE_ENGINEERED",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "structural_state": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": "cpr_evidence_scan",
+          "source_stability": "REVERSE_ENGINEERED",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "midi_content": {
+      "fields": {
+        "midi_notes": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "midi_export",
+          "source_stability": "OFFICIAL_DOCUMENTED",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "tempo": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "midi_export",
+          "source_stability": "OFFICIAL_DOCUMENTED",
+          "tested_daw_version": null,
+          "validation_status": "TESTED"
+        },
+        "time_signature": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_export",
+          "source_stability": "OFFICIAL_DOCUMENTED",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "track_names": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_export",
+          "source_stability": "OFFICIAL_DOCUMENTED",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    }
+  },
+  "write": {},
+  "live_observation": {
+    "channel": {
+      "fields": {
+        "volume": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_remote_bridge",
+          "source_stability": "SUPPORTED_INTEGRATION",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "pan": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_remote_bridge",
+          "source_stability": "SUPPORTED_INTEGRATION",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "mute": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_remote_bridge",
+          "source_stability": "SUPPORTED_INTEGRATION",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "solo": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_remote_bridge",
+          "source_stability": "SUPPORTED_INTEGRATION",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "transport": {
+      "fields": {
+        "tempo": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "midi_remote_bridge",
+          "source_stability": "SUPPORTED_INTEGRATION",
+          "tested_daw_version": null,
+          "validation_status": "CLAIMED"
+        }
+      }
+    }
+  },
+  "render": {},
+  "manifest_version": "0.2.0",
+  "daw": "cubase",
+  "daw_version": null,
+  "adapter": "cubase-hybrid",
+  "adapter_version": "0.1.0",
+  "notes": [
+    "Fixtures are synthetic DAWproject files modeled on Cubase 15 exports (tools/make_fixtures.py); no capability has been validated against a file produced by a running Cubase instance, so tested_daw_version is deliberately unset.",
+    "DAWproject is an open interchange format that Cubase 14/15 import and export (OFFICIAL_EXPORT stability).",
+    ".cpr support is a read-only string-evidence scan (REVERSE_ENGINEERED); it never claims structural state.",
+    "The MIDI Remote runtime bridge (runtime/) observes the selected channel + transport only; it is UNTESTED against a live Cubase in this repo."
+  ]
+}

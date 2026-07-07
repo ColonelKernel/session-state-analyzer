@@ -1,0 +1,638 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "cubase:routing_a:56a5a49aedc7",
+  "created_at": "2026-07-07T13:15:35+00:00",
+  "source": {
+    "daw": "cubase",
+    "daw_version": "15.0.10",
+    "adapter": "cubase-session-state-explorer",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "dawproject_export"
+    ]
+  },
+  "project": "cubase:project",
+  "entities": [
+    {
+      "id": "cubase:project",
+      "entity_type": "PROJECT",
+      "name": "routing_a",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 120.0,
+        "time_signature": "4/4",
+        "source_file": "fixtures/cubase/routing_a.dawproject"
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "chords": "prov:0006",
+        "input_routing": "prov:0007",
+        "markers": "prov:0008",
+        "notation_state": "prov:0009",
+        "plugin_parameters": "prov:0010",
+        "record_enable": "prov:0011",
+        "rendered_audio": "prov:0012",
+        "tempo_map": "prov:0013"
+      },
+      "availability": {
+        "chords": "INACCESSIBLE",
+        "input_routing": "INACCESSIBLE",
+        "markers": "INACCESSIBLE",
+        "notation_state": "INACCESSIBLE",
+        "plugin_parameters": "INACCESSIBLE",
+        "record_enable": "INACCESSIBLE",
+        "rendered_audio": "INACCESSIBLE",
+        "tempo_map": "INACCESSIBLE"
+      }
+    },
+    {
+      "id": "cubase:track-tr-ch-vox",
+      "entity_type": "TRACK",
+      "name": "Lead Vox",
+      "semantic_roles": [
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 0,
+        "color": "#D4A017"
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "audio",
+        "properties": {
+          "native": {
+            "cubase": {
+              "dawproject_channel_id": "ch-vox"
+            }
+          },
+          "channel_config": "stereo",
+          "output_target_id": "cubase:track-tr-master",
+          "native_track_type": "audio",
+          "raw_source": {
+            "dawproject_id": "tr-ch-vox"
+          }
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0003"
+      },
+      "availability": {}
+    },
+    {
+      "id": "cubase:track-tr-ch-vox:channel",
+      "entity_type": "CHANNEL",
+      "name": "Lead Vox",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -1.41,
+        "pan": 0.0,
+        "mute": false
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002",
+        "volume_db": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "cubase:track-tr-master",
+      "entity_type": "CHANNEL",
+      "name": "Stereo Out",
+      "semantic_roles": [
+        "main_output"
+      ],
+      "properties": {
+        "index": 0,
+        "volume_db": 0.0,
+        "pan": 0.0
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "master",
+        "properties": {
+          "native": {
+            "cubase": {
+              "channel_role": "master",
+              "dawproject_channel_id": "ch-master"
+            }
+          },
+          "channel_config": "stereo",
+          "native_track_type": "master",
+          "raw_source": {
+            "dawproject_id": "tr-master"
+          }
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "volume_db": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "cubase:device-dev-ch-vox-0",
+      "entity_type": "PROCESSOR",
+      "name": "StudioEQ",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "audio_effect",
+        "enabled": true,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "audio_effect",
+        "properties": {
+          "plugin_identifier": "StudioEQ",
+          "plugin_format": "VST3",
+          "bypassed": false,
+          "state_blob_ref": "plugins/StudioEQ-ch-vox.vstpreset"
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "parameters": "prov:0004",
+        "device_family": "prov:0005",
+        "insert_parameter_state": "prov:0014"
+      },
+      "availability": {
+        "insert_parameter_state": "INACCESSIBLE"
+      }
+    },
+    {
+      "id": "cubase:clip-cubase-track-tr-ch-vox-0-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "Lead Vox",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "start_time_beats": 0.0,
+        "length_beats": 8.0,
+        "audio_file": "audio/vox.wav"
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:audio_vox_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "vox.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "audio/vox.wav"
+      },
+      "native": {
+        "daw": "cubase",
+        "native_type": "audio_file",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "cubase:track-tr-ch-vox",
+      "target": "cubase:track-tr-ch-vox:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "cubase:track-tr-ch-vox:channel",
+      "target": "cubase:device-dev-ch-vox-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "cubase:track-tr-ch-vox",
+      "target": "cubase:clip-cubase-track-tr-ch-vox-0-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "cubase:clip-cubase-track-tr-ch-vox-0-0",
+      "target": "asset:audio_vox_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0005",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "cubase:track-tr-ch-vox:channel",
+      "target": "cubase:track-tr-master",
+      "properties": {
+        "route_type": "output"
+      },
+      "prov_ref": "prov:0002"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": null,
+  "coverage": {
+    "structure": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 1,
+      "observed": 1,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 1,
+      "observed": 1,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "OBSERVED",
+      "capture_method": "dawproject",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0003",
+      "evidence": "INFERRED",
+      "capture_method": "fusion",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": 0.55,
+      "explanation": "role 'Vocal' guessed from track name 'Lead Vox'",
+      "warnings": []
+    },
+    {
+      "id": "prov:0004",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": 0.0,
+      "explanation": "Plug-in parameter values live in an opaque state blob (plugins/StudioEQ-ch-vox.vstpreset); DAWproject does not enumerate them for this device.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0005",
+      "evidence": "INFERRED",
+      "capture_method": "fusion",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "family 'EQ' guessed from plug-in name 'StudioEQ'",
+      "warnings": []
+    },
+    {
+      "id": "prov:0006",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "No available artifact reveals 'chords'.",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    },
+    {
+      "id": "prov:0007",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "Input/monitoring routing is not carried by any external export.",
+      "warnings": [
+        "Record-time signal path is unknown."
+      ]
+    },
+    {
+      "id": "prov:0008",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "No available artifact reveals 'markers'.",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    },
+    {
+      "id": "prov:0009",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "Score interpretation lives only in MusicXML / the project; the same MIDI performance yields many notations.",
+      "warnings": [
+        "Representational (notation) state is separated from acoustically-active state — by design in v0."
+      ]
+    },
+    {
+      "id": "prov:0010",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "DAWproject stores plug-in state as an opaque blob; the CPR binary does not expose parameters; third-party VST3 params are not enumerable without loading the plug-in.",
+      "warnings": [
+        "We know a plug-in is present and its preset name, but not its dial settings — so we cannot relate a parameter change to the render from files alone."
+      ]
+    },
+    {
+      "id": "prov:0011",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "No available artifact reveals 'record_enable'.",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    },
+    {
+      "id": "prov:0012",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "No available artifact reveals 'rendered_audio'.",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    },
+    {
+      "id": "prov:0013",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "No available artifact reveals 'tempo_map'.",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    },
+    {
+      "id": "prov:0014",
+      "evidence": "HIDDEN",
+      "capture_method": "dawproject_export",
+      "source_stability": "OFFICIAL_EXPORT",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "Parameter values for 'StudioEQ' are not exposed by the available surfaces (opaque plug-in state).",
+      "warnings": [
+        "This state is not recoverable from the available evidence surfaces."
+      ]
+    }
+  ],
+  "extensions": {
+    "cubase": {
+      "musical_structure": {
+        "tempo_map": [
+          {
+            "time_beats": 0.0,
+            "bpm": 120.0,
+            "curve": "jump"
+          }
+        ],
+        "time_signatures": [],
+        "markers": [],
+        "chords": []
+      },
+      "project_meta": {
+        "project_name": "routing_a",
+        "project_path": "fixtures/cubase/routing_a.dawproject",
+        "daw_dialect": "cubase",
+        "cubase_version": "15.0.10",
+        "sample_rate": null,
+        "frame_rate": null,
+        "record_format": null,
+        "project_start_seconds": null,
+        "project_length_seconds": null,
+        "left_locator_beats": null,
+        "right_locator_beats": null,
+        "tempo_mode": null
+      },
+      "capture": {
+        "artifacts": [
+          "dawproject"
+        ],
+        "extractors_run": [
+          "dawproject"
+        ],
+        "coverage_percent": 72.1,
+        "captured_at": null
+      },
+      "metadata": {
+        "source_artifact": "dawproject",
+        "native_metadata": {
+          "dawproject_application": "Cubase 15.0.10",
+          "coverage": {
+            "coverage_percent": 72.1,
+            "revealed": [
+              "audio_events",
+              "audio_file_refs",
+              "automation_events",
+              "automation_lanes",
+              "bypass_state",
+              "hierarchy",
+              "insert_identity",
+              "insert_order",
+              "midi_notes",
+              "midi_parts",
+              "mute_solo",
+              "output_routing",
+              "pan",
+              "project_metadata",
+              "send_levels",
+              "sends",
+              "tempo",
+              "time_signatures",
+              "track_color",
+              "track_name",
+              "track_type",
+              "volume",
+              "vst_instruments"
+            ],
+            "constrained": [
+              "folder_group_channel",
+              "plugin_preset",
+              "role"
+            ],
+            "hidden": [
+              "chords",
+              "input_routing",
+              "markers",
+              "notation_state",
+              "plugin_parameters",
+              "record_enable",
+              "rendered_audio",
+              "tempo_map"
+            ],
+            "n_fields": 34
+          }
+        }
+      },
+      "hidden_state_markers": [
+        {
+          "id": "cubase:gap-chords",
+          "target_id": "cubase:project",
+          "hidden_state_type": "chords",
+          "description": "No available artifact reveals 'chords'.",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": []
+        },
+        {
+          "id": "cubase:gap-input-routing",
+          "target_id": "cubase:project",
+          "hidden_state_type": "input_routing",
+          "description": "Input/monitoring routing is not carried by any external export.",
+          "consequence": "Record-time signal path is unknown.",
+          "possible_sources": [
+            "MIDI Remote runtime",
+            "custom Cubase extension"
+          ]
+        },
+        {
+          "id": "cubase:gap-markers",
+          "target_id": "cubase:project",
+          "hidden_state_type": "markers",
+          "description": "No available artifact reveals 'markers'.",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": []
+        },
+        {
+          "id": "cubase:gap-notation-state",
+          "target_id": "cubase:project",
+          "hidden_state_type": "notation_state",
+          "description": "Score interpretation lives only in MusicXML / the project; the same MIDI performance yields many notations.",
+          "consequence": "Representational (notation) state is separated from acoustically-active state — by design in v0.",
+          "possible_sources": [
+            "MusicXML export",
+            "Dorico export"
+          ]
+        },
+        {
+          "id": "cubase:gap-plugin-parameters",
+          "target_id": "cubase:project",
+          "hidden_state_type": "plugin_parameters",
+          "description": "DAWproject stores plug-in state as an opaque blob; the CPR binary does not expose parameters; third-party VST3 params are not enumerable without loading the plug-in.",
+          "consequence": "We know a plug-in is present and its preset name, but not its dial settings — so we cannot relate a parameter change to the render from files alone.",
+          "possible_sources": [
+            "VST preset export",
+            "track preset export",
+            "MIDI Remote Quick Controls",
+            "custom VST3 StateProbe"
+          ]
+        },
+        {
+          "id": "cubase:gap-record-enable",
+          "target_id": "cubase:project",
+          "hidden_state_type": "record_enable",
+          "description": "No available artifact reveals 'record_enable'.",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": []
+        },
+        {
+          "id": "cubase:gap-rendered-audio",
+          "target_id": "cubase:project",
+          "hidden_state_type": "rendered_audio",
+          "description": "No available artifact reveals 'rendered_audio'.",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": []
+        },
+        {
+          "id": "cubase:gap-tempo-map",
+          "target_id": "cubase:project",
+          "hidden_state_type": "tempo_map",
+          "description": "No available artifact reveals 'tempo_map'.",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": []
+        },
+        {
+          "id": "cubase:gap-param-cubase-device-dev-ch-vox-0",
+          "target_id": "cubase:device-dev-ch-vox-0",
+          "hidden_state_type": "insert_parameter_state",
+          "description": "Parameter values for 'StudioEQ' are not exposed by the available surfaces (opaque plug-in state).",
+          "consequence": "This state is not recoverable from the available evidence surfaces.",
+          "possible_sources": [
+            "VST preset export",
+            "MIDI Remote Quick Controls"
+          ]
+        }
+      ],
+      "native_file": {
+        "path": "native.json",
+        "sha256": "a8dd38ba607ca37786bb287d49373a67ef9ac4a5d554617b73b559c76f3cd180"
+      }
+    }
+  },
+  "warnings": [],
+  "failures": []
+}
