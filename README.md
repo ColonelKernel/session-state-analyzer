@@ -40,7 +40,7 @@ the default):
 ### Guided mode (default)
 
 A plain-language, story-first tour of the same data — no research vocabulary.
-Four tabs:
+Five tabs:
 
 - **Overview** — what the tool is, a "Load the four example sessions" button
   (the fixture bundles auto-load on first visit), and one card per DAW:
@@ -59,6 +59,12 @@ Four tabs:
   plus the expert drill-down behind a "Look closer" section.
 - **Explore the graph** — the canonical graph with relabeled layers ("How
   things are organized" / "How audio flows" / "Everything").
+- **What one change does to the sound** — the P9 state→audio experiment in
+  plain language: we added a reverb send to a vocal, and the tab walks the
+  three beats — what changed in the session, the path the vocal now travels
+  ("Lead Vox → FX 1 - Plate → REVerence → Stereo Out"), and how much the sound
+  changed (louder, with a wet tail) — with an honest note that the sessions
+  and audio are synthetic fixtures.
 
 A "What do these words mean?" glossary (evidence, availability, canonical vs
 native, provenance) lives in the Guided sidebar. All Guided wording is in
@@ -70,7 +76,7 @@ The research workbench, unchanged. The sidebar selects bundles (discovered
 under `fixtures/adapters/`), the graph layer (`organizational` /
 `signal_flow` / `all`), and the view:
 
-- **Canonical** — four tabs: *Graph* (all selected snapshots side by side in
+- **Canonical** — five tabs: *Graph* (all selected snapshots side by side in
   one canonical graph, coloured by entity type with observability overriding
   where a value is inferred/annotated/hidden); *Entity inspector* (one
   entity, three panels: canonical / native / evidence — every value traceable
@@ -83,7 +89,13 @@ under `fixtures/adapters/`), the graph layer (`organizational` /
   entities and fields behind the numbers beside the adapter's *declared* read
   capability; an unknown-state map per DAW categorizes everything a snapshot
   admits it cannot see. Modulation, and Native Features where a DAW ships no
-  extension payload, render NOT_APPLICABLE — the gaps are shown, not hidden).
+  extension payload, render NOT_APPLICABLE — the gaps are shown, not hidden);
+  and *State to audio* (the P9 controlled intervention: one semantic change —
+  a post-fader vocal→plate-reverb send — traced from the state delta, through
+  the signal-flow explanation and its path chain, to the acoustic delta
+  between the two renders. Loaded from `fixtures/experiments/effect_send`; the
+  inputs and renders are synthetic fixtures, reproducible via the Cubase
+  adapter).
 - **Native** — the bundle's verbatim `native.json` beside the registry's
   per-DAW presentation vocabulary.
 - **Evidence** — the deduplicated provenance store as a table, plus the

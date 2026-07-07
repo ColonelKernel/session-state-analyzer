@@ -29,6 +29,7 @@ COPY: dict[str, str] = {
     "tab_x04": "The same idea in four DAWs",
     "tab_atlas": "What each DAW lets us see",
     "tab_graph": "Explore the graph",
+    "tab_intervention": "What one change does to the sound",
     # -- overview -------------------------------------------------------------
     "overview_title": "What's inside a music session?",
     "overview_intro": (
@@ -116,6 +117,75 @@ COPY: dict[str, str] = {
     ),
     "graph_layer_question": "What do you want to see?",
     "graph_legend_title": "What the colours mean:",
+}
+
+# ---------------------------------------------------------------------------
+# The state->audio intervention story (P9), in plain language
+# ---------------------------------------------------------------------------
+
+INTERVENTION: dict[str, str] = {
+    "title": "One change, and what it does to the sound",
+    "intro": (
+        "Here is a tiny controlled experiment. We took one vocal session and "
+        "made a single change: we added a reverb send to the vocal — the same "
+        "session, one knob different. Then we look at three things: what "
+        "changed inside the session, why that makes the sound change, and how "
+        "much it actually changed."
+    ),
+    "what_we_did": "What we changed",
+    "what_we_did_body": (
+        "We added a **reverb send** from the vocal so it also feeds a shared "
+        "plate-reverb effect. Nothing else was touched."
+    ),
+    "missing": (
+        "The experiment fixture wasn't found on disk, so this story can't be "
+        "shown."
+    ),
+    # -- beat 1: the state change ------------------------------------------------
+    "state_header": "1 · What changed in the session",
+    "state_lead": (
+        "Only one connection was added, and nothing was removed. That single "
+        "new line is the whole change:"
+    ),
+    "state_added_send": "Added: a send from **{source}** to **{target}**.",
+    "state_added_return": (
+        "To receive it, a shared **{target}** effect return appears, carrying "
+        "**{processor}**."
+    ),
+    "state_nothing_removed": "Nothing was removed — this is a pure addition.",
+    # -- beat 2: the signal flow -------------------------------------------------
+    "flow_header": "2 · Why the sound changes",
+    "flow_lead": (
+        "Follow the new path the vocal now travels. Every stop is read "
+        "straight from the session, not guessed:"
+    ),
+    # -- beat 3: the acoustic delta ----------------------------------------------
+    "audio_header": "3 · How much the sound changed",
+    "audio_lead": (
+        "We measured the two renders of this session — before and after the "
+        "change. The numbers agree with the story: adding the reverb send "
+        "makes the vocal louder and adds a wet tail."
+    ),
+    "audio_synthetic_note": (
+        "Honest note: both the sessions and their audio are **synthetic "
+        "fixtures** — the audio is generated, not printed from a human "
+        "performance, but it genuinely reflects the routing change (adding the "
+        "send really does raise the level and change the spectrum). The whole "
+        "chain is reproducible from the Cubase adapter."
+    ),
+    "audio_col_metric": "Measurement",
+    "audio_col_before": "Before",
+    "audio_col_after": "After",
+    "audio_col_change": "Change",
+    "audio_unavailable": "The renders carry no acoustic descriptors, so no sound delta is available.",
+}
+
+# Plain-language names for the acoustic metrics in the Guided audio table.
+INTERVENTION_METRICS: dict[str, str] = {
+    "rms_db": "Loudness (average level)",
+    "peak_db": "Loudest peak",
+    "spectral_centroid_hz": "Brightness",
+    "lufs": "Perceived loudness (LUFS)",
 }
 
 # ---------------------------------------------------------------------------

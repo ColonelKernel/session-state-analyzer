@@ -26,7 +26,13 @@ APP_PATH = REPO_ROOT / "src" / "session_explorer" / "workbench" / "app.py"
 # session) — the workbench discovers fixtures/adapters/* dynamically.
 DAWS = {"ableton", "cubase", "logic", "logic_real", "reaper"}
 
-EXPERT_TABS = {"Graph", "Entity inspector", "X04 alignment", "Observability atlas"}
+EXPERT_TABS = {
+    "Graph",
+    "Entity inspector",
+    "X04 alignment",
+    "Observability atlas",
+    "State to audio",
+}
 
 
 def _apptest():
@@ -59,6 +65,7 @@ def test_boots_guided_by_default_with_overview_cards():
         wcopy.COPY["tab_x04"],
         wcopy.COPY["tab_atlas"],
         wcopy.COPY["tab_graph"],
+        wcopy.COPY["tab_intervention"],
     ]
 
     # Auto-load on first visit: every discovered fixture bundle is selected.

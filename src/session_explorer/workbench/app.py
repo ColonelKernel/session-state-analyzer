@@ -34,6 +34,7 @@ from session_explorer.workbench.pages import (
     canonical_graph,
     entity_inspector,
     guided,
+    intervention,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -154,8 +155,14 @@ def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
 # ---------------------------------------------------------------------------
 
 if view == "Canonical":
-    graph_tab, inspector_tab, alignment_tab, atlas_tab = st.tabs(
-        ["Graph", "Entity inspector", "X04 alignment", "Observability atlas"]
+    graph_tab, inspector_tab, alignment_tab, atlas_tab, intervention_tab = st.tabs(
+        [
+            "Graph",
+            "Entity inspector",
+            "X04 alignment",
+            "Observability atlas",
+            "State to audio",
+        ]
     )
     with graph_tab:
         canonical_graph.render(bundles, layer)
@@ -165,6 +172,8 @@ if view == "Canonical":
         alignment.render()
     with atlas_tab:
         atlas.render(bundles)
+    with intervention_tab:
+        intervention.render_expert()
 
 elif view == "Native":
     st.header("Native payload")
