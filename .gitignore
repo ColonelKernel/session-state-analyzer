@@ -14,3 +14,6 @@ extension/session-state-exporter/dist/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local Claude Code settings (machine-specific)
+.claude/settings.local.json

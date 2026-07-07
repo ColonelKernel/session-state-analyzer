@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "workbench",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": [
+        "-m", "streamlit", "run",
+        "src/session_explorer/workbench/app.py",
+        "--server.headless", "true",
+        "--server.port", "8792"
+      ],
+      "port": 8792
+    }
+  ]
+}
