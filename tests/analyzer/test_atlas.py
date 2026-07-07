@@ -233,6 +233,9 @@ def test_workbench_boots_with_atlas_tab():
     )
     at = AppTest.from_file(str(app_path), default_timeout=60)
     at.run()
+    # P6 two-mode workbench: the app boots into Guided mode; the atlas tab
+    # lives in Expert mode, so flip the sidebar mode radio first.
+    at.sidebar.radio[0].set_value("Expert").run()
     assert not at.exception, at.exception
     tab_labels = {tab.label for tab in at.tabs}
     assert "Observability atlas" in tab_labels

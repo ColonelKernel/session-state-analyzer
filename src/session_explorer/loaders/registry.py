@@ -93,6 +93,12 @@ _REGISTRY: dict[str, DawPresentation] = {
     ),
 }
 
+# Dialect aliases: adapters report ``source.daw`` ids like "ableton_live" and
+# "logic_pro"; they present identically to their short-form entries. Data
+# only — still no acquisition, no capability claims.
+_REGISTRY["ableton_live"] = _REGISTRY["ableton"]
+_REGISTRY["logic_pro"] = _REGISTRY["logic"]
+
 
 def known_daws() -> list[str]:
     return sorted(_REGISTRY)

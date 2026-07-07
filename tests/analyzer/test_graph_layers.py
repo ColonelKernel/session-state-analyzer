@@ -260,10 +260,21 @@ def _apptest():
     return AppTest.from_file(str(APP_PATH), default_timeout=120)
 
 
+def _run_expert(at):
+    """P6 two-mode workbench: the app now boots into Guided mode by default.
+
+    These smokes assert the Expert views, so they flip the sidebar mode radio
+    (always ``sidebar.radio[0]``) to Expert first; the Expert sidebar's layer
+    radio becomes ``sidebar.radio[1]`` and the view radio ``sidebar.radio[2]``.
+    """
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    return at
+
+
 @workbench
 def test_workbench_boots_with_all_bundles():
-    at = _apptest()
-    at.run()
+    at = _run_expert(_apptest())
     assert not at.exception, [e.value for e in at.exception]
     # All discovered bundles selected by default.
     assert set(at.session_state["bundle_select"]) == set(DAWS)
@@ -278,20 +289,18 @@ def test_workbench_boots_with_all_bundles():
 
 @workbench
 def test_workbench_layer_switch():
-    at = _apptest()
-    at.run()
-    at.sidebar.radio[0].set_value("signal_flow").run()
+    at = _run_expert(_apptest())
+    at.sidebar.radio[1].set_value("signal_flow").run()
     assert not at.exception, [e.value for e in at.exception]
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")
 
 
 @workbench
 def test_workbench_native_and_evidence_views():
-    at = _apptest()
-    at.run()
-    at.sidebar.radio[1].set_value("Native").run()
+    at = _run_expert(_apptest())
+    at.sidebar.radio[2].set_value("Native").run()
     assert not at.exception, [e.value for e in at.exception]
-    at.sidebar.radio[1].set_value("Evidence").run()
+    at.sidebar.radio[2].set_value("Evidence").run()
     assert not at.exception, [e.value for e in at.exception]
     # The provenance store dataframe is on screen.
     assert len(at.dataframe) >= 1
@@ -299,8 +308,7 @@ def test_workbench_native_and_evidence_views():
 
 @workbench
 def test_workbench_subset_selection():
-    at = _apptest()
-    at.run()
+    at = _run_expert(_apptest())
     at.sidebar.multiselect[0].set_value(["reaper"]).run()
     assert not at.exception, [e.value for e in at.exception]
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")

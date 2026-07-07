@@ -107,9 +107,20 @@ def test_load_snapshot_rejects_invalid(tmp_path):
 
 
 def test_presentation_registry_is_data_only():
-    assert known_daws() == ["ableton", "cubase", "logic", "reaper"]
+    # Dialect ids the adapters actually report ("ableton_live", "logic_pro")
+    # alias their short-form entries (P6 two-mode workbench).
+    assert known_daws() == [
+        "ableton",
+        "ableton_live",
+        "cubase",
+        "logic",
+        "logic_pro",
+        "reaper",
+    ]
     ableton = get_presentation("ableton")
     assert ableton.display_name == "Ableton Live"
+    assert get_presentation("ableton_live").display_name == "Ableton Live"
+    assert get_presentation("logic_pro").display_name == "Logic Pro"
     assert ableton.native_vocab["PROCESSOR"] == "Device"
     reaper = get_presentation("reaper")
     assert reaper.native_vocab["TEMPORAL_OBJECT"] == "Media Item"

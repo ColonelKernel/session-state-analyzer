@@ -1,14 +1,18 @@
-"""Session State Analyzer workbench — single entry point.
+"""Session State Analyzer workbench — single entry point, two modes.
 
 Run from the repo root:
 
     streamlit run src/session_explorer/workbench/app.py
 
-Sidebar picks the bundles (discovered under ``fixtures/adapters/``), the
-graph layer, and the view. The Canonical view dispatches to the two P3 pages
-as tabs (Graph | Entity inspector); Native browses the selected bundle's
-verbatim ``native.json`` next to the registry's presentation vocabulary;
-Evidence shows the deduplicated provenance store plus warnings/failures.
+The sidebar's top control switches between two faces of the same data:
+
+- **Guided** (default) — a plain-language, story-first tour: an Overview with
+  one friendly card per DAW, the X04 "same idea in four DAWs" story, a
+  plain-words observability atlas, and the canonical graph. All Guided copy
+  lives in ``workbench/copy.py``.
+- **Expert** — the research workbench, unchanged: bundle multiselect, graph
+  layer, and the Canonical (Graph | Entity inspector | X04 alignment |
+  Observability atlas tabs) / Native / Evidence views.
 
 The workbench is read-only by principle: it presents adapter exports, it
 never parses a DAW artifact.
@@ -22,12 +26,14 @@ import pandas as pd
 import streamlit as st
 
 from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
 from session_explorer.workbench.pages import (
     alignment,
     atlas,
     canonical_graph,
     entity_inspector,
+    guided,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -49,20 +55,62 @@ def _bundle_label(bundle: SnapshotBundle) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Sidebar: bundle selection, layer, view
+# Sidebar top: the mode switch (Guided is the default)
 # ---------------------------------------------------------------------------
 
 bundle_dirs = state.discover_bundle_dirs(FIXTURES_ROOT)
 bundle_names = [path.name for path in bundle_dirs]
 
 st.sidebar.title("Session State Analyzer")
+mode = st.sidebar.radio(
+    wcopy.COPY["mode_label"],
+    (wcopy.COPY["mode_guided"], wcopy.COPY["mode_expert"]),
+    key="app_mode",
+    horizontal=True,
+    help=wcopy.COPY["mode_help"],
+)
+
+# Shared bundle selection: Guided auto-loads every discovered bundle on first
+# visit; Expert's multiselect binds to the same key, so the two modes always
+# agree about what is loaded.
+if "bundle_select" not in st.session_state:
+    st.session_state["bundle_select"] = list(bundle_names)
+
+
+def _load_bundles(names: list[str]) -> list[SnapshotBundle]:
+    loaded: list[SnapshotBundle] = []
+    for name in names:
+        try:
+            loaded.append(state.load_bundle_cached(FIXTURES_ROOT / name))
+        except Exception as exc:  # noqa: BLE001 - a bad bundle must not kill the app
+            st.sidebar.error(f"Failed to load bundle '{name}': {exc}")
+    return loaded
+
+
+# ---------------------------------------------------------------------------
+# Guided mode
+# ---------------------------------------------------------------------------
+
+if mode == wcopy.COPY["mode_guided"]:
+    st.sidebar.caption(wcopy.COPY["guided_tagline"])
+    with st.sidebar.expander(wcopy.COPY["glossary_title"]):
+        for term, definition in wcopy.GLOSSARY.items():
+            st.markdown(f"**{term}** — {definition}")
+
+    guided_bundles = _load_bundles(st.session_state.get("bundle_select", []))
+    guided.render(guided_bundles, bundle_names)
+    st.stop()
+
+
+# ---------------------------------------------------------------------------
+# Expert mode — the research workbench, unchanged below this line
+# ---------------------------------------------------------------------------
+
 st.sidebar.caption("Four observation instruments, one analysis contract.")
+st.sidebar.caption(wcopy.COPY["expert_switch_hint"])
 
 if not bundle_names:
     st.sidebar.error(f"No snapshot bundles found under {FIXTURES_ROOT}.")
-
-if "bundle_select" not in st.session_state:
-    st.session_state["bundle_select"] = list(bundle_names)
 
 selected_names = st.sidebar.multiselect(
     "Bundles", bundle_names, key="bundle_select"
@@ -76,12 +124,7 @@ st.sidebar.button(
 layer = st.sidebar.radio("Graph layer", LAYER_OPTIONS, index=2)
 view = st.sidebar.radio("View", VIEW_OPTIONS, index=0)
 
-bundles: list[SnapshotBundle] = []
-for name in selected_names:
-    try:
-        bundles.append(state.load_bundle_cached(FIXTURES_ROOT / name))
-    except Exception as exc:  # noqa: BLE001 - a bad bundle must not kill the app
-        st.sidebar.error(f"Failed to load bundle '{name}': {exc}")
+bundles: list[SnapshotBundle] = _load_bundles(selected_names)
 
 load_warnings = [
     f"[{bundle.dir.name}] {warning}"

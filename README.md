@@ -34,8 +34,41 @@ DAW artifact. Install the UI extras and run the single entry point:
 .venv/bin/python -m streamlit run src/session_explorer/workbench/app.py
 ```
 
-The sidebar selects bundles (discovered under `fixtures/adapters/`), the
-graph layer (`organizational` / `signal_flow` / `all`), and the view:
+The workbench has two modes, switched at the top of the sidebar (Guided is
+the default):
+
+### Guided mode (default)
+
+A plain-language, story-first tour of the same data — no research vocabulary.
+Four tabs:
+
+- **Overview** — what the tool is, a "Load the four example sessions" button
+  (the fixture bundles auto-load on first visit), and one card per DAW:
+  session name, counts in plain words ("9 tracks · 22 effects · 4 routing
+  connections"), and a mini "how much can we see?" bar with a one-line
+  readout derived from the measured atlas mix (e.g. REAPER: "Read directly
+  from the project file"; Logic: "Mostly reconstructed from exported audio
+  and your notes — the DAW itself stays closed").
+- **The same idea in four DAWs** — the X04 effect-return story: what each
+  DAW calls the same mechanism ("What Ableton Live calls it: Return Track"),
+  one friendly sentence per DAW pair with the match confidence and the top
+  two reasons in plain words, and the full comparison table in an expander.
+- **What each DAW lets us see** — the observability atlas with friendly row
+  labels ("Tracks & layout", "Signal routing", …) and a plain-words legend
+  (observed = "read directly", hidden = "exists but the DAW won't show it"),
+  plus the expert drill-down behind a "Look closer" section.
+- **Explore the graph** — the canonical graph with relabeled layers ("How
+  things are organized" / "How audio flows" / "Everything").
+
+A "What do these words mean?" glossary (evidence, availability, canonical vs
+native, provenance) lives in the Guided sidebar. All Guided wording is in
+`src/session_explorer/workbench/copy.py`.
+
+### Expert mode
+
+The research workbench, unchanged. The sidebar selects bundles (discovered
+under `fixtures/adapters/`), the graph layer (`organizational` /
+`signal_flow` / `all`), and the view:
 
 - **Canonical** — four tabs: *Graph* (all selected snapshots side by side in
   one canonical graph, coloured by entity type with observability overriding

@@ -182,3 +182,15 @@ def render() -> None:
             )
             for reason in row["reasons"].split(" • "):
                 st.markdown(f"- {reason}")
+
+
+# ---------------------------------------------------------------------------
+# Public aliases — Guided mode (workbench/pages/guided.py) reuses these
+# internals to tell the same X04 story in plain language. The aliases are the
+# supported surface; the underscore names stay private to this page.
+# ---------------------------------------------------------------------------
+
+DAW_ORDER = _DAW_ORDER
+load_x04_bundles = _load_x04_bundles
+concept_strip = _concept_strip
+pair_rows = _pair_rows
