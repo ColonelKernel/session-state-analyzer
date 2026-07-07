@@ -17,7 +17,8 @@ loads the frozen fixture itself and is read-only.
 
 from __future__ import annotations
 
-import pandas as pd
+import html as _html
+
 import streamlit as st
 
 from session_explorer.interventions import (
@@ -50,6 +51,43 @@ def _path_chain_html(path: list[str]) -> str:
         )
     arrow = "<span style='color:#9AA0A6;margin:0 2px'>→</span>"
     return "<div style='line-height:1.9'>" + arrow.join(pills) + "</div>"
+
+
+def _static_table(rows: list[dict]) -> None:
+    """Render a small fixed table as static HTML (immediate first-frame paint).
+
+    ``st.dataframe`` draws to a lazily-painted canvas grid: for these tiny
+    fixed tables it flashes an empty box for ~a second before the rows appear.
+    These tables never scroll, sort, or resize, so a plain server-rendered
+    ``<table>`` is both correct and instant. Cell text is escaped — entity
+    names ultimately come from DAW session data.
+    """
+    if not rows:
+        return
+    cols = list(rows[0].keys())
+    head = "".join(
+        "<th style='text-align:left;padding:6px 10px;font-weight:600;"
+        "font-size:0.78rem;opacity:0.7;"
+        "border-bottom:1px solid rgba(128,128,128,0.35)'>"
+        f"{_html.escape(str(c))}</th>"
+        for c in cols
+    )
+    body = "".join(
+        "<tr>"
+        + "".join(
+            "<td style='padding:6px 10px;font-size:0.85rem;"
+            "border-bottom:1px solid rgba(128,128,128,0.15)'>"
+            f"{_html.escape(str(row.get(c, '')))}</td>"
+            for c in cols
+        )
+        + "</tr>"
+        for row in rows
+    )
+    st.markdown(
+        "<table style='width:100%;border-collapse:collapse;margin:2px 0 8px'>"
+        f"<thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>",
+        unsafe_allow_html=True,
+    )
 
 
 def _metric_rows(comparison: InterventionComparison) -> list[dict]:
@@ -114,7 +152,7 @@ def render_expert() -> None:
             {"kind": "relationship", "type": r.type, "label": r.label}
             for r in sd.added_relationships
         ]
-        st.dataframe(pd.DataFrame(added), hide_index=True, width="stretch")
+        _static_table(added)
     with changed_col:
         st.markdown("**Changed / removed**")
         other = [
@@ -124,7 +162,7 @@ def render_expert() -> None:
             for r in sd.removed_entities + sd.removed_relationships
         ]
         if other:
-            st.dataframe(pd.DataFrame(other), hide_index=True, width="stretch")
+            _static_table(other)
             st.caption(
                 "Changed items are incidental (the vocal track's index shifts "
                 "when the return channel is inserted; the project name/source "
@@ -151,9 +189,7 @@ def render_expert() -> None:
     if not ad.available or not ad.metrics:
         st.info(ad.unavailable_reason or "No acoustic delta available.")
     else:
-        st.dataframe(
-            pd.DataFrame(_metric_rows(comparison)), hide_index=True, width="stretch"
-        )
+        _static_table(_metric_rows(comparison))
         st.caption(ad.summary)
     st.caption(
         "Honest labelling: the .dawproject inputs and their renders are "
@@ -230,6 +266,6 @@ def render_guided() -> None:
                     C["audio_col_change"]: delta,
                 }
             )
-        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+        _static_table(rows)
         st.markdown(f"_{ad.summary}_")
     st.info(C["audio_synthetic_note"])
