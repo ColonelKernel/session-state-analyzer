@@ -200,7 +200,13 @@ def test_unknown_state_map_cubase_has_inaccessible(bundles):
 def test_unknown_state_map_logic_has_unknown(bundles):
     usm = unknown_state_map(bundles["logic"].snapshot)
     assert len(usm["UNKNOWN"]) == 6  # 6 tracks with channel: UNKNOWN
-    assert len(usm["INACCESSIBLE"]) == 4  # 4 tracks with plugin_chain INACCESSIBLE
+    # 4 tracks with plugin_chain INACCESSIBLE + 2 session-level markers on the
+    # PROJECT entity (automation, routing) — the latter only register here once
+    # the Logic mapper targets them at the dialect-namespaced project id.
+    inaccessible = usm["INACCESSIBLE"]
+    assert len(inaccessible) == 6
+    assert ("logic:project", "automation") in inaccessible
+    assert ("logic:project", "routing") in inaccessible
 
 
 def test_unknown_state_map_categories_complete(bundles):
