@@ -20,7 +20,9 @@ from .compare import (
 )
 from .experiment import (
     DEFAULT_FIXTURES_DIR,
+    DEFAULT_PARAMETER_FIXTURES_DIR,
     build_effect_send_experiment,
+    build_parameter_experiment,
     load_intervention,
     load_render_descriptors,
 )
@@ -31,6 +33,7 @@ from .models import (
     Intervention,
     InterventionComparison,
     Observation,
+    ParameterChange,
     Render,
     SemanticParameterRole,
     SignalFlowChange,
@@ -44,6 +47,7 @@ __all__ = [
     "Intervention",
     "InterventionComparison",
     "Observation",
+    "ParameterChange",
     "Render",
     "SemanticParameterRole",
     "SignalFlowChange",
@@ -53,7 +57,9 @@ __all__ = [
     "explain_signal_flow",
     "snapshot_delta",
     "build_effect_send_experiment",
+    "build_parameter_experiment",
     "load_intervention",
     "load_render_descriptors",
     "DEFAULT_FIXTURES_DIR",
+    "DEFAULT_PARAMETER_FIXTURES_DIR",
 ]

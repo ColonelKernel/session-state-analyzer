@@ -1,0 +1,1019 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "synthetic:x06_grouping_depth:snapshot",
+  "created_at": "",
+  "source": {
+    "daw": "synthetic",
+    "daw_version": null,
+    "adapter": "x06-synthetic-generator",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "synthetic"
+    ]
+  },
+  "project": "synthetic:project",
+  "entities": [
+    {
+      "id": "synthetic:project",
+      "entity_type": "PROJECT",
+      "name": "X06 Grouping Depth",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 120.0,
+        "time_signature": "4/4",
+        "sample_rate": 48000
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:folder-org",
+      "entity_type": "TRACK",
+      "name": "Arrange Folder",
+      "semantic_roles": [
+        "submix",
+        "folder_parent"
+      ],
+      "properties": {
+        "index": 0
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "group",
+        "properties": {
+          "organizational_only": true
+        }
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:folder-org:channel",
+      "entity_type": "CHANNEL",
+      "name": "Arrange Folder",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-perc",
+      "entity_type": "TRACK",
+      "name": "Perc Loop",
+      "semantic_roles": [],
+      "properties": {
+        "index": 1
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-perc:channel",
+      "entity_type": "CHANNEL",
+      "name": "Perc Loop",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-shaker",
+      "entity_type": "TRACK",
+      "name": "Shaker",
+      "semantic_roles": [],
+      "properties": {
+        "index": 2
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-shaker:channel",
+      "entity_type": "CHANNEL",
+      "name": "Shaker",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:bus-drum",
+      "entity_type": "TRACK",
+      "name": "Drum Bus",
+      "semantic_roles": [
+        "submix",
+        "folder_parent"
+      ],
+      "properties": {
+        "index": 3
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "group",
+        "properties": {
+          "group_channel_enabled": true
+        }
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:bus-drum:channel",
+      "entity_type": "CHANNEL",
+      "name": "Drum Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-kick",
+      "entity_type": "TRACK",
+      "name": "Kick",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 4
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-kick:channel",
+      "entity_type": "CHANNEL",
+      "name": "Kick",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-snare",
+      "entity_type": "TRACK",
+      "name": "Snare",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 5
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-snare:channel",
+      "entity_type": "CHANNEL",
+      "name": "Snare",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:vca-drums",
+      "entity_type": "TRACK",
+      "name": "Drum VCA",
+      "semantic_roles": [
+        "vca"
+      ],
+      "properties": {
+        "index": 6
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "unknown",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:vca-drums:channel",
+      "entity_type": "CHANNEL",
+      "name": "Drum VCA",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "unknown",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-lead",
+      "entity_type": "TRACK",
+      "name": "Lead Synth",
+      "semantic_roles": [],
+      "properties": {
+        "index": 7
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-lead:channel",
+      "entity_type": "CHANNEL",
+      "name": "Lead Synth",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-bass",
+      "entity_type": "TRACK",
+      "name": "Bass",
+      "semantic_roles": [],
+      "properties": {
+        "index": 8
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-bass:channel",
+      "entity_type": "CHANNEL",
+      "name": "Bass",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:return-verb",
+      "entity_type": "CHANNEL",
+      "name": "Reverb Return",
+      "semantic_roles": [
+        "effect_return"
+      ],
+      "properties": {
+        "index": 9
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "return",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fb-a",
+      "entity_type": "TRACK",
+      "name": "Feedback A",
+      "semantic_roles": [],
+      "properties": {
+        "index": 10
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fb-a:channel",
+      "entity_type": "CHANNEL",
+      "name": "Feedback A",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fb-b",
+      "entity_type": "TRACK",
+      "name": "Feedback B",
+      "semantic_roles": [],
+      "properties": {
+        "index": 11
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fb-b:channel",
+      "entity_type": "CHANNEL",
+      "name": "Feedback B",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fx",
+      "entity_type": "TRACK",
+      "name": "FX Bus",
+      "semantic_roles": [],
+      "properties": {
+        "index": 12
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "aux",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-fx:channel",
+      "entity_type": "CHANNEL",
+      "name": "FX Bus",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "aux",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:proc-eq",
+      "entity_type": "PROCESSOR",
+      "name": "EQ",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": null,
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:proc-delay",
+      "entity_type": "PROCESSOR",
+      "name": "Delay",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Delay",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": null,
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:proc-sat",
+      "entity_type": "PROCESSOR",
+      "name": "Saturator",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Distortion",
+        "chain": "parallel"
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": null,
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:proc-chorus",
+      "entity_type": "PROCESSOR",
+      "name": "Chorus",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Modulation",
+        "chain": "parallel"
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": null,
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:folder-org",
+      "target": "synthetic:folder-org:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-perc",
+      "target": "synthetic:track-perc:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-shaker",
+      "target": "synthetic:track-shaker:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:bus-drum",
+      "target": "synthetic:bus-drum:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0005",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-kick",
+      "target": "synthetic:track-kick:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0006",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-snare",
+      "target": "synthetic:track-snare:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0007",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:vca-drums",
+      "target": "synthetic:vca-drums:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0008",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-lead",
+      "target": "synthetic:track-lead:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0009",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-bass",
+      "target": "synthetic:track-bass:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0010",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-fb-a",
+      "target": "synthetic:track-fb-a:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0011",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-fb-b",
+      "target": "synthetic:track-fb-b:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0012",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-fx",
+      "target": "synthetic:track-fx:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0013",
+      "rel_type": "CONTAINS",
+      "source": "synthetic:folder-org",
+      "target": "synthetic:track-perc",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0014",
+      "rel_type": "CONTAINS",
+      "source": "synthetic:folder-org",
+      "target": "synthetic:track-shaker",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0015",
+      "rel_type": "CONTAINS",
+      "source": "synthetic:bus-drum",
+      "target": "synthetic:track-kick",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0016",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "synthetic:track-kick:channel",
+      "target": "synthetic:bus-drum:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0017",
+      "rel_type": "SUMS_TO",
+      "source": "synthetic:track-kick:channel",
+      "target": "synthetic:bus-drum:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0018",
+      "rel_type": "CONTAINS",
+      "source": "synthetic:bus-drum",
+      "target": "synthetic:track-snare",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0019",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "synthetic:track-snare:channel",
+      "target": "synthetic:bus-drum:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0020",
+      "rel_type": "SUMS_TO",
+      "source": "synthetic:track-snare:channel",
+      "target": "synthetic:bus-drum:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0021",
+      "rel_type": "CONTROLS",
+      "source": "synthetic:vca-drums:channel",
+      "target": "synthetic:track-kick:channel",
+      "properties": {
+        "kind": "vca_or_edit_group"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0022",
+      "rel_type": "CONTROLS",
+      "source": "synthetic:vca-drums:channel",
+      "target": "synthetic:track-snare:channel",
+      "properties": {
+        "kind": "vca_or_edit_group"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0023",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "synthetic:track-fx:channel",
+      "target": "synthetic:proc-eq",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0024",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "synthetic:track-fx:channel",
+      "target": "synthetic:proc-delay",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0025",
+      "rel_type": "PRECEDES",
+      "source": "synthetic:proc-eq",
+      "target": "synthetic:proc-delay",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0026",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "synthetic:track-fx:channel",
+      "target": "synthetic:proc-sat",
+      "properties": {
+        "index": 2
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0027",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "synthetic:track-fx:channel",
+      "target": "synthetic:proc-chorus",
+      "properties": {
+        "index": 3
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0028",
+      "rel_type": "PRECEDES",
+      "source": "synthetic:proc-sat",
+      "target": "synthetic:proc-chorus",
+      "properties": {
+        "chain": "parallel"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0029",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "synthetic:track-lead:channel",
+      "target": "synthetic:return-verb",
+      "properties": {
+        "route_type": "send",
+        "volume_db": -6.0,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0030",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "synthetic:track-bass:channel",
+      "target": "synthetic:return-verb",
+      "properties": {
+        "route_type": "send",
+        "volume_db": -12.0,
+        "source_channels": [
+          2
+        ],
+        "target_channels": [
+          0
+        ],
+        "channel_count": 1,
+        "channel_layout": "mono"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0031",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "synthetic:track-fb-a:channel",
+      "target": "synthetic:track-fb-b:channel",
+      "properties": {
+        "route_type": "send",
+        "volume_db": -18.0
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0032",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "synthetic:track-fb-b:channel",
+      "target": "synthetic:track-fb-a:channel",
+      "properties": {
+        "route_type": "send",
+        "volume_db": -18.0
+      },
+      "prov_ref": "prov:0001"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": {
+    "read": {
+      "structure": {
+        "fields": {
+          "track_name": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "hierarchy": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "sends": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "channel_offsets": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "channel": {
+        "fields": {
+          "volume": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "processing": {
+        "fields": {
+          "insert_chain": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "chain_order": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "synthetic",
+            "source_stability": "MANUAL",
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      }
+    },
+    "write": {},
+    "live_observation": {},
+    "render": {},
+    "manifest_version": "0.2.0",
+    "daw": "synthetic",
+    "daw_version": null,
+    "adapter": "x06-synthetic-generator",
+    "adapter_version": "0.1.0",
+    "notes": [
+      "Synthetic fixture: no DAW behind it. Exercises P6 grouping/routing/processing depth through the real flatten_session pipeline."
+    ]
+  },
+  "coverage": {
+    "structure": {
+      "applicable": 13,
+      "observed": 13,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 13,
+      "observed": 13,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 4,
+      "observed": 4,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 4,
+      "observed": 4,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "synthetic",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    }
+  ],
+  "extensions": {},
+  "warnings": [],
+  "failures": []
+}

@@ -1,0 +1,248 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "reaper:delay_feedback:d2e0944dbbf7",
+  "created_at": "2026-07-07T00:00:00+00:00",
+  "source": {
+    "daw": "reaper",
+    "daw_version": "7.25",
+    "adapter": "reaper-session-state-explorer",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "rpp_file"
+    ]
+  },
+  "project": "reaper:project",
+  "entities": [
+    {
+      "id": "reaper:project",
+      "entity_type": "PROJECT",
+      "name": "delay_feedback",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 120.0,
+        "time_signature": "4/4",
+        "sample_rate": 44100,
+        "source_file": "fixtures/reaper/delay_feedback.rpp"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-vox",
+      "entity_type": "TRACK",
+      "name": "Lead Vox",
+      "semantic_roles": [
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 0
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001",
+        "semantic_roles": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-vox:channel",
+      "entity_type": "CHANNEL",
+      "name": "Lead Vox",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -1.4,
+        "pan": 0.0
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-master",
+      "entity_type": "CHANNEL",
+      "name": "Master",
+      "semantic_roles": [
+        "main_output"
+      ],
+      "properties": {
+        "index": 0,
+        "volume_db": 0.0
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "master",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-delay",
+      "entity_type": "PROCESSOR",
+      "name": "Delay",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Delay",
+        "kind": "JS",
+        "enabled": true,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "JS",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-delay:feedback",
+      "entity_type": "PARAMETER",
+      "name": "Feedback",
+      "semantic_roles": [],
+      "properties": {
+        "value": 0.7,
+        "normalized_value": 0.7,
+        "unit": "",
+        "is_visible_to_host": true
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "parameter",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-vox",
+      "target": "reaper:track-vox:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-vox:channel",
+      "target": "reaper:fx-delay",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "CONTAINS",
+      "source": "reaper:fx-delay",
+      "target": "reaper:fx-delay:feedback",
+      "properties": {
+        "kind": "parameter"
+      },
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-vox:channel",
+      "target": "reaper:track-master",
+      "properties": {
+        "route_type": "output",
+        "volume_db": 0.0
+      },
+      "prov_ref": "prov:0001"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": null,
+  "coverage": {
+    "structure": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 1,
+      "observed": 1,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 1,
+      "observed": 1,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "role 'Vocal' inferred from track name 'Lead Vox'",
+      "warnings": []
+    }
+  ],
+  "extensions": {},
+  "warnings": [],
+  "failures": []
+}

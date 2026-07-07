@@ -163,3 +163,36 @@ def test_observed_confidence_warns():
     report = validate_snapshot(payload)
     assert report.valid
     assert any("confidence" in w for w in report.warnings)
+
+
+def test_feedback_cycle_validates_clean():
+    """A→B and B→A routing feedback is legal data, never a validation error."""
+    payload = _minimal_payload()
+    payload["entities"] += [
+        Entity(id="a", entity_type="CHANNEL").model_dump(),
+        Entity(id="b", entity_type="CHANNEL").model_dump(),
+    ]
+    payload["relationships"] = [
+        Relationship(id="r1", rel_type="CHANNEL_SENDS_TO", source="a", target="b").model_dump(),
+        Relationship(id="r2", rel_type="CHANNEL_SENDS_TO", source="b", target="a").model_dump(),
+    ]
+    report = validate_snapshot(payload)
+    assert report.valid
+    assert report.errors == []
+
+
+def test_new_lineage_rel_types_do_not_warn():
+    """DERIVED_FROM / SHARES_SOURCE_WITH are now core registry members."""
+    payload = _minimal_payload()
+    payload["entities"] += [
+        Entity(id="v1", entity_type="VARIANT").model_dump(),
+        Entity(id="v2", entity_type="VARIANT").model_dump(),
+    ]
+    payload["relationships"] = [
+        Relationship(id="r1", rel_type="DERIVED_FROM", source="v1", target="v2").model_dump(),
+        Relationship(id="r2", rel_type="SHARES_SOURCE_WITH", source="v1", target="v2").model_dump(),
+    ]
+    report = validate_snapshot(payload)
+    assert report.valid
+    assert not any("DERIVED_FROM" in w for w in report.warnings)
+    assert not any("SHARES_SOURCE_WITH" in w for w in report.warnings)

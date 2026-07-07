@@ -205,6 +205,15 @@ class Route(BaseModel):
     pan: Optional[float] = None  # -1..+1
     mute: Optional[bool] = None
     enabled: Optional[bool] = None  # Ableton send enabled flag
+    # Channel-level routing detail (P6). Populated ONLY when the adapter
+    # actually decoded per-channel wiring (e.g. REAPER AUXRECV channel
+    # offsets); left ``None`` otherwise, which the flattener reads as
+    # "stereo-implicit" — the honest default rather than an invented
+    # channel spec.
+    source_channels: Optional[list[int]] = None  # 0-based source channel indices
+    target_channels: Optional[list[int]] = None  # 0-based target channel indices
+    channel_count: Optional[int] = None  # how many channels this connection carries
+    channel_layout: Optional[str] = None  # native layout label ("stereo" / "mono" / ...)
     provenance: Provenance = Field(default_factory=Provenance)
     extras: dict[str, Any] = Field(default_factory=dict)
     raw_source: Any = None
@@ -219,6 +228,79 @@ class Scene(BaseModel):
     tempo: Optional[float] = None
     provenance: Provenance = Field(default_factory=Provenance)
     extras: dict[str, Any] = Field(default_factory=dict)
+
+
+# ---------------------------------------------------------------------------
+# Temporal control: automation lanes and modulation sources (P7)
+# ---------------------------------------------------------------------------
+
+
+class AutomationPoint(BaseModel):
+    """One breakpoint on an automation lane.
+
+    ``time`` is unit-tagged by ``time_domain`` (beats or seconds), never
+    coerced — the same rule as :class:`Clip`. ``curve`` names the segment
+    shape leaving this point ("linear", "hold", "bezier", ...).
+    """
+
+    time: float
+    value: float
+    time_domain: Literal["beats", "seconds"] = "beats"
+    curve: str = "linear"
+
+
+class Automation(BaseModel):
+    """A recorded automation lane and what it controls.
+
+    Targets exactly one of: a canonical PARAMETER entity
+    (``target_parameter_id``), a processor field (``target_processor_id`` +
+    ``parameter_name``), or a channel mixer field (``target_channel_field`` on
+    ``target_track_id``). When none resolve, the lane still becomes an
+    AUTOMATION entity whose target availability is a stated UNKNOWN.
+    """
+
+    id: str
+    parameter_name: str
+    target_track_id: Optional[str] = None
+    target_processor_id: Optional[str] = None
+    target_parameter_id: Optional[str] = None
+    target_channel_field: Optional[str] = None
+    unit: Optional[str] = None
+    read_enabled: Optional[bool] = None
+    write_enabled: Optional[bool] = None
+    muted: Optional[bool] = None
+    points: list[AutomationPoint] = Field(default_factory=list)
+    provenance: Provenance = Field(default_factory=Provenance)
+    field_provenance: dict[str, Provenance] = Field(default_factory=dict)
+    extras: dict[str, Any] = Field(default_factory=dict)
+    raw_source: Any = None
+
+
+class Modulation(BaseModel):
+    """A modulation source (LFO, sidechain, envelope follower, ...) and target.
+
+    Modulation is a live control relationship rather than a recorded lane; its
+    targets follow the same resolution rules as :class:`Automation`.
+    ``source_track_id`` names the audio source for a sidechain / audio-driven
+    modulator. Modulation typically arrives ANNOTATED — no adapter observes it
+    from a project file yet.
+    """
+
+    id: str
+    source_type: Literal["lfo", "sidechain", "envelope_follower", "audio_driven", "macro"]
+    parameter_name: Optional[str] = None
+    target_track_id: Optional[str] = None
+    target_processor_id: Optional[str] = None
+    target_parameter_id: Optional[str] = None
+    target_channel_field: Optional[str] = None
+    source_track_id: Optional[str] = None
+    depth: Optional[float] = None
+    rate: Optional[float] = None
+    unit: Optional[str] = None
+    provenance: Provenance = Field(default_factory=Provenance)
+    field_provenance: dict[str, Provenance] = Field(default_factory=dict)
+    extras: dict[str, Any] = Field(default_factory=dict)
+    raw_source: Any = None
 
 
 class Track(BaseModel):
@@ -242,6 +324,14 @@ class Track(BaseModel):
     solo: Optional[bool] = None
     armed: Optional[bool] = None
     group_id: Optional[str] = None  # parent group/folder track id
+    # Whether this group/folder track sums its children into a group channel
+    # (P6 grouping honesty). ``None`` ⇒ decide from ``extras`` flags, else the
+    # honest default that a group is a summing bus (see ``from_nested``).
+    sums_children: Optional[bool] = None
+    # VCA / edit-group control: ids of the tracks whose level/edit this track
+    # controls (distinct from summing — a VCA scales level without carrying
+    # audio). Emitted as CONTROLS edges, never SUMS_TO.
+    controls: list[str] = Field(default_factory=list)
     clips: list[Clip] = Field(default_factory=list)
     processors: list[Processor] = Field(default_factory=list)
     descriptor_id: Optional[str] = None
@@ -477,6 +567,13 @@ class CanonicalSession(BaseModel):
     tracks: list[Track] = Field(default_factory=list)
     scenes: list[Scene] = Field(default_factory=list)
     routes: list[Route] = Field(default_factory=list)
+    # Temporal control + variants (P7/P8). All additive with empty/absent
+    # defaults, so every existing mapper keeps producing identical output.
+    automation: list[Automation] = Field(default_factory=list)
+    modulation: list[Modulation] = Field(default_factory=list)
+    variant_label: Optional[str] = None  # this session's variant name, if declared
+    variant_family: Optional[str] = None  # the variant set it belongs to
+    derived_from_snapshot_id: Optional[str] = None  # lineage (properties only here)
     evidence: Optional[EvidenceBundle] = None
     hidden_state_markers: list[HiddenStateMarker] = Field(default_factory=list)
     descriptors: list[AudioDescriptorSet] = Field(default_factory=list)

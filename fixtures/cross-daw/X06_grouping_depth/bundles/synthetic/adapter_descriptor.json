@@ -1,0 +1,14 @@
+{
+  "adapter_id": "x06-synthetic-generator",
+  "daw": "synthetic",
+  "capture_modes": [
+    "synthetic"
+  ],
+  "read": "Synthetic session generator. Emits grouping honesty (organizational-only vs group-channel), VCA CONTROLS, channel'd sends, a feedback cycle, and chain-scoped PRECEDES.",
+  "write": "NONE",
+  "live_observation": "NONE",
+  "render": "NONE",
+  "known_limitations": [
+    "Not a real DAW capture: every value is hand-authored to exercise the contract. Source stability is MANUAL throughout."
+  ]
+}

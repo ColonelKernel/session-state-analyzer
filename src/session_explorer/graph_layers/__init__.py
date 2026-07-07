@@ -12,7 +12,20 @@ with the shared viz theme, so ``core.viz`` renders snapshot graphs without
 extra setup.
 """
 
+from .analysis import (
+    ROUTING_REL_TYPES,
+    CycleReport,
+    annotate_cycles,
+    detect_cycles,
+    routing_subgraph,
+)
 from .build import EVIDENCE_TO_OBSERVABILITY, build_graph, build_multi
+from .grouping import (
+    GroupDecomposition,
+    decompose_group,
+    find_group_entities,
+    group_channel_id,
+)
 from .layers import LAYERS, LayerSpec, get_layer, layer_names, register_snapshot_styles
 
 __all__ = [
@@ -24,4 +37,15 @@ __all__ = [
     "get_layer",
     "layer_names",
     "register_snapshot_styles",
+    # routing analysis (cycles)
+    "ROUTING_REL_TYPES",
+    "CycleReport",
+    "detect_cycles",
+    "annotate_cycles",
+    "routing_subgraph",
+    # grouping decomposition
+    "GroupDecomposition",
+    "decompose_group",
+    "find_group_entities",
+    "group_channel_id",
 ]

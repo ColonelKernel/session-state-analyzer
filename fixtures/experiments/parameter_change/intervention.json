@@ -1,0 +1,23 @@
+{
+  "id": "intervention:delay_feedback",
+  "description": "Increase the delay feedback from 0.2 to 0.7.",
+  "semantic_role": "FEEDBACK",
+  "native_implementations": {
+    "reaper": "Set the 'Feedback' parameter of the JS delay (ReaDelay / a JS feedback-delay) on the Lead Vox track from 0.2 to 0.7. REAPER JS-plugin parameters are host-visible and enumerable, so this change is OBSERVED — the real observable path for a parameter A/B.",
+    "note": "Cubase VST3 plug-in parameters are opaque (DAWproject stores them as a state blob; dawproject.py:228) — the same feedback change made to a VST3 delay in Cubase would be HIDDEN, not readable from files. This experiment is therefore demonstrated synthetically on the REAPER-style observable path rather than worked around."
+  },
+  "before": {
+    "id": "obs:feedback_low",
+    "snapshot_id": "reaper:delay_feedback:a41c93c588d8",
+    "render_id": "render:routing_a",
+    "fixture_id": "before",
+    "intervention_id": null
+  },
+  "after": {
+    "id": "obs:feedback_high",
+    "snapshot_id": "reaper:delay_feedback:d2e0944dbbf7",
+    "render_id": "render:routing_b",
+    "fixture_id": "after",
+    "intervention_id": "intervention:delay_feedback"
+  }
+}

@@ -139,6 +139,8 @@ CORE_REL_TYPES: tuple[str, ...] = (
     "CONTROLS",
     "LINKED_WITH",
     "ALTERNATIVE_OF",
+    "DERIVED_FROM",
+    "SHARES_SOURCE_WITH",
     "PRECEDES",
     "REFERENCES_ASSET",
     "GENERATED_BY",

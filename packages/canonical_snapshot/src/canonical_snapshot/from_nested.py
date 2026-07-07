@@ -98,6 +98,33 @@ def _non_none(**values: Any) -> dict[str, Any]:
     return {key: value for key, value in values.items() if value is not None}
 
 
+def _group_sums(group: nested.Track) -> bool:
+    """Whether a group/folder track sums its children into a group channel.
+
+    Grouping honesty (P6): a native "group" can mean *organization only* (a
+    folder that just tidies the arrangement) or a *summing bus* (a group
+    channel the children mix into). CONTAINS is emitted either way; SUMS_TO and
+    the group-sum CHANNEL_ROUTES_TO are gated behind this predicate so the
+    snapshot never claims a signal sum that does not exist.
+
+    Resolution order, most to least authoritative:
+
+    1. an explicit typed ``sums_children`` on the track wins outright;
+    2. else ``extras``: an ``organizational_only`` folder with no
+       ``group_channel_enabled`` does *not* sum; an explicit
+       ``group_channel_enabled`` decides directly;
+    3. else the honest default — a group is a summing bus.
+    """
+    if group.sums_children is not None:
+        return group.sums_children
+    extras = group.extras or {}
+    if extras.get("organizational_only") and not extras.get("group_channel_enabled"):
+        return False
+    if "group_channel_enabled" in extras:
+        return bool(extras["group_channel_enabled"])
+    return True
+
+
 class _ProvStore:
     """Deduplicating provenance store: identical records share one id."""
 
@@ -381,6 +408,8 @@ def flatten_session(
             continue
         group_track = track_entity_of[track.group_id]
         member_prov = store.add_nested(track.provenance)
+        # Containment is unconditional: a child is inside its folder whether or
+        # not the folder sums signal.
         add_rel(
             "CONTAINS",
             group_track,
@@ -388,11 +417,19 @@ def flatten_session(
             properties={"kind": "group_member"},
             prov_ref=member_prov,
         )
+        parent = session.track_by_id(track.group_id)
         child_channel = channel_of.get(track.id)
         group_channel = channel_of.get(track.group_id)
-        if child_channel and group_channel:
-            # The summing semantics (SUMS_TO) and its signal-flow expression
-            # (CHANNEL_ROUTES_TO) — layered views filter by whichever they need.
+        if (
+            child_channel
+            and group_channel
+            and parent is not None
+            and _group_sums(parent)
+        ):
+            # Summing is gated (grouping honesty): only a group that actually
+            # sums gets the summing semantics (SUMS_TO) and its signal-flow
+            # expression (CHANNEL_ROUTES_TO). An organizational-only folder is
+            # CONTAINS-only — no invented signal path.
             add_rel(
                 "CHANNEL_ROUTES_TO",
                 child_channel,
@@ -407,8 +444,40 @@ def flatten_session(
                 prov_ref=member_prov,
             )
 
+    # -- control groups: VCA / edit-group level control (not summing) ---------
+    # CONTROLS is level/edit control that scales its targets without carrying
+    # audio — a distinct concept from SUMS_TO. A native "group" fuses the two;
+    # keeping them separate is the point.
+    for track in session.tracks:
+        if not track.controls:
+            continue
+        controller = channel_of.get(track.id, track_entity_of.get(track.id, track.id))
+        ctrl_prov = store.add_nested(track.provenance)
+        for target_track_id in track.controls:
+            target = channel_of.get(
+                target_track_id, track_entity_of.get(target_track_id)
+            )
+            if target is None:
+                warnings.append(
+                    f"{track.id}: controls target {target_track_id!r} does not "
+                    "match any track."
+                )
+                continue
+            add_rel(
+                "CONTROLS",
+                controller,
+                target,
+                properties={"kind": "vca_or_edit_group"},
+                prov_ref=ctrl_prov,
+            )
+
     # -- processors + parameters ----------------------------------------------
     processor_evidence: list[str] = []
+    # Chain-scoped previous-processor pointer, so processing ORDER becomes
+    # explicit PRECEDES edges. Keyed by (owner channel, chain): the "main"
+    # insert chain and REAPER's "rec" (record-input) chain are separate signal
+    # paths and are never linked across.
+    last_in_chain: dict[tuple[str, str], str] = {}
     for track in session.tracks:
         owner = channel_of.get(track.id, track_entity_of.get(track.id, track.id))
         for i, proc in enumerate(track.processors):
@@ -444,6 +513,19 @@ def flatten_session(
                 properties={"index": i},
                 prov_ref=proc_base,
             )
+            # Processing order within a chain: link this processor after the
+            # previous one on the same (owner, chain). Never cross chains.
+            chain = proc.chain or "main"
+            prev = last_in_chain.get((owner, chain))
+            if prev is not None:
+                add_rel(
+                    "PRECEDES",
+                    prev,
+                    proc.id,
+                    properties={"chain": chain},
+                    prov_ref=proc_base,
+                )
+            last_in_chain[(owner, chain)] = proc.id
             for param in proc.parameters:
                 add_entity(
                     Entity(
@@ -596,10 +678,192 @@ def flatten_session(
             pan=route.pan,
             mute=route.mute,
             enabled=route.enabled,
+            # Channel spec rides ONLY when the adapter observed it; absent keys
+            # mean stereo-implicit (see the Relationship docstring). Applies to
+            # both CHANNEL_SENDS_TO and CHANNEL_ROUTES_TO.
+            source_channels=route.source_channels,
+            target_channels=route.target_channels,
+            channel_count=route.channel_count,
+            channel_layout=route.channel_layout,
         )
         if route.extras:
             properties.update(nested.to_dict(route.extras))
         add_rel(rel_type, src, dst, properties=properties, prov_ref=route_prov)
+
+    # -- automation + modulation: control targets (P7) ------------------------
+    # Both resolve a control target the same way: an explicit PARAMETER entity,
+    # else a PROCESSOR field, else a CHANNEL mixer field, else an honest
+    # UNKNOWN. The control relationship is CONTROLS in every resolved case.
+    _MAX_AUTOMATION_POINTS = 512
+
+    def _resolve_control_target(
+        target_parameter_id: Optional[str],
+        target_processor_id: Optional[str],
+        target_channel_field: Optional[str],
+        target_track_id: Optional[str],
+        parameter_name: Optional[str],
+    ) -> tuple[Optional[str], dict[str, Any]]:
+        if target_parameter_id and target_parameter_id in entity_by_id:
+            return target_parameter_id, {"target": "parameter"}
+        if target_processor_id and target_processor_id in entity_by_id:
+            return target_processor_id, _non_none(
+                target="processor_field", target_field=parameter_name
+            )
+        if target_channel_field and target_track_id:
+            channel = channel_of.get(target_track_id)
+            if channel is not None:
+                return channel, {"target": "channel_field", "field": target_channel_field}
+        return None, {}
+
+    automation_flat: list[dict[str, Any]] = []
+    automation_evidence: list[str] = []
+    for n, auto in enumerate(session.automation, start=1):
+        auto_base = store.add_nested(auto.provenance)
+        auto_prov = {"*": auto_base}
+        for field, fp in auto.field_provenance.items():
+            auto_prov[field] = store.add_nested(fp)
+        automation_evidence.append(auto.provenance.observability)
+
+        capped = auto.points[:_MAX_AUTOMATION_POINTS]
+        values = [p.value for p in auto.points]
+        point_dicts = [
+            {
+                "time": p.time,
+                "value": p.value,
+                "time_domain": p.time_domain,
+                "curve": p.curve,
+            }
+            for p in capped
+        ]
+        auto_id = f"{namespace}:auto:{_slug(auto.parameter_name)}:{n}"
+        native_props = dict(nested.to_dict(auto.extras)) if auto.extras else {}
+        if auto.raw_source is not None:
+            native_props["raw_source"] = nested.to_dict(auto.raw_source)
+        properties = _non_none(
+            parameter_name=auto.parameter_name,
+            unit=auto.unit,
+            point_count=len(auto.points),
+            value_min=min(values) if values else None,
+            value_max=max(values) if values else None,
+            first_value=values[0] if values else None,
+            last_value=values[-1] if values else None,
+            curve=capped[0].curve if capped else None,
+            read_enabled=auto.read_enabled,
+            write_enabled=auto.write_enabled,
+            muted=auto.muted,
+            points=point_dicts or None,
+        )
+        target_id, edge_props = _resolve_control_target(
+            auto.target_parameter_id,
+            auto.target_processor_id,
+            auto.target_channel_field,
+            auto.target_track_id,
+            auto.parameter_name,
+        )
+        add_entity(
+            Entity(
+                id=auto_id,
+                entity_type="AUTOMATION",
+                name=auto.parameter_name,
+                properties=properties,
+                native=NativeRef(daw=daw, native_type="automation", properties=native_props),
+                prov=auto_prov,
+                availability={} if target_id else {"target": "UNKNOWN"},
+            )
+        )
+        if target_id:
+            add_rel("CONTROLS", auto_id, target_id, properties=edge_props, prov_ref=auto_base)
+        automation_flat.append(
+            {
+                "id": auto_id,
+                "parameter_name": auto.parameter_name,
+                "target": target_id,
+                "unit": auto.unit,
+                "points": point_dicts,
+            }
+        )
+
+    modulation_flat: list[dict[str, Any]] = []
+    for n, mod in enumerate(session.modulation, start=1):
+        mod_base = store.add_nested(mod.provenance)
+        mod_prov = {"*": mod_base}
+        for field, fp in mod.field_provenance.items():
+            mod_prov[field] = store.add_nested(fp)
+        label = mod.parameter_name or mod.source_type
+        mod_id = f"{namespace}:mod:{_slug(label)}:{n}"
+        native_props = dict(nested.to_dict(mod.extras)) if mod.extras else {}
+        if mod.raw_source is not None:
+            native_props["raw_source"] = nested.to_dict(mod.raw_source)
+        properties = _non_none(
+            source_type=mod.source_type,
+            parameter_name=mod.parameter_name,
+            depth=mod.depth,
+            rate=mod.rate,
+            unit=mod.unit,
+        )
+        target_id, edge_props = _resolve_control_target(
+            mod.target_parameter_id,
+            mod.target_processor_id,
+            mod.target_channel_field,
+            mod.target_track_id,
+            mod.parameter_name,
+        )
+        add_entity(
+            Entity(
+                id=mod_id,
+                entity_type="MODULATION",
+                name=label,
+                properties=properties,
+                native=NativeRef(daw=daw, native_type="modulation", properties=native_props),
+                prov=mod_prov,
+                availability={} if target_id else {"target": "UNKNOWN"},
+            )
+        )
+        if target_id:
+            add_rel("CONTROLS", mod_id, target_id, properties=edge_props, prov_ref=mod_base)
+        # Sidechain modulation is *driven* by a source channel's signal; record
+        # that link so the source→modulation dependency is visible.
+        if mod.source_type == "sidechain" and mod.source_track_id:
+            source_channel = channel_of.get(mod.source_track_id)
+            if source_channel is not None:
+                add_rel(
+                    "LINKED_WITH",
+                    source_channel,
+                    mod_id,
+                    properties={"kind": "sidechain_source"},
+                    prov_ref=mod_base,
+                )
+        modulation_flat.append(
+            {
+                "id": mod_id,
+                "source_type": mod.source_type,
+                "target": target_id,
+                "depth": mod.depth,
+                "rate": mod.rate,
+            }
+        )
+
+    # -- variant: this session's self-declared place in a variant set (P8) ----
+    # Lineage rides as PROPERTIES only; cross-snapshot DERIVED_FROM /
+    # ALTERNATIVE_OF edges are materialized later in the analyzer where the
+    # sibling snapshots coexist — emitting them here would dangle and fail
+    # validation.
+    if session.variant_label or session.variant_family:
+        variant_prov = store.add("OBSERVED", capture_method="session_metadata")
+        add_entity(
+            Entity(
+                id=f"{namespace}:variant",
+                entity_type="VARIANT",
+                name=session.variant_label,
+                properties=_non_none(
+                    label=session.variant_label,
+                    family=session.variant_family,
+                    derived_from_snapshot_id=session.derived_from_snapshot_id,
+                ),
+                native=NativeRef(daw=daw, native_type="variant"),
+                prov={"*": variant_prov},
+            )
+        )
 
     # -- hidden-state markers ---------------------------------------------------
     if session.hidden_state_markers:
@@ -740,6 +1004,7 @@ def flatten_session(
         "channel": _coverage(channel_evidence),
         "processing": _coverage(processor_evidence),
         "routing": _coverage(route_evidence),
+        "automation": _coverage(automation_evidence),
     }
 
     extensions: dict[str, dict[str, Any]] = {daw: ext} if ext else {}
@@ -751,6 +1016,8 @@ def flatten_session(
         project=project_id,
         entities=entities,
         relationships=relationships,
+        automation=automation_flat,
+        modulation=modulation_flat,
         capabilities=capabilities,
         coverage=coverage,
         provenance=store.records(),

@@ -393,6 +393,13 @@
       "inferred": 0,
       "hidden": 0,
       "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
     }
   },
   "provenance": [

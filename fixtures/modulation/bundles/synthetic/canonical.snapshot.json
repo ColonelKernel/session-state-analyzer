@@ -1,0 +1,256 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "synthetic:sidechain_modulation:snapshot",
+  "created_at": "",
+  "source": {
+    "daw": "synthetic",
+    "daw_version": null,
+    "adapter": "modulation-synthetic-generator",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "synthetic"
+    ]
+  },
+  "project": "synthetic:project",
+  "entities": [
+    {
+      "id": "synthetic:project",
+      "entity_type": "PROJECT",
+      "name": "Sidechain Modulation",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 128.0,
+        "time_signature": "4/4",
+        "sample_rate": 48000
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-kick",
+      "entity_type": "TRACK",
+      "name": "Kick",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 0
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-kick:channel",
+      "entity_type": "CHANNEL",
+      "name": "Kick",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-bass",
+      "entity_type": "TRACK",
+      "name": "Bass",
+      "semantic_roles": [
+        "bass_source"
+      ],
+      "properties": {
+        "index": 1
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:track-bass:channel",
+      "entity_type": "CHANNEL",
+      "name": "Bass",
+      "semantic_roles": [],
+      "properties": {},
+      "native": {
+        "daw": "synthetic",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "synthetic:mod:gain:1",
+      "entity_type": "MODULATION",
+      "name": "gain",
+      "semantic_roles": [],
+      "properties": {
+        "source_type": "sidechain",
+        "parameter_name": "gain",
+        "depth": -8.0,
+        "unit": "dB"
+      },
+      "native": {
+        "daw": "synthetic",
+        "native_type": "modulation",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-kick",
+      "target": "synthetic:track-kick:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "synthetic:track-bass",
+      "target": "synthetic:track-bass:channel",
+      "properties": {},
+      "prov_ref": "prov:0001"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "CONTROLS",
+      "source": "synthetic:mod:gain:1",
+      "target": "synthetic:track-bass:channel",
+      "properties": {
+        "target": "channel_field",
+        "field": "gain"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "LINKED_WITH",
+      "source": "synthetic:track-kick:channel",
+      "target": "synthetic:mod:gain:1",
+      "properties": {
+        "kind": "sidechain_source"
+      },
+      "prov_ref": "prov:0002"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [
+    {
+      "id": "synthetic:mod:gain:1",
+      "source_type": "sidechain",
+      "target": "synthetic:track-bass:channel",
+      "depth": -8.0,
+      "rate": null
+    }
+  ],
+  "capabilities": {
+    "read": {},
+    "write": {},
+    "live_observation": {},
+    "render": {},
+    "manifest_version": "0.2.0",
+    "daw": "synthetic",
+    "daw_version": null,
+    "adapter": "modulation-synthetic-generator",
+    "adapter_version": "0.1.0",
+    "notes": [
+      "Synthetic fixture carrying one ANNOTATED sidechain modulation so the atlas Modulation row is measured somewhere."
+    ]
+  },
+  "coverage": {
+    "structure": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 2,
+      "observed": 2,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "synthetic",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "ANNOTATED",
+      "capture_method": "synthetic",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Kick sidechains the bass gain (ducking) \u2014 asserted, not observed from any DAW.",
+      "warnings": []
+    }
+  ],
+  "extensions": {},
+  "warnings": [],
+  "failures": []
+}

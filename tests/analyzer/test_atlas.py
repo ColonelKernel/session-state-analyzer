@@ -150,12 +150,67 @@ def test_cubase_processing_hidden_present(atlas):
     assert cell.hidden_ratio is not None and cell.hidden_ratio > 0
 
 
+def test_cubase_automation_fully_observed(atlas):
+    """The re-exported Cubase bundle carries a real vocal-Volume automation lane.
+
+    The DAWproject export is an official Cubase surface, so the single
+    AUTOMATION entity lands as OBSERVED evidence and the Automation cell is
+    FULLY_OBSERVED — the only real adapter that measures this domain.
+    """
+    cell = atlas.cell("Automation", "cubase")
+    m = cell.measured
+    assert m.applicable == 1
+    assert m.observed == 1
+    assert m.inferred == 0 and m.hidden == 0 and m.annotated == 0
+    assert cell.status == "FULLY_OBSERVED"
+    assert cell.direct_observability == 1.0
+    # No capability maps to Automation, so the measurement stands alone.
+    assert cell.declared is None
+
+
 def test_modulation_not_applicable_for_all_four(atlas):
     for daw in atlas.daws:
         cell = atlas.cell("Modulation", daw)
         assert cell.measured.applicable == 0
         assert cell.declared is None
         assert cell.status == "NOT_APPLICABLE"
+
+
+# The Modulation row is NOT_APPLICABLE for every real adapter (none observe
+# modulation). The dedicated modulation fixture proves the row is a real
+# measurement channel by flipping it to measured (ANNOTATED) somewhere.
+MODULATION_FIXTURE = (
+    Path(__file__).resolve().parents[2]
+    / "fixtures"
+    / "modulation"
+    / "bundles"
+    / "synthetic"
+)
+
+
+def test_modulation_fixture_row_is_measured():
+    if not (MODULATION_FIXTURE / "canonical.snapshot.json").exists():
+        pytest.skip("modulation fixture not generated")
+    bundle = load_bundle(MODULATION_FIXTURE)
+    atlas = build_atlas([bundle])
+    cell = atlas.cell("Modulation", "synthetic")
+    # One ANNOTATED MODULATION entity -> measured, and specifically NOT the
+    # empty-row status the real adapters get.
+    assert cell.measured.applicable == 1
+    assert cell.measured.annotated == 1
+    assert cell.status != "NOT_APPLICABLE"
+    # Reaper and cubase, side by side in the same atlas, still see nothing.
+    reaper_cubase = build_atlas(
+        [bundle, _bundle("reaper"), _bundle("cubase")]
+    )
+    for daw in ("reaper", "cubase"):
+        assert reaper_cubase.cell("Modulation", daw).status == "NOT_APPLICABLE"
+
+    # The Cubase bundle has been re-exported with its real automation lane, so
+    # alongside its empty Modulation row it now measures Automation as
+    # FULLY_OBSERVED (see test_cubase_automation_fully_observed for the full
+    # arithmetic).
+    assert reaper_cubase.cell("Automation", "cubase").status == "FULLY_OBSERVED"
 
 
 def test_native_features_observed_where_extensions_nonempty(atlas):

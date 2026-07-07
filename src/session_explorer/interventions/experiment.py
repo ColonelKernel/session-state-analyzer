@@ -24,6 +24,9 @@ from .models import Intervention, InterventionComparison, Render
 # Repo-root-relative default: src/session_explorer/interventions/ → parents[3].
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_FIXTURES_DIR = _REPO_ROOT / "fixtures" / "experiments" / "effect_send"
+DEFAULT_PARAMETER_FIXTURES_DIR = (
+    _REPO_ROOT / "fixtures" / "experiments" / "parameter_change"
+)
 
 # render_id → the descriptor file that backs it, and the render's fixed facts.
 # These renders are SYNTHETIC (fixture-generated) but carry real acoustic
@@ -71,6 +74,26 @@ def build_effect_send_experiment(
     fixtures_dir: Path | str = DEFAULT_FIXTURES_DIR,
 ) -> InterventionComparison:
     """Assemble the effect-send comparison from the frozen fixture. Deterministic."""
+    base = Path(fixtures_dir)
+    before_bundle = load_bundle(base / "before")
+    after_bundle = load_bundle(base / "after")
+    intervention = load_intervention(base)
+    renders = load_render_descriptors(base)
+    return compare_intervention(before_bundle, after_bundle, intervention, renders)
+
+
+def build_parameter_experiment(
+    fixtures_dir: Path | str = DEFAULT_PARAMETER_FIXTURES_DIR,
+) -> InterventionComparison:
+    """Assemble the delay-feedback parameter comparison from the frozen fixture.
+
+    The A/B is two canonical bundles identical except for one delay FEEDBACK
+    PARAMETER (0.2 → 0.7) plus two real delay-line render descriptors. Loads
+    from disk exactly like :func:`build_effect_send_experiment` — no wall-clock,
+    no audio decode at call time — so two calls return equal comparisons. The
+    render descriptor files reuse the ``routing_a`` / ``routing_b`` naming, so
+    :func:`load_render_descriptors` reads them unchanged.
+    """
     base = Path(fixtures_dir)
     before_bundle = load_bundle(base / "before")
     after_bundle = load_bundle(base / "after")

@@ -96,10 +96,64 @@ SIGNAL_FLOW = LayerSpec(
     entity_types=frozenset({"CHANNEL", "ROUTING_ENDPOINT"}),
 )
 
+PROCESSING = LayerSpec(
+    name="processing",
+    rel_types=frozenset(
+        {
+            "TRACK_USES_CHANNEL",
+            "CHANNEL_PROCESSED_BY",
+            "PRECEDES",
+        }
+    ),
+    # The insert/device chains: which channel hosts which processors, and in
+    # what order (PRECEDES). A CHANNEL or PROCESSOR with no chain is still a
+    # processing-layer citizen (a channel with no inserts is a finding).
+    entity_types=frozenset({"CHANNEL", "PROCESSOR"}),
+)
+
+AUTOMATION = LayerSpec(
+    name="automation",
+    rel_types=frozenset(
+        {
+            "CONTROLS",
+            "CHANNEL_PROCESSED_BY",
+            "TRACK_USES_CHANNEL",
+        }
+    ),
+    # What controls what over time: automation lanes and modulation sources and
+    # the parameters / processors / channels they drive.
+    entity_types=frozenset(
+        {"AUTOMATION", "MODULATION", "PARAMETER", "PROCESSOR", "CHANNEL"}
+    ),
+)
+
+VARIANT = LayerSpec(
+    name="variant",
+    rel_types=frozenset(
+        {
+            "ALTERNATIVE_OF",
+            "DERIVED_FROM",
+            "SHARES_SOURCE_WITH",
+            "REFERENCES_ASSET",
+        }
+    ),
+    # Session lineage: variants, the projects they descend from, and the shared
+    # media they reference.
+    entity_types=frozenset({"VARIANT", "PROJECT", "MEDIA_ASSET"}),
+)
+
 ALL = LayerSpec(name="all", rel_types=None, entity_types=None)
 
 LAYERS: Dict[str, LayerSpec] = {
-    spec.name: spec for spec in (ORGANIZATIONAL, SIGNAL_FLOW, ALL)
+    spec.name: spec
+    for spec in (
+        ORGANIZATIONAL,
+        SIGNAL_FLOW,
+        PROCESSING,
+        AUTOMATION,
+        VARIANT,
+        ALL,
+    )
 }
 
 
@@ -145,6 +199,14 @@ _SNAPSHOT_NODE_STYLES: Dict[str, dict] = {
     "OBSERVATION": dict(shape="ellipse", size=14, font_color="#ffffff"),
     "RENDER": dict(shape="database", size=14, font_color="#ffffff"),
     "INTERVENTION": dict(shape="database", size=14, font_color="#ffffff"),
+    # Temporal control + variants (P7/P8).
+    "AUTOMATION": dict(
+        color="#F4A259", shape="triangleDown", size=14, legend="Automation"
+    ),
+    "MODULATION": dict(
+        color="#B279A2", shape="triangleDown", size=14, legend="Modulation"
+    ),
+    "VARIANT": dict(color="#6A8EAE", shape="diamond", size=18, legend="Variant"),
 }
 
 

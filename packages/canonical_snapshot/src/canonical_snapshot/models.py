@@ -98,8 +98,17 @@ class Relationship(_ContractModel):
 
     ``rel_type`` is a registry-validated string (see ``enums.CORE_REL_TYPES``)
     rather than an enum, so relationship vocabulary can grow additively.
-    ``properties`` carries edge payload — send gain, port/channel spec,
-    ordering indices.
+    ``properties`` carries edge payload: send gain (``volume`` / ``volume_db``)
+    and ordering (``index``, plus ``chain`` on ``PRECEDES``). On the routing
+    edges ``CHANNEL_SENDS_TO`` / ``CHANNEL_ROUTES_TO`` it may also carry an
+    explicit channel spec under these exact keys: ``source_channels`` and
+    ``target_channels`` (0-based channel indices on each endpoint),
+    ``channel_count`` (how many channels the connection carries), and
+    ``channel_layout`` (a native layout label such as ``"stereo"`` or
+    ``"mono"``). Those keys are present **only when the adapter observed
+    channel routing**; when they are absent the connection is
+    stereo-implicit — the honest default for adapters that do not decode
+    channel offsets.
     """
 
     id: str
@@ -151,10 +160,13 @@ class CanonicalDAWSnapshot(_ContractModel):
     """The v0.2 snapshot: one DAW session as one adapter observed it.
 
     ``project`` names the single PROJECT entity's id. ``automation`` and
-    ``modulation`` are structural stubs until P7. ``extensions`` is namespaced
-    (by DAW or tool id) so DAW-specific richness survives without leaking into
-    the canonical core. ``provenance`` is the deduplicated record store that
-    ``Entity.prov`` / ``Relationship.prov_ref`` reference by id.
+    ``modulation`` are populated in P7: flat descriptors of the automation
+    lanes and modulation sources that also appear as AUTOMATION / MODULATION
+    entities (with their CONTROLS edges) in ``entities`` / ``relationships``.
+    ``extensions`` is namespaced (by DAW or tool id) so DAW-specific richness
+    survives without leaking into the canonical core. ``provenance`` is the
+    deduplicated record store that ``Entity.prov`` / ``Relationship.prov_ref``
+    reference by id.
     """
 
     schema_version: str = SCHEMA_VERSION

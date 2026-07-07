@@ -16,7 +16,7 @@ experiment round-trips through ``intervention.json`` losslessly and an
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 
 from pydantic import BaseModel, Field
 
@@ -101,6 +101,29 @@ class DeltaRecord(BaseModel):
     label: str
 
 
+class ParameterChange(BaseModel):
+    """One PROCESSOR / mixer parameter whose value differs between two snapshots.
+
+    The parameter is identified by its canonical entity ``id`` and ``name``.
+    ``role`` is the interpretable :data:`SemanticParameterRole` derived from the
+    parameter's name (a "Feedback" knob → ``"FEEDBACK"``); ``before_value`` /
+    ``after_value`` are the two readings (the parameter's ``value``, falling
+    back to its ``normalized_value``). ``processor_id`` / ``channel_id`` name the
+    owning PROCESSOR and the CHANNEL it sits on, resolved by walking the
+    ``CONTAINS`` (``kind=parameter``) and ``CHANNEL_PROCESSED_BY`` edges — so the
+    change reads back as "the FEEDBACK of the Delay on the vocal channel", not a
+    bare entity id.
+    """
+
+    id: str
+    name: str
+    role: Optional[SemanticParameterRole] = None
+    before_value: Optional[Union[float, str, bool]] = None
+    after_value: Optional[Union[float, str, bool]] = None
+    processor_id: Optional[str] = None
+    channel_id: Optional[str] = None
+
+
 class StateDelta(BaseModel):
     """The structural difference between two canonical snapshots.
 
@@ -117,6 +140,7 @@ class StateDelta(BaseModel):
     removed_relationships: list[DeltaRecord] = Field(default_factory=list)
     changed: list[DeltaRecord] = Field(default_factory=list)
     added_sends: list[DeltaRecord] = Field(default_factory=list)
+    parameter_changes: list[ParameterChange] = Field(default_factory=list)
 
 
 class SignalFlowChange(BaseModel):

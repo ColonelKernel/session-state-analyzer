@@ -41,8 +41,14 @@ The five-file adapter contract:
 | `canonical.snapshot.json` | flat v0.2 `CanonicalDAWSnapshot` |
 | `validation.json` | `validate_snapshot()` report (valid, 0 errors/warnings) |
 
-Snapshot shape: 26 entities (1 PROJECT, 5 TRACK, 7 CHANNEL — TRACK ≠ CHANNEL,
+Snapshot shape: 27 entities (1 PROJECT, 5 TRACK, 7 CHANNEL — TRACK ≠ CHANNEL,
 return/master are CHANNEL-only — 8 PROCESSOR, 2 PARAMETER, 2 TEMPORAL_OBJECT,
-1 MEDIA_ASSET), 25 relationships, 33 deduplicated provenance records
-(OBSERVED / INFERRED / HIDDEN all represented; hidden plug-in-parameter state
-appears as `availability: INACCESSIBLE` entries, never as silent nulls).
+1 MEDIA_ASSET, 1 AUTOMATION), 29 relationships, 33 deduplicated provenance
+records (OBSERVED / INFERRED / HIDDEN all represented; hidden plug-in-parameter
+state appears as `availability: INACCESSIBLE` entries, never as silent nulls).
+
+The single AUTOMATION entity is the vocal channel's real Volume lane
+(`ch-vox-vol`, unit `linear`, 3 breakpoints), carried through the mapper from
+`state.automation` as OBSERVED evidence (DAWproject is an official Cubase
+export). It `CONTROLS` the vocal channel's `volume` mixer field, and the
+processing chains contribute explicit `PRECEDES` ordering edges.

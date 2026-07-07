@@ -1,0 +1,87 @@
+{
+  "read": {
+    "structure": {
+      "fields": {
+        "track_name": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "hierarchy": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "routing": {
+      "fields": {
+        "sends": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "channel_offsets": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "channel": {
+      "fields": {
+        "volume": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "processing": {
+      "fields": {
+        "insert_chain": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "chain_order": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    }
+  },
+  "write": {},
+  "live_observation": {},
+  "render": {},
+  "manifest_version": "0.2.0",
+  "daw": "synthetic",
+  "daw_version": null,
+  "adapter": "x06-synthetic-generator",
+  "adapter_version": "0.1.0",
+  "notes": [
+    "Synthetic fixture: no DAW behind it. Exercises P6 grouping/routing/processing depth through the real flatten_session pipeline."
+  ]
+}

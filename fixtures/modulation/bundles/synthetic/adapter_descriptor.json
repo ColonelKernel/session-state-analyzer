@@ -1,0 +1,14 @@
+{
+  "adapter_id": "modulation-synthetic-generator",
+  "daw": "synthetic",
+  "capture_modes": [
+    "synthetic"
+  ],
+  "read": "Synthetic session carrying one ANNOTATED sidechain modulation.",
+  "write": "NONE",
+  "live_observation": "NONE",
+  "render": "NONE",
+  "known_limitations": [
+    "Not a real DAW capture. The modulation is a user assertion (ANNOTATED), not observed state."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "read": {},
+  "write": {},
+  "live_observation": {},
+  "render": {},
+  "manifest_version": "0.2.0",
+  "daw": "synthetic",
+  "daw_version": null,
+  "adapter": "modulation-synthetic-generator",
+  "adapter_version": "0.1.0",
+  "notes": [
+    "Synthetic fixture carrying one ANNOTATED sidechain modulation so the atlas Modulation row is measured somewhere."
+  ]
+}

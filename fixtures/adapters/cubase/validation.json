@@ -3,7 +3,7 @@
   "errors": [],
   "warnings": [],
   "stats": {
-    "entities": 26,
+    "entities": 27,
     "entities_by_type": {
       "PROJECT": 1,
       "TRACK": 5,
@@ -11,9 +11,10 @@
       "PROCESSOR": 8,
       "PARAMETER": 2,
       "TEMPORAL_OBJECT": 2,
-      "MEDIA_ASSET": 1
+      "MEDIA_ASSET": 1,
+      "AUTOMATION": 1
     },
-    "relationships": 25,
+    "relationships": 29,
     "provenance_records": 33,
     "warnings_in_snapshot": 0,
     "failures": 0

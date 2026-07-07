@@ -50,7 +50,38 @@ def bundle(request):
 
 
 def test_layer_registry_names():
-    assert set(LAYERS) == {"organizational", "signal_flow", "all"}
+    assert set(LAYERS) == {
+        "organizational",
+        "signal_flow",
+        "processing",
+        "automation",
+        "variant",
+        "all",
+    }
+
+
+def test_processing_layer_rel_membership():
+    spec = get_layer("processing")
+    assert spec.includes_rel("CHANNEL_PROCESSED_BY")
+    assert spec.includes_rel("PRECEDES")
+    assert spec.includes_rel("TRACK_USES_CHANNEL")
+    # Routing sends are not a processing concern.
+    assert not spec.includes_rel("CHANNEL_SENDS_TO")
+    assert not spec.includes_rel("CHANNEL_ROUTES_TO")
+    assert spec.entity_is_relevant("PROCESSOR")
+    assert spec.entity_is_relevant("CHANNEL")
+    assert not spec.entity_is_relevant("MEDIA_ASSET")
+
+
+def test_automation_and_variant_layer_membership():
+    auto = get_layer("automation")
+    assert auto.includes_rel("CONTROLS")
+    assert auto.entity_is_relevant("AUTOMATION")
+    assert auto.entity_is_relevant("MODULATION")
+    variant = get_layer("variant")
+    assert variant.includes_rel("DERIVED_FROM")
+    assert variant.includes_rel("SHARES_SOURCE_WITH")
+    assert variant.entity_is_relevant("VARIANT")
 
 
 def test_unknown_layer_is_loud():
@@ -241,6 +272,80 @@ def test_snapshot_styles_registered():
     assert get_node_style("PROJECT").shape == "star"
     assert get_node_style("ROUTING_ENDPOINT").color is None  # observability-coloured
     assert get_node_style("OBSERVATION").font_color == "#ffffff"
+
+
+def test_temporal_and_variant_styles_registered():
+    """P7/P8 node types get their own colour + legend."""
+    automation = get_node_style("AUTOMATION")
+    assert automation.color == "#F4A259"
+    assert automation.shape == "triangleDown"
+    assert automation.legend == "Automation"
+    modulation = get_node_style("MODULATION")
+    assert modulation.color == "#B279A2"
+    assert modulation.legend == "Modulation"
+    variant = get_node_style("VARIANT")
+    assert variant.color == "#6A8EAE"
+    assert variant.shape == "diamond"
+    assert variant.legend == "Variant"
+
+
+# ---------------------------------------------------------------------------
+# Processing layer over the X06 grouping-depth fixture (branching chains)
+# ---------------------------------------------------------------------------
+
+X06_DIR = (
+    REPO_ROOT / "fixtures" / "cross-daw" / "X06_grouping_depth" / "bundles" / "synthetic"
+)
+
+
+def _x06_snapshot():
+    if not (X06_DIR / "canonical.snapshot.json").exists():
+        pytest.skip("X06 fixture not generated")
+    return load_bundle(X06_DIR).snapshot
+
+
+def test_processing_layer_includes_precedes_excludes_sends():
+    graph = build_graph(_x06_snapshot(), layer="processing")
+    edge_types = set(_edge_types(graph))
+    assert "PRECEDES" in edge_types
+    assert "CHANNEL_PROCESSED_BY" in edge_types
+    assert "CHANNEL_SENDS_TO" not in edge_types
+    assert "SUMS_TO" not in edge_types
+
+
+def test_processing_layer_chain_scoped_precedes():
+    graph = build_graph(_x06_snapshot(), layer="processing")
+    precedes = [
+        (u, v, d.get("chain"))
+        for u, v, d in graph.edges(data=True)
+        if d["type"] == "PRECEDES"
+    ]
+    assert ("synthetic:proc-eq", "synthetic:proc-delay", "main") in precedes
+    assert ("synthetic:proc-sat", "synthetic:proc-chorus", "parallel") in precedes
+    # No PRECEDES edge crosses chains: every PRECEDES has one chain, and no
+    # main<->parallel link exists.
+    chains = {d for *_, d in precedes}
+    assert chains == {"main", "parallel"}
+
+
+def test_processing_layer_channel_branches_into_two_chains():
+    """The parallel chain makes the FX CHANNEL fan out: it feeds two chains, so
+    on CHANNEL_PROCESSED_BY it has out-degree >= 2 (the branch point), while
+    each PROCESSOR keeps a linear PRECEDES out-degree <= 1."""
+    graph = build_graph(_x06_snapshot(), layer="processing")
+    fx = "synthetic:track-fx:channel"
+    processed = [
+        v for _, v, d in graph.out_edges(fx, data=True)
+        if d["type"] == "CHANNEL_PROCESSED_BY"
+    ]
+    assert len(processed) >= 2  # the channel branches into both chains
+    for node in graph.nodes:
+        if graph.nodes[node]["type"] == "PROCESSOR":
+            precedes_out = [
+                v for _, v, d in graph.out_edges(node, data=True)
+                if d["type"] == "PRECEDES"
+            ]
+            assert len(precedes_out) <= 1
 
 
 # ---------------------------------------------------------------------------

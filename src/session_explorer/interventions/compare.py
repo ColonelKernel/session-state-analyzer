@@ -33,6 +33,7 @@ from .models import (
     DeltaRecord,
     Intervention,
     InterventionComparison,
+    ParameterChange,
     Render,
     SignalFlowChange,
     StateDelta,
@@ -81,6 +82,64 @@ def _entity_signature(entity: Entity) -> tuple:
         tuple(sorted(entity.semantic_roles)),
         tuple(sorted((k, str(v)) for k, v in entity.properties.items())),
     )
+
+
+# A small, interpretable name → role table. It is a hint layer, not a schema:
+# unknown parameter names simply carry no role. Substrings are matched so
+# "Dry/Wet Mix" resolves to WET_DRY and "Delay Feedback" to FEEDBACK.
+_PARAM_ROLE_HINTS: tuple[tuple[str, str], ...] = (
+    ("feedback", "FEEDBACK"),
+    ("resonance", "RESONANCE"),
+    ("cutoff", "CUTOFF"),
+    ("threshold", "THRESHOLD"),
+    ("ratio", "RATIO"),
+    ("tempo", "TEMPO"),
+    ("send", "SEND_LEVEL"),
+    ("wet", "WET_DRY"),
+    ("dry", "WET_DRY"),
+    ("mix", "WET_DRY"),
+    ("gain", "GAIN"),
+    ("pan", "PAN"),
+)
+
+
+def _param_role(name: Optional[str]) -> Optional[str]:
+    """Map a parameter name to a :data:`SemanticParameterRole`, or ``None``."""
+    low = (name or "").lower()
+    for hint, role in _PARAM_ROLE_HINTS:
+        if hint in low:
+            return role
+    return None
+
+
+def _param_value_pair(entity: Entity) -> tuple:
+    """The parameter's ``(value, normalized_value)`` reading for comparison."""
+    props = entity.properties
+    return (props.get("value"), props.get("normalized_value"))
+
+
+def _resolve_param_owner(
+    snapshot: CanonicalDAWSnapshot, param_id: str
+) -> tuple[Optional[str], Optional[str]]:
+    """Find the PROCESSOR that contains a PARAMETER and the CHANNEL it sits on.
+
+    Walks the inverse ``CONTAINS`` (``kind=parameter``) edge to the owning
+    PROCESSOR, then the inverse ``CHANNEL_PROCESSED_BY`` edge to the CHANNEL.
+    Either may be absent (a bare parameter, an unrouted processor); the missing
+    end degrades to ``None`` rather than raising.
+    """
+    processor_id: Optional[str] = None
+    for rel in snapshot.relationships_of_type("CONTAINS"):
+        if rel.target == param_id and rel.properties.get("kind") == "parameter":
+            processor_id = rel.source
+            break
+    channel_id: Optional[str] = None
+    if processor_id is not None:
+        for rel in snapshot.relationships_of_type("CHANNEL_PROCESSED_BY"):
+            if rel.target == processor_id:
+                channel_id = rel.source
+                break
+    return processor_id, channel_id
 
 
 def snapshot_delta(
@@ -133,6 +192,40 @@ def snapshot_delta(
         if key not in before_rels and key[0] == "CHANNEL_SENDS_TO"
     ]
 
+    # Pair before/after PARAMETER entities present on both sides whose value (or
+    # normalized value) differs. The generic ``changed`` list already flags the
+    # entity, but only carries the *after* record; a ParameterChange carries
+    # BOTH readings plus the owning processor/channel, so the tweak reads back
+    # as a sentence rather than a bare "this entity changed".
+    before_params = {
+        e.id: e for e in before.entities if e.entity_type == "PARAMETER"
+    }
+    parameter_changes: list[ParameterChange] = []
+    for eid, after_entity in after_entities.items():
+        if after_entity.entity_type != "PARAMETER":
+            continue
+        before_entity = before_params.get(eid)
+        if before_entity is None:
+            continue
+        before_pair = _param_value_pair(before_entity)
+        after_pair = _param_value_pair(after_entity)
+        if before_pair == after_pair:
+            continue
+        processor_id, channel_id = _resolve_param_owner(after, eid)
+        before_value = before_pair[0] if before_pair[0] is not None else before_pair[1]
+        after_value = after_pair[0] if after_pair[0] is not None else after_pair[1]
+        parameter_changes.append(
+            ParameterChange(
+                id=after_entity.id,
+                name=after_entity.name or after_entity.id,
+                role=_param_role(after_entity.name),
+                before_value=before_value,
+                after_value=after_value,
+                processor_id=processor_id,
+                channel_id=channel_id,
+            )
+        )
+
     return StateDelta(
         added_entities=added_entities,
         removed_entities=removed_entities,
@@ -140,6 +233,7 @@ def snapshot_delta(
         removed_relationships=removed_relationships,
         changed=changed,
         added_sends=added_sends,
+        parameter_changes=parameter_changes,
     )
 
 
@@ -181,17 +275,24 @@ def _output_phrase(entity: Optional[Entity]) -> str:
 def explain_signal_flow(
     after: CanonicalDAWSnapshot, delta: StateDelta
 ) -> SignalFlowChange:
-    """Trace each newly-added send into one readable sentence + a path chain.
+    """Dispatch the state delta into one readable signal-flow explanation.
 
-    For every added ``CHANNEL_SENDS_TO`` edge: read the source channel, the
-    target channel, the target's ``CHANNEL_PROCESSED_BY`` processors and its
-    ``CHANNEL_ROUTES_TO`` destination, then compose a sentence of the form
-    "The <source> channel now sends to '<target>', whose <processors> sums back
-    to <output> — so the <source> gains an effect it did not have before." The
-    ``path`` is ``[source, target, processor(s)…, output]``. Nothing is
-    hardcoded: names and roles come from the entities.
+    This is a dispatcher over the kinds of change the experiment can carry:
+
+    - an added ``CHANNEL_SENDS_TO`` edge → :func:`_explain_added_sends`, which
+      traces source channel → target channel → the target's processors → its
+      output into a sentence and a ``[source, target, processor(s)…, output]``
+      path;
+    - a :class:`~.models.ParameterChange` → :func:`_explain_parameter_change`,
+      which names the owning processor, its channel, and the before→after
+      values.
+
+    Nothing is hardcoded: names and roles come from the entities. When neither
+    kind of change is present the signal path is reported unchanged.
     """
     if not delta.added_sends:
+        if delta.parameter_changes:
+            return _explain_parameter_change(after, delta)
         return SignalFlowChange(
             summary="No new send was added; the signal path is unchanged.",
             path=[],
@@ -278,6 +379,100 @@ def _is_reverb(name: str) -> bool:
 def _effect_kind(processor_name: str) -> str:
     """Plain-language name for what the return adds ("wet reverb" for a verb)."""
     return "wet reverb" if _is_reverb(processor_name) else f"the '{processor_name}' effect"
+
+
+# ---------------------------------------------------------------------------
+# Parameter-change explanation
+# ---------------------------------------------------------------------------
+
+# Role → one plain clause for *why* moving that knob changes the sound. The
+# ``{source}`` placeholder is filled with the readable noun for the channel the
+# processor sits on ("vocal"). Unknown roles fall back to a generic clause.
+_ROLE_CONSEQUENCE: dict[str, str] = {
+    "FEEDBACK": "more repeats feed back, so the {source} gains a longer tail",
+    "WET_DRY": "more of the wet signal is blended in, so the {source} sounds more processed",
+    "GAIN": "the {source} sits at a different level",
+    "PAN": "the {source} moves in the stereo field",
+    "SEND_LEVEL": "more of the {source} is fed to its send destination",
+    "CUTOFF": "the filter opens or closes, reshaping the {source}'s tone",
+    "RESONANCE": "the filter emphasises its cutoff, sharpening the {source}'s tone",
+    "THRESHOLD": "the dynamics stage engages at a different point on the {source}",
+    "RATIO": "the dynamics stage compresses the {source} harder or softer",
+    "TEMPO": "the session's timing shifts",
+}
+
+
+def _is_number(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def _fmt_param_value(value: object) -> str:
+    if isinstance(value, bool):
+        return "on" if value else "off"
+    if isinstance(value, float):
+        return f"{value:.2f}"
+    return str(value)
+
+
+def _param_direction(before: object, after: object) -> str:
+    if _is_number(before) and _is_number(after):
+        return "rose" if after > before else "fell"  # type: ignore[operator]
+    return "shifted"
+
+
+def _param_consequence(role: Optional[str], source_noun: str) -> str:
+    template = _ROLE_CONSEQUENCE.get(role or "", "the {source}'s sound changes accordingly")
+    return template.format(source=source_noun)
+
+
+def _explain_parameter_change(
+    after: CanonicalDAWSnapshot, delta: StateDelta
+) -> SignalFlowChange:
+    """Compose one readable sentence per changed parameter + a channel→processor path.
+
+    For each :class:`~.models.ParameterChange`, resolve the owning PROCESSOR and
+    the CHANNEL it processes, read the channel's source noun (its role, e.g.
+    "vocal"), and write "The FEEDBACK of the '<Delay>' on the <source> channel
+    rose 0.20→0.70 — more repeats feed back, so the <source> gains a longer
+    tail." The ``path`` is ``[channel, processor]`` — the two nodes the change
+    touches — so the sentence and the diagram cannot disagree.
+    """
+    sentences: list[str] = []
+    path: list[str] = []
+
+    for change in delta.parameter_changes:
+        processor = (
+            after.entity_by_id(change.processor_id) if change.processor_id else None
+        )
+        channel = after.entity_by_id(change.channel_id) if change.channel_id else None
+
+        proc_name = (
+            processor.name
+            if processor is not None and processor.name
+            else (change.processor_id or "processor")
+        )
+        source_noun = _source_noun(channel, after) if channel is not None else "signal"
+        knob = change.role if change.role else f"'{change.name}'"
+        before_str = _fmt_param_value(change.before_value)
+        after_str = _fmt_param_value(change.after_value)
+        direction = _param_direction(change.before_value, change.after_value)
+        consequence = _param_consequence(change.role, source_noun)
+
+        sentences.append(
+            f"The {knob} of the '{proc_name}' on the {source_noun} channel "
+            f"{direction} {before_str}→{after_str} — {consequence}."
+        )
+
+        if not path:
+            channel_label = (
+                channel.name if channel is not None and channel.name else source_noun
+            )
+            path = [channel_label, proc_name]
+
+    summary = " ".join(sentences) if sentences else (
+        "A parameter changed, but its owning processor could not be resolved."
+    )
+    return SignalFlowChange(summary=summary, path=path)
 
 
 # ---------------------------------------------------------------------------
