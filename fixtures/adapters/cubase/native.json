@@ -1270,7 +1270,11 @@
     "score_state": {
       "present": false,
       "layouts": [],
-      "notes": null
+      "notes": null,
+      "parts": [],
+      "key_signatures": [],
+      "time_signatures": [],
+      "pitched_notes": []
     },
     "media": [],
     "unknown_state": [

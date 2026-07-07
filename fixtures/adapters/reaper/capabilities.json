@@ -368,7 +368,7 @@
   "daw": "reaper",
   "daw_version": "7.0",
   "adapter": "session-state-explorer-reaper",
-  "adapter_version": "0.3.0",
+  "adapter_version": "0.4.0",
   "notes": [
     "Capabilities describe the .rpp file-parse pathway only.",
     "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",
