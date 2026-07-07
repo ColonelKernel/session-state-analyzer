@@ -1,0 +1,1132 @@
+{
+  "automation": [],
+  "capabilities": {
+    "adapter": "logic-session-evidence-explorer",
+    "adapter_version": "0.1.0",
+    "daw": "logic_pro",
+    "daw_version": null,
+    "live_observation": {},
+    "manifest_version": "0.2.0",
+    "notes": [
+      "Evidence-only adapter: no Logic project file is parsed; the DAW is never observed live, written to, or asked to render.",
+      "Role inference is HEURISTIC with calibrated confidences: 99.3% over 6467 weighted filename instances (in-sample vocabulary coverage, not held-out generalization — see docs/evaluation.md).",
+      "Empty write/live_observation/render sections mean support NONE for every domain, not an unexamined gap."
+    ],
+    "read": {
+      "audio_content": {
+        "fields": {
+          "audio_content": {
+            "applicability": "APPLICABLE",
+            "capture_method": "exported_audio",
+            "source_stability": "OFFICIAL_EXPORT",
+            "support": "FULL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "automation": {
+        "fields": {
+          "automation": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          }
+        }
+      },
+      "mixer_state": {
+        "fields": {
+          "mute": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "pan": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "solo": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          },
+          "volume_db": {
+            "applicability": "APPLICABLE",
+            "capture_method": null,
+            "source_stability": null,
+            "support": "NONE",
+            "tested_daw_version": null,
+            "validation_status": "CLAIMED"
+          }
+        }
+      },
+      "plugin_chain": {
+        "fields": {
+          "plugin_chain": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "bus_routing": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          },
+          "sends": {
+            "applicability": "APPLICABLE",
+            "capture_method": "channel_strip_note",
+            "source_stability": "MANUAL",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "structure": {
+        "fields": {
+          "role": {
+            "applicability": "APPLICABLE",
+            "capture_method": "filename_role_inference",
+            "source_stability": "HEURISTIC",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          },
+          "track_name": {
+            "applicability": "APPLICABLE",
+            "capture_method": "filename_normalization",
+            "source_stability": "HEURISTIC",
+            "support": "PARTIAL",
+            "tested_daw_version": null,
+            "validation_status": "TESTED"
+          }
+        }
+      }
+    },
+    "render": {},
+    "write": {}
+  },
+  "coverage": {
+    "channel": {
+      "applicable": 0,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 0,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 0,
+      "hidden": 0,
+      "inferred": 0,
+      "observed": 0,
+      "unsupported": 0
+    },
+    "structure": {
+      "applicable": 4,
+      "hidden": 0,
+      "inferred": 4,
+      "observed": 0,
+      "unsupported": 0
+    }
+  },
+  "created_at": "2026-07-07T09:54:56.519271+00:00",
+  "entities": [
+    {
+      "availability": {
+        "automation": "INACCESSIBLE",
+        "routing": "INACCESSIBLE"
+      },
+      "entity_type": "PROJECT",
+      "id": "logic:project",
+      "name": "Lincoln's Come in Fives (Berklee, real session evidence)",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "project",
+        "properties": {}
+      },
+      "properties": {},
+      "prov": {
+        "*": "prov:0001",
+        "automation": "prov:0011",
+        "routing": "prov:0012"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN",
+        "plugin_chain": "INACCESSIBLE"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_1",
+      "name": "Bass 1",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [],
+          "descriptor_id": "logic:descriptor_1",
+          "hidden_fields": [
+            "plugin_chain",
+            "automation",
+            "sends",
+            "bus_routing",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name"
+          ],
+          "linked_midi_track_names": [],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_1"
+        }
+      },
+      "properties": {
+        "index": 0
+      },
+      "prov": {
+        "*": "prov:0002",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0005",
+        "plugin_chain": "prov:0013",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0004"
+      },
+      "semantic_roles": [
+        "bass_source"
+      ]
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN",
+        "plugin_chain": "INACCESSIBLE"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_2",
+      "name": "Heavy Kit 1",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [],
+          "descriptor_id": "logic:descriptor_2",
+          "hidden_fields": [
+            "plugin_chain",
+            "automation",
+            "sends",
+            "bus_routing",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name"
+          ],
+          "linked_midi_track_names": [],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_2"
+        }
+      },
+      "properties": {
+        "index": 1
+      },
+      "prov": {
+        "*": "prov:0006",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0008",
+        "plugin_chain": "prov:0013",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0007"
+      },
+      "semantic_roles": [
+        "unknown"
+      ]
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN",
+        "plugin_chain": "INACCESSIBLE"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_3",
+      "name": "Mellotron Strings & Flute 1",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [],
+          "descriptor_id": "logic:descriptor_3",
+          "hidden_fields": [
+            "plugin_chain",
+            "automation",
+            "sends",
+            "bus_routing",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name"
+          ],
+          "linked_midi_track_names": [
+            "Mellotron Strings & Flute",
+            "Mellotron Strings & Flute"
+          ],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_3"
+        }
+      },
+      "properties": {
+        "index": 2
+      },
+      "prov": {
+        "*": "prov:0002",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0005",
+        "plugin_chain": "prov:0013",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0009"
+      },
+      "semantic_roles": [
+        "strings_source"
+      ]
+    },
+    {
+      "availability": {
+        "channel": "UNKNOWN",
+        "plugin_chain": "INACCESSIBLE"
+      },
+      "entity_type": "TRACK",
+      "id": "logic:track_4",
+      "name": "Rhythm Guitar 1",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "inferred",
+        "properties": {
+          "channel_strip_note_ids": [],
+          "descriptor_id": "logic:descriptor_4",
+          "hidden_fields": [
+            "plugin_chain",
+            "automation",
+            "sends",
+            "bus_routing",
+            "track_stack"
+          ],
+          "inferred_fields": [
+            "role",
+            "track_name"
+          ],
+          "linked_midi_track_names": [],
+          "linked_musicxml_parts": [],
+          "observed_fields": [
+            "file_name",
+            "duration_seconds",
+            "sample_rate"
+          ],
+          "source_audio_id": "logic:audio_4"
+        }
+      },
+      "properties": {
+        "index": 3
+      },
+      "prov": {
+        "*": "prov:0002",
+        "duration_seconds": "prov:0003",
+        "file_name": "prov:0003",
+        "name": "prov:0005",
+        "plugin_chain": "prov:0013",
+        "sample_rate": "prov:0003",
+        "semantic_roles": "prov:0010"
+      },
+      "semantic_roles": [
+        "guitar_source"
+      ]
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_1",
+      "name": "Bass_1.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.75,
+          "descriptor_id": "logic:descriptor_1",
+          "duration_seconds": 72.08263038548753,
+          "file_name": "Bass_1.wav",
+          "file_path": "./Bass_1.wav",
+          "id": "logic:audio_1",
+          "inferred_role": "Bass",
+          "inferred_track_name": "Bass 1",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "Filename contains bass keyword 'bass'.",
+          "sample_rate": 44100,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 72.08263038548753,
+        "inferred_role": "Bass",
+        "inferred_track_name": "Bass 1",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "./Bass_1.wav",
+        "sample_rate": 44100
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0014",
+        "inferred_track_name": "prov:0014"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_2",
+      "name": "Heavy Kit_1.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.2,
+          "descriptor_id": "logic:descriptor_2",
+          "duration_seconds": 73.56870748299319,
+          "file_name": "Heavy Kit_1.wav",
+          "file_path": "./Heavy Kit_1.wav",
+          "id": "logic:audio_2",
+          "inferred_role": "Unknown",
+          "inferred_track_name": "Heavy Kit 1",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "No known role keyword matched the filename.",
+          "sample_rate": 44100,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 73.56870748299319,
+        "inferred_role": "Unknown",
+        "inferred_track_name": "Heavy Kit 1",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "./Heavy Kit_1.wav",
+        "sample_rate": 44100
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0015",
+        "inferred_track_name": "prov:0015"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_3",
+      "name": "Mellotron Strings & Flute_1.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.75,
+          "descriptor_id": "logic:descriptor_3",
+          "duration_seconds": 49.04843537414966,
+          "file_name": "Mellotron Strings & Flute_1.wav",
+          "file_path": "./Mellotron Strings & Flute_1.wav",
+          "id": "logic:audio_3",
+          "inferred_role": "Strings",
+          "inferred_track_name": "Mellotron Strings & Flute 1",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "Filename contains strings keyword 'strings'.",
+          "sample_rate": 44100,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 49.04843537414966,
+        "inferred_role": "Strings",
+        "inferred_track_name": "Mellotron Strings & Flute 1",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "./Mellotron Strings & Flute_1.wav",
+        "sample_rate": 44100
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0016",
+        "inferred_track_name": "prov:0016"
+      },
+      "semantic_roles": []
+    },
+    {
+      "availability": {},
+      "entity_type": "MEDIA_ASSET",
+      "id": "logic:audio_4",
+      "name": "Rhythm Guitar_1.wav",
+      "native": {
+        "daw": "logic_pro",
+        "native_type": "audio_evidence",
+        "properties": {
+          "confidence": 0.75,
+          "descriptor_id": "logic:descriptor_4",
+          "duration_seconds": 87.68643990929705,
+          "file_name": "Rhythm Guitar_1.wav",
+          "file_path": "./Rhythm Guitar_1.wav",
+          "id": "logic:audio_4",
+          "inferred_role": "Guitar",
+          "inferred_track_name": "Rhythm Guitar 1",
+          "is_mixdown": false,
+          "is_reference": false,
+          "role_explanation": "Filename contains guitar keyword 'guitar'.",
+          "sample_rate": 44100,
+          "track_index": null,
+          "upload_name": null,
+          "warnings": []
+        }
+      },
+      "properties": {
+        "duration_seconds": 87.68643990929705,
+        "inferred_role": "Guitar",
+        "inferred_track_name": "Rhythm Guitar 1",
+        "is_mixdown": false,
+        "is_reference": false,
+        "path": "./Rhythm Guitar_1.wav",
+        "sample_rate": 44100
+      },
+      "prov": {
+        "*": "prov:0003",
+        "inferred_role": "prov:0017",
+        "inferred_track_name": "prov:0017"
+      },
+      "semantic_roles": []
+    }
+  ],
+  "extensions": {
+    "logic_pro": {
+      "descriptors": [
+        {
+          "active_duration_seconds": 71.583427,
+          "active_rms_mean": 0.106318,
+          "activity_ratio": 0.993075,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 72.08263,
+          "dynamic_range_active_db": 13.000095,
+          "dynamic_range_db": 13.060433,
+          "estimated_tempo": 99.384014,
+          "extra": {},
+          "file_name": "Bass_1.wav",
+          "file_path": null,
+          "id": "logic:descriptor_1",
+          "integrated_loudness_lufs": -20.723473,
+          "node_id": null,
+          "onset_strength_mean": 0.903759,
+          "peak_amplitude": 0.47491,
+          "rms_mean": 0.105582,
+          "rms_std": 0.022158,
+          "sample_rate": 44100,
+          "source_id": "logic:audio_1",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 553.989837,
+          "spectral_centroid_mean": 371.297747,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 633.778108,
+          "stereo_width_ratio": null,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.008797
+        },
+        {
+          "active_duration_seconds": 48.213798,
+          "active_rms_mean": 0.065798,
+          "activity_ratio": 0.655357,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 73.568707,
+          "dynamic_range_active_db": 23.53528,
+          "dynamic_range_db": 27.189456,
+          "estimated_tempo": 101.332721,
+          "extra": {},
+          "file_name": "Heavy Kit_1.wav",
+          "file_path": null,
+          "id": "logic:descriptor_2",
+          "integrated_loudness_lufs": -20.209945,
+          "node_id": null,
+          "onset_strength_mean": 1.005704,
+          "peak_amplitude": 0.9885,
+          "rms_mean": 0.043202,
+          "rms_std": 0.04983,
+          "sample_rate": 44100,
+          "source_id": "logic:audio_2",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 3071.840282,
+          "spectral_centroid_mean": 2840.820446,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 6135.026024,
+          "stereo_width_ratio": 0.386831,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.048639
+        },
+        {
+          "active_duration_seconds": 49.048435,
+          "active_rms_mean": 0.151344,
+          "activity_ratio": 1.0,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 49.048435,
+          "dynamic_range_active_db": 14.002291,
+          "dynamic_range_db": 14.002291,
+          "estimated_tempo": 123.046875,
+          "extra": {},
+          "file_name": "Mellotron Strings & Flute_1.wav",
+          "file_path": null,
+          "id": "logic:descriptor_3",
+          "integrated_loudness_lufs": -13.195818,
+          "node_id": null,
+          "onset_strength_mean": 0.730428,
+          "peak_amplitude": 0.758717,
+          "rms_mean": 0.151344,
+          "rms_std": 0.033246,
+          "sample_rate": 44100,
+          "source_id": "logic:audio_3",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 1217.322165,
+          "spectral_centroid_mean": 1235.468794,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 2322.971373,
+          "stereo_width_ratio": 0.0,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.039793
+        },
+        {
+          "active_duration_seconds": 63.527102,
+          "active_rms_mean": 0.160527,
+          "activity_ratio": 0.72448,
+          "available": true,
+          "danceability": null,
+          "duration_seconds": 87.68644,
+          "dynamic_range_active_db": 11.915257,
+          "dynamic_range_db": 14.714177,
+          "estimated_tempo": 101.332721,
+          "extra": {},
+          "file_name": "Rhythm Guitar_1.wav",
+          "file_path": null,
+          "id": "logic:descriptor_4",
+          "integrated_loudness_lufs": -12.720046,
+          "node_id": null,
+          "onset_strength_mean": 0.652433,
+          "peak_amplitude": 0.632865,
+          "rms_mean": 0.116306,
+          "rms_std": 0.07474,
+          "sample_rate": 44100,
+          "source_id": "logic:audio_4",
+          "source_type": "audio_evidence",
+          "spectral_bandwidth_mean": 1102.826982,
+          "spectral_centroid_mean": 1200.227535,
+          "spectral_complexity_mean": null,
+          "spectral_rolloff_mean": 2457.904092,
+          "stereo_width_ratio": 0.047219,
+          "unavailable_reason": null,
+          "warnings": [],
+          "zero_crossing_rate_mean": 0.034009
+        }
+      ],
+      "evidence": {
+        "audio_files": [
+          {
+            "confidence": 0.75,
+            "descriptor_id": "logic:descriptor_1",
+            "duration_seconds": 72.08263038548753,
+            "file_name": "Bass_1.wav",
+            "file_path": "./Bass_1.wav",
+            "id": "logic:audio_1",
+            "inferred_role": "Bass",
+            "inferred_track_name": "Bass 1",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "Filename contains bass keyword 'bass'.",
+            "sample_rate": 44100,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          },
+          {
+            "confidence": 0.2,
+            "descriptor_id": "logic:descriptor_2",
+            "duration_seconds": 73.56870748299319,
+            "file_name": "Heavy Kit_1.wav",
+            "file_path": "./Heavy Kit_1.wav",
+            "id": "logic:audio_2",
+            "inferred_role": "Unknown",
+            "inferred_track_name": "Heavy Kit 1",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "No known role keyword matched the filename.",
+            "sample_rate": 44100,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          },
+          {
+            "confidence": 0.75,
+            "descriptor_id": "logic:descriptor_3",
+            "duration_seconds": 49.04843537414966,
+            "file_name": "Mellotron Strings & Flute_1.wav",
+            "file_path": "./Mellotron Strings & Flute_1.wav",
+            "id": "logic:audio_3",
+            "inferred_role": "Strings",
+            "inferred_track_name": "Mellotron Strings & Flute 1",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "Filename contains strings keyword 'strings'.",
+            "sample_rate": 44100,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          },
+          {
+            "confidence": 0.75,
+            "descriptor_id": "logic:descriptor_4",
+            "duration_seconds": 87.68643990929705,
+            "file_name": "Rhythm Guitar_1.wav",
+            "file_path": "./Rhythm Guitar_1.wav",
+            "id": "logic:audio_4",
+            "inferred_role": "Guitar",
+            "inferred_track_name": "Rhythm Guitar 1",
+            "is_mixdown": false,
+            "is_reference": false,
+            "role_explanation": "Filename contains guitar keyword 'guitar'.",
+            "sample_rate": 44100,
+            "track_index": null,
+            "upload_name": null,
+            "warnings": []
+          }
+        ],
+        "channel_strip_notes": [],
+        "midi_evidence": {
+          "file_name": "Lincoln's Come in Fives.mid",
+          "id": "logic:midi_1",
+          "instrument_names": [
+            "Mellotron Strings & Flute",
+            "Heavy Kit"
+          ],
+          "note_count": 613,
+          "note_range": "A1–G5",
+          "tempo_estimates": [
+            151.0
+          ],
+          "time_signatures": [
+            "5/4"
+          ],
+          "track_count": 6,
+          "track_names": [
+            "Mellotron Strings & Flute",
+            "Mellotron Strings & Flute",
+            "Drummer",
+            "Drummer",
+            "Drummer"
+          ],
+          "warnings": []
+        },
+        "musicxml_evidence": null,
+        "reference_comparisons": [],
+        "reference_tracks": [],
+        "stem_sum_reconciliation": null
+      },
+      "hidden_state_markers": [
+        {
+          "consequence": "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state.",
+          "description": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
+          "hidden_state_type": "hidden_automation",
+          "id": "logic:hidden_1",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:project"
+        },
+        {
+          "consequence": "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves.",
+          "description": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
+          "hidden_state_type": "hidden_routing",
+          "id": "logic:hidden_2",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:project"
+        },
+        {
+          "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+          "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+          "hidden_state_type": "hidden_plugin_chain",
+          "id": "logic:hidden_3",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:track_1"
+        },
+        {
+          "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+          "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+          "hidden_state_type": "hidden_plugin_chain",
+          "id": "logic:hidden_4",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:track_2"
+        },
+        {
+          "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+          "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+          "hidden_state_type": "hidden_plugin_chain",
+          "id": "logic:hidden_5",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:track_3"
+        },
+        {
+          "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+          "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+          "hidden_state_type": "hidden_plugin_chain",
+          "id": "logic:hidden_6",
+          "possible_sources": [
+            "user channel-strip notes",
+            "screenshots",
+            "manual export documentation",
+            "future DAW integration",
+            "partner-provided session metadata"
+          ],
+          "target_id": "logic:track_4"
+        }
+      ],
+      "metadata": {
+        "daw_version": null,
+        "source_artifact": "exported_audio",
+        "source_type": "logic_exports"
+      },
+      "native_file": {
+        "path": "native.json",
+        "sha256": "e08286933ea5889cc4995942d83799b516d50b2f4ae8076f32fec8434a8495a5"
+      },
+      "recommendations": [
+        {
+          "caveat": "This prototype treats notes as user-provided evidence, not automatically extracted Logic-native state.",
+          "confidence": 0.8,
+          "explanation": "The exported stems reveal audio evidence, but not the Logic channel-strip state. Adding simple notes about plug-ins, sends, and buses would make the graph more useful for explaining production decisions.",
+          "id": "logic:rec_1",
+          "references": [],
+          "related_node_ids": [
+            "logic:audio_1",
+            "logic:audio_2",
+            "logic:audio_3",
+            "logic:audio_4"
+          ],
+          "severity": "suggestion",
+          "suggested_action": "Export or manually enter basic channel-strip notes for each stem: plug-ins, sends, bus, and production role.",
+          "title": "Add channel-strip notes to improve DAW-state interpretability."
+        },
+        {
+          "caveat": "Name matching is heuristic and may miss valid pairings.",
+          "confidence": 0.6,
+          "explanation": "MIDI or score evidence contains parts that do not clearly match an exported stem (e.g. Drummer, Drummer, Drummer). Linking them would improve the relationship between musical structure and acoustic outcome.",
+          "id": "logic:rec_2",
+          "references": [],
+          "related_node_ids": [],
+          "severity": "suggestion",
+          "suggested_action": "Rename stems consistently or add a manifest mapping score/MIDI parts to exported audio files.",
+          "title": "Some musical parts are not linked to audio evidence."
+        },
+        {
+          "caveat": "Routing cannot be reliably recovered from stem audio alone; this is a documentation prompt.",
+          "confidence": 0.65,
+          "explanation": "The session contains multiple stems, but no bus, send, or track-stack information. The graph therefore represents a flattened export rather than the full Logic mix structure.",
+          "id": "logic:rec_3",
+          "references": [],
+          "related_node_ids": [
+            "logic:audio_1",
+            "logic:audio_2",
+            "logic:audio_3",
+            "logic:audio_4"
+          ],
+          "severity": "warning",
+          "suggested_action": "Add bus/send notes or export grouped stems such as drums, vocals, guitars, and effects returns.",
+          "title": "Routing graph is probably incomplete."
+        }
+      ]
+    }
+  },
+  "failures": [],
+  "modulation": [],
+  "project": "logic:project",
+  "provenance": [
+    {
+      "capture_method": "evidence_scan",
+      "confidence": null,
+      "evidence": "OBSERVED",
+      "explanation": null,
+      "id": "prov:0001",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Track reconstructed from exported audio evidence; no Logic project file was read.",
+      "id": "prov:0002",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": null,
+      "evidence": "OBSERVED",
+      "explanation": null,
+      "id": "prov:0003",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains bass keyword 'bass'.",
+      "id": "prov:0004",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": null,
+      "id": "prov:0005",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.2,
+      "evidence": "INFERRED",
+      "explanation": "Track reconstructed from exported audio evidence; no Logic project file was read.",
+      "id": "prov:0006",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.2,
+      "evidence": "INFERRED",
+      "explanation": "No known role keyword matched the filename.",
+      "id": "prov:0007",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.2,
+      "evidence": "INFERRED",
+      "explanation": null,
+      "id": "prov:0008",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains strings keyword 'strings'.",
+      "id": "prov:0009",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "exported_audio",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains guitar keyword 'guitar'.",
+      "id": "prov:0010",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": null,
+      "evidence": "HIDDEN",
+      "explanation": "Automation state — Logic's track automation and region automation curves, their parameter targets, and per-track mode (Read/Touch/Latch/Write) — is not available from exported stems unless separately documented.",
+      "id": "prov:0011",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": [
+        "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state."
+      ]
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": null,
+      "evidence": "HIDDEN",
+      "explanation": "Routing state — sends (Pre Fader / Post Fader / Post Pan) to bus-fed aux channel strips, summing and folder track stacks, VCA group assignments, mixer groups, and sidechain sources — is not reliably recoverable from stem audio alone.",
+      "id": "prov:0012",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": [
+        "The graph may represent exported stems as flat tracks even if the original Logic session used subgroup buses, track stacks, or VCA faders. The structures themselves are unrecoverable: a mixer group links controls without touching signal flow, while a VCA fader or a folder stack's stack master (which functions as a VCA master fader) imprints gain into each stem indistinguishably from individual fader moves."
+      ]
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": null,
+      "evidence": "HIDDEN",
+      "explanation": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+      "id": "prov:0013",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": [
+        "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings."
+      ]
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains bass keyword 'bass'.",
+      "id": "prov:0014",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": 0.2,
+      "evidence": "INFERRED",
+      "explanation": "No known role keyword matched the filename.",
+      "id": "prov:0015",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains strings keyword 'strings'.",
+      "id": "prov:0016",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    },
+    {
+      "capture_method": "evidence_scan",
+      "confidence": 0.75,
+      "evidence": "INFERRED",
+      "explanation": "Filename contains guitar keyword 'guitar'.",
+      "id": "prov:0017",
+      "source_ref": null,
+      "source_stability": "OFFICIAL_EXPORT",
+      "warnings": []
+    }
+  ],
+  "relationships": [],
+  "schema_version": "0.2.0",
+  "snapshot_id": "logic_pro:sha256:ebdfabd9edebc9f9",
+  "source": {
+    "adapter": "logic-session-evidence-explorer",
+    "adapter_version": "0.1.0",
+    "capture_modes": [
+      "evidence_scan"
+    ],
+    "daw": "logic_pro",
+    "daw_version": null
+  },
+  "temporal_state": {},
+  "warnings": []
+}

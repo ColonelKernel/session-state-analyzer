@@ -115,9 +115,16 @@ def build_multi(
 ) -> nx.DiGraph:
     """Several snapshots side by side in one graph, no cross-edges.
 
-    Id namespaces keep the DAWs disjoint; the composed graph's metadata
-    aggregates counts and records the per-snapshot metadata under
-    ``"snapshots"`` so the caller can still tell who brought what.
+    Dialect id namespaces are NOT sufficient to keep snapshots disjoint:
+    two sessions from the same DAW (the normal same-DAW comparison case,
+    e.g. the synthetic ``logic`` demo next to the real ``logic_real``
+    capture) legitimately share a namespace and would silently merge.
+    Every node is therefore relabelled with a per-snapshot ordinal prefix
+    (``s0:``, ``s1:``, …); the original entity id survives as the node
+    attribute ``entity_id`` and the ordinal as ``snapshot_ordinal``. The
+    composed graph's metadata aggregates counts and records per-snapshot
+    metadata under ``"snapshots"`` so the caller can still tell who
+    brought what.
     """
     spec = get_layer(layer)  # validate the layer name once, loudly
     combined = nx.DiGraph()
@@ -125,8 +132,14 @@ def build_multi(
     entity_counts: Counter = Counter()
     n_relationships = 0
 
-    for snapshot in snapshots:
+    for ordinal, snapshot in enumerate(snapshots):
         graph = build_graph(snapshot, layer=spec.name)
+        for node, data in graph.nodes(data=True):
+            data.setdefault("entity_id", node)
+            data["snapshot_ordinal"] = ordinal
+        graph = nx.relabel_nodes(
+            graph, {n: f"s{ordinal}:{n}" for n in graph.nodes}
+        )
         combined.update(graph)  # nodes + edges with attributes
         per_snapshot_meta.append(dict(graph.graph))
         entity_counts.update(graph.graph.get("entity_counts", {}))

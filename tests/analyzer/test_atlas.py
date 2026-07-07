@@ -121,8 +121,24 @@ def test_logic_structure_has_unknown_and_annotation(atlas):
     """Logic Structure carries UNKNOWN channel-availability and ANNOTATED roles."""
     m = atlas.cell("Structure", "logic_pro").measured
     assert m.applicable > 0
-    # 6 tracks each flag `channel: UNKNOWN`.
-    assert m.unknown == 6
+    # 8 tracks (full-evidence demo stems) each flag `channel: UNKNOWN`.
+    assert m.unknown == 8
+
+
+def test_logic_audio_outcome_now_measured(atlas):
+    """The full-evidence Logic bundle populates Audio Outcome.
+
+    Previously the row was DECLARED_ONLY (audio_content capability, no
+    OBSERVATION entities). The refreshed fixture carries stem-sum
+    reconciliation + reference comparison as OBSERVATION entities with
+    INFERRED (derived_computation) provenance.
+    """
+    cell = atlas.cell("Audio Outcome", "logic_pro")
+    m = cell.measured
+    assert m.applicable == 2
+    assert m.inferred == 2
+    assert cell.declared is not None  # audio_content read capability
+    assert cell.status == "FULLY_RECOVERED"
 
 
 def test_cubase_processing_hidden_present(atlas):
@@ -199,12 +215,13 @@ def test_unknown_state_map_cubase_has_inaccessible(bundles):
 
 def test_unknown_state_map_logic_has_unknown(bundles):
     usm = unknown_state_map(bundles["logic"].snapshot)
-    assert len(usm["UNKNOWN"]) == 6  # 6 tracks with channel: UNKNOWN
-    # 4 tracks with plugin_chain INACCESSIBLE + 2 session-level markers on the
+    assert len(usm["UNKNOWN"]) == 8  # 8 tracks with channel: UNKNOWN
+    # 6 tracks with plugin_chain INACCESSIBLE (8 stems minus the 2 whose
+    # chains a channel-strip note lifted) + 2 session-level markers on the
     # PROJECT entity (automation, routing) — the latter only register here once
     # the Logic mapper targets them at the dialect-namespaced project id.
     inaccessible = usm["INACCESSIBLE"]
-    assert len(inaccessible) == 6
+    assert len(inaccessible) == 8
     assert ("logic:project", "automation") in inaccessible
     assert ("logic:project", "routing") in inaccessible
 

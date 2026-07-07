@@ -1,18 +1,19 @@
 {
   "errors": [],
   "stats": {
-    "entities": 23,
+    "entities": 30,
     "entities_by_type": {
-      "ANNOTATION": 2,
-      "MEDIA_ASSET": 7,
-      "PROCESSOR": 7,
+      "ANNOTATION": 3,
+      "MEDIA_ASSET": 10,
+      "OBSERVATION": 2,
+      "PROCESSOR": 6,
       "PROJECT": 1,
-      "TRACK": 6
+      "TRACK": 8
     },
     "failures": 0,
-    "provenance_records": 25,
-    "relationships": 7,
-    "warnings_in_snapshot": 1
+    "provenance_records": 30,
+    "relationships": 6,
+    "warnings_in_snapshot": 2
   },
   "valid": true,
   "warnings": []

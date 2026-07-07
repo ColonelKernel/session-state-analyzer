@@ -22,7 +22,9 @@ pytestmark = pytest.mark.skipif(
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 APP_PATH = REPO_ROOT / "src" / "session_explorer" / "workbench" / "app.py"
-DAWS = {"ableton", "cubase", "logic", "reaper"}
+# Every discovered adapter bundle, incl. logic_real (the real captured
+# session) — the workbench discovers fixtures/adapters/* dynamically.
+DAWS = {"ableton", "cubase", "logic", "logic_real", "reaper"}
 
 EXPERT_TABS = {"Graph", "Entity inspector", "X04 alignment", "Observability atlas"}
 

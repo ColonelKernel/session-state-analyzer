@@ -26,7 +26,8 @@ from session_explorer.loaders.bundle import load_bundle
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = REPO_ROOT / "fixtures" / "adapters"
-DAWS = ("ableton", "cubase", "logic", "reaper")
+# All discovered adapter bundles, incl. logic_real (real captured session).
+DAWS = ("ableton", "cubase", "logic", "logic_real", "reaper")
 
 OBSERVABILITY_CLASSES = {"observed", "inferred", "annotation", "hidden"}
 
@@ -192,26 +193,26 @@ def test_build_multi_four_daws():
     assert combined.number_of_edges() == sum(
         len(s.relationships) for s in snapshots
     )
-    # Disjoint by namespace: at least one component per DAW, never a
-    # cross-DAW edge. MEDIA_ASSET ids live in the shared, content-addressed
-    # "asset:" namespace (exempt from the per-DAW namespace rule, as in the
-    # conformance suite) — an asset edge stays within its snapshot's
-    # component here because no two fixtures reference the same file.
-    assert nx.number_weakly_connected_components(combined) >= 4
+    # Disjoint by construction: build_multi relabels every node with a
+    # per-snapshot ordinal prefix (s0:, s1:, …) because dialect namespaces
+    # alone cannot separate two sessions of the same DAW (logic vs
+    # logic_real share "logic:"). At least one component per snapshot,
+    # never a cross-snapshot edge, and the original id survives as the
+    # entity_id attribute.
+    assert nx.number_weakly_connected_components(combined) >= len(DAWS)
     for source, target in combined.edges():
-        prefixes = {
-            node.split(":")[0]
-            for node in (source, target)
-            if not node.startswith(("asset:", "prov:"))
-        }
-        assert len(prefixes) <= 1, (
-            f"cross-DAW edge invented: {source} -> {target}"
+        assert source.split(":", 1)[0] == target.split(":", 1)[0], (
+            f"cross-snapshot edge invented: {source} -> {target}"
         )
+    for node, data in combined.nodes(data=True):
+        ordinal, raw = node.split(":", 1)
+        assert ordinal == f"s{data['snapshot_ordinal']}"
+        assert data["entity_id"] == raw
 
     meta = combined.graph
     assert meta["layer"] == "all"
-    assert len(meta["daws"]) == 4
-    assert len(meta["snapshots"]) == 4
+    assert len(meta["daws"]) == len(DAWS)
+    assert len(meta["snapshots"]) == len(DAWS)
     assert sum(meta["entity_counts"].values()) == combined.number_of_nodes()
     assert meta["n_relationships"] == combined.number_of_edges()
 

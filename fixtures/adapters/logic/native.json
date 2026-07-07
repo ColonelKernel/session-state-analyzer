@@ -4,16 +4,16 @@
     "audio_files": [
       {
         "confidence": 0.75,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "01_Drums_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/01_Drums_Bounce.wav",
+        "descriptor_id": "descriptor_1",
+        "duration_seconds": 3.0,
+        "file_name": "01 Lead Vocal_bip.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/01 Lead Vocal_bip.wav",
         "id": "audio_1",
-        "inferred_role": "Drums",
-        "inferred_track_name": "Drums Bounce",
+        "inferred_role": "Vocal",
+        "inferred_track_name": "Lead Vocal bip",
         "is_mixdown": false,
         "is_reference": false,
-        "role_explanation": "Filename contains drums keyword 'drums'.",
+        "role_explanation": "Filename contains vocal keyword 'vocal'.",
         "sample_rate": 22050,
         "track_index": 1,
         "upload_name": null,
@@ -21,101 +21,152 @@
       },
       {
         "confidence": 0.75,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "02_Bass_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/02_Bass_Bounce.wav",
+        "descriptor_id": "descriptor_2",
+        "duration_seconds": 3.0,
+        "file_name": "02 BGV Stack.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/02 BGV Stack.wav",
         "id": "audio_2",
-        "inferred_role": "Bass",
-        "inferred_track_name": "Bass Bounce",
+        "inferred_role": "Vocal",
+        "inferred_track_name": "BGV Stack",
         "is_mixdown": false,
         "is_reference": false,
-        "role_explanation": "Filename contains bass keyword 'bass'.",
+        "role_explanation": "Filename contains vocal keyword 'bgv'.",
         "sample_rate": 22050,
         "track_index": 2,
         "upload_name": null,
         "warnings": []
       },
       {
-        "confidence": 0.85,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "03_Electric_Guitar_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/03_Electric_Guitar_Bounce.wav",
-        "id": "audio_3",
-        "inferred_role": "Guitar",
-        "inferred_track_name": "Electric Guitar Bounce",
-        "is_mixdown": false,
-        "is_reference": false,
-        "role_explanation": "Filename contains guitar keyword 'electric guitar'.",
-        "sample_rate": 22050,
-        "track_index": 3,
-        "upload_name": null,
-        "warnings": []
-      },
-      {
         "confidence": 0.75,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "04_Synth_Pad_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/04_Synth_Pad_Bounce.wav",
-        "id": "audio_4",
-        "inferred_role": "Keys",
-        "inferred_track_name": "Synth Pad Bounce",
-        "is_mixdown": false,
-        "is_reference": false,
-        "role_explanation": "Filename contains keys keyword 'synth'.",
-        "sample_rate": 22050,
-        "track_index": 4,
-        "upload_name": null,
-        "warnings": []
-      },
-      {
-        "confidence": 0.75,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "05_Lead_Vocal_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/05_Lead_Vocal_Bounce.wav",
+        "descriptor_id": "descriptor_3",
+        "duration_seconds": 3.0,
+        "file_name": "Bass DI.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Bass DI.wav",
         "id": "audio_5",
-        "inferred_role": "Vocal",
-        "inferred_track_name": "Lead Vocal Bounce",
+        "inferred_role": "Bass",
+        "inferred_track_name": "Bass DI",
         "is_mixdown": false,
         "is_reference": false,
-        "role_explanation": "Filename contains vocal keyword 'vocal'.",
+        "role_explanation": "Filename contains bass keyword 'bass'.",
         "sample_rate": 22050,
-        "track_index": 5,
-        "upload_name": null,
-        "warnings": []
-      },
-      {
-        "confidence": 0.85,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "06_Backing_Vocals_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/06_Backing_Vocals_Bounce.wav",
-        "id": "audio_6",
-        "inferred_role": "Vocal",
-        "inferred_track_name": "Backing Vocals Bounce",
-        "is_mixdown": false,
-        "is_reference": false,
-        "role_explanation": "Filename contains vocal keyword 'backing vocal'.",
-        "sample_rate": 22050,
-        "track_index": 6,
+        "track_index": null,
         "upload_name": null,
         "warnings": []
       },
       {
         "confidence": 0.75,
-        "descriptor_id": null,
-        "duration_seconds": 2.0,
-        "file_name": "Stereo_Mix_Bounce.wav",
-        "file_path": "$TMPDIR/logic_session_evidence_demo/Stereo_Mix_Bounce.wav",
-        "id": "audio_7",
+        "descriptor_id": "descriptor_4",
+        "duration_seconds": 3.0,
+        "file_name": "FX Riser.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/FX Riser.wav",
+        "id": "audio_8",
+        "inferred_role": "FX",
+        "inferred_track_name": "FX Riser",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains fx keyword 'riser'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_5",
+        "duration_seconds": 3.0,
+        "file_name": "Kick.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Kick.wav",
+        "id": "audio_3",
+        "inferred_role": "Drums",
+        "inferred_track_name": "Kick",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains drums keyword 'kick'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_6",
+        "duration_seconds": 3.0,
+        "file_name": "Piano.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Piano.wav",
+        "id": "audio_6",
+        "inferred_role": "Keys",
+        "inferred_track_name": "Piano",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains keys keyword 'piano'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.7,
+        "descriptor_id": "descriptor_7",
+        "duration_seconds": 3.0,
+        "file_name": "Reference - Neon Skyline.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Reference - Neon Skyline.wav",
+        "id": "audio_10",
+        "inferred_role": "Reference",
+        "inferred_track_name": "Reference Neon Skyline",
+        "is_mixdown": false,
+        "is_reference": true,
+        "role_explanation": "Filename contains reference keyword 'reference'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_8",
+        "duration_seconds": 3.0,
+        "file_name": "Snare Top.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Snare Top.wav",
+        "id": "audio_4",
+        "inferred_role": "Drums",
+        "inferred_track_name": "Snare Top",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains drums keyword 'snare'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_9",
+        "duration_seconds": 3.0,
+        "file_name": "Stereo Mix.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Stereo Mix.wav",
+        "id": "audio_9",
         "inferred_role": "Mixdown",
-        "inferred_track_name": "Stereo Mix Bounce",
+        "inferred_track_name": "Stereo Mix",
         "is_mixdown": true,
         "is_reference": false,
         "role_explanation": "Filename contains mixdown keyword 'stereo mix'.",
+        "sample_rate": 22050,
+        "track_index": null,
+        "upload_name": null,
+        "warnings": []
+      },
+      {
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_10",
+        "duration_seconds": 3.0,
+        "file_name": "Violins Section.wav",
+        "file_path": "$TMPDIR/logic_session_evidence_full_demo/Violins Section.wav",
+        "id": "audio_7",
+        "inferred_role": "Strings",
+        "inferred_track_name": "Violins Section",
+        "is_mixdown": false,
+        "is_reference": false,
+        "role_explanation": "Filename contains strings keyword 'violin'.",
         "sample_rate": 22050,
         "track_index": null,
         "upload_name": null,
@@ -124,43 +175,300 @@
     ],
     "channel_strip_notes": [
       {
-        "bus": "Vocal Bus",
+        "bus": "Bus 1",
         "confidence": 0.5,
         "id": "note_1",
-        "notes": "Main lead vocal chain (synthetic demo)",
+        "notes": "Lead vocal chain: subtractive EQ into gentle compression, then de-essing (synthetic demo)",
         "plugins": [
           "Channel EQ",
           "Compressor",
-          "DeEsser 2",
-          "Tape Delay"
+          "DeEsser 2"
         ],
         "role": "Vocal",
         "sends": [
-          "Vocal Verb",
-          "Slap Delay"
+          "Reverb"
         ],
         "track_name": "Lead Vocal"
       },
       {
-        "bus": "Drum Bus",
+        "bus": "Bus 2",
         "confidence": 0.5,
         "id": "note_2",
-        "notes": "Printed drum stem (synthetic demo)",
-        "plugins": [
-          "Channel EQ",
-          "Compressor",
-          "Saturation"
-        ],
+        "notes": "Kick and Snare Top are summed to a drum bus in the original session (synthetic demo)",
+        "plugins": [],
         "role": "Drums",
-        "sends": [
-          "Room Verb"
+        "sends": [],
+        "track_name": "Drum Bus"
+      },
+      {
+        "bus": "Inst 3",
+        "confidence": 0.5,
+        "id": "note_3",
+        "notes": "Piano chain; Warmify Pro is a third-party plug-in outside the stock catalogue (synthetic demo)",
+        "plugins": [
+          "Compressor",
+          "Space Designer",
+          "Warmify Pro"
         ],
-        "track_name": "Drums"
+        "role": "Keys",
+        "sends": [],
+        "track_name": "Piano"
       }
     ],
     "daw_name": "Logic Pro",
     "daw_version": "11",
-    "descriptors": [],
+    "descriptors": [
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.171026,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 5.441127,
+        "dynamic_range_approx": 5.441127,
+        "estimated_tempo": 129.199219,
+        "file_name": "01 Lead Vocal_bip.wav",
+        "id": "descriptor_1",
+        "integrated_loudness_lufs": -15.747404,
+        "onset_strength_mean": 1.550594,
+        "peak_amplitude": 0.319977,
+        "rms_mean": 0.171026,
+        "rms_std": 0.043651,
+        "sample_rate": 22050,
+        "source_id": "audio_1",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 173.738113,
+        "spectral_centroid_mean": 445.012604,
+        "spectral_rolloff_mean": 554.31434,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.039765
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.076615,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 6.26445,
+        "dynamic_range_approx": 6.26445,
+        "estimated_tempo": 198.768029,
+        "file_name": "02 BGV Stack.wav",
+        "id": "descriptor_2",
+        "integrated_loudness_lufs": -22.558957,
+        "onset_strength_mean": 0.031391,
+        "peak_amplitude": 0.157593,
+        "rms_mean": 0.076615,
+        "rms_std": 0.015363,
+        "sample_rate": 22050,
+        "source_id": "audio_2",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 241.026088,
+        "spectral_centroid_mean": 613.687631,
+        "spectral_rolloff_mean": 689.14532,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.049309
+      },
+      {
+        "active_duration_seconds": 2.746154,
+        "active_rms_mean": 0.142854,
+        "activity_ratio": 0.915385,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 2.904708,
+        "dynamic_range_approx": 3.672593,
+        "estimated_tempo": 117.453835,
+        "file_name": "Bass DI.wav",
+        "id": "descriptor_3",
+        "integrated_loudness_lufs": -20.825002,
+        "onset_strength_mean": 1.973709,
+        "peak_amplitude": 0.199585,
+        "rms_mean": 0.130767,
+        "rms_std": 0.051743,
+        "sample_rate": 22050,
+        "source_id": "audio_5",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 596.996988,
+        "spectral_centroid_mean": 312.30093,
+        "spectral_rolloff_mean": 677.302058,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.003779
+      },
+      {
+        "active_duration_seconds": 2.769231,
+        "active_rms_mean": 0.019586,
+        "activity_ratio": 0.923077,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 14.07638,
+        "dynamic_range_approx": 14.757406,
+        "estimated_tempo": 123.046875,
+        "file_name": "FX Riser.wav",
+        "id": "descriptor_4",
+        "integrated_loudness_lufs": -29.677492,
+        "onset_strength_mean": 1.136888,
+        "peak_amplitude": 0.09903,
+        "rms_mean": 0.018109,
+        "rms_std": 0.013522,
+        "sample_rate": 22050,
+        "source_id": "audio_8",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 3257.242657,
+        "spectral_centroid_mean": 5355.958138,
+        "spectral_rolloff_mean": 9329.177434,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.446056
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.029774,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 19.423673,
+        "dynamic_range_approx": 19.423673,
+        "estimated_tempo": 117.453835,
+        "file_name": "Kick.wav",
+        "id": "descriptor_5",
+        "integrated_loudness_lufs": -28.947593,
+        "onset_strength_mean": 0.521964,
+        "peak_amplitude": 0.278625,
+        "rms_mean": 0.029774,
+        "rms_std": 0.03911,
+        "sample_rate": 22050,
+        "source_id": "audio_3",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 919.57279,
+        "spectral_centroid_mean": 207.241288,
+        "spectral_rolloff_mean": 95.160194,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.003234
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.029958,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 14.460744,
+        "dynamic_range_approx": 14.460744,
+        "estimated_tempo": 60.09266,
+        "file_name": "Piano.wav",
+        "id": "descriptor_6",
+        "integrated_loudness_lufs": -29.136186,
+        "onset_strength_mean": 0.469434,
+        "peak_amplitude": 0.158325,
+        "rms_mean": 0.029958,
+        "rms_std": 0.022419,
+        "sample_rate": 22050,
+        "source_id": "audio_6",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 574.423821,
+        "spectral_centroid_mean": 482.606913,
+        "spectral_rolloff_mean": 633.987192,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.023456
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.143267,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 9.537046,
+        "dynamic_range_approx": 9.537046,
+        "estimated_tempo": 161.499023,
+        "file_name": "Reference - Neon Skyline.wav",
+        "id": "descriptor_7",
+        "integrated_loudness_lufs": -15.110664,
+        "onset_strength_mean": 0.876726,
+        "peak_amplitude": 0.429535,
+        "rms_mean": 0.143267,
+        "rms_std": 0.023532,
+        "sample_rate": 22050,
+        "source_id": "audio_10",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 3310.856556,
+        "spectral_centroid_mean": 5175.1269,
+        "spectral_rolloff_mean": 9250.912523,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.347668
+      },
+      {
+        "active_duration_seconds": 1.523077,
+        "active_rms_mean": 0.028001,
+        "activity_ratio": 0.507692,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 17.831221,
+        "dynamic_range_approx": 23.655832,
+        "estimated_tempo": 117.453835,
+        "file_name": "Snare Top.wav",
+        "id": "descriptor_8",
+        "integrated_loudness_lufs": -28.453285,
+        "onset_strength_mean": 3.406268,
+        "peak_amplitude": 0.21814,
+        "rms_mean": 0.01432,
+        "rms_std": 0.021117,
+        "sample_rate": 22050,
+        "source_id": "audio_4",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 3043.314632,
+        "spectral_centroid_mean": 4746.886143,
+        "spectral_rolloff_mean": 8399.191519,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.293611
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.125939,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 10.273214,
+        "dynamic_range_approx": 10.273214,
+        "estimated_tempo": 117.453835,
+        "file_name": "Stereo Mix.wav",
+        "id": "descriptor_9",
+        "integrated_loudness_lufs": -19.224908,
+        "onset_strength_mean": 1.737035,
+        "peak_amplitude": 0.41098,
+        "rms_mean": 0.125939,
+        "rms_std": 0.019977,
+        "sample_rate": 22050,
+        "source_id": "audio_9",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 2592.513364,
+        "spectral_centroid_mean": 1870.146163,
+        "spectral_rolloff_mean": 4383.414776,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.060318
+      },
+      {
+        "active_duration_seconds": 3.0,
+        "active_rms_mean": 0.044643,
+        "activity_ratio": 1.0,
+        "duration_seconds": 3.0,
+        "dynamic_range_active_db": 7.834039,
+        "dynamic_range_approx": 7.834039,
+        "estimated_tempo": 143.554688,
+        "file_name": "Violins Section.wav",
+        "id": "descriptor_10",
+        "integrated_loudness_lufs": -26.437691,
+        "onset_strength_mean": 0.086596,
+        "peak_amplitude": 0.110016,
+        "rms_mean": 0.044643,
+        "rms_std": 0.010975,
+        "sample_rate": 22050,
+        "source_id": "audio_7",
+        "source_type": "audio_evidence",
+        "spectral_bandwidth_mean": 382.2135,
+        "spectral_centroid_mean": 1004.594317,
+        "spectral_rolloff_mean": 1325.285832,
+        "stereo_width_ratio": null,
+        "warnings": [],
+        "zero_crossing_rate_mean": 0.067661
+      }
+    ],
     "hidden_state_markers": [
       {
         "consequence": "Temporal mix decisions such as vocal rides, send throws, or filter sweeps may be audible as a printed gain or timbre envelope, but the point-by-point curves and their targets are no longer editable DAW state.",
@@ -244,16 +552,44 @@
           "future DAW integration",
           "partner-provided session metadata"
         ],
-        "target_id": "track_6"
+        "target_id": "track_5"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_7",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_7"
+      },
+      {
+        "consequence": "An exported stem carries only the summed acoustic result of the insert chain: recommendations based on stem audio and filename evidence cannot distinguish printed processing from raw recording, nor recover plug-in identity, order, or settings.",
+        "description": "Native Logic channel-strip state — the serial insert-effect chain (up to 15 Audio FX slots, processed top-down in insertion order) and its parameter values — is not directly observable from exported audio alone.",
+        "hidden_state_type": "hidden_plugin_chain",
+        "id": "hidden_8",
+        "possible_sources": [
+          "user channel-strip notes",
+          "screenshots",
+          "manual export documentation",
+          "future DAW integration",
+          "partner-provided session metadata"
+        ],
+        "target_id": "track_8"
       }
     ],
     "inferred_tracks": [
       {
         "channel_strip_note_ids": [
-          "note_2"
+          "note_1"
         ],
         "confidence": 0.75,
-        "descriptor_id": null,
+        "descriptor_id": "descriptor_1",
         "hidden_fields": [
           "automation",
           "track_stack"
@@ -267,21 +603,23 @@
           "bus_routing"
         ],
         "linked_midi_track_names": [],
-        "linked_musicxml_parts": [],
-        "name": "Drums Bounce",
+        "linked_musicxml_parts": [
+          "Lead Vocal"
+        ],
+        "name": "Lead Vocal bip",
         "observed_fields": [
           "file_name",
           "duration_seconds",
           "sample_rate"
         ],
-        "role": "Drums",
+        "role": "Vocal",
         "source_audio_id": "audio_1",
         "warnings": []
       },
       {
         "channel_strip_note_ids": [],
         "confidence": 0.75,
-        "descriptor_id": null,
+        "descriptor_id": "descriptor_2",
         "hidden_fields": [
           "plugin_chain",
           "automation",
@@ -296,20 +634,20 @@
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
-        "name": "Bass Bounce",
+        "name": "BGV Stack",
         "observed_fields": [
           "file_name",
           "duration_seconds",
           "sample_rate"
         ],
-        "role": "Bass",
+        "role": "Vocal",
         "source_audio_id": "audio_2",
         "warnings": []
       },
       {
         "channel_strip_note_ids": [],
-        "confidence": 0.85,
-        "descriptor_id": null,
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_3",
         "hidden_fields": [
           "plugin_chain",
           "automation",
@@ -322,22 +660,24 @@
           "role",
           "track_name"
         ],
-        "linked_midi_track_names": [],
+        "linked_midi_track_names": [
+          "Bass DI"
+        ],
         "linked_musicxml_parts": [],
-        "name": "Electric Guitar Bounce",
+        "name": "Bass DI",
         "observed_fields": [
           "file_name",
           "duration_seconds",
           "sample_rate"
         ],
-        "role": "Guitar",
-        "source_audio_id": "audio_3",
+        "role": "Bass",
+        "source_audio_id": "audio_5",
         "warnings": []
       },
       {
         "channel_strip_note_ids": [],
         "confidence": 0.75,
-        "descriptor_id": null,
+        "descriptor_id": "descriptor_4",
         "hidden_fields": [
           "plugin_chain",
           "automation",
@@ -352,50 +692,20 @@
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
-        "name": "Synth Pad Bounce",
+        "name": "FX Riser",
         "observed_fields": [
           "file_name",
           "duration_seconds",
           "sample_rate"
         ],
-        "role": "Keys",
-        "source_audio_id": "audio_4",
-        "warnings": []
-      },
-      {
-        "channel_strip_note_ids": [
-          "note_1"
-        ],
-        "confidence": 0.75,
-        "descriptor_id": null,
-        "hidden_fields": [
-          "automation",
-          "track_stack"
-        ],
-        "id": "track_5",
-        "inferred_fields": [
-          "role",
-          "track_name",
-          "plugin_chain",
-          "sends",
-          "bus_routing"
-        ],
-        "linked_midi_track_names": [],
-        "linked_musicxml_parts": [],
-        "name": "Lead Vocal Bounce",
-        "observed_fields": [
-          "file_name",
-          "duration_seconds",
-          "sample_rate"
-        ],
-        "role": "Vocal",
-        "source_audio_id": "audio_5",
+        "role": "FX",
+        "source_audio_id": "audio_8",
         "warnings": []
       },
       {
         "channel_strip_note_ids": [],
-        "confidence": 0.85,
-        "descriptor_id": null,
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_5",
         "hidden_fields": [
           "plugin_chain",
           "automation",
@@ -403,30 +713,162 @@
           "bus_routing",
           "track_stack"
         ],
-        "id": "track_6",
+        "id": "track_5",
         "inferred_fields": [
           "role",
           "track_name"
         ],
         "linked_midi_track_names": [],
         "linked_musicxml_parts": [],
-        "name": "Backing Vocals Bounce",
+        "name": "Kick",
         "observed_fields": [
           "file_name",
           "duration_seconds",
           "sample_rate"
         ],
-        "role": "Vocal",
+        "role": "Drums",
+        "source_audio_id": "audio_3",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [
+          "note_3"
+        ],
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_6",
+        "hidden_fields": [
+          "automation",
+          "sends",
+          "track_stack"
+        ],
+        "id": "track_6",
+        "inferred_fields": [
+          "role",
+          "track_name",
+          "plugin_chain",
+          "bus_routing"
+        ],
+        "linked_midi_track_names": [
+          "Piano"
+        ],
+        "linked_musicxml_parts": [
+          "Piano"
+        ],
+        "name": "Piano",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Keys",
         "source_audio_id": "audio_6",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_8",
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_7",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [],
+        "linked_musicxml_parts": [],
+        "name": "Snare Top",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Drums",
+        "source_audio_id": "audio_4",
+        "warnings": []
+      },
+      {
+        "channel_strip_note_ids": [],
+        "confidence": 0.75,
+        "descriptor_id": "descriptor_10",
+        "hidden_fields": [
+          "plugin_chain",
+          "automation",
+          "sends",
+          "bus_routing",
+          "track_stack"
+        ],
+        "id": "track_8",
+        "inferred_fields": [
+          "role",
+          "track_name"
+        ],
+        "linked_midi_track_names": [
+          "Violins Section"
+        ],
+        "linked_musicxml_parts": [
+          "Violins Section"
+        ],
+        "name": "Violins Section",
+        "observed_fields": [
+          "file_name",
+          "duration_seconds",
+          "sample_rate"
+        ],
+        "role": "Strings",
+        "source_audio_id": "audio_7",
         "warnings": []
       }
     ],
     "metadata": {
-      "audio_dir": "$TMPDIR/logic_session_evidence_demo",
+      "audio_dir": "$TMPDIR/logic_session_evidence_full_demo",
+      "mix_gain": 0.5,
       "synthetic": true
     },
-    "midi_evidence": null,
-    "musicxml_evidence": null,
+    "midi_evidence": {
+      "file_name": "Logic Full Evidence Demo.mid",
+      "id": "midi_1",
+      "instrument_names": [],
+      "note_count": 11,
+      "note_range": "E1–A5",
+      "tempo_estimates": [
+        120.0
+      ],
+      "time_signatures": [
+        "4/4"
+      ],
+      "track_count": 4,
+      "track_names": [
+        "Logic Full Evidence Demo",
+        "Bass DI",
+        "Piano",
+        "Violins Section"
+      ],
+      "warnings": []
+    },
+    "musicxml_evidence": {
+      "detected_keys": [
+        "D major"
+      ],
+      "detected_time_signatures": [
+        "4/4"
+      ],
+      "file_name": "Logic Full Evidence Demo Score.musicxml",
+      "id": "musicxml_1",
+      "measure_count": 6,
+      "part_count": 3,
+      "part_names": [
+        "Lead Vocal",
+        "Piano",
+        "Violins Section"
+      ],
+      "warnings": []
+    },
     "recommendations": [
       {
         "caveat": "A vocal-like filename is not proof of a vocal recording, and printed processing cannot be recovered from stem audio alone.",
@@ -434,33 +876,121 @@
         "explanation": "The graph contains a vocal-like stem, but there is no visible evidence of EQ, compression, de-essing, ambience sends, or other vocal-chain decisions.",
         "id": "rec_1",
         "related_node_ids": [
-          "audio_6"
+          "audio_2"
         ],
         "severity": "suggestion",
         "suggested_action": "Add channel-strip notes or screenshots for the vocal chain if you want the session graph to represent editable production intent.",
         "title": "Vocal processing state is under-documented."
       },
       {
-        "caveat": "A reference is a point of comparison, not an objective target.",
-        "confidence": 0.6,
-        "explanation": "A stereo mixdown is available, but no reference track was supplied. A reference could help compare spectral balance, dynamics, and production intent without treating one mix as objectively correct.",
+        "caveat": "Level differences can be entirely intentional; this is a prompt to verify export settings, not a mixing verdict.",
+        "confidence": 0.55,
+        "explanation": "One or more exported stems sit more than 6 dB above the session median, measured on silence-gated (active) RMS so sparse parts are compared fairly. This may be intentional, printed processing, or an export-level mismatch.",
         "id": "rec_2",
         "related_node_ids": [
-          "audio_7"
+          "audio_1",
+          "audio_2",
+          "audio_5"
+        ],
+        "severity": "warning",
+        "suggested_action": "Check whether stems were exported pre-fader, post-fader, normalized, or after bus processing.",
+        "title": "Potential stem-level imbalance detected."
+      },
+      {
+        "caveat": "Descriptor patterns are suggestive only; they cannot confirm that any specific processing was applied.",
+        "confidence": 0.5,
+        "explanation": "Some stems show descriptor patterns (low approximate dynamic range) that may reflect printed compression, saturation, EQ, or limiting, but the graph cannot identify the original Logic plug-ins or settings.",
+        "id": "rec_3",
+        "related_node_ids": [
+          "audio_5"
         ],
         "severity": "info",
-        "suggested_action": "Upload a reference track and add a short note about what qualities it represents.",
-        "title": "Reference-aware evaluation could be added."
+        "suggested_action": "Document whether stems were exported dry, post-insert, post-fader, or through buses.",
+        "title": "Printed processing may be present but undocumented."
+      },
+      {
+        "caveat": "Name matching is heuristic and may miss valid pairings.",
+        "confidence": 0.6,
+        "explanation": "MIDI or score evidence contains parts that do not clearly match an exported stem (e.g. Logic Full Evidence Demo). Linking them would improve the relationship between musical structure and acoustic outcome.",
+        "id": "rec_4",
+        "related_node_ids": [],
+        "severity": "suggestion",
+        "suggested_action": "Rename stems consistently or add a manifest mapping score/MIDI parts to exported audio files.",
+        "title": "Some musical parts are not linked to audio evidence."
+      },
+      {
+        "caveat": "A reference is a point of comparison, not an objective target; genre and arrangement legitimately move spectral balance.",
+        "confidence": 0.55,
+        "explanation": "Comparing per-band energy fractions (level-independent), the largest differences are 8000-16000Hz: -13.4 dB relative to the reference, 4000-8000Hz: -13.3 dB relative to the reference, 2000-4000Hz: -13.3 dB relative to the reference.",
+        "id": "rec_5",
+        "related_node_ids": [
+          "audio_9",
+          "audio_10",
+          "comparison_1"
+        ],
+        "severity": "info",
+        "suggested_action": "Listen to the named bands against the reference and note whether the difference is intentional character or worth revisiting.",
+        "title": "Mixdown and reference differ noticeably in spectral balance."
       }
     ],
-    "reference_comparisons": [],
+    "reference_comparisons": [
+      {
+        "band_deltas_db": {
+          "1000-2000Hz": -6.65,
+          "120-250Hz": 12.43,
+          "2000-4000Hz": -13.27,
+          "250-500Hz": -0.48,
+          "4000-8000Hz": -13.35,
+          "500-1000Hz": 6.27,
+          "60-120Hz": 12.8,
+          "8000-16000Hz": -13.45
+        },
+        "crest_delta_db": 0.74,
+        "id": "comparison_1",
+        "lufs_delta": -4.11,
+        "mixdown_audio_id": "audio_9",
+        "reference_id": "audio_10",
+        "stereo_width_delta": null,
+        "summary": "Largest spectral difference: the mixdown has 13.4 dB proportionally less energy in 8000-16000Hz than the reference.",
+        "warnings": []
+      }
+    ],
     "reference_tracks": [],
     "schema_version": "0.1.0",
-    "session_name": "Logic Indie Mix Evidence Demo",
+    "session_name": "Logic Full Evidence Demo",
     "source_type": "synthetic_demo",
-    "stem_sum_reconciliation": null,
+    "stem_sum_reconciliation": {
+      "band_residuals_db": {
+        "1000-2000Hz": -72.95,
+        "120-250Hz": -89.47,
+        "2000-4000Hz": -63.68,
+        "250-500Hz": -91.15,
+        "4000-8000Hz": -63.66,
+        "500-1000Hz": -90.11,
+        "60-120Hz": -89.99,
+        "8000-16000Hz": -63.56
+      },
+      "correlation": 1.0,
+      "fitted_gain": 0.5,
+      "id": "reconciliation_1",
+      "interpretation": "The stem sum reconstructs the mixdown closely; little processing or content is unexplained by the exported stems.",
+      "mixdown_audio_id": "audio_9",
+      "residual_db": -81.53,
+      "stem_audio_ids": [
+        "audio_1",
+        "audio_2",
+        "audio_5",
+        "audio_8",
+        "audio_3",
+        "audio_6",
+        "audio_4",
+        "audio_7"
+      ],
+      "warnings": []
+    },
     "warnings": [
-      "Demo audio is synthetic (generated tones/noise), not a real Logic export."
+      "Demo audio is synthetic (generated tones/noise), not a real Logic export.",
+      "Full-evidence demo: the mixdown is the exact scaled sum of the stems (gain 0.5), so a low stem-sum residual is expected by construction."
     ]
   },
   "model_name": "SessionEvidence"

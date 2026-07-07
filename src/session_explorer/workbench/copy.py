@@ -40,10 +40,10 @@ COPY: dict[str, str] = {
         "pieced together from exported audio and notes. The tool always "
         "tells you which is which."
     ),
-    "load_examples": "Load the four example sessions",
+    "load_examples": "Load all example sessions",
     "all_loaded": "All {n} example sessions are loaded.",
     "no_bundles": (
-        "No sessions are loaded yet — press “Load the four example "
+        "No sessions are loaded yet — press “Load all example "
         "sessions” on the Overview tab."
     ),
     "bar_question": "How much can we see?",
@@ -87,7 +87,7 @@ COPY: dict[str, str] = {
     ),
     "x04_table_expander": "See the full comparison table (all pairs, all reasons)",
     "x04_missing": (
-        "The four example comparison sessions were not found on disk, so "
+        "The example comparison sessions were not found on disk, so "
         "this story can't be shown."
     ),
     # -- the friendly atlas ------------------------------------------------------
