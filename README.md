@@ -11,6 +11,10 @@ emit.
 The distribution is named `session-state-analyzer`; the import package stays
 `session_explorer` through the transition (decision D1 in the pivot plan).
 
+**New here? Start with the [User Manual](docs/MANUAL.md)** — install, run the
+workbench, a tour of every tab (both modes), the Python API, and how a new
+session becomes a bundle.
+
 ## Development setup
 
 The contract package is a standalone pip package vendored as a subdirectory
