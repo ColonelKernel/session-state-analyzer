@@ -35,6 +35,7 @@ EXPERT_TABS = {
     "Routing depth",
     "Parameter influence",
     "Session evolution",
+    "Adapter comparison",
 }
 
 # The X06 grouping-depth fixture carries a deliberate feedback pair (a cycle),
@@ -83,6 +84,7 @@ def test_boots_guided_by_default_with_overview_cards():
         wcopy.COPY["tab_grouping"],
         wcopy.COPY["tab_intervention"],
         wcopy.COPY["tab_evolution"],
+        wcopy.COPY["tab_comparison"],
     ]
 
     # Auto-load on first visit: every discovered fixture bundle is selected.
@@ -235,6 +237,81 @@ def test_session_evolution_tab_renders_in_both_states():
     # Exactly one of the two honest outcomes must hold — a live exhibit or the
     # graceful note — but never an exception.
     assert (wcopy.EVOLUTION["unavailable"] in info_text) or family_selectors
+
+
+# ---------------------------------------------------------------------------
+# Phase 3 adapter-comparison dashboard: renders in BOTH modes, ladder chips,
+# and the two profile downloads — a per-DAW profile grid, never a ranking.
+# ---------------------------------------------------------------------------
+
+
+def _download_labels(at) -> set[str]:
+    """Labels of every st.download_button in the current render."""
+    return {d.label for d in at.get("download_button")}
+
+
+def test_expert_adapter_comparison_tab_present():
+    """The 9th Expert tab exists and the whole Expert tab-set matches exactly."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+    labels = {tab.label for tab in at.tabs}
+    assert "Adapter comparison" in labels
+    assert labels == EXPERT_TABS
+
+
+def test_guided_comparison_tab_present():
+    """The Guided 'How the DAWs compare' tab exists (default boot is Guided)."""
+    from session_explorer.workbench import copy as wcopy
+
+    at = _apptest()
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    labels = [tab.label for tab in at.tabs]
+    assert wcopy.COPY["tab_comparison"] in labels
+
+
+def test_comparison_dashboard_renders_ladder_chips_and_downloads_expert():
+    """Expert mode: per-DAW ladder chips render and both downloads are exposed."""
+    from session_explorer.workbench import copy as wcopy
+
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    body = _markdown_text(at)
+    # Per-DAW compatibility-ladder chips render (L0..L6 rung chips as HTML).
+    for rung in ("L0", "L2", "L6"):
+        assert rung in body
+    # The load-bearing "profiles, not a ranking" disclaimer is prominent.
+    info_text = " ".join(str(i.value) for i in at.info)
+    assert wcopy.COMPARISON["caption_not_ranking"] in info_text
+
+    # Both profile downloads are exposed.
+    labels = _download_labels(at)
+    assert wcopy.COMPARISON["download_metrics"] in labels
+    assert wcopy.COMPARISON["download_ladder"] in labels
+
+
+def test_comparison_dashboard_renders_ladder_chips_and_downloads_guided():
+    """Guided mode: the same grid renders with plain words — chips + downloads."""
+    from session_explorer.workbench import copy as wcopy
+
+    at = _apptest()
+    at.run()  # Guided is the default mode
+    assert not at.exception, [e.value for e in at.exception]
+
+    body = _markdown_text(at)
+    for rung in ("L0", "L2", "L6"):
+        assert rung in body
+    info_text = " ".join(str(i.value) for i in at.info)
+    assert wcopy.COMPARISON["caption_not_ranking"] in info_text
+
+    labels = _download_labels(at)
+    assert wcopy.COMPARISON["download_metrics"] in labels
+    assert wcopy.COMPARISON["download_ladder"] in labels
 
 
 # ---------------------------------------------------------------------------

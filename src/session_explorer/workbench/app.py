@@ -32,6 +32,7 @@ from session_explorer.workbench.pages import (
     alignment,
     atlas,
     canonical_graph,
+    comparison,
     depth,
     entity_inspector,
     guided,
@@ -176,6 +177,7 @@ if view == "Canonical":
         depth_tab,
         param_tab,
         evolution_tab,
+        comparison_tab,
     ) = st.tabs(
         [
             "Graph",
@@ -186,6 +188,7 @@ if view == "Canonical":
             "Routing depth",
             "Parameter influence",
             "Session evolution",
+            "Adapter comparison",
         ]
     )
     with graph_tab:
@@ -204,6 +207,8 @@ if view == "Canonical":
         parameter_influence.render(bundles)
     with evolution_tab:
         session_evolution.render(bundles)
+    with comparison_tab:
+        comparison.render(bundles)
 
 elif view == "Native":
     st.header("Native payload")

@@ -372,6 +372,40 @@ def build_atlas(bundles: list) -> Atlas:
     return Atlas(domains=list(ATLAS_DOMAINS), daws=daws, cells=cells)
 
 
+# --- whole-session evidence mix (shared by guided + metrics) --------------
+
+# The six buckets of the whole-session epistemic mix, keyed exactly as both the
+# guided overview bars and the metrics module consume them. ``absent`` folds the
+# three honest-absence buckets (unsupported / not_present / unknown) together;
+# ``applicable`` is the denominator.
+MIX_KEYS = ("observed", "inferred", "annotated", "hidden", "absent", "applicable")
+
+
+def aggregate_mix(atlas: Atlas, daw: str) -> dict[str, int]:
+    """The whole-session epistemic mix for one DAW: measured atlas counts
+    summed across all ten domains.
+
+    Returns the six :data:`MIX_KEYS` buckets: ``observed`` / ``inferred`` /
+    ``annotated`` are the evidence classes that entered the snapshot;
+    ``hidden`` is known-but-hidden; ``absent`` sums the honest absences
+    (unsupported + not_present + unknown); ``applicable`` is the denominator.
+
+    This is the single arithmetic behind the guided overview bars *and* the
+    metrics evidence ratios — extracting it here is what keeps the two modes
+    (and the metrics report) from drifting apart.
+    """
+    totals = {key: 0 for key in MIX_KEYS}
+    for domain_name in atlas.domains:
+        m = atlas.cell(domain_name, daw).measured
+        totals["observed"] += m.observed
+        totals["inferred"] += m.inferred
+        totals["annotated"] += m.annotated
+        totals["hidden"] += m.hidden
+        totals["absent"] += m.unsupported + m.not_present + m.unknown
+        totals["applicable"] += m.applicable
+    return totals
+
+
 # --- unknown-state map ----------------------------------------------------
 
 # The categories of "not plainly known" that the map surfaces, derived from the

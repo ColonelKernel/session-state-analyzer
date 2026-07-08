@@ -17,6 +17,7 @@ import pandas as pd
 import streamlit as st
 
 from session_explorer.atlas import Atlas, build_atlas
+from session_explorer.atlas.coverage import aggregate_mix
 from session_explorer.core.viz import OBSERVABILITY_COLORS
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.registry import get_registry
@@ -24,6 +25,7 @@ from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
 from session_explorer.workbench.pages import canonical_graph
+from session_explorer.workbench.pages import comparison as comparison_page
 from session_explorer.workbench.pages import depth as depth_page
 from session_explorer.workbench.pages import intervention as intervention_page
 from session_explorer.workbench.pages import session_evolution as evolution_page
@@ -105,24 +107,13 @@ def _counts_line(bundle: SnapshotBundle) -> str:
 
 
 def _aggregate_mix(atlas: Atlas, daw: str) -> dict[str, int]:
-    """The whole-session epistemic mix: atlas counts summed across domains."""
-    totals = {
-        "observed": 0,
-        "inferred": 0,
-        "annotated": 0,
-        "hidden": 0,
-        "absent": 0,
-        "applicable": 0,
-    }
-    for domain_name in atlas.domains:
-        m = atlas.cell(domain_name, daw).measured
-        totals["observed"] += m.observed
-        totals["inferred"] += m.inferred
-        totals["annotated"] += m.annotated
-        totals["hidden"] += m.hidden
-        totals["absent"] += m.unsupported + m.not_present + m.unknown
-        totals["applicable"] += m.applicable
-    return totals
+    """The whole-session epistemic mix: atlas counts summed across domains.
+
+    Delegates to the shared :func:`session_explorer.atlas.aggregate_mix` so the
+    guided overview bars and the metrics report read the same arithmetic and
+    cannot drift.
+    """
+    return aggregate_mix(atlas, daw)
 
 
 def _mix_bar_html(mix: dict[str, int]) -> str:
@@ -421,6 +412,7 @@ def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
         grouping_tab,
         intervention_tab,
         evolution_tab,
+        comparison_tab,
     ) = st.tabs(
         [
             wcopy.COPY["tab_overview"],
@@ -430,6 +422,7 @@ def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
             wcopy.COPY["tab_grouping"],
             wcopy.COPY["tab_intervention"],
             wcopy.COPY["tab_evolution"],
+            wcopy.COPY["tab_comparison"],
         ]
     )
     with overview_tab:
@@ -446,3 +439,5 @@ def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
         intervention_page.render_guided()
     with evolution_tab:
         evolution_page.render_guided(bundles)
+    with comparison_tab:
+        comparison_page.render_guided(bundles)

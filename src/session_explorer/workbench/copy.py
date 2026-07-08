@@ -32,6 +32,7 @@ COPY: dict[str, str] = {
     "tab_intervention": "What one change does to the sound",
     "tab_grouping": "Groups & feedback",
     "tab_evolution": "How a song evolved",
+    "tab_comparison": "How the DAWs compare",
     # -- overview -------------------------------------------------------------
     "overview_title": "What's inside a music session?",
     "overview_intro": (
@@ -311,6 +312,17 @@ GLOSSARY: dict[str, str] = {
         "piece. Variants form a family with a lineage (which came from which), "
         "and the tool can diff two adjacent versions."
     ),
+    "Compatibility level": (
+        "A rung on a seven-step ladder describing what a session's data can "
+        "demonstrate — from “it opens” up to “a before/after change was "
+        "measured”. It is a *profile*, not a score: a DAW that reaches a higher "
+        "rung is not “better”, it just happens to show a different thing."
+    ),
+    "Provenance completeness": (
+        "How much of the paper trail actually connects. Every value points back "
+        "to a record of where it came from; completeness is the share of those "
+        "links that resolve — a full trail means nothing is left unexplained."
+    ),
 }
 
 # ---------------------------------------------------------------------------
@@ -448,3 +460,130 @@ REASON_PLAIN: tuple[tuple[str, str], ...] = (
     ("same canonical entity type", "both are the same kind of building block"),
     ("linked media assets share content hash", "they point at identical audio files"),
 )
+
+# ---------------------------------------------------------------------------
+# Adapter comparison dashboard (Phase 3): profiles side by side (Expert + Guided)
+# ---------------------------------------------------------------------------
+
+# Plain one-line glosses for the seven compatibility-ladder rungs, used as the
+# Guided ladder-chip tooltips. Keyed by rung index (0..6).
+LADDER_RUNGS_PLAIN: dict[int, str] = {
+    0: "It opens and checks out",
+    1: "It has tracks and a mixer",
+    2: "Its signal routing is wired up",
+    3: "It has a timeline or automation",
+    4: "It has scenes, movement, or versions",
+    5: "Its sound was actually rendered",
+    6: "A before/after change was measured",
+}
+
+COMPARISON: dict[str, str] = {
+    # -- expert framing ----------------------------------------------------------
+    "header": "Adapter comparison",
+    "intro": (
+        "Every loaded DAW as one column, every row a measurable facet of what "
+        "its capture demonstrates — schema conformance, coverage, the evidence "
+        "mix, provenance, the compatibility ladder, declared capability, and "
+        "cross-DAW alignment. Read across a row to see how four instruments "
+        "differ; read down a column for one adapter's whole profile."
+    ),
+    "caption_not_ranking": (
+        "Profiles, side by side — not a ranking. Different instruments see "
+        "different things."
+    ),
+    "col_header": "Measure",
+    "row_schema": "Schema valid",
+    "row_schema_desc": "Re-validates against the v0.2 contract with zero errors.",
+    "row_coverage": "Domain coverage",
+    "row_coverage_desc": (
+        "Share of applicable items recovered by any means (observed + inferred "
+        "+ annotated), summed across all ten atlas domains."
+    ),
+    "row_evidence": "Evidence mix",
+    "row_evidence_desc": (
+        "The whole-session epistemic mix — the same bar the atlas draws, "
+        "summed over every domain."
+    ),
+    "evidence_legend": (
+        "<span style='color:#2E86DE'>■</span> observed &nbsp;·&nbsp; "
+        "<span style='color:#27AE60'>■</span> inferred &nbsp;·&nbsp; "
+        "<span style='color:#F39C12'>■</span> annotated &nbsp;·&nbsp; "
+        "<span style='color:#C0392B'>■</span> hidden &nbsp;·&nbsp; "
+        "<span style='color:#7F8C8D'>■</span> unsupported / unknown"
+    ),
+    "row_provenance": "Provenance completeness",
+    "row_provenance_desc": (
+        "Share of every entity-field and relationship provenance reference that "
+        "resolves into the deduplicated provenance store."
+    ),
+    "row_conformance": "Fixture conformance",
+    "row_conformance_desc": (
+        "Load-time validation errors / warnings, and whether the adapter's "
+        "shipped validation report agrees with our own re-validation."
+    ),
+    "row_ladder": "Compatibility ladder",
+    "row_ladder_desc": (
+        "The L0..L6 reached set — a profile, not a rank. Real profiles are "
+        "frequently non-contiguous."
+    ),
+    "ladder_legend": (
+        "L0 loadable · L1 structural · L2 signal-flow · L3 temporal · "
+        "L4 behavioral · L5 acoustic-outcome · L6 controlled-intervention. "
+        "✓ reached · ~ reached (provisional) · · not reached."
+    ),
+    "row_capabilities": "Declared read capability",
+    "row_capabilities_desc": (
+        "What the adapter's capability manifest claims it can read — field "
+        "count and support distribution (independent of any one capture)."
+    ),
+    "row_alignment": "Alignment confidence",
+    "row_alignment_desc": (
+        "Mean confidence of the X04 cross-DAW alignment over every pair this "
+        "DAW participates in (the shared effect-return strategy)."
+    ),
+    "downloads_header": "Downloads",
+    "downloads_caption": (
+        "The measurable profile of the loaded bundles, as committed artifacts: "
+        "the full metrics report and the compatibility-ladder document."
+    ),
+    "download_metrics": "Download metrics report (JSON)",
+    "download_ladder": "Download compatibility ladder (Markdown)",
+    # -- guided framing ----------------------------------------------------------
+    "guided_header": "How the DAWs compare",
+    "guided_intro": (
+        "Four different DAWs, side by side. Each column is one DAW; each row "
+        "asks one plain question about what we could learn from it. This is "
+        "**not a scoreboard** — every DAW shows a different slice of a session, "
+        "so “more” on one row never means “better”."
+    ),
+    "guided_col_header": "What we ask",
+    "grow_schema": "Does it open cleanly?",
+    "grow_schema_desc": "Whether the exported session passes every honesty check.",
+    "grow_coverage": "How much could we see?",
+    "grow_coverage_desc": "The share of the session we could recover, one way or another.",
+    "grow_evidence": "How did we see it?",
+    "grow_evidence_desc": "Read directly, pieced together, told to us, or locked away.",
+    "grow_provenance": "Is the paper trail complete?",
+    "grow_provenance_desc": "How much of every value links back to where it came from.",
+    "grow_conformance": "Does the adapter's own check agree?",
+    "grow_conformance_desc": "Any errors or warnings, and whether the DAW's exporter agrees with us.",
+    "grow_ladder": "What can this session show?",
+    "grow_ladder_desc": (
+        "Seven things a session might demonstrate, from “it opens” to “a "
+        "before/after change was measured”. Hover a chip to read it."
+    ),
+    "guided_ladder_legend": (
+        "Each chip is one thing a session can show. ✓ yes · ~ partly (still "
+        "growing) · · not this one. A fuller row isn't a better DAW — just a "
+        "different one."
+    ),
+    "grow_capabilities": "What does it promise it can read?",
+    "grow_capabilities_desc": "What the DAW's adapter says it can read, before any one session.",
+    "grow_alignment": "Do its ideas line up with the others?",
+    "grow_alignment_desc": "How confidently the same production move matches across DAWs.",
+    "guided_downloads_header": "Take it with you",
+    "guided_downloads_caption": (
+        "Download the full comparison as data: the numbers report and the "
+        "“what each session can show” ladder."
+    ),
+}
