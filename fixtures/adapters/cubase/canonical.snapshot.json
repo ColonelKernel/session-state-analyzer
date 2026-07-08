@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2.0",
   "snapshot_id": "cubase:demo_session:e86b7a896672",
-  "created_at": "2026-07-07T13:15:35+00:00",
+  "created_at": "2026-07-08T11:15:47+00:00",
   "source": {
     "daw": "cubase",
     "daw_version": "15.0.10",
@@ -1024,8 +1024,17 @@
         "route_type": "send",
         "volume_db": -12.04,
         "enabled": true,
+        "channel_count": 2,
+        "channel_layout": "stereo",
         "send_name": "FX 1",
-        "pre_fader": false
+        "pre_fader": false,
+        "destination_channel_id": "ch-fx1",
+        "native": {
+          "cubase": {
+            "destination_audio_channels": 2,
+            "source_audio_channels": 2
+          }
+        }
       },
       "prov_ref": "prov:0002"
     },
@@ -1770,7 +1779,7 @@
       ],
       "native_file": {
         "path": "native.json",
-        "sha256": "2bbb4328269d73821a4d2082082b17f540fd1b8e9585a574d5db6503e471224f"
+        "sha256": "0aff0ba5d99800904ef5d9ffe641ab4a881dc3bc9d762ab94d176b6f6ad65324"
       }
     }
   },
