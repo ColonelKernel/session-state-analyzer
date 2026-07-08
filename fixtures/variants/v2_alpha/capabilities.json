@@ -1,0 +1,71 @@
+{
+  "read": {
+    "structure": {
+      "fields": {
+        "track_name": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "variant": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "routing": {
+      "fields": {
+        "sends": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "channel": {
+      "fields": {
+        "volume": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "processing": {
+      "fields": {
+        "insert_chain": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "synthetic",
+          "source_stability": "MANUAL",
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    }
+  },
+  "write": {},
+  "live_observation": {},
+  "render": {},
+  "manifest_version": "0.2.0",
+  "daw": "demo",
+  "daw_version": null,
+  "adapter": "variants-synthetic-generator",
+  "adapter_version": "0.1.0",
+  "notes": [
+    "Synthetic variant family (demo_song): no DAW behind it. Exercises P8 variant grouping, lineage, and version diffing through the real flatten_session pipeline."
+  ]
+}

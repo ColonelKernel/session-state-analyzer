@@ -32,7 +32,22 @@ EXPERT_TABS = {
     "X04 alignment",
     "Observability atlas",
     "State to audio",
+    "Routing depth",
+    "Parameter influence",
+    "Session evolution",
 }
+
+# The X06 grouping-depth fixture carries a deliberate feedback pair (a cycle),
+# used to prove the cycle badge fires. It is NOT an adapter bundle, so the
+# workbench does not discover it — the badge test renders the page directly.
+X06_BUNDLE = (
+    REPO_ROOT
+    / "fixtures"
+    / "cross-daw"
+    / "X06_grouping_depth"
+    / "bundles"
+    / "synthetic"
+)
 
 
 def _apptest():
@@ -65,7 +80,9 @@ def test_boots_guided_by_default_with_overview_cards():
         wcopy.COPY["tab_x04"],
         wcopy.COPY["tab_atlas"],
         wcopy.COPY["tab_graph"],
+        wcopy.COPY["tab_grouping"],
         wcopy.COPY["tab_intervention"],
+        wcopy.COPY["tab_evolution"],
     ]
 
     # Auto-load on first visit: every discovered fixture bundle is selected.
@@ -123,11 +140,20 @@ def test_guided_graph_renders_with_relabeled_layers():
     assert list(layer_radio[0].options) == [
         "How things are organized",
         "How audio flows",
+        "Effect chains",
+        "Automation & control",
+        "Session versions",
         "Everything",
     ]
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")
 
     layer_radio[0].set_value("How audio flows")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert at.session_state["graph_backend"] in ("pyvis", "plotly")
+
+    # A newly added layer renders too (processing = the insert-chain lens).
+    layer_radio[0].set_value("Effect chains")
     at.run()
     assert not at.exception, [e.value for e in at.exception]
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")
@@ -145,3 +171,102 @@ def test_glossary_present_in_guided_mode():
     body = _markdown_text(at)
     for term in wcopy.GLOSSARY:
         assert term in body
+
+
+# ---------------------------------------------------------------------------
+# Phase 2 depth tabs: they render in BOTH modes without exception
+# ---------------------------------------------------------------------------
+
+
+def test_expert_shows_the_three_new_depth_tabs():
+    """Routing depth / Parameter influence / Session evolution all render."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+    labels = {tab.label for tab in at.tabs}
+    assert {"Routing depth", "Parameter influence", "Session evolution"} <= labels
+    # The whole tab set matches exactly (nothing dropped, nothing extra).
+    assert labels == EXPERT_TABS
+
+
+def test_guided_shows_the_new_grouping_and_evolution_tabs():
+    from session_explorer.workbench import copy as wcopy
+
+    at = _apptest()
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    labels = [tab.label for tab in at.tabs]
+    assert wcopy.COPY["tab_grouping"] in labels
+    assert wcopy.COPY["tab_evolution"] in labels
+
+
+def test_intervention_parameter_experiment_renders_in_both_modes():
+    """The generalized intervention page dispatches the Delay-feedback A/B."""
+    at = _apptest()
+    at.run()
+    # Guided: flip the guided experiment selector to the parameter case.
+    guided_sel = [r for r in at.radio if r.key == "intervention_experiment_guided"]
+    assert len(guided_sel) == 1
+    guided_sel[0].set_value("Delay feedback").run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    # Expert: flip the expert experiment selector to the parameter case.
+    at.sidebar.radio[0].set_value("Expert").run()
+    expert_sel = [r for r in at.radio if r.key == "intervention_experiment_expert"]
+    assert len(expert_sel) == 1
+    expert_sel[0].set_value("Delay feedback").run()
+    assert not at.exception, [e.value for e in at.exception]
+
+
+def test_session_evolution_tab_renders_in_both_states():
+    """The Session-evolution tab renders without exception whether the variants
+    module/fixtures are present (a live family selector) or absent (the honest
+    ``st.info`` degradation note)."""
+    from session_explorer.workbench import copy as wcopy
+
+    at = _apptest()
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]  # guided mode
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]  # expert mode
+    info_text = " ".join(str(i.value) for i in at.info)
+    family_selectors = [s for s in at.selectbox if s.key == "evolution_family"]
+    # Exactly one of the two honest outcomes must hold — a live exhibit or the
+    # graceful note — but never an exception.
+    assert (wcopy.EVOLUTION["unavailable"] in info_text) or family_selectors
+
+
+# ---------------------------------------------------------------------------
+# Cycle badge: fires as a finding on a cycle-bearing bundle
+# ---------------------------------------------------------------------------
+
+
+def test_cycle_badge_appears_on_a_feedback_bearing_bundle():
+    """Rendering the X06 grouping-depth bundle surfaces the feedback finding."""
+    from streamlit.testing.v1 import AppTest
+
+    def _script(bundle_path: str):
+        from session_explorer.loaders import load_bundle
+        from session_explorer.workbench.pages import canonical_graph
+
+        bundle = load_bundle(bundle_path)
+        canonical_graph.render([bundle], "all")
+
+    at = AppTest.from_function(
+        _script, args=(str(X06_BUNDLE),), default_timeout=120
+    )
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert at.session_state["graph_has_cycles"] is True
+    warnings = " ".join(str(w.value) for w in at.warning)
+    assert "Feedback loop detected" in warnings
+
+
+def test_no_cycle_badge_on_adapter_bundles():
+    """The discovered adapter bundles carry no routing feedback: no false finding."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert at.session_state["graph_has_cycles"] is False

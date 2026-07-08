@@ -24,16 +24,27 @@ import streamlit as st
 from session_explorer.interventions import (
     InterventionComparison,
     build_effect_send_experiment,
+    build_parameter_experiment,
 )
 from session_explorer.workbench import copy as wcopy
 
 # The shared signal-flow language colour (same teal as CHANNEL nodes).
 _CHAIN_COLOR = "#2A9D8F"
 
+# The two frozen experiments this page can dispatch. The label is the option the
+# selector shows; the builder returns an ``InterventionComparison``. The
+# effect-send case carries ``added_sends`` (a routing change); the delay-feedback
+# case carries ``parameter_changes`` (a value change) — Panels 2 and 3 read the
+# same ``signal_flow`` / ``acoustic_delta`` either way.
+_EXPERIMENTS = {
+    "Effect send": build_effect_send_experiment,
+    "Delay feedback": build_parameter_experiment,
+}
 
-def _load() -> InterventionComparison | None:
+
+def _load(builder=build_effect_send_experiment) -> InterventionComparison | None:
     try:
-        return build_effect_send_experiment()
+        return builder()
     except Exception:  # noqa: BLE001 - a missing fixture must not kill the app
         return None
 
@@ -90,6 +101,31 @@ def _static_table(rows: list[dict]) -> None:
     )
 
 
+def _fmt_value(value) -> str:
+    if value is None:
+        return "—"
+    if isinstance(value, bool):
+        return "on" if value else "off"
+    if isinstance(value, float):
+        return f"{value:g}"
+    return str(value)
+
+
+def _param_change_rows(comparison: InterventionComparison) -> list[dict]:
+    """One row per changed parameter: name, role, before→after value."""
+    rows = []
+    for pc in comparison.state_delta.parameter_changes:
+        rows.append(
+            {
+                "parameter": pc.name,
+                "role": pc.role or "—",
+                "before": _fmt_value(pc.before_value),
+                "after": _fmt_value(pc.after_value),
+            }
+        )
+    return rows
+
+
 def _metric_rows(comparison: InterventionComparison) -> list[dict]:
     rows = []
     for m in comparison.acoustic_delta.metrics:
@@ -111,28 +147,28 @@ def _metric_rows(comparison: InterventionComparison) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 
-def render_expert() -> None:
-    """Expert 'State to audio' tab: the three panels in research vocabulary."""
-    st.header("State → audio: one controlled intervention")
-    comparison = _load()
-    if comparison is None:
-        st.info(
-            "The effect-send experiment fixture was not found under "
-            "fixtures/experiments/effect_send."
+def _panel_state_change_expert(comparison: InterventionComparison) -> None:
+    """Panel 1, experiment-agnostic: an added send OR a parameter change."""
+    st.subheader("1 · State change")
+    sd = comparison.state_delta
+
+    if sd.parameter_changes and not sd.added_sends:
+        # The delay-feedback case: a pure value change on an existing parameter.
+        pc = sd.parameter_changes[0]
+        role = f" ({pc.role})" if pc.role else ""
+        st.markdown(
+            f"**Parameter change{role}:** {pc.name} "
+            f"{_fmt_value(pc.before_value)} → {_fmt_value(pc.after_value)}"
+        )
+        _static_table(_param_change_rows(comparison))
+        st.caption(
+            f"{len(sd.parameter_changes)} parameter(s) changed · no entities or "
+            "relationships added or removed — the graph shape is identical, only "
+            "one value differs."
         )
         return
 
-    iv = comparison.intervention
-    st.markdown(f"**Semantic intervention.** {iv.description}")
-    cubase_native = iv.native_implementations.get("cubase")
-    if cubase_native:
-        st.caption(f"Cubase native implementation: {cubase_native}")
-
-    st.divider()
-
-    # -- Panel 1: state change ------------------------------------------------
-    st.subheader("1 · State change")
-    sd = comparison.state_delta
+    # The effect-send case: one added routing relationship (+ its return).
     if sd.added_sends:
         send = sd.added_sends[0]
         st.markdown(f"**+{len(sd.added_sends)} send:** {send.label}")
@@ -171,6 +207,36 @@ def render_expert() -> None:
         else:
             st.caption("Nothing changed or removed.")
 
+
+def render_expert() -> None:
+    """Expert 'State to audio' tab: the three panels in research vocabulary."""
+    st.header("State → audio: one controlled intervention")
+
+    choice = st.radio(
+        "Experiment",
+        list(_EXPERIMENTS),
+        horizontal=True,
+        key="intervention_experiment_expert",
+    )
+    comparison = _load(_EXPERIMENTS[choice])
+    if comparison is None:
+        st.info(
+            f"The '{choice}' experiment fixture was not found under "
+            "fixtures/experiments."
+        )
+        return
+
+    iv = comparison.intervention
+    st.markdown(f"**Semantic intervention.** {iv.description}")
+    for daw, note in sorted(iv.native_implementations.items()):
+        label = "Honesty note" if daw == "note" else f"{daw.capitalize()} native implementation"
+        st.caption(f"{label}: {note}")
+
+    st.divider()
+
+    # -- Panel 1: state change ------------------------------------------------
+    _panel_state_change_expert(comparison)
+
     st.divider()
 
     # -- Panel 2: signal-flow explanation ------------------------------------
@@ -192,9 +258,10 @@ def render_expert() -> None:
         _static_table(_metric_rows(comparison))
         st.caption(ad.summary)
     st.caption(
-        "Honest labelling: the .dawproject inputs and their renders are "
-        "SYNTHETIC fixtures — fixture-generated audio that genuinely reflects "
-        "the routing change — reproducible via the Cubase adapter."
+        "Honest labelling: the inputs and their renders are SYNTHETIC "
+        "fixtures — fixture-generated audio that genuinely reflects the change "
+        "(the added send raises the level; the higher feedback lengthens the "
+        "tail) — reproducible from the adapters."
     )
 
 
@@ -204,17 +271,33 @@ def render_expert() -> None:
 
 
 def render_guided() -> None:
-    """Guided tab: the same three beats in plain language (copy from copy.py)."""
+    """Guided tab: the same three beats in plain language (copy from copy.py).
+
+    A selector chooses between the two frozen experiments — a reverb send
+    (routing change) and a delay-feedback tweak (parameter change). Beat 1
+    branches on which kind of change it is; beats 2 and 3 are identical either
+    way, reading the same signal-flow sentence and acoustic table.
+    """
     C = wcopy.INTERVENTION
     st.header(C["title"])
     st.markdown(C["intro"])
 
-    comparison = _load()
+    choice = st.radio(
+        C["experiment_label"],
+        [C["experiment_effect_send"], C["experiment_parameter"]],
+        horizontal=True,
+        key="intervention_experiment_guided",
+    )
+    is_param = choice == C["experiment_parameter"]
+    comparison = _load(
+        build_parameter_experiment if is_param else build_effect_send_experiment
+    )
     if comparison is None:
         st.info(C["missing"])
         return
 
-    st.markdown(f"**{C['what_we_did']}.** {C['what_we_did_body']}")
+    body_key = "param_what_we_did_body" if is_param else "what_we_did_body"
+    st.markdown(f"**{C['what_we_did']}.** {C[body_key]}")
     st.divider()
 
     sd = comparison.state_delta
@@ -223,16 +306,29 @@ def render_guided() -> None:
 
     # -- beat 1 ---------------------------------------------------------------
     st.subheader(C["state_header"])
-    st.markdown(C["state_lead"])
-    if sd.added_sends and len(path) >= 2:
+    if is_param and sd.parameter_changes:
+        pc = sd.parameter_changes[0]
+        st.markdown(C["param_state_lead"])
         st.markdown(
-            C["state_added_send"].format(source=path[0], target=path[1])
-        )
-        if len(path) >= 3:
-            st.markdown(
-                C["state_added_return"].format(target=path[1], processor=path[2])
+            C["param_state_change"].format(
+                knob=pc.role or pc.name,
+                before=_fmt_value(pc.before_value),
+                after=_fmt_value(pc.after_value),
+                where=path[1] if len(path) >= 2 else pc.name,
             )
-    st.caption(C["state_nothing_removed"])
+        )
+        st.caption(C["param_state_note"])
+    else:
+        st.markdown(C["state_lead"])
+        if sd.added_sends and len(path) >= 2:
+            st.markdown(
+                C["state_added_send"].format(source=path[0], target=path[1])
+            )
+            if len(path) >= 3:
+                st.markdown(
+                    C["state_added_return"].format(target=path[1], processor=path[2])
+                )
+        st.caption(C["state_nothing_removed"])
 
     st.divider()
 
@@ -247,7 +343,7 @@ def render_guided() -> None:
 
     # -- beat 3 ---------------------------------------------------------------
     st.subheader(C["audio_header"])
-    st.markdown(C["audio_lead"])
+    st.markdown(C["param_audio_lead"] if is_param else C["audio_lead"])
     ad = comparison.acoustic_delta
     if not ad.available or not ad.metrics:
         st.info(C["audio_unavailable"])
@@ -268,4 +364,4 @@ def render_guided() -> None:
             )
         _static_table(rows)
         st.markdown(f"_{ad.summary}_")
-    st.info(C["audio_synthetic_note"])
+    st.info(C["param_audio_synthetic_note"] if is_param else C["audio_synthetic_note"])

@@ -32,15 +32,25 @@ from session_explorer.workbench.pages import (
     alignment,
     atlas,
     canonical_graph,
+    depth,
     entity_inspector,
     guided,
     intervention,
+    parameter_influence,
+    session_evolution,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FIXTURES_ROOT = REPO_ROOT / "fixtures" / "adapters"
 
-LAYER_OPTIONS = ("organizational", "signal_flow", "all")
+LAYER_OPTIONS = (
+    "organizational",
+    "signal_flow",
+    "processing",
+    "automation",
+    "variant",
+    "all",
+)
 VIEW_OPTIONS = ("Canonical", "Native", "Evidence")
 
 st.set_page_config(
@@ -122,7 +132,9 @@ st.sidebar.button(
     disabled=not bundle_names,
 )
 
-layer = st.sidebar.radio("Graph layer", LAYER_OPTIONS, index=2)
+layer = st.sidebar.radio(
+    "Graph layer", LAYER_OPTIONS, index=LAYER_OPTIONS.index("all")
+)
 view = st.sidebar.radio("View", VIEW_OPTIONS, index=0)
 
 bundles: list[SnapshotBundle] = _load_bundles(selected_names)
@@ -155,13 +167,25 @@ def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
 # ---------------------------------------------------------------------------
 
 if view == "Canonical":
-    graph_tab, inspector_tab, alignment_tab, atlas_tab, intervention_tab = st.tabs(
+    (
+        graph_tab,
+        inspector_tab,
+        alignment_tab,
+        atlas_tab,
+        intervention_tab,
+        depth_tab,
+        param_tab,
+        evolution_tab,
+    ) = st.tabs(
         [
             "Graph",
             "Entity inspector",
             "X04 alignment",
             "Observability atlas",
             "State to audio",
+            "Routing depth",
+            "Parameter influence",
+            "Session evolution",
         ]
     )
     with graph_tab:
@@ -174,6 +198,12 @@ if view == "Canonical":
         atlas.render(bundles)
     with intervention_tab:
         intervention.render_expert()
+    with depth_tab:
+        depth.render(bundles)
+    with param_tab:
+        parameter_influence.render(bundles)
+    with evolution_tab:
+        session_evolution.render(bundles)
 
 elif view == "Native":
     st.header("Native payload")

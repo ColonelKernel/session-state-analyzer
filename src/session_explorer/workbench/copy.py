@@ -30,6 +30,8 @@ COPY: dict[str, str] = {
     "tab_atlas": "What each DAW lets us see",
     "tab_graph": "Explore the graph",
     "tab_intervention": "What one change does to the sound",
+    "tab_grouping": "Groups & feedback",
+    "tab_evolution": "How a song evolved",
     # -- overview -------------------------------------------------------------
     "overview_title": "What's inside a music session?",
     "overview_intro": (
@@ -178,6 +180,40 @@ INTERVENTION: dict[str, str] = {
     "audio_col_after": "After",
     "audio_col_change": "Change",
     "audio_unavailable": "The renders carry no acoustic descriptors, so no sound delta is available.",
+    # -- experiment selector (which controlled change to show) -------------------
+    "experiment_label": "Which experiment?",
+    "experiment_effect_send": "Reverb send",
+    "experiment_parameter": "Delay feedback",
+    # -- the parameter-change (delay feedback) variant ---------------------------
+    "param_what_we_did_body": (
+        "We turned **one knob**: the delay's feedback, from 0.2 up to 0.7. "
+        "Nothing else in the session was touched — same tracks, same effects, "
+        "same routing."
+    ),
+    "param_state_lead": (
+        "No connection was added or removed. The only difference is a single "
+        "value inside one effect:"
+    ),
+    "param_state_change": (
+        "Changed: the **{knob}** of the delay on **{where}** went from "
+        "**{before}** to **{after}**."
+    ),
+    "param_state_note": (
+        "The session's shape is identical before and after — only this one "
+        "number differs."
+    ),
+    "param_audio_lead": (
+        "We measured the two renders — before and after turning the knob. "
+        "More feedback means the echoes repeat longer, so the tail builds up "
+        "and the overall level rises."
+    ),
+    "param_audio_synthetic_note": (
+        "Honest note: both sessions and their audio are **synthetic fixtures**. "
+        "This parameter A/B is shown on the REAPER-style observable path, where "
+        "the feedback knob is host-readable — in Cubase the same VST3 parameter "
+        "would be **hidden** (stored as an opaque blob), so it is documented as a "
+        "limitation, not worked around."
+    ),
 }
 
 # Plain-language names for the acoustic metrics in the Guided audio table.
@@ -212,6 +248,9 @@ ATLAS_ROWS: dict[str, tuple[str, str]] = {
 GRAPH_LAYERS: dict[str, str] = {
     "How things are organized": "organizational",
     "How audio flows": "signal_flow",
+    "Effect chains": "processing",
+    "Automation & control": "automation",
+    "Session versions": "variant",
     "Everything": "all",
 }
 
@@ -250,6 +289,145 @@ GLOSSARY: dict[str, str] = {
     "Provenance": (
         "The paper trail. Every value on screen links back to a record of "
         "where it came from, how it was captured, and how confident we are."
+    ),
+    "Feedback loop": (
+        "When audio is sent along a path that eventually returns to where it "
+        "started — a ring. Producers build these on purpose (and sometimes by "
+        "accident). The tool flags them as a finding, never an error."
+    ),
+    "Group / VCA": (
+        "A DAW “group” often fuses several ideas at once: which tracks live "
+        "inside it (containment), whose audio is mixed together (summing), and "
+        "what it controls the level of without carrying audio (a VCA). The tool "
+        "splits the one native “group” back into these distinct parts."
+    ),
+    "Automation": (
+        "A recorded movement of a knob over time — for example a volume fade. "
+        "It has a shape (a curve) and a range of values, and it drives one "
+        "parameter, effect, or channel setting."
+    ),
+    "Variant": (
+        "One saved version of a song among several — v5, v6, v7 of the same "
+        "piece. Variants form a family with a lineage (which came from which), "
+        "and the tool can diff two adjacent versions."
+    ),
+}
+
+# ---------------------------------------------------------------------------
+# Routing depth: grouping decomposition + processing chains (Expert + Guided)
+# ---------------------------------------------------------------------------
+
+DEPTH: dict[str, str] = {
+    # -- expert framing ----------------------------------------------------------
+    "header": "Routing depth",
+    "intro": (
+        "Two lenses on what a native “group” and an insert chain really are. "
+        "One DAW “group” fuses concepts the canonical model keeps apart; the "
+        "processing view shows the ordered device chain on a single channel."
+    ),
+    "grouping_header": "Group decomposition — one native noun, several concepts",
+    "grouping_caption": (
+        "Pick a group entity. The four columns are the distinct canonical "
+        "edges it fans out into: what it Contains, what Sums into it, what it "
+        "Controls (VCA), and what Routes in from outside."
+    ),
+    "grouping_no_groups": (
+        "This session has no group-like entities (folder, submix bus, or VCA)."
+    ),
+    "grouping_multi": (
+        "Finding: this single native “group” is **{n} distinct canonical "
+        "concepts** at once — the model keeps them apart so the fusion is "
+        "visible in the data, not hidden in a noun."
+    ),
+    "grouping_single": (
+        "This “group” resolves to a single concept — it is only what its one "
+        "populated column says it is."
+    ),
+    "col_contains": "Contains",
+    "col_sums": "Sums in",
+    "col_controls": "Controls (VCA)",
+    "col_routes_in": "Routes in",
+    "processing_header": "Processing chain — one channel, its devices in order",
+    "processing_caption": (
+        "Pick a channel to see the insert/device chain it hosts and the order "
+        "the signal passes through them (PRECEDES)."
+    ),
+    "no_channels": "This session has no channels to inspect.",
+    # -- guided framing ----------------------------------------------------------
+    "guided_header": "Groups & feedback",
+    "guided_intro": (
+        "A “group” in a DAW usually does several jobs at once. This tool pulls "
+        "the one name apart into the separate things it actually does — which "
+        "tracks are inside it, whose sound it mixes together, and what it just "
+        "controls the volume of."
+    ),
+    "guided_pick_group": "Pick a group to take apart:",
+    "guided_col_contains": "Holds these tracks",
+    "guided_col_sums": "Mixes these together",
+    "guided_col_controls": "Controls the level of",
+    "guided_col_routes_in": "Receives audio from",
+    "guided_multi": (
+        "See? This one “group” is really **{n} different jobs** rolled into a "
+        "single name."
+    ),
+    "guided_feedback_header": "Feedback loops",
+    "guided_feedback_body": (
+        "Sometimes audio is sent along a path that loops back to where it "
+        "began — a feedback ring. When a loaded session has one, the tool marks "
+        "it in red on the “Explore the graph” tab and calls it out as a "
+        "finding (never an error)."
+    ),
+}
+
+# ---------------------------------------------------------------------------
+# Parameter influence: base + automation + modulation + effective (Expert)
+# ---------------------------------------------------------------------------
+
+PARAM_INFLUENCE: dict[str, str] = {
+    "header": "Parameter influence",
+    "intro": (
+        "For one parameter (or one automated channel field), what actually "
+        "sets its value: its base setting, any automation lane that moves it "
+        "over time, any modulation that shapes it, and the honest effective "
+        "reading. We never fabricate a value at a single instant — automation "
+        "is reported as a range, not a point."
+    ),
+    "pick_target": "Parameter / automated field",
+    "no_targets": (
+        "This session exposes no parameters or automated fields to inspect."
+    ),
+    "base_header": "Base value",
+    "base_none": "No static base value is stored for this target.",
+    "automation_header": "Automation",
+    "automation_none": "No automation lane drives this target.",
+    "modulation_header": "Modulation",
+    "modulation_none": "No modulation source shapes this target.",
+    "effective_header": "Effective value",
+}
+
+# ---------------------------------------------------------------------------
+# Session evolution: variant lineage + adjacent diffs (Expert + Guided)
+# ---------------------------------------------------------------------------
+
+EVOLUTION: dict[str, str] = {
+    "header": "Session evolution",
+    "intro": (
+        "How one song changed across saved versions — the variant family, its "
+        "lineage graph, and what changed between each adjacent pair (v1→v2, "
+        "v2→v3)."
+    ),
+    "guided_header": "How a song evolved",
+    "guided_intro": (
+        "The same song, saved as several versions over time. Below is the "
+        "family tree of versions and, for each step, exactly what changed."
+    ),
+    "pick_family": "Version family",
+    "lineage_header": "Lineage",
+    "diff_header": "What changed, step by step",
+    "unavailable": (
+        "Session-evolution data isn't available yet: the variants module or the "
+        "variant fixtures (fixtures/variants) are not present. This exhibit "
+        "will light up once the same-song variant bundles land."
     ),
 }
 

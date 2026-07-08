@@ -24,7 +24,9 @@ from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
 from session_explorer.workbench.pages import canonical_graph
+from session_explorer.workbench.pages import depth as depth_page
 from session_explorer.workbench.pages import intervention as intervention_page
+from session_explorer.workbench.pages import session_evolution as evolution_page
 
 # The mini-bar's colour language is the shared observability language; the
 # grey "absent" tail covers unsupported / not-present / unknown.
@@ -411,13 +413,23 @@ def _render_graph(bundles: List[SnapshotBundle]) -> None:
 def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
     """The whole Guided mode: four story tabs over the loaded bundles."""
     atlas = build_atlas(bundles) if bundles else None
-    overview_tab, x04_tab, atlas_tab, graph_tab, intervention_tab = st.tabs(
+    (
+        overview_tab,
+        x04_tab,
+        atlas_tab,
+        graph_tab,
+        grouping_tab,
+        intervention_tab,
+        evolution_tab,
+    ) = st.tabs(
         [
             wcopy.COPY["tab_overview"],
             wcopy.COPY["tab_x04"],
             wcopy.COPY["tab_atlas"],
             wcopy.COPY["tab_graph"],
+            wcopy.COPY["tab_grouping"],
             wcopy.COPY["tab_intervention"],
+            wcopy.COPY["tab_evolution"],
         ]
     )
     with overview_tab:
@@ -428,5 +440,9 @@ def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
         _render_atlas(atlas, bundles)
     with graph_tab:
         _render_graph(bundles)
+    with grouping_tab:
+        depth_page.render_guided(bundles)
     with intervention_tab:
         intervention_page.render_guided()
+    with evolution_tab:
+        evolution_page.render_guided(bundles)

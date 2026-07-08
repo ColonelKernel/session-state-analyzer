@@ -44,6 +44,10 @@ GRAPH_CHROME: Dict[str, str] = {
     "font": "#222222",
     "edge": "#bbbbbb",
     "node_outline": "#333333",
+    # A routing edge that participates in a feedback cycle (``in_cycle``): the
+    # same red as the "hidden" observability class, reused as the "this is the
+    # feedback ring" signal so the finding reads at a glance in both backends.
+    "cycle_edge": "#C0392B",
 }
 
 # Unicode glyphs matching each node shape, so the legend preserves the

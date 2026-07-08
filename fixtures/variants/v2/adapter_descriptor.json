@@ -1,0 +1,14 @@
+{
+  "adapter_id": "variants-synthetic-generator",
+  "daw": "demo",
+  "capture_modes": [
+    "synthetic"
+  ],
+  "read": "Synthetic variant-family generator. Emits three-to-four snapshots of one song (a shared variant_family + labels + derived_from chaining) that genuinely differ by a track, a send, and a parameter, all referencing one shared audio asset.",
+  "write": "NONE",
+  "live_observation": "NONE",
+  "render": "NONE",
+  "known_limitations": [
+    "Not a real DAW capture: every value is hand-authored to exercise the contract. Source stability is MANUAL throughout. Real per-version Logic families are Phase 4."
+  ]
+}

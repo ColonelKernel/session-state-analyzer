@@ -22,7 +22,7 @@ from session_explorer.core.viz import (
     legend_entries,
     observability_legend,
 )
-from session_explorer.graph_layers import build_multi
+from session_explorer.graph_layers import annotate_cycles, build_multi, detect_cycles
 from session_explorer.loaders import SnapshotBundle
 
 _GRAPH_HEIGHT = 660
@@ -52,12 +52,12 @@ def _filter_by_observability(graph: nx.DiGraph, keep: set[str]) -> nx.DiGraph:
     return filtered
 
 
-def _embed_html(html: str) -> None:
+def _embed_html(html: str, height: int = _GRAPH_HEIGHT) -> None:
     """Embed standalone PyVis HTML (st.iframe; components.html on older Streamlit)."""
     if hasattr(st, "iframe"):
-        st.iframe(html, height=_GRAPH_HEIGHT, width="stretch")
+        st.iframe(html, height=height, width="stretch")
     else:  # pragma: no cover - older streamlit
-        st.components.v1.html(html, height=_GRAPH_HEIGHT, scrolling=False)
+        st.components.v1.html(html, height=height, scrolling=False)
 
 
 def _render_legend(graph: nx.DiGraph) -> None:
@@ -95,16 +95,50 @@ def _render_legend(graph: nx.DiGraph) -> None:
         st.markdown("&nbsp;&nbsp;".join(obs_rows), unsafe_allow_html=True)
 
 
+def _render_cycle_finding(graph: nx.DiGraph, report) -> None:
+    """Surface routing feedback as a *finding* — a warning + the ring listing.
+
+    Feedback is legitimate session data, not an error: the badge names how many
+    rings were found and the expander spells each one out in node labels, so a
+    reader sees exactly which channels close the loop.
+    """
+    n = len(report.cycles)
+    plural = "cycle" if n == 1 else "cycles"
+    suffix = " (lower bound — enumeration truncated)" if report.truncated else ""
+    st.warning(
+        f"Feedback loop detected: {n} {plural} in the routing graph{suffix}. "
+        "This is a finding, not an error — a send path returns to where it "
+        "started. The ring is highlighted below."
+    )
+    with st.expander(f"The feedback {plural} ({n})"):
+        for cycle in report.cycles:
+            labels = [str(graph.nodes[nid].get("label", nid)) for nid in cycle]
+            if labels:
+                ring = " → ".join(labels + [labels[0]])
+                st.markdown(f"- {ring}")
+
+
 def render(bundles: List[SnapshotBundle], layer: str) -> None:
     """The canonical graph over the selected bundles for the chosen layer."""
     st.session_state["graph_html_chars"] = 0
     st.session_state["graph_backend"] = None
+    st.session_state["graph_has_cycles"] = False
 
     if not bundles:
         st.info("Select at least one bundle in the sidebar.")
         return
 
     graph = build_multi([bundle.snapshot for bundle in bundles], layer=layer)
+
+    # Feedback cycles are data, never a validation error: detect them on the
+    # routing subgraph, annotate the composed graph in place (so ``in_cycle``
+    # rides through the observability subgraph copy into both renderers), and
+    # surface the finding as a badge + highlight.
+    cycle_report = detect_cycles(graph)
+    annotate_cycles(graph, cycle_report)
+    st.session_state["graph_has_cycles"] = cycle_report.has_cycles
+    if cycle_report.has_cycles:
+        _render_cycle_finding(graph, cycle_report)
 
     # Observability filter -------------------------------------------------
     present: Iterable[str] = sorted(
@@ -134,14 +168,22 @@ def render(bundles: List[SnapshotBundle], layer: str) -> None:
         st.info("Nothing to show: every node is filtered out.")
         return
 
+    highlight_ids = list(cycle_report.cycle_nodes)
     try:
-        html = build_pyvis_html(display_graph, height=f"{_GRAPH_HEIGHT - 10}px")
+        html = build_pyvis_html(
+            display_graph,
+            height=f"{_GRAPH_HEIGHT - 10}px",
+            highlight_ids=highlight_ids,
+        )
         _embed_html(html)
         st.session_state["graph_html_chars"] = len(html)
         st.session_state["graph_backend"] = "pyvis"
     except Exception as exc:  # noqa: BLE001 - fall back, never blank-screen
         st.warning(f"PyVis rendering failed ({exc}); falling back to Plotly.")
-        st.plotly_chart(build_plotly_figure(display_graph), width="stretch")
+        st.plotly_chart(
+            build_plotly_figure(display_graph, highlight_ids=highlight_ids),
+            width="stretch",
+        )
         st.session_state["graph_backend"] = "plotly"
 
     _render_legend(graph)

@@ -271,8 +271,15 @@ def build_pyvis_html(
             ),
         )
     for source, target, data in graph.edges(data=True):
+        # A routing edge annotated ``in_cycle`` (see graph_layers.analysis) is
+        # painted with the cycle colour so the feedback ring is legible.
+        edge_color = (
+            GRAPH_CHROME["cycle_edge"]
+            if data.get("in_cycle")
+            else GRAPH_CHROME["edge"]
+        )
         net.add_edge(
-            source, target, title=data.get("type", ""), arrows="to", color=GRAPH_CHROME["edge"]
+            source, target, title=data.get("type", ""), arrows="to", color=edge_color
         )
 
     try:
@@ -318,14 +325,23 @@ def build_plotly_figure(
     else:
         pos = spring_positions(graph)
 
+    # Two edge traces so feedback-cycle edges (annotated ``in_cycle``) carry the
+    # cycle colour while the rest stay neutral — the same finding the pyvis
+    # backend paints, so the fallback cannot drift from the primary.
     edge_x: List[Optional[float]] = []
     edge_y: List[Optional[float]] = []
-    for source, target in graph.edges():
+    cycle_x: List[Optional[float]] = []
+    cycle_y: List[Optional[float]] = []
+    for source, target, data in graph.edges(data=True):
         if source in pos and target in pos:
             x0, y0 = pos[source]
             x1, y1 = pos[target]
-            edge_x += [x0, x1, None]
-            edge_y += [y0, y1, None]
+            if data.get("in_cycle"):
+                cycle_x += [x0, x1, None]
+                cycle_y += [y0, y1, None]
+            else:
+                edge_x += [x0, x1, None]
+                edge_y += [y0, y1, None]
     edge_trace = go.Scatter(
         x=edge_x, y=edge_y, mode="lines",
         line=dict(width=0.8, color=GRAPH_CHROME["edge"]), hoverinfo="none",
@@ -348,7 +364,20 @@ def build_plotly_figure(
         marker=dict(size=sizes, color=colors, line=dict(width=line_widths, color=GRAPH_CHROME["node_outline"])),
     )
 
-    fig = go.Figure(data=[edge_trace, node_trace])
+    # The cycle trace is only added when feedback edges exist, so a cycle-free
+    # graph keeps its two-trace (edges + nodes) shape.
+    traces = [edge_trace]
+    if cycle_x:
+        traces.append(
+            go.Scatter(
+                x=cycle_x, y=cycle_y, mode="lines",
+                line=dict(width=1.8, color=GRAPH_CHROME["cycle_edge"]),
+                hoverinfo="none",
+            )
+        )
+    traces.append(node_trace)
+
+    fig = go.Figure(data=traces)
     fig.update_layout(
         showlegend=False, hovermode="closest",
         margin=dict(l=10, r=10, t=10, b=10),
