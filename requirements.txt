@@ -1,0 +1,9 @@
+# Streamlit Community Cloud build file.
+#
+# Editable installs are deliberate: the workbench resolves the fixture bundles
+# via paths relative to its own __file__ (see workbench/app.py REPO_ROOT), so
+# session_explorer and canonical_snapshot must import from this checkout — not
+# from a separate copy in site-packages. Editable (-e) keeps the code and the
+# committed fixtures/ tree in the same place.
+-e packages/canonical_snapshot
+-e .[ui,audio,midi,score]
