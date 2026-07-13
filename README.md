@@ -1,19 +1,65 @@
 # Session State Analyzer
 
-**Four observation instruments, one analysis contract.** The four DAW
-session-state explorers (Ableton, REAPER, Logic, Cubase) remain independent
-adapters in their own repositories; this repository is the analytical layer
-that consumes their serialized exports. It contains no DAW parsing or
-acquisition code. See `docs/PIVOT.md` for the architecture pivot and
-`packages/canonical_snapshot/` for the v0.2 snapshot contract the adapters
-emit.
+> **A DAW session is a structured record of creative intent — thousands of
+> decisions about tracks, effect chains, routing, and automation that together
+> produce a sound. This project represents that state in a single, open,
+> DAW-agnostic form, measures how much of it each DAW actually lets you see,
+> and traces how a change to the state changes the audio.**
 
-The distribution is named `session-state-analyzer`; the import package stays
-`session_explorer` through the transition (decision D1 in the pivot plan).
+Music-information-retrieval datasets almost always hold only the *rendered
+audio* — never the session that produced it. Session State Explorer takes the
+other side of the problem. Four per-DAW adapters (**Ableton, REAPER, Logic,
+Cubase**) each read a session and serialize it to one shared **canonical
+snapshot** schema; this repository is the analytical layer over those
+snapshots. Two results are worth 30 seconds:
+
+### 1 · The observability atlas — what each DAW will and won't tell you
+
+Every value in a snapshot carries its own **evidence** tag, so partial
+observability is a first-class, queryable fact rather than a missing field:
+
+| Evidence | Meaning |
+|---|---|
+| **observed** | read directly from the project |
+| **inferred** | reconstructed from exported audio, MIDI, or notes |
+| **annotated** | supplied by the user |
+| **hidden** | exists, but the DAW won't expose it |
+| **unsupported** | the mechanism doesn't exist in this DAW |
+
+The atlas rolls this up across ten canonical domains (tracks & layout, signal
+routing, effects, automation, …) for all four DAWs at once. The DAWs land in
+very different places — REAPER's `.rpp` is read almost entirely **directly**;
+Logic's project is opaque, so its state is largely **reconstructed** from
+exported stems, MIDI, MusicXML, and channel-strip notes, with everything it
+cannot recover marked **hidden** rather than silently dropped. The gaps are the
+point, and they are shown, not hidden.
+
+### 2 · State → audio — one change, measured
+
+A controlled intervention adds a single post-fader send (a lead vocal into a
+plate reverb) and traces it end to end: the **state delta** (the new routing
+edge), the **signal-flow path** it creates
+(`Lead Vox → FX 1 · Plate → REVerence → Stereo Out`), and the **acoustic
+delta** measured between the two renders (louder, with a wet tail). It is a
+small, reproducible template for the core question behind assistive music
+production — *how does a change to the session change the sound?*
+
+Everything above is browsable in the **Streamlit workbench** (a plain-language
+Guided mode and a research Expert mode); the four example sessions load on
+first visit. The canonical schema lives in `packages/canonical_snapshot/`
+(v0.2). Adapters: [REAPER](https://github.com/ColonelKernel/session-state-explorer-reaper),
+[Cubase](https://github.com/ColonelKernel/session-state-explorer-cubase),
+[Ableton](https://github.com/ColonelKernel/session-state-explorer-ableton),
+[Logic](https://github.com/ColonelKernel/session-state-explorer-logic).
+
+---
 
 **New here? Start with the [User Manual](docs/MANUAL.md)** — install, run the
 workbench, a tour of every tab (both modes), the Python API, and how a new
-session becomes a bundle.
+session becomes a bundle. This repository contains no DAW parsing code; see
+`docs/PIVOT.md` for the architecture and `packages/canonical_snapshot/` for the
+v0.2 contract the adapters emit. The distribution is `session-state-analyzer`;
+the import package stays `session_explorer` (decision D1 in the pivot plan).
 
 ## Development setup
 
