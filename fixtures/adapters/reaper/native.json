@@ -24,6 +24,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#c04000",
       "media_items": [
         {
@@ -88,6 +91,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#c06000",
       "media_items": [
         {
@@ -168,6 +174,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#0080c0",
       "media_items": [
         {
@@ -248,6 +257,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#00a0c0",
       "media_items": [
         {
@@ -344,6 +356,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#400080",
       "media_items": [
         {
@@ -424,6 +439,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#608000",
       "media_items": [
         {
@@ -504,6 +522,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#c04040",
       "media_items": [],
       "fx": [
@@ -646,6 +667,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#0060c0",
       "media_items": [
         {
@@ -726,6 +750,9 @@
       "solo_mode": 0,
       "solo_defeat": false,
       "main_send": null,
+      "folder_state": null,
+      "folder_depth": null,
+      "parent_track_id": null,
       "color": "#606060",
       "media_items": [],
       "fx": [
@@ -774,6 +801,9 @@
       "volume_db": 0.0,
       "pan": 0.0,
       "mute": false,
+      "src_channel": 0,
+      "dst_channel": 0,
+      "midi_flags": null,
       "raw_line": "    AUXRECV 2 0 1 0 0 0 0 0 0"
     },
     {
@@ -788,6 +818,9 @@
       "volume_db": 0.0,
       "pan": 0.0,
       "mute": false,
+      "src_channel": 0,
+      "dst_channel": 0,
+      "midi_flags": null,
       "raw_line": "    AUXRECV 3 0 1 0 0 0 0 0 0"
     },
     {
@@ -802,6 +835,9 @@
       "volume_db": 0.0,
       "pan": 0.0,
       "mute": false,
+      "src_channel": 0,
+      "dst_channel": 0,
+      "midi_flags": null,
       "raw_line": "    AUXRECV 7 0 1 0 0 0 0 0 0"
     },
     {
@@ -816,6 +852,9 @@
       "volume_db": 0.0,
       "pan": 0.0,
       "mute": false,
+      "src_channel": 0,
+      "dst_channel": 0,
+      "midi_flags": null,
       "raw_line": "    AUXRECV 99 0 1 0 0 0 0 0 0"
     }
   ],

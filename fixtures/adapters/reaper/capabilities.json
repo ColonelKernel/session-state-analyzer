@@ -60,11 +60,11 @@
         },
         "folder_hierarchy": {
           "applicability": "APPLICABLE",
-          "support": "NONE",
-          "capture_method": null,
-          "source_stability": null,
-          "tested_daw_version": null,
-          "validation_status": "UNTESTED"
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
         }
       }
     },
@@ -189,6 +189,22 @@
         "send_mode": {
           "applicability": "APPLICABLE",
           "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_channels": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_midi_flags": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
           "capture_method": "rpp_parse",
           "source_stability": "COMMUNITY_DOCUMENTED",
           "tested_daw_version": "7.0",
@@ -368,7 +384,7 @@
   "daw": "reaper",
   "daw_version": "7.0",
   "adapter": "session-state-explorer-reaper",
-  "adapter_version": "0.4.0",
+  "adapter_version": "0.5.0",
   "notes": [
     "Capabilities describe the .rpp file-parse pathway only.",
     "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",

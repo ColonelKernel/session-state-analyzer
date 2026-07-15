@@ -1,12 +1,12 @@
 {
   "schema_version": "0.2.0",
-  "snapshot_id": "reaper:rpp:7ad139cd2af8cf54",
-  "created_at": "2026-07-03T17:01:27.355225+00:00",
+  "snapshot_id": "reaper:rpp:899bcfc0d9ba9d8d",
+  "created_at": "2026-07-08T11:15:46.234240+00:00",
   "source": {
     "daw": "reaper",
     "daw_version": "7.0",
     "adapter": "session-state-explorer-reaper",
-    "adapter_version": "0.4.0",
+    "adapter_version": "0.5.0",
     "capture_modes": [
       "file_parse"
     ]
@@ -1509,7 +1509,7 @@
         "properties": {}
       },
       "prov": {
-        "*": "prov:0002"
+        "*": "prov:0012"
       },
       "availability": {
         "identity": "UNKNOWN"
@@ -1621,6 +1621,16 @@
     },
     {
       "id": "rel:0013",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-1-0",
+      "target": "reaper:fx-1-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0014",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-2:channel",
       "target": "reaper:fx-2-0",
@@ -1630,7 +1640,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0014",
+      "id": "rel:0015",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-2:channel",
       "target": "reaper:fx-2-1",
@@ -1640,7 +1650,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0015",
+      "id": "rel:0016",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-2-0",
+      "target": "reaper:fx-2-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0017",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-3:channel",
       "target": "reaper:fx-3-0",
@@ -1650,7 +1670,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0016",
+      "id": "rel:0018",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-3:channel",
       "target": "reaper:fx-3-1",
@@ -1660,7 +1680,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0017",
+      "id": "rel:0019",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-3-0",
+      "target": "reaper:fx-3-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0020",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-3:channel",
       "target": "reaper:fx-3-2",
@@ -1670,7 +1700,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0018",
+      "id": "rel:0021",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-3-1",
+      "target": "reaper:fx-3-2",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0022",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-4:channel",
       "target": "reaper:fx-4-0",
@@ -1680,7 +1720,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0019",
+      "id": "rel:0023",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-4:channel",
       "target": "reaper:fx-4-1",
@@ -1690,7 +1730,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0020",
+      "id": "rel:0024",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-4-0",
+      "target": "reaper:fx-4-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0025",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-5:channel",
       "target": "reaper:fx-5-0",
@@ -1700,7 +1750,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0021",
+      "id": "rel:0026",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-5:channel",
       "target": "reaper:fx-5-1",
@@ -1710,7 +1760,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0022",
+      "id": "rel:0027",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-5-0",
+      "target": "reaper:fx-5-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0028",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-0",
@@ -1720,7 +1780,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0023",
+      "id": "rel:0029",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-1",
@@ -1730,7 +1790,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0024",
+      "id": "rel:0030",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-0",
+      "target": "reaper:fx-6-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0031",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-2",
@@ -1740,7 +1810,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0025",
+      "id": "rel:0032",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-1",
+      "target": "reaper:fx-6-2",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0033",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-3",
@@ -1750,7 +1830,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0026",
+      "id": "rel:0034",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-2",
+      "target": "reaper:fx-6-3",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0035",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-4",
@@ -1760,7 +1850,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0027",
+      "id": "rel:0036",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-3",
+      "target": "reaper:fx-6-4",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0037",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-5",
@@ -1770,7 +1870,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0028",
+      "id": "rel:0038",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-4",
+      "target": "reaper:fx-6-5",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0039",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-6:channel",
       "target": "reaper:fx-6-6",
@@ -1780,7 +1890,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0029",
+      "id": "rel:0040",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-6-5",
+      "target": "reaper:fx-6-6",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0041",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-7:channel",
       "target": "reaper:fx-7-0",
@@ -1790,7 +1910,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0030",
+      "id": "rel:0042",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-7:channel",
       "target": "reaper:fx-7-1",
@@ -1800,7 +1920,17 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0031",
+      "id": "rel:0043",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-7-0",
+      "target": "reaper:fx-7-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0044",
       "rel_type": "CHANNEL_PROCESSED_BY",
       "source": "reaper:track-8:channel",
       "target": "reaper:fx-8-0",
@@ -1810,7 +1940,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0032",
+      "id": "rel:0045",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-0",
       "target": "reaper:item-0-0",
@@ -1818,7 +1948,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0033",
+      "id": "rel:0046",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-0-0",
       "target": "asset:audio_lead_vox_wav",
@@ -1826,7 +1956,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0034",
+      "id": "rel:0047",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-1",
       "target": "reaper:item-1-0",
@@ -1834,7 +1964,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0035",
+      "id": "rel:0048",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-1-0",
       "target": "asset:audio_bgv_wav",
@@ -1842,7 +1972,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0036",
+      "id": "rel:0049",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-2",
       "target": "reaper:item-2-0",
@@ -1850,7 +1980,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0037",
+      "id": "rel:0050",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-2-0",
       "target": "asset:audio_kick_wav",
@@ -1858,7 +1988,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0038",
+      "id": "rel:0051",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-3",
       "target": "reaper:item-3-0",
@@ -1866,7 +1996,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0039",
+      "id": "rel:0052",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-3-0",
       "target": "asset:audio_snare_wav",
@@ -1874,7 +2004,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0040",
+      "id": "rel:0053",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-4",
       "target": "reaper:item-4-0",
@@ -1882,7 +2012,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0041",
+      "id": "rel:0054",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-4-0",
       "target": "asset:audio_bass_wav",
@@ -1890,7 +2020,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0042",
+      "id": "rel:0055",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-5",
       "target": "reaper:item-5-0",
@@ -1898,7 +2028,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0043",
+      "id": "rel:0056",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-5-0",
       "target": "asset:audio_guitar_wav",
@@ -1906,7 +2036,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0044",
+      "id": "rel:0057",
       "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
       "source": "reaper:track-7",
       "target": "reaper:item-7-0",
@@ -1914,7 +2044,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0045",
+      "id": "rel:0058",
       "rel_type": "REFERENCES_ASSET",
       "source": "reaper:item-7-0",
       "target": "asset:audio_perc_wav",
@@ -1922,7 +2052,7 @@
       "prov_ref": "prov:0002"
     },
     {
-      "id": "rel:0046",
+      "id": "rel:0059",
       "rel_type": "CHANNEL_SENDS_TO",
       "source": "reaper:track-2:channel",
       "target": "reaper:track-8:channel",
@@ -1932,12 +2062,25 @@
         "volume": 1.0,
         "volume_db": 0.0,
         "pan": 0.0,
-        "mute": false
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "audio_enabled": true
       },
-      "prov_ref": "prov:0002"
+      "prov_ref": "prov:0012"
     },
     {
-      "id": "rel:0047",
+      "id": "rel:0060",
       "rel_type": "CHANNEL_SENDS_TO",
       "source": "reaper:track-3:channel",
       "target": "reaper:track-8:channel",
@@ -1947,12 +2090,25 @@
         "volume": 1.0,
         "volume_db": 0.0,
         "pan": 0.0,
-        "mute": false
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "audio_enabled": true
       },
-      "prov_ref": "prov:0002"
+      "prov_ref": "prov:0012"
     },
     {
-      "id": "rel:0048",
+      "id": "rel:0061",
       "rel_type": "CHANNEL_SENDS_TO",
       "source": "reaper:track-7:channel",
       "target": "reaper:track-8:channel",
@@ -1962,12 +2118,25 @@
         "volume": 1.0,
         "volume_db": 0.0,
         "pan": 0.0,
-        "mute": false
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "audio_enabled": true
       },
-      "prov_ref": "prov:0002"
+      "prov_ref": "prov:0012"
     },
     {
-      "id": "rel:0049",
+      "id": "rel:0062",
       "rel_type": "CHANNEL_ROUTES_TO",
       "source": "reaper:route-3",
       "target": "reaper:track-8:channel",
@@ -1977,9 +2146,22 @@
         "volume": 1.0,
         "volume_db": 0.0,
         "pan": 0.0,
-        "mute": false
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "audio_enabled": true
       },
-      "prov_ref": "prov:0002"
+      "prov_ref": "prov:0012"
     }
   ],
   "temporal_state": {},
@@ -2047,11 +2229,11 @@
           },
           "folder_hierarchy": {
             "applicability": "APPLICABLE",
-            "support": "NONE",
-            "capture_method": null,
-            "source_stability": null,
-            "tested_daw_version": null,
-            "validation_status": "UNTESTED"
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
           }
         }
       },
@@ -2176,6 +2358,22 @@
           "send_mode": {
             "applicability": "APPLICABLE",
             "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_channels": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_midi_flags": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
             "capture_method": "rpp_parse",
             "source_stability": "COMMUNITY_DOCUMENTED",
             "tested_daw_version": "7.0",
@@ -2355,7 +2553,7 @@
     "daw": "reaper",
     "daw_version": "7.0",
     "adapter": "session-state-explorer-reaper",
-    "adapter_version": "0.4.0",
+    "adapter_version": "0.5.0",
     "notes": [
       "Capabilities describe the .rpp file-parse pathway only.",
       "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",
@@ -2387,6 +2585,13 @@
     "routing": {
       "applicable": 4,
       "observed": 4,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
       "inferred": 0,
       "hidden": 0,
       "unsupported": 0
@@ -2502,6 +2707,16 @@
       "confidence": 0.6,
       "explanation": "Role inferred from the track name 'Drum Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
       "warnings": []
+    },
+    {
+      "id": "prov:0012",
+      "evidence": "OBSERVED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "Per-send channel/MIDI mapping decoded from the packed AUXRECV bitfields (SDK I_SRCCHAN/I_DSTCHAN/I_MIDIFLAGS); the raw packed values are preserved alongside the decoded channel lists.",
+      "warnings": []
     }
   ],
   "extensions": {
@@ -2515,7 +2730,7 @@
       },
       "native_file": {
         "path": "native.json",
-        "sha256": "0be2dc3f8b93b5c8874b158b91a480b66d3b399541a8a143b80b3b76edec6c56"
+        "sha256": "23893e0849f749e03e41f3e19aa1909d18f9d6968fc5ecdbc70c5c4e6d316abf"
       }
     }
   },

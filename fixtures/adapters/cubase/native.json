@@ -102,6 +102,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-ch-grp",
+        "controls": [],
         "clips": [],
         "devices": [
           {
@@ -286,6 +287,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-ch-grp",
+        "controls": [],
         "clips": [],
         "devices": [
           {
@@ -399,6 +401,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-master",
+        "controls": [],
         "clips": [
           {
             "provenance": {
@@ -619,8 +622,38 @@
               "explanation": null,
               "alternatives": []
             },
-            "field_provenance": {},
-            "native": {},
+            "field_provenance": {
+              "channel_count": {
+                "status": "exported",
+                "confidence": 1.0,
+                "source": {
+                  "type": "dawproject",
+                  "artifact": null,
+                  "locator": "Channel[ch-fx1]@audioChannels",
+                  "evidence": null
+                },
+                "explanation": null,
+                "alternatives": []
+              },
+              "channel_layout": {
+                "status": "exported",
+                "confidence": 1.0,
+                "source": {
+                  "type": "dawproject",
+                  "artifact": null,
+                  "locator": "Channel[ch-fx1]@audioChannels",
+                  "evidence": null
+                },
+                "explanation": null,
+                "alternatives": []
+              }
+            },
+            "native": {
+              "cubase": {
+                "destination_audio_channels": 2,
+                "source_audio_channels": 2
+              }
+            },
             "raw_source": {
               "dawproject_destination": "ch-fx1"
             },
@@ -631,7 +664,10 @@
             "level_db": -12.04,
             "pan": null,
             "enabled": true,
-            "pre_fader": false
+            "pre_fader": false,
+            "destination_channel_id": "ch-fx1",
+            "channel_count": 2,
+            "channel_layout": "stereo"
           }
         ]
       },
@@ -699,6 +735,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-master",
+        "controls": [],
         "clips": [
           {
             "provenance": {
@@ -893,6 +930,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-master",
+        "controls": [],
         "clips": [],
         "devices": [
           {
@@ -1021,6 +1059,7 @@
         "frozen": null,
         "channel_config": "stereo",
         "output_target_id": "cubase:track-tr-master",
+        "controls": [],
         "clips": [],
         "devices": [],
         "sends": []
@@ -1078,6 +1117,7 @@
       "frozen": null,
       "channel_config": "stereo",
       "output_target_id": null,
+      "controls": [],
       "clips": [],
       "devices": [],
       "sends": []
