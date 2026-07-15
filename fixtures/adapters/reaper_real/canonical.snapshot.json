@@ -1,0 +1,5352 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_id": "reaper:rpp:5c7fe14b3e3b3a57",
+  "created_at": "2018-08-03T00:11:54+00:00",
+  "source": {
+    "daw": "reaper",
+    "daw_version": "5.93",
+    "adapter": "session-state-explorer-reaper",
+    "adapter_version": "0.5.0",
+    "capture_modes": [
+      "file_parse"
+    ]
+  },
+  "project": "reaper:project",
+  "entities": [
+    {
+      "id": "reaper:project",
+      "entity_type": "PROJECT",
+      "name": "Planet Telex Scheffler",
+      "semantic_roles": [],
+      "properties": {
+        "tempo": 149.0,
+        "time_signature": "4/4",
+        "sample_rate": 44100,
+        "source_file": "~/Library/CloudStorage/OneDrive-Personal/Documents/Planet Telex Scheffler/Planet Telex Scheffler.rpp"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "project",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0001"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-0",
+      "entity_type": "TRACK",
+      "name": "Vocal Main",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 0,
+        "color": "#f0e465"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME \"Vocal Main\"",
+            "    PEAKCOL 23454960",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {B113F04F-276D-4217-8946-729EAC58B6E3}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0003",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-0:channel",
+      "entity_type": "CHANNEL",
+      "name": "Vocal Main",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-1",
+      "entity_type": "TRACK",
+      "name": "Vocal Main Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 1,
+        "color": "#6e64bb"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Vocal Main Bus\"",
+            "    PEAKCOL 29058158",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {89C8AFB6-1781-4B4A-AB44-6D09E7394E6C}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0005",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-1:channel",
+      "entity_type": "CHANNEL",
+      "name": "Vocal Main Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-2",
+      "entity_type": "TRACK",
+      "name": "Vocal Backup",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "vocal_source"
+      ],
+      "properties": {
+        "index": 2,
+        "color": "#c1c021"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME \"Vocal Backup\"",
+            "    PEAKCOL 18989249",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {7FF73B70-8527-4E95-8500-E25E2F50FC3F}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0007",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-2:channel",
+      "entity_type": "CHANNEL",
+      "name": "Vocal Backup",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-3",
+      "entity_type": "TRACK",
+      "name": "Vocal Backup Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 3,
+        "color": "#527c30"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Vocal Backup Bus\"",
+            "    PEAKCOL 19954770",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {9B85203B-CD3A-4E63-9A44-622FDD80690A}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0008",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-3:channel",
+      "entity_type": "CHANNEL",
+      "name": "Vocal Backup Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-4",
+      "entity_type": "TRACK",
+      "name": "Guitar Intro",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "guitar_source"
+      ],
+      "properties": {
+        "index": 4,
+        "color": "#2b44d4"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME \"Guitar Intro\"",
+            "    PEAKCOL 30688299",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 1 1 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {E0EE399B-B0D8-497B-99AA-6C08CB327FE0}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 0 0 1138 951",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357",
+            "      PRESETNAME \"no sound\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {37C7B3D7-6EAE-467A-8849-776832669043}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaDelay (Cockos)\" readelay.dll 0 \"\" 1919247468",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {2C5BC956-C6A6-4544-9DE1-64ADAFC9B2F9}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaVerbate (Cockos)\" reaverbate.dll 0 \"\" 1920361016",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {5C6948D1-F92E-44CA-93B6-99619294A35E}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Fender or Mesa\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {7DDF10CF-9B61-4229-A659-AD211425F3F6}",
+            "      WAK 0",
+            "    >",
+            "    <ITEM",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0009",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-4:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Intro",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-5",
+      "entity_type": "TRACK",
+      "name": "",
+      "semantic_roles": [
+        "unknown"
+      ],
+      "properties": {
+        "index": 5,
+        "color": "#807863"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"\"",
+            "    PEAKCOL 23296128",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {4F968ECA-485C-4CB6-8B0E-2E7E31192A46}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0010",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-5:channel",
+      "entity_type": "CHANNEL",
+      "name": "",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-6",
+      "entity_type": "TRACK",
+      "name": "Guitar Main Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 6,
+        "color": "#aa3ca8"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Guitar Main Bus\"",
+            "    PEAKCOL 27802794",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {A1F9336F-5988-4B04-83D8-9C0314BB109C}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0011",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-6:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Main Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-7",
+      "entity_type": "TRACK",
+      "name": "Guitar Verse",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "guitar_source"
+      ],
+      "properties": {
+        "index": 7,
+        "color": "#2b44d4"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME \"Guitar Verse\"",
+            "    PEAKCOL 30688299",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 1",
+            "    REC 0 0 1 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {EE281B92-FE6D-4802-AB30-35805AE84ABF}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 0 0 1138 843",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357",
+            "      PRESETNAME \"Over Stacked\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {C0847661-CCC8-46C4-84C5-D59A5BE74F5B}",
+            "      WAK 0",
+            "    >",
+            "    <ITEM",
+            "    <ITEM",
+            "    <ITEM",
+            "    <ITEM",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0012",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-7:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Verse",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-8",
+      "entity_type": "TRACK",
+      "name": "",
+      "semantic_roles": [
+        "unknown"
+      ],
+      "properties": {
+        "index": 8,
+        "color": "#807863"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"\"",
+            "    PEAKCOL 23296128",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {DE45B50D-45BA-4666-A780-A8621731E9F3}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0010",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-8:channel",
+      "entity_type": "CHANNEL",
+      "name": "",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-9",
+      "entity_type": "TRACK",
+      "name": "Guitar Main Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 9,
+        "color": "#aa3ca8"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Guitar Main Bus\"",
+            "    PEAKCOL 27802794",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {232A0691-3C88-4B34-B2C1-7EAE79FD1204}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0011",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-9:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Main Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-10",
+      "entity_type": "TRACK",
+      "name": "Guitar Rhythm",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "guitar_source"
+      ],
+      "properties": {
+        "index": 10,
+        "color": "#823a44"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME \"Guitar Rhythm\"",
+            "    PEAKCOL 21248642",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {ACC87378-C24F-407C-888F-7BBB0103C84B}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0013",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-10:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Rhythm",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-11",
+      "entity_type": "TRACK",
+      "name": "Guitar Rhythm Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 11,
+        "color": "#6e524c"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Guitar Rhythm Bus\"",
+            "    PEAKCOL 21779054",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {0D090E19-93A0-4239-AD0D-2011FE56E57D}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0014",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-11:channel",
+      "entity_type": "CHANNEL",
+      "name": "Guitar Rhythm Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-12",
+      "entity_type": "TRACK",
+      "name": "Bass",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "bass_source"
+      ],
+      "properties": {
+        "index": 12,
+        "color": "#d20e62"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME Bass",
+            "    PEAKCOL 23203538",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 2 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 1 1 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {A3F2140E-7B5C-4AB4-BE9C-4EF52CC2581D}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 0 0 647 466",
+            "      SHOW 0",
+            "      LASTSEL 1",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357",
+            "      PRESETNAME \"no sound\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {A51C8FBC-316A-48A5-9C82-FAEFD856E2D5}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Rock Bass\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {AB099615-5837-47E2-84B8-10457698BBC7}",
+            "      WAK 0",
+            "    >",
+            "    <ITEM",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0015",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-12:channel",
+      "entity_type": "CHANNEL",
+      "name": "Bass",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-13",
+      "entity_type": "TRACK",
+      "name": "Bass Bus",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 13,
+        "color": "#f5b71a"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME \"Bass Bus\"",
+            "    PEAKCOL 18528245",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {18A35521-65F9-47D9-B835-5026E6AFD897}",
+            "    PERF 0",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0016",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-13:channel",
+      "entity_type": "CHANNEL",
+      "name": "Bass Bus",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-14",
+      "entity_type": "TRACK",
+      "name": "DRUMS",
+      "semantic_roles": [
+        "submix",
+        "folder_parent",
+        "drum_source"
+      ],
+      "properties": {
+        "index": 14,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {
+          "volume": 0.70768975514008,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 1,
+          "folder_depth": 1,
+          "raw_source": [
+            "    NAME DRUMS",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.70768975514008 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 1 1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {A7B242EB-5BA7-49B3-9F08-36EB65855841}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"06. Folder\"",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 24 52 655 403",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaComp (Cockos)\" reacomp.dll 0 \"\" 1919247213",
+            "      PRESETNAME \"stock - NY Drum Buss\"",
+            "      FLOATPOS 24 52 511 385",
+            "      FXID {C6E41897-CF34-41A5-B09B-BBCD7B609A5A}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <JS SStillwell/badbussmojo \"\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {3ABA7C93-B886-4AD6-9EAA-76A4B4B3AC12}",
+            "      WAK 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {8DC67DE2-0C38-400A-A0C4-AC51127FA126}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0017",
+        "sums_children": "prov:0004"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-14:channel",
+      "entity_type": "CHANNEL",
+      "name": "DRUMS",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "volume_db": -3.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "group",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-15",
+      "entity_type": "TRACK",
+      "name": "MT-PowerDrumKit",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 15,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 1.0,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": false,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME MT-PowerDrumKit",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 1 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 5088 1 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 16",
+            "    FX 1",
+            "    TRACKID {D2B8D4E4-524E-4A90-8B39-94A8FDD4632B}",
+            "    PERF 0",
+            "    LAYOUTS \"02. Folder\" \"05. Narrow\"",
+            "    MIDIOUT -1",
+            "    MAINSEND 0 0",
+            "    <FXCHAIN",
+            "      WNDRECT 203 0 506 258",
+            "      SHOW 2",
+            "      LASTSEL 1",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VSTi: MT-PowerDrumKit (powerdrumkit.com) (1->16ch)\" MT-PowerDrumKit.dll 0 \"\" 1297371204",
+            "      PRESETNAME MT-PowerDrumKit",
+            "      FLOATPOS 24 52 962 644",
+            "      FXID {C71666F5-A3DB-4582-A046-2F9F53233C21}",
+            "      WAK 0",
+            "      BYPASS 1 0 0",
+            "      <VST \"VSTi: Kontakt 5 (Native Instruments GmbH) (8 out)\" \"Kontakt 5 8out.dll\" 0 \"\" 1315524406",
+            "      PRESETNAME \"Stadium Kit - Full\"",
+            "      FLOATPOS 0 0 0 0",
+            "      FXID {686EC29D-F5E2-455A-A81C-955F32AAFBAA}",
+            "      WAK 0",
+            "    >",
+            "    <ITEM",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0018",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-15:channel",
+      "entity_type": "CHANNEL",
+      "name": "MT-PowerDrumKit",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-16",
+      "entity_type": "TRACK",
+      "name": "KICK",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 16,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.85934527109182,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME KICK",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.85934527109182 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {BE7DFB94-E2F0-4199-9F10-C792A1981762}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 0 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      FLOATPOS 24 52 544 415",
+            "      FXID {0CB39848-F795-43F5-A414-7A50CB1D8DC2}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0019",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-16:channel",
+      "entity_type": "CHANNEL",
+      "name": "KICK",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -1.32,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-17",
+      "entity_type": "TRACK",
+      "name": "SNARE ",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 17,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.9368544752301,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"SNARE \"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.9368544752301 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {019082C4-7587-4F47-92C2-1CE612BE8591}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 2 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Rock Snare\"",
+            "      FLOATPOS 578 52 544 415",
+            "      FXID {6907D37C-CE76-4B8F-BCC4-C130E9ABB0AD}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0020",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-17:channel",
+      "entity_type": "CHANNEL",
+      "name": "SNARE ",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -0.57,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-18",
+      "entity_type": "TRACK",
+      "name": "HIHAT",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 18,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.45758794839157,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME HIHAT",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.45758794839157 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {BF69CEF8-295B-495B-A7F2-7F7BE93B1878}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 4 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0021",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-18:channel",
+      "entity_type": "CHANNEL",
+      "name": "HIHAT",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -6.79,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-19",
+      "entity_type": "TRACK",
+      "name": "TOM 1",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 19,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.36145304360085,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"TOM 1\"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.36145304360085 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {3EA27558-6BB3-48E1-B0DF-DB28C7C902EE}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 6 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Toms\"",
+            "      FLOATPOS 634 145 544 415",
+            "      FXID {FC520478-3492-4BE0-B036-A0A27777D2BC}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0022",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-19:channel",
+      "entity_type": "CHANNEL",
+      "name": "TOM 1",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -8.84,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-20",
+      "entity_type": "TRACK",
+      "name": "TOM 2",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 20,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.39230860240568,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"TOM 2\"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.39230860240568 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {76DA5BA4-9EF3-48C8-9DA0-DF98F493FA86}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 8 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Toms\"",
+            "      FLOATPOS 602 113 544 415",
+            "      FXID {EAD34B89-714A-407E-8802-D50F5DA671BD}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0023",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-20:channel",
+      "entity_type": "CHANNEL",
+      "name": "TOM 2",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -8.13,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-21",
+      "entity_type": "TRACK",
+      "name": "TOM 3",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 21,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.36421337470346,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"TOM 3\"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.36421337470346 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {C03E3296-7D0D-4EAC-A61B-9C71088970A7}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 10 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Toms\"",
+            "      FLOATPOS 718 227 544 415",
+            "      FXID {B1AA9327-063E-4307-B5A4-792E432F98AF}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0024",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-21:channel",
+      "entity_type": "CHANNEL",
+      "name": "TOM 3",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -8.77,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-22",
+      "entity_type": "TRACK",
+      "name": "RIDE CYMBALS",
+      "semantic_roles": [
+        "drum_source"
+      ],
+      "properties": {
+        "index": 22,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.34425056342066,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"RIDE CYMBALS\"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.34425056342066 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {4DEEA4E0-C31C-4BFE-8C00-53D5B7DCBD26}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 12 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 24 52 755 462",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729",
+            "      PRESETNAME \"stock - Basic 11 band Cymbals\"",
+            "      FLOATPOS 56 84 544 415",
+            "      FXID {626CB00A-1700-4F2E-9B71-03E6F6182BA1}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0025",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-22:channel",
+      "entity_type": "CHANNEL",
+      "name": "RIDE CYMBALS",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -9.26,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-23",
+      "entity_type": "TRACK",
+      "name": "CRASH AND CHINA",
+      "semantic_roles": [
+        "unknown"
+      ],
+      "properties": {
+        "index": 23,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.39697564080457,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 0,
+          "folder_depth": 0,
+          "raw_source": [
+            "    NAME \"CRASH AND CHINA\"",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.39697564080457 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 0 0",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {BD4479CB-802D-4DFB-B684-667E093266E4}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 15 3 1 0 0 0 0 14 0 -1:U 31 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0026",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-23:channel",
+      "entity_type": "CHANNEL",
+      "name": "CRASH AND CHINA",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -8.02,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-24",
+      "entity_type": "TRACK",
+      "name": "Drum-Verb",
+      "semantic_roles": [
+        "submix"
+      ],
+      "properties": {
+        "index": 24,
+        "color": "#02b029"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "volume": 0.3423974474799,
+          "pan_law": -1.0,
+          "width": 1.0,
+          "solo_mode": 0,
+          "solo_defeat": false,
+          "main_send": true,
+          "folder_state": 2,
+          "folder_depth": -1,
+          "raw_source": [
+            "    NAME Drum-Verb",
+            "    PEAKCOL 19509250",
+            "    BEAT -1",
+            "    AUTOMODE 0",
+            "    VOLPAN 0.3423974474799 0 -1 -1 1",
+            "    MUTESOLO 0 0 0",
+            "    IPHASE 0",
+            "    ISBUS 2 -1",
+            "    BUSCOMP 0 0",
+            "    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0",
+            "    FREEMODE 0",
+            "    SEL 0",
+            "    REC 0 0 0 0 0 0 0",
+            "    VU 2",
+            "    TRACKHEIGHT 0 0 0",
+            "    INQ 0 0 0 0.5 100 0 0 100",
+            "    NCHAN 2",
+            "    FX 1",
+            "    TRACKID {7EFDC192-F607-4033-93B4-3F9AD80F8738}",
+            "    PERF 0",
+            "    LAYOUTS \"\" \"03. Compact\"",
+            "    AUXRECV 17 0 0.61086598522811 0 0 0 0 0 0 -1:U 0 -1 ''",
+            "    AUXRECV 19 0 0.4871353089801 0 0 0 0 0 0 -1:U 0 -1 ''",
+            "    AUXRECV 20 0 0.4871353089801 0 0 0 0 0 0 -1:U 0 -1 ''",
+            "    AUXRECV 21 0 0.38096602976071 0 0 0 0 0 0 -1:U 0 -1 ''",
+            "    MIDIOUT -1",
+            "    MAINSEND 1 0",
+            "    <FXCHAIN",
+            "      WNDRECT 1136 262 655 403",
+            "      SHOW 0",
+            "      LASTSEL 0",
+            "      DOCKED 0",
+            "      BYPASS 0 0 0",
+            "      <VST \"VST: ReaVerbate (Cockos)\" reaverbate.dll 0 \"\" 1920361016",
+            "      PRESETNAME \"sink - wide wide\"",
+            "      FLOATPOS 657 281 433 294",
+            "      FXID {B5B540D7-36C1-469D-99BE-3B3F4EDD55B4}",
+            "      WAK 0",
+            "    >",
+            "  >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002",
+        "semantic_roles": "prov:0027",
+        "group_id": "prov:0006"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:track-24:channel",
+      "entity_type": "CHANNEL",
+      "name": "Drum-Verb",
+      "semantic_roles": [],
+      "properties": {
+        "volume_db": -9.31,
+        "pan": 0.0,
+        "mute": false,
+        "solo": false
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: Guitar Rig 5 (Native Instruments GmbH)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "no sound",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaDelay (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaDelay (Cockos)\" readelay.dll 0 \"\" 1919247468"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-2",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaVerbate (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaVerbate (Cockos)\" reaverbate.dll 0 \"\" 1920361016"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-4-3",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Fender or Mesa",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-7-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: Guitar Rig 5 (Native Instruments GmbH)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "Over Stacked",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-12-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: Guitar Rig 5 (Native Instruments GmbH)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "no sound",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: Guitar Rig 5 (Native Instruments GmbH)\" \"Guitar Rig 5.dll\" 0 \"\" 1315522357"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-12-1",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Rock Bass",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-14-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaComp (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Dynamics",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - NY Drum Buss",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaComp (Cockos)\" reacomp.dll 0 \"\" 1919247213"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-14-1",
+      "entity_type": "PROCESSOR",
+      "name": "SStillwell/badbussmojo",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "JS",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "JS",
+        "properties": {
+          "raw_source": "      <JS SStillwell/badbussmojo \"\""
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-14-2",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-15-0",
+      "entity_type": "PROCESSOR",
+      "name": "VSTi: MT-PowerDrumKit (powerdrumkit.com) (1->16ch)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "MT-PowerDrumKit",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VSTi: MT-PowerDrumKit (powerdrumkit.com) (1->16ch)\" MT-PowerDrumKit.dll 0 \"\" 1297371204"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-15-1",
+      "entity_type": "PROCESSOR",
+      "name": "VSTi: Kontakt 5 (Native Instruments GmbH) (8 out)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Unknown",
+        "kind": "VST",
+        "enabled": false,
+        "offline": false,
+        "preset": "Stadium Kit - Full",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VSTi: Kontakt 5 (Native Instruments GmbH) (8 out)\" \"Kontakt 5 8out.dll\" 0 \"\" 1315524406"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-16-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-17-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Rock Snare",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-19-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Toms",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-20-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Toms",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-21-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Toms",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-22-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaEQ (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "EQ",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "stock - Basic 11 band Cymbals",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaEQ (Cockos)\" reaeq.dll 0 \"\" 1919247729"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:fx-24-0",
+      "entity_type": "PROCESSOR",
+      "name": "VST: ReaVerbate (Cockos)",
+      "semantic_roles": [],
+      "properties": {
+        "family": "Ambience",
+        "kind": "VST",
+        "enabled": true,
+        "offline": false,
+        "preset": "sink - wide wide",
+        "chain": "main"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "VST",
+        "properties": {
+          "raw_source": "      <VST \"VST: ReaVerbate (Cockos)\" reaverbate.dll 0 \"\" 1920361016"
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-4-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "05-Guitar lead-180407_1635-02-glued-04.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 0.0,
+        "length_seconds": 25.77179138321996,
+        "source_type": "WAVE",
+        "audio_file": "05-Guitar lead-180407_1635-02-glued-04.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      SNAPOFFS 0",
+            "      LENGTH 25.77179138321996",
+            "      LOOP 1",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {36FABE1F-204C-4DF0-B18E-4F6A7AEE8487}",
+            "      IID 15",
+            "      NAME \"05-Guitar lead-180407_1635-02-glued-04.wav\"",
+            "      VOLPAN 1 0 1 -1",
+            "      SOFFS 0",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      GUID {B7DFCC40-672B-4912-B2EA-E5A5A56B6FDB}",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:05_guitar_lead_180407_1635_02_glued_04_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "05-Guitar lead-180407_1635-02-glued-04.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "05-Guitar lead-180407_1635-02-glued-04.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-7-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "08-Guitar Verse-180728_2059.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 25.77181208053691,
+        "length_seconds": 12.88590604026846,
+        "source_type": "WAVE",
+        "audio_file": "08-Guitar Verse-180407_1706-01-glued.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 25.77181208053691",
+            "      SNAPOFFS 0",
+            "      LENGTH 12.88590604026846",
+            "      LOOP 1",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0.01 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {1B0FD09D-0416-4817-AC80-F60DA75195FC}",
+            "      IID 19",
+            "      NAME \"08-Guitar Verse-180407_1706-01-glued.wav\"",
+            "      VOLPAN 1 0 1 -1",
+            "      SOFFS 0",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      GUID {1D847A6D-6397-451D-BE46-95D9D31B09DD}",
+            "      <SOURCE WAVE",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2055.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 3.22754904198816",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 29719801 R",
+            "      GUID {F4D652DF-02CD-4D8F-BC36-1E9863E420BF}",
+            "      RECPASS 2",
+            "      <SOURCE WAVE",
+            "      TAKE SEL",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 3.22755102040816",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 19449261 R",
+            "      GUID {54B0B978-D2F0-4673-AD15-FC8BBD2AFA9C}",
+            "      RECPASS 3",
+            "      <SOURCE WAVE",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 28.99938775510204",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 30345606 R",
+            "      GUID {D483D340-3279-4289-AFD1-FB15BE673FCC}",
+            "      RECPASS 4",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:08_guitar_verse_180407_1706_01_glued_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "08-Guitar Verse-180407_1706-01-glued.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "08-Guitar Verse-180407_1706-01-glued.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-7-1",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "08-Guitar Verse-180728_2059.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 38.65770975056689,
+        "length_seconds": 6.4429613903727,
+        "source_type": "WAVE",
+        "audio_file": "08-Guitar Verse-180728_2053.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 38.65770975056689",
+            "      SNAPOFFS 0",
+            "      LENGTH 6.4429613903727",
+            "      LOOP 0",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0.01 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {0B7D73FC-0EFC-466A-99C3-81F53B0F7664}",
+            "      IID 24",
+            "      NAME \"08-Guitar Verse-180728_2053.wav\"",
+            "      VOLPAN 1 0 1 -1",
+            "      SOFFS 3.22755102040816",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      GUID {8C46D11E-95F3-4FB7-B881-E1CFE4471141}",
+            "      RECPASS 1",
+            "      <SOURCE WAVE",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2055.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 16.11344671201814",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 29719801 R",
+            "      GUID {9C9D49DE-90B2-44A7-B5DD-CEC924614133}",
+            "      RECPASS 2",
+            "      <SOURCE WAVE",
+            "      TAKE SEL",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 16.11344869043815",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 19449261 R",
+            "      GUID {1C516198-4FDC-4E78-B0DD-2C74ACE79791}",
+            "      RECPASS 3",
+            "      <SOURCE WAVE",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 41.88528542513203",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 30345606 R",
+            "      GUID {1560ED9B-5AFD-4041-B793-7AC4FAFD5942}",
+            "      RECPASS 4",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:08_guitar_verse_180728_2053_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "08-Guitar Verse-180728_2053.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "08-Guitar Verse-180728_2053.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-7-2",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "08-Guitar Verse-180728_2059.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 45.1006711409396,
+        "length_seconds": 6.44295302013423,
+        "source_type": "WAVE",
+        "audio_file": "08-Guitar Verse-180728_2055.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 45.1006711409396",
+            "      SNAPOFFS 0",
+            "      LENGTH 6.44295302013423",
+            "      LOOP 0",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0.01 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {4DCDB50D-A59C-4EC0-AB6D-041E00E62893}",
+            "      IID 25",
+            "      VOLPAN 1",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2055.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 22.55640810239084",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 29719801 R",
+            "      GUID {D482CF45-4B8E-4C58-ABC0-C198020457AA}",
+            "      RECPASS 2",
+            "      <SOURCE WAVE",
+            "      TAKE SEL",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 22.55641008081085",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 19449261 R",
+            "      GUID {451EDEFA-DAFE-4282-9A06-A59A7EA17587}",
+            "      RECPASS 3",
+            "      <SOURCE WAVE",
+            "      TAKE",
+            "      NAME \"08-Guitar Verse-180728_2059.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 48.32824681550473",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 30345606 R",
+            "      GUID {96F54AED-DEE3-4434-BD84-F4FDC58DC605}",
+            "      RECPASS 4",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:08_guitar_verse_180728_2055_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "08-Guitar Verse-180728_2055.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "08-Guitar Verse-180728_2055.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-7-3",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "08-Guitar Verse-180728_2055.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 51.54362416107382,
+        "length_seconds": 25.53125112237289,
+        "source_type": "WAVE",
+        "audio_file": "08-Guitar Verse-180728_2055.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 51.54362416107382",
+            "      SNAPOFFS 0",
+            "      LENGTH 25.53125112237289",
+            "      LOOP 1",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0.01 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 1",
+            "      IGUID {C3C8102E-602D-4822-9AC0-A2463131CC5B}",
+            "      IID 26",
+            "      VOLPAN 1",
+            "      TAKE SEL",
+            "      NAME \"08-Guitar Verse-180728_2055.wav\"",
+            "      TAKEVOLPAN 0 1 -1",
+            "      SOFFS 28.99936112252507",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      TAKECOLOR 29719801 R",
+            "      GUID {72709ACB-15BF-4247-933B-8D0ED560ACE3}",
+            "      RECPASS 2",
+            "      <SOURCE WAVE",
+            "      TAKE NULL",
+            "      TAKE NULL",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-12-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "13-Bass-180407_1714-03-glued.wav",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "audio",
+        "position_seconds": 12.88590604026846,
+        "length_seconds": 12.88588534295151,
+        "source_type": "WAVE",
+        "audio_file": "13-Bass-180407_1714-03-glued.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "audio",
+        "properties": {
+          "raw_source": [
+            "      POSITION 12.88590604026846",
+            "      SNAPOFFS 0",
+            "      LENGTH 12.88588534295151",
+            "      LOOP 1",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0.01 0 1 0 0",
+            "      FADEOUT 1 0.01 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {FBAC5060-5A13-4971-BD8A-B55822836895}",
+            "      IID 22",
+            "      NAME 13-Bass-180407_1714-03-glued.wav",
+            "      VOLPAN 1 0 1 -1",
+            "      SOFFS 6.44294784580498",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      GUID {31EC14C6-3BFE-4EC0-AC98-DD05FD20BAAA}",
+            "      <SOURCE WAVE",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "asset:13_bass_180407_1714_03_glued_wav",
+      "entity_type": "MEDIA_ASSET",
+      "name": "13-Bass-180407_1714-03-glued.wav",
+      "semantic_roles": [],
+      "properties": {
+        "path": "13-Bass-180407_1714-03-glued.wav"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "WAVE",
+        "properties": {}
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    },
+    {
+      "id": "reaper:item-15-0",
+      "entity_type": "TEMPORAL_OBJECT",
+      "name": "PLanet Telex Drums_export - PLanet Telex Drums_export.mid",
+      "semantic_roles": [],
+      "properties": {
+        "clip_type": "midi",
+        "position_seconds": 0.0,
+        "length_seconds": 258.12080536912754,
+        "source_type": "MIDI"
+      },
+      "native": {
+        "daw": "reaper",
+        "native_type": "midi",
+        "properties": {
+          "raw_source": [
+            "      POSITION 0",
+            "      SNAPOFFS 0",
+            "      LENGTH 258.12080536912754",
+            "      LOOP 1",
+            "      ALLTAKES 0",
+            "      FADEIN 1 0 0 1 0 0",
+            "      FADEOUT 1 0 0 1 0 0",
+            "      MUTE 0",
+            "      SEL 0",
+            "      IGUID {71994043-182F-4630-918B-A5DCC71A7A38}",
+            "      IID 5",
+            "      NAME \"PLanet Telex Drums_export - PLanet Telex Drums_export.mid\"",
+            "      VOLPAN 1 0 1 -1",
+            "      SOFFS 9.66442953020135 24",
+            "      PLAYRATE 1 1 0 -1 0 0.0025",
+            "      CHANMODE 0",
+            "      GUID {25404855-6985-4F5E-B020-BF0986E95D28}",
+            "      <SOURCE MIDI",
+            "    >"
+          ]
+        }
+      },
+      "prov": {
+        "*": "prov:0002"
+      },
+      "availability": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:0001",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-0",
+      "target": "reaper:track-0:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0002",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-1",
+      "target": "reaper:track-1:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0003",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-2",
+      "target": "reaper:track-2:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0004",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-3",
+      "target": "reaper:track-3:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0005",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-4",
+      "target": "reaper:track-4:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0006",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-5",
+      "target": "reaper:track-5:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0007",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-6",
+      "target": "reaper:track-6:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0008",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-7",
+      "target": "reaper:track-7:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0009",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-8",
+      "target": "reaper:track-8:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0010",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-9",
+      "target": "reaper:track-9:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0011",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-10",
+      "target": "reaper:track-10:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0012",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-11",
+      "target": "reaper:track-11:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0013",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-12",
+      "target": "reaper:track-12:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0014",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-13",
+      "target": "reaper:track-13:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0015",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-14",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0016",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-15",
+      "target": "reaper:track-15:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0017",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-16",
+      "target": "reaper:track-16:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0018",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-17",
+      "target": "reaper:track-17:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0019",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-18",
+      "target": "reaper:track-18:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0020",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-19",
+      "target": "reaper:track-19:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0021",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-20",
+      "target": "reaper:track-20:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0022",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-21",
+      "target": "reaper:track-21:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0023",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-22",
+      "target": "reaper:track-22:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0024",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-23",
+      "target": "reaper:track-23:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0025",
+      "rel_type": "TRACK_USES_CHANNEL",
+      "source": "reaper:track-24",
+      "target": "reaper:track-24:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0026",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-0",
+      "target": "reaper:track-1",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0027",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-1:channel",
+      "target": "reaper:track-0:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0028",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-1:channel",
+      "target": "reaper:track-0:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0029",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-2",
+      "target": "reaper:track-3",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0030",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:track-2:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0031",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-3:channel",
+      "target": "reaper:track-2:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0032",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-4",
+      "target": "reaper:track-5",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0033",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-5:channel",
+      "target": "reaper:track-4:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0034",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-5:channel",
+      "target": "reaper:track-4:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0035",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-4",
+      "target": "reaper:track-6",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0036",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:track-4:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0037",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-6:channel",
+      "target": "reaper:track-4:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0038",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-7",
+      "target": "reaper:track-8",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0039",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-8:channel",
+      "target": "reaper:track-7:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0040",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-8:channel",
+      "target": "reaper:track-7:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0041",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-7",
+      "target": "reaper:track-9",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0042",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-9:channel",
+      "target": "reaper:track-7:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0043",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-9:channel",
+      "target": "reaper:track-7:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0044",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-10",
+      "target": "reaper:track-11",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0045",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-11:channel",
+      "target": "reaper:track-10:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0046",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-11:channel",
+      "target": "reaper:track-10:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0047",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-12",
+      "target": "reaper:track-13",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0048",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-13:channel",
+      "target": "reaper:track-12:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0049",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-13:channel",
+      "target": "reaper:track-12:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0050",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-15",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0051",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0052",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0053",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-16",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0054",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-16:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0055",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-16:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0056",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-17",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0057",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-17:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0058",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-17:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0059",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-18",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0060",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-18:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0061",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-18:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0062",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-19",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0063",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-19:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0064",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-19:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0065",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-20",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0066",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-20:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0067",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-20:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0068",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-21",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0069",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-21:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0070",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-21:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0071",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-22",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0072",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-22:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0073",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-22:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0074",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-23",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0075",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-23:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0076",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-23:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0077",
+      "rel_type": "CONTAINS",
+      "source": "reaper:track-14",
+      "target": "reaper:track-24",
+      "properties": {
+        "kind": "group_member"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0078",
+      "rel_type": "CHANNEL_ROUTES_TO",
+      "source": "reaper:track-24:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {
+        "via": "group_sum"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0079",
+      "rel_type": "SUMS_TO",
+      "source": "reaper:track-24:channel",
+      "target": "reaper:track-14:channel",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0080",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0081",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0082",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-4-0",
+      "target": "reaper:fx-4-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0083",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-2",
+      "properties": {
+        "index": 2
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0084",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-4-1",
+      "target": "reaper:fx-4-2",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0085",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-4:channel",
+      "target": "reaper:fx-4-3",
+      "properties": {
+        "index": 3
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0086",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-4-2",
+      "target": "reaper:fx-4-3",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0087",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-7:channel",
+      "target": "reaper:fx-7-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0088",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-12:channel",
+      "target": "reaper:fx-12-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0089",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-12:channel",
+      "target": "reaper:fx-12-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0090",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-12-0",
+      "target": "reaper:fx-12-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0091",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-14:channel",
+      "target": "reaper:fx-14-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0092",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-14:channel",
+      "target": "reaper:fx-14-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0093",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-14-0",
+      "target": "reaper:fx-14-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0094",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-14:channel",
+      "target": "reaper:fx-14-2",
+      "properties": {
+        "index": 2
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0095",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-14-1",
+      "target": "reaper:fx-14-2",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0096",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:fx-15-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0097",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:fx-15-1",
+      "properties": {
+        "index": 1
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0098",
+      "rel_type": "PRECEDES",
+      "source": "reaper:fx-15-0",
+      "target": "reaper:fx-15-1",
+      "properties": {
+        "chain": "main"
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0099",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-16:channel",
+      "target": "reaper:fx-16-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0100",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-17:channel",
+      "target": "reaper:fx-17-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0101",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-19:channel",
+      "target": "reaper:fx-19-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0102",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-20:channel",
+      "target": "reaper:fx-20-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0103",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-21:channel",
+      "target": "reaper:fx-21-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0104",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-22:channel",
+      "target": "reaper:fx-22-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0105",
+      "rel_type": "CHANNEL_PROCESSED_BY",
+      "source": "reaper:track-24:channel",
+      "target": "reaper:fx-24-0",
+      "properties": {
+        "index": 0
+      },
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0106",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-4",
+      "target": "reaper:item-4-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0107",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-4-0",
+      "target": "asset:05_guitar_lead_180407_1635_02_glued_04_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0108",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-7",
+      "target": "reaper:item-7-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0109",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-7-0",
+      "target": "asset:08_guitar_verse_180407_1706_01_glued_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0110",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-7",
+      "target": "reaper:item-7-1",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0111",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-7-1",
+      "target": "asset:08_guitar_verse_180728_2053_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0112",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-7",
+      "target": "reaper:item-7-2",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0113",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-7-2",
+      "target": "asset:08_guitar_verse_180728_2055_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0114",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-7",
+      "target": "reaper:item-7-3",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0115",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-7-3",
+      "target": "asset:08_guitar_verse_180728_2055_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0116",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-12",
+      "target": "reaper:item-12-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0117",
+      "rel_type": "REFERENCES_ASSET",
+      "source": "reaper:item-12-0",
+      "target": "asset:13_bass_180407_1714_03_glued_wav",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0118",
+      "rel_type": "TRACK_CONTAINS_TEMPORAL_OBJECT",
+      "source": "reaper:track-15",
+      "target": "reaper:item-15-0",
+      "properties": {},
+      "prov_ref": "prov:0002"
+    },
+    {
+      "id": "rel:0119",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-16:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0120",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-17:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          2,
+          3
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 2,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0121",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-18:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          4,
+          5
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 4,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0122",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-19:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          6,
+          7
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 6,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0123",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-20:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          8,
+          9
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 8,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0124",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-21:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          10,
+          11
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 10,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0125",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-22:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          12,
+          13
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 12,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0126",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-15:channel",
+      "target": "reaper:track-23:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 3,
+        "volume": 1.0,
+        "volume_db": 0.0,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          14,
+          15
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 14,
+        "dst_channel": 0,
+        "midi_flags": 31,
+        "audio_enabled": true,
+        "midi_enabled": false
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0127",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-17:channel",
+      "target": "reaper:track-24:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 0.61086598522811,
+        "volume_db": -4.28,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "midi_flags": 0,
+        "audio_enabled": true,
+        "midi_enabled": true,
+        "midi_source_channel": "all",
+        "midi_target_channel": "source"
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0128",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-19:channel",
+      "target": "reaper:track-24:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 0.4871353089801,
+        "volume_db": -6.25,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "midi_flags": 0,
+        "audio_enabled": true,
+        "midi_enabled": true,
+        "midi_source_channel": "all",
+        "midi_target_channel": "source"
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0129",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-20:channel",
+      "target": "reaper:track-24:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 0.4871353089801,
+        "volume_db": -6.25,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "midi_flags": 0,
+        "audio_enabled": true,
+        "midi_enabled": true,
+        "midi_source_channel": "all",
+        "midi_target_channel": "source"
+      },
+      "prov_ref": "prov:0028"
+    },
+    {
+      "id": "rel:0130",
+      "rel_type": "CHANNEL_SENDS_TO",
+      "source": "reaper:track-21:channel",
+      "target": "reaper:track-24:channel",
+      "properties": {
+        "route_type": "send",
+        "send_mode": 0,
+        "volume": 0.38096602976071,
+        "volume_db": -8.38,
+        "pan": 0.0,
+        "mute": false,
+        "source_channels": [
+          0,
+          1
+        ],
+        "target_channels": [
+          0,
+          1
+        ],
+        "channel_count": 2,
+        "channel_layout": "stereo",
+        "src_channel": 0,
+        "dst_channel": 0,
+        "midi_flags": 0,
+        "audio_enabled": true,
+        "midi_enabled": true,
+        "midi_source_channel": "all",
+        "midi_target_channel": "source"
+      },
+      "prov_ref": "prov:0028"
+    }
+  ],
+  "temporal_state": {},
+  "automation": [],
+  "modulation": [],
+  "capabilities": {
+    "read": {
+      "structure": {
+        "fields": {
+          "tracks": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_name": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_color": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "track_role": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "name_keyword_heuristic",
+            "source_stability": "HEURISTIC",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_tempo": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_time_signature": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "project_sample_rate": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "folder_hierarchy": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "channel": {
+        "fields": {
+          "volume": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "mute": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "solo_defeat": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "pan_law": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "width": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "main_send": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          }
+        }
+      },
+      "routing": {
+        "fields": {
+          "sends": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_volume": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_pan": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_mute": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_mode": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_channels": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "send_midi_flags": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "unresolved_sources": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "hardware_outputs": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "processing": {
+        "fields": {
+          "fx_chain": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_bypass": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_offline": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_preset": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "record_input_fx": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_family": {
+            "applicability": "APPLICABLE",
+            "support": "PARTIAL",
+            "capture_method": "fx_knowledge_and_keywords",
+            "source_stability": "HEURISTIC",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "fx_parameters": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "plugin_internal_state": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "temporal": {
+        "fields": {
+          "media_items": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_position": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_length": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_source_file": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "item_source_type": {
+            "applicability": "APPLICABLE",
+            "support": "FULL",
+            "capture_method": "rpp_parse",
+            "source_stability": "COMMUNITY_DOCUMENTED",
+            "tested_daw_version": "7.0",
+            "validation_status": "TESTED"
+          },
+          "take_fx": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "item_fades": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      },
+      "automation": {
+        "fields": {
+          "envelopes": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          },
+          "tempo_map": {
+            "applicability": "APPLICABLE",
+            "support": "NONE",
+            "capture_method": null,
+            "source_stability": null,
+            "tested_daw_version": null,
+            "validation_status": "UNTESTED"
+          }
+        }
+      }
+    },
+    "write": {},
+    "live_observation": {},
+    "render": {},
+    "manifest_version": "0.2.0",
+    "daw": "reaper",
+    "daw_version": "5.93",
+    "adapter": "session-state-explorer-reaper",
+    "adapter_version": "0.5.0",
+    "notes": [
+      "Capabilities describe the .rpp file-parse pathway only.",
+      "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",
+      "validation_status=TESTED means the field is exercised by this repo's test suite against REAPER 7 fixtures, including the lossless round-trip gate."
+    ]
+  },
+  "coverage": {
+    "structure": {
+      "applicable": 25,
+      "observed": 25,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "channel": {
+      "applicable": 25,
+      "observed": 25,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "processing": {
+      "applicable": 19,
+      "observed": 19,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "routing": {
+      "applicable": 12,
+      "observed": 12,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    },
+    "automation": {
+      "applicable": 0,
+      "observed": 0,
+      "inferred": 0,
+      "hidden": 0,
+      "unsupported": 0
+    }
+  },
+  "provenance": [
+    {
+      "id": "prov:0001",
+      "evidence": "OBSERVED",
+      "capture_method": "file_parse",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0002",
+      "evidence": "OBSERVED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": null,
+      "warnings": []
+    },
+    {
+      "id": "prov:0003",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Vocal Main' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0004",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.9,
+      "explanation": "A REAPER folder parent is a summing bus: children with their parent send enabled (MAINSEND) mix into the parent channel. Documented REAPER behaviour, not a stored field.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0005",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Vocal Main Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0006",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.95,
+      "explanation": "Parent folder derived from the ISBUS folder-depth deltas across the ordered track list; deterministic reconstruction from observed structure — the .rpp stores no parent pointer.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0007",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Vocal Backup' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0008",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Vocal Backup Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0009",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar Intro' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0010",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name '' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0011",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar Main Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0012",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar Verse' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0013",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar Rhythm' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0014",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Guitar Rhythm Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0015",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Bass' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0016",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Bass Bus' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0017",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'DRUMS' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0018",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'MT-PowerDrumKit' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0019",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'KICK' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0020",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'SNARE ' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0021",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'HIHAT' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0022",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'TOM 1' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0023",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'TOM 2' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0024",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'TOM 3' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0025",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'RIDE CYMBALS' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0026",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'CRASH AND CHINA' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0027",
+      "evidence": "INFERRED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": 0.6,
+      "explanation": "Role inferred from the track name 'Drum-Verb' by keyword matching; heuristic metadata, not DAW ground truth.",
+      "warnings": []
+    },
+    {
+      "id": "prov:0028",
+      "evidence": "OBSERVED",
+      "capture_method": "rpp_file",
+      "source_stability": "COMMUNITY_DOCUMENTED",
+      "source_ref": null,
+      "confidence": null,
+      "explanation": "Per-send channel/MIDI mapping decoded from the packed AUXRECV bitfields (SDK I_SRCCHAN/I_DSTCHAN/I_MIDIFLAGS); the raw packed values are preserved alongside the decoded channel lists.",
+      "warnings": []
+    }
+  ],
+  "extensions": {
+    "reaper": {
+      "time_sig_num": 4,
+      "time_sig_denom": 4,
+      "header_platform": "5.93/x64",
+      "sample_rate_use": false,
+      "metadata": {
+        "source_artifact": "rpp_file"
+      },
+      "native_file": {
+        "path": "native.json",
+        "sha256": "d6fabc7a343266dc9487073b22cadbe8ac6439a7dd9c61542b130bc93ba3306c"
+      }
+    }
+  },
+  "warnings": [
+    "reaper:track-15: main send (MAINSEND) is disabled: this track does not feed its folder parent's summing channel despite the folder membership."
+  ],
+  "failures": []
+}

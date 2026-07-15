@@ -20,7 +20,7 @@ from session_explorer.loaders.bundle import load_bundle
 FIXTURES = Path(__file__).resolve().parents[2] / "fixtures" / "adapters"
 # logic_real is a REAL captured session (see its README) — same contract,
 # fifth column.
-DAWS = ("ableton", "cubase", "logic", "logic_real", "reaper")
+DAWS = ("ableton", "cubase", "logic", "logic_real", "reaper", "reaper_real")
 
 AVAILABILITY = {
     "AVAILABLE", "NOT_PRESENT", "INACCESSIBLE", "UNSUPPORTED",

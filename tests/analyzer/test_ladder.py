@@ -32,7 +32,7 @@ FIXTURES = Path(__file__).resolve().parents[2] / "fixtures" / "adapters"
 EFFECT_SEND = Path(__file__).resolve().parents[2] / "fixtures" / "experiments" / "effect_send"
 
 # Standalone adapter bundles walked by assess_fixtures (empty context each).
-ADAPTERS = ("reaper", "ableton", "cubase", "logic", "logic_real")
+ADAPTERS = ("reaper", "ableton", "cubase", "logic", "logic_real", "reaper_real")
 
 
 def _bundle(daw: str):
@@ -81,6 +81,20 @@ def test_reaper_structure_routing_timeline(profiles):
     p = profiles["reaper"]
     assert p.reached_set == {0, 1, 2, 3}
     # L3 is a *timeline* claim here, not automation (REAPER emits no AUTOMATION).
+    l3 = p.levels[3]
+    assert l3.reached
+    assert any("timeline present" in e for e in l3.evidence)
+    assert not any("automation present" in e for e in l3.evidence)
+    for lvl in (4, 5, 6):
+        assert not p.levels[lvl].reached
+
+
+def test_reaper_real_matches_synthetic_profile(profiles):
+    """reaper_real (a genuine .rpp session): same {L0-L3} shape as the
+    synthetic reaper bundle — the ladder measures the capture *pathway*,
+    not the material. Same timeline-not-automation L3 claim."""
+    p = profiles["reaper_real"]
+    assert p.reached_set == {0, 1, 2, 3}
     l3 = p.levels[3]
     assert l3.reached
     assert any("timeline present" in e for e in l3.evidence)
@@ -170,10 +184,11 @@ def test_effect_send_after_reaches_l6_only_with_context():
 
 
 def test_assess_fixtures_injects_l6_member(all_profiles):
-    """assess_fixtures walks the five adapters and injects the effect-send after."""
+    """assess_fixtures walks the six adapters and injects the effect-send after."""
     by_name = {p.bundle_name: p for p in all_profiles}
     assert set(by_name) == {
         "reaper",
+        "reaper_real",
         "ableton",
         "cubase",
         "logic",
@@ -187,6 +202,7 @@ def test_assess_fixtures_injects_l6_member(all_profiles):
     reached = {p.bundle_name: p.reached_set for p in all_profiles}
     assert reached == {
         "reaper": {0, 1, 2, 3},
+        "reaper_real": {0, 1, 2, 3},
         "ableton": {0, 1, 2, 3, 4},
         "cubase": {0, 1, 2, 3},
         "logic": {0, 1, 5},

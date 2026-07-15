@@ -1,0 +1,393 @@
+{
+  "read": {
+    "structure": {
+      "fields": {
+        "tracks": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "track_name": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "track_color": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "track_role": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "name_keyword_heuristic",
+          "source_stability": "HEURISTIC",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "project_tempo": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "project_time_signature": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "project_sample_rate": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "folder_hierarchy": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "channel": {
+      "fields": {
+        "volume": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "pan": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "mute": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "solo": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "solo_mode": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "solo_defeat": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "pan_mode": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "pan_law": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "width": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "main_send": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        }
+      }
+    },
+    "routing": {
+      "fields": {
+        "sends": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_volume": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_pan": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_mute": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_mode": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_channels": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "send_midi_flags": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "unresolved_sources": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "hardware_outputs": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "processing": {
+      "fields": {
+        "fx_chain": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "fx_bypass": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "fx_offline": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "fx_preset": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "record_input_fx": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "fx_family": {
+          "applicability": "APPLICABLE",
+          "support": "PARTIAL",
+          "capture_method": "fx_knowledge_and_keywords",
+          "source_stability": "HEURISTIC",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "fx_parameters": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "plugin_internal_state": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "temporal": {
+      "fields": {
+        "media_items": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "item_position": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "item_length": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "item_source_file": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "item_source_type": {
+          "applicability": "APPLICABLE",
+          "support": "FULL",
+          "capture_method": "rpp_parse",
+          "source_stability": "COMMUNITY_DOCUMENTED",
+          "tested_daw_version": "7.0",
+          "validation_status": "TESTED"
+        },
+        "take_fx": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "item_fades": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    },
+    "automation": {
+      "fields": {
+        "envelopes": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        },
+        "tempo_map": {
+          "applicability": "APPLICABLE",
+          "support": "NONE",
+          "capture_method": null,
+          "source_stability": null,
+          "tested_daw_version": null,
+          "validation_status": "UNTESTED"
+        }
+      }
+    }
+  },
+  "write": {},
+  "live_observation": {},
+  "render": {},
+  "manifest_version": "0.2.0",
+  "daw": "reaper",
+  "daw_version": "5.93",
+  "adapter": "session-state-explorer-reaper",
+  "adapter_version": "0.5.0",
+  "notes": [
+    "Capabilities describe the .rpp file-parse pathway only.",
+    "The .rpp format knowledge is community/SDK documented (COMMUNITY_DOCUMENTED), not an official file-format specification.",
+    "validation_status=TESTED means the field is exercised by this repo's test suite against REAPER 7 fixtures, including the lossless round-trip gate."
+  ]
+}
