@@ -1,0 +1,19 @@
+{
+  "adapter_id": "reaper-rpp",
+  "daw": "reaper",
+  "capture_modes": [
+    "file_parse"
+  ],
+  "read": "Parses REAPER .rpp project files: structure (incl. folder hierarchy), channel state, routing (sends incl. per-send channel/MIDI mapping and unresolved sources), FX chains (incl. record-input chains), and media items. Plug-in internals hidden; automation unsupported.",
+  "write": "NONE",
+  "live_observation": "NONE (runtime observation is future work)",
+  "render": "NONE",
+  "known_limitations": [
+    "Plug-in internal state (VST/AU/JS chunk blobs) is present in the .rpp but not decoded: plug-in parameters are INACCESSIBLE through this pathway.",
+    "Automation envelopes, take FX, item fades, and the tempo map are not parsed (UNSUPPORTED); only the project-default tempo and time signature are observed.",
+    "Folder hierarchy is reconstructed from ISBUS depth deltas (derived, not a stored parent pointer). Group summing is gated per folder parent: a child whose MAINSEND is disabled does not actually feed its parent and is flagged with a warning rather than suppressing the group-sum edge.",
+    "Track colour byte order is OS-dependent; decoding relies on the project header platform token and falls back to the Windows layout with a warning.",
+    "Track roles and FX families are heuristics (name keywords plus a guide-derived stock-FX knowledge table), never DAW ground truth.",
+    "No write-back, live observation, or render capability; runtime observation of a live REAPER instance is future work."
+  ]
+}

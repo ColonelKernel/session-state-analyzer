@@ -1,0 +1,20 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "entities": 82,
+    "entities_by_type": {
+      "PROJECT": 1,
+      "TRACK": 25,
+      "CHANNEL": 25,
+      "PROCESSOR": 19,
+      "TEMPORAL_OBJECT": 7,
+      "MEDIA_ASSET": 5
+    },
+    "relationships": 130,
+    "provenance_records": 28,
+    "warnings_in_snapshot": 1,
+    "failures": 0
+  }
+}

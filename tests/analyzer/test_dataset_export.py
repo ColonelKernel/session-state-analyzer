@@ -94,10 +94,10 @@ def test_each_subdir_has_expected_content(dataset: Path) -> None:
     def n_json(sub: str) -> int:
         return len(list((dataset / sub).glob("*.json")))
 
-    # 5 adapters + 4 X04 + 2x2 experiment bundles = 13 snapshots.
-    assert n_json("snapshots") == 13
+    # 6 adapters + 4 X04 + 2x2 experiment bundles = 14 snapshots.
+    assert n_json("snapshots") == 14
     # Every bundle with a native payload (the parameter-change pair has none).
-    assert n_json("native") == 11
+    assert n_json("native") == 12
     # 2 experiments x 2 render descriptors.
     assert n_json("renders") == 4
     assert n_json("observations") >= 3
@@ -163,8 +163,8 @@ def test_manifest_round_trips(dataset: Path) -> None:
         (dataset / "fixtures" / "manifest.json").read_text(encoding="utf-8")
     )
     manifest = DatasetManifest.model_validate(payload)
-    assert manifest.counts["snapshots"] == 13
-    assert manifest.counts["native"] == 11
+    assert manifest.counts["snapshots"] == 14
+    assert manifest.counts["native"] == 12
     assert manifest.generated_at is None  # no wall-clock in serialized content
     # The parameter-change bundles ship no native.json — reported honestly.
     missing_native = [b.name for b in manifest.bundles if not b.native_present]
