@@ -158,7 +158,7 @@ def build_variant_set(bundles: Iterable[SnapshotBundle]) -> list[VariantSet]:
 # ---------------------------------------------------------------------------
 
 
-def build_variant_graph(variant_set: VariantSet, layer: str = "all") -> nx.DiGraph:
+def build_variant_graph(variant_set: VariantSet, layer: str = "all") -> nx.MultiDiGraph:
     """Compose a set's snapshots and draw the cross-snapshot lineage.
 
     The members' snapshots are composed side by side with
@@ -199,7 +199,7 @@ def build_variant_graph(variant_set: VariantSet, layer: str = "all") -> nx.DiGra
 
 
 def _add_derived_from(
-    graph: nx.DiGraph,
+    graph: nx.MultiDiGraph,
     members: list[VariantMember],
     variant_node: list[Optional[str]],
 ) -> None:
@@ -226,7 +226,7 @@ def _add_derived_from(
 
 
 def _add_consecutive_ordinal_chain(
-    graph: nx.DiGraph,
+    graph: nx.MultiDiGraph,
     members: list[VariantMember],
     variant_node: list[Optional[str]],
 ) -> None:
@@ -239,7 +239,7 @@ def _add_consecutive_ordinal_chain(
 
 
 def _add_alternative_of(
-    graph: nx.DiGraph,
+    graph: nx.MultiDiGraph,
     members: list[VariantMember],
     variant_node: list[Optional[str]],
 ) -> None:
@@ -258,7 +258,7 @@ def _add_alternative_of(
 
 
 def _add_shares_source_with(
-    graph: nx.DiGraph, asset_nodes_by_path: list[dict[str, str]]
+    graph: nx.MultiDiGraph, asset_nodes_by_path: list[dict[str, str]]
 ) -> None:
     """SHARES_SOURCE_WITH between asset nodes that resolve to the same path."""
     by_path: dict[str, list[str]] = defaultdict(list)

@@ -12,7 +12,7 @@ the variant data lands. The variants API used here:
 - ``build_variant_set(bundles) -> list[VariantSet]`` (one per declared family);
 - ``VariantSet.members`` — ``VariantMember``s (``.bundle`` / ``.label`` /
   ``.snapshot_id``), ordered by lineage ordinal;
-- ``build_variant_graph(variant_set, layer=...) -> nx.DiGraph``;
+- ``build_variant_graph(variant_set, layer=...) -> nx.MultiDiGraph``;
 - ``variant_diff(a_bundle, b_bundle) -> StateDelta``.
 """
 
