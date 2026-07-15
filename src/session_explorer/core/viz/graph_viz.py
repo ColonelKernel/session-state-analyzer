@@ -105,7 +105,9 @@ def filter_graph(graph: nx.DiGraph, filters: Optional[GraphFilters] = None) -> n
     if filters is None:
         filters = GraphFilters()
 
-    subgraph = nx.DiGraph()
+    # Mirror the input class: a MultiDiGraph from graph_layers keeps its
+    # parallel edges through filtering instead of silently collapsing them.
+    subgraph = graph.__class__()
     subgraph.graph.update(graph.graph)
 
     # Restrict to a single node's subtree when requested.

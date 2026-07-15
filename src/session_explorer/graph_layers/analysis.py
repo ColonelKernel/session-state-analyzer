@@ -33,13 +33,20 @@ def routing_subgraph(
     """The edge-type-filtered signal-forwarding subgraph.
 
     Keeps only edges whose ``type`` is in ``rel_types`` (with their attributes);
-    endpoints of a kept edge come along. Returns a fresh ``DiGraph`` — never a
-    view — so it is safe to enumerate and annotate independently of ``graph``.
+    endpoints of a kept edge come along. Returns a fresh graph of the same
+    class as ``graph`` (``MultiDiGraph`` in, ``MultiDiGraph`` out — parallel
+    routing edges survive) — never a view — so it is safe to enumerate and
+    annotate independently of ``graph``.
     """
-    sub = nx.DiGraph()
-    for source, target, data in graph.edges(data=True):
-        if data.get("type") in rel_types:
-            sub.add_edge(source, target, **data)
+    sub = graph.__class__()
+    if graph.is_multigraph():
+        for source, target, key, data in graph.edges(keys=True, data=True):
+            if data.get("type") in rel_types:
+                sub.add_edge(source, target, key=key, **data)
+    else:
+        for source, target, data in graph.edges(data=True):
+            if data.get("type") in rel_types:
+                sub.add_edge(source, target, **data)
     return sub
 
 
@@ -78,8 +85,15 @@ def detect_cycles(
     the truncation probe: if an extra cycle exists, ``truncated`` is set and the
     extra is dropped, so the flag is exact and the returned list is bounded.
     Feedback is data; this never raises.
+
+    A cycle is a *node* loop: two parallel routing edges between the same
+    channels (SUMS_TO next to CHANNEL_ROUTES_TO) are one hop, not two distinct
+    cycles, so enumeration runs on the condensed simple digraph of the routing
+    subgraph.
     """
     sub = routing_subgraph(graph, rel_types)
+    if sub.is_multigraph():
+        sub = nx.DiGraph(sub)  # condense parallel edges for node-cycle search
     found = [
         list(cycle)
         for cycle in itertools.islice(nx.simple_cycles(sub), max_cycles + 1)
@@ -116,9 +130,19 @@ def annotate_cycles(
     target = graph.copy() if copy else graph
     for node in target.nodes:
         target.nodes[node]["in_cycle"] = node in report.cycle_nodes
-    for source, dest in target.edges:
-        target.edges[source, dest]["in_cycle"] = (
-            source,
-            dest,
-        ) in report.cycle_edges
+    if target.is_multigraph():
+        # Every parallel edge on a cycling (source, dest) pair participates:
+        # the cycle is a node loop, and each relationship on that hop carries
+        # signal around it.
+        for source, dest, key in target.edges(keys=True):
+            target.edges[source, dest, key]["in_cycle"] = (
+                source,
+                dest,
+            ) in report.cycle_edges
+    else:
+        for source, dest in target.edges:
+            target.edges[source, dest]["in_cycle"] = (
+                source,
+                dest,
+            ) in report.cycle_edges
     return target
