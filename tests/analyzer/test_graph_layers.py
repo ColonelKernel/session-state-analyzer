@@ -112,14 +112,43 @@ def test_media_asset_relevant_only_in_organizational():
 def test_all_layer_node_count_equals_entity_count(bundle):
     graph = build_graph(bundle.snapshot, layer="all")
     assert graph.number_of_nodes() == len(bundle.snapshot.entities)
-    # KNOWN COLLAPSE: build_graph returns a plain DiGraph, so parallel
-    # relationships between the same (source, target) pair keep only one
-    # edge. reaper_real exposed this: each folder child channel carries
-    # both SUMS_TO and CHANNEL_ROUTES_TO(via=group_sum) to its parent's
-    # channel (18 collapsed pairs). Until the MultiDiGraph migration lands,
-    # assert the honest quantity — unique endpoint pairs.
-    unique_pairs = {(r.source, r.target) for r in bundle.snapshot.relationships}
-    assert graph.number_of_edges() == len(unique_pairs)
+    # build_graph builds a MultiDiGraph keyed by relationship id, so parallel
+    # relationships between the same (source, target) pair are each kept as
+    # their own edge — reaper_real's folder children carry both a SUMS_TO and
+    # a CHANNEL_ROUTES_TO(via=group_sum) to their parent's channel. Every
+    # relationship whose endpoints are both present becomes exactly one edge,
+    # so the edge count equals the resolvable-relationship count (== the full
+    # relationship count for every frozen bundle).
+    entity_ids = {e.id for e in bundle.snapshot.entities}
+    resolvable = [
+        r
+        for r in bundle.snapshot.relationships
+        if r.source in entity_ids and r.target in entity_ids
+    ]
+    assert graph.number_of_edges() == len(resolvable)
+
+
+def test_reaper_real_parallel_edges_preserved():
+    """Regression: the MultiDiGraph migration must not collapse parallel edges.
+
+    reaper_real is the fixture that exposed the original nx.DiGraph collapse.
+    18 folder-child channels each carry two relationships to the same parent
+    channel — a SUMS_TO and a CHANNEL_ROUTES_TO(via=group_sum). A plain
+    DiGraph silently kept one edge per endpoint pair (130 rels → 112 edges);
+    the MultiDiGraph keeps both. Pin the faithful shape so a regression back
+    to a single-edge graph fails loudly right here.
+    """
+    snapshot = _bundle("reaper_real").snapshot
+    graph = build_graph(snapshot, layer="all")
+    assert graph.is_multigraph()
+    assert graph.number_of_edges() == len(snapshot.relationships) == 130
+
+    pairs = {(u, v) for u, v, _ in graph.edges(keys=True)}
+    parallel = [(u, v) for u, v in pairs if graph.number_of_edges(u, v) > 1]
+    assert len(parallel) == 18
+    for u, v in parallel:
+        types = {d["type"] for d in graph.get_edge_data(u, v).values()}
+        assert types == {"SUMS_TO", "CHANNEL_ROUTES_TO"}, (u, v, types)
 
 
 @pytest.mark.parametrize("layer", sorted(LAYERS))
@@ -228,10 +257,11 @@ def test_build_multi_four_daws():
     combined = build_multi(snapshots, layer="all")
 
     assert combined.number_of_nodes() == sum(len(s.entities) for s in snapshots)
-    # Same DiGraph parallel-edge collapse as the single-bundle test above:
-    # count unique (source, target) pairs per snapshot, not relationships.
+    # build_multi composes the per-snapshot MultiDiGraphs side by side with no
+    # cross edges added and no parallel edges collapsed, so the combined edge
+    # count is exactly the sum of each snapshot's own edge count.
     assert combined.number_of_edges() == sum(
-        len({(r.source, r.target) for r in s.relationships}) for s in snapshots
+        build_graph(s, layer="all").number_of_edges() for s in snapshots
     )
     # Disjoint by construction: build_multi relabels every node with a
     # per-snapshot ordinal prefix (s0:, s1:, …) because dialect namespaces

@@ -134,10 +134,11 @@ def test_build_variant_graph_derived_from_chain(bundles):
     graph = build_variant_graph(variant_set)
 
     v1, v2, v3 = (_variant_node(graph, i) for i in (0, 1, 2))
+    derived = _edges_of_type(graph, "DERIVED_FROM")
     assert graph.has_edge(v1, v2)
-    assert graph.edges[v1, v2]["type"] == "DERIVED_FROM"
+    assert (v1, v2) in derived
     assert graph.has_edge(v2, v3)
-    assert graph.edges[v2, v3]["type"] == "DERIVED_FROM"
+    assert (v2, v3) in derived
     # No spurious jump from the root straight to the grandchild.
     assert not graph.has_edge(v1, v3)
 

@@ -6,6 +6,12 @@ relationships become typed edges, and every node carries an ``observability``
 tag derived from its entity-level provenance record so the existing viz
 colour channels apply unchanged.
 
+The graph is a ``networkx.MultiDiGraph`` keyed by relationship id: two
+relationships between the same endpoints (e.g. a folder child's ``SUMS_TO``
+*and* its ``CHANNEL_ROUTES_TO (via=group_sum)`` — first observed in the wild
+on the ``reaper_real`` fixture) each keep their own edge. A plain ``DiGraph``
+silently kept only the last one, which misrepresents the snapshot.
+
 ``build_multi`` composes several snapshots into one graph side by side —
 id namespaces (``reaper:``, ``ableton:``, ...) already prevent collisions,
 and no cross-snapshot edges are invented: four DAWs in one view stay four
@@ -56,12 +62,14 @@ def _id_namespace(snapshot: CanonicalDAWSnapshot) -> str:
 
 def build_graph(
     snapshot: CanonicalDAWSnapshot, layer: str = "all"
-) -> nx.DiGraph:
-    """One snapshot, one layer, one typed observability-tagged digraph.
+) -> nx.MultiDiGraph:
+    """One snapshot, one layer, one typed observability-tagged multidigraph.
 
     A node is included when an in-layer relationship touches it, or when its
     entity type is layer-relevant (see :class:`~.layers.LayerSpec`). Edges
-    carry ``type`` (the rel_type, as-is) plus the relationship's properties.
+    carry ``type`` (the rel_type, as-is) plus the relationship's properties;
+    the edge key is the relationship id, so parallel relationships between
+    the same endpoints are preserved one-for-one.
     """
     spec: LayerSpec = get_layer(layer)
     prov_by_id = {record.id: record for record in snapshot.provenance}
@@ -78,7 +86,7 @@ def build_graph(
         rel.target for rel in in_layer_rels
     }
 
-    graph = nx.DiGraph()
+    graph = nx.MultiDiGraph()
 
     for entity in snapshot.entities:
         if entity.id not in touched and not spec.entity_is_relevant(
@@ -104,7 +112,7 @@ def build_graph(
             key: value for key, value in rel.properties.items() if key != "type"
         }
         edge_attrs["type"] = rel.rel_type
-        graph.add_edge(rel.source, rel.target, **edge_attrs)
+        graph.add_edge(rel.source, rel.target, key=rel.id, **edge_attrs)
 
     graph.graph.update(_graph_metadata(graph, snapshot, spec))
     return graph
@@ -112,7 +120,7 @@ def build_graph(
 
 def build_multi(
     snapshots: Iterable[CanonicalDAWSnapshot], layer: str = "all"
-) -> nx.DiGraph:
+) -> nx.MultiDiGraph:
     """Several snapshots side by side in one graph, no cross-edges.
 
     Dialect id namespaces are NOT sufficient to keep snapshots disjoint:
@@ -127,7 +135,7 @@ def build_multi(
     brought what.
     """
     spec = get_layer(layer)  # validate the layer name once, loudly
-    combined = nx.DiGraph()
+    combined = nx.MultiDiGraph()
     per_snapshot_meta = []
     entity_counts: Counter = Counter()
     n_relationships = 0
@@ -159,7 +167,7 @@ def build_multi(
 
 
 def _graph_metadata(
-    graph: nx.DiGraph, snapshot: CanonicalDAWSnapshot, spec: LayerSpec
+    graph: nx.MultiDiGraph, snapshot: CanonicalDAWSnapshot, spec: LayerSpec
 ) -> Dict[str, Any]:
     entity_counts = Counter(
         data.get("type") for _, data in graph.nodes(data=True)
