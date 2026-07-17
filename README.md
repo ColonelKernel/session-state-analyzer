@@ -1,5 +1,9 @@
 # Session State Analyzer
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://session-state-analyzer-n2lj2kmjjijdzta7oarpyt.streamlit.app/)
+
+**[Live demo](https://session-state-analyzer-n2lj2kmjjijdzta7oarpyt.streamlit.app/)** — the two-mode workbench with all six example sessions preloaded, no install needed.
+
 > **A DAW session is a structured record of creative intent — thousands of
 > decisions about tracks, effect chains, routing, and automation that together
 > produce a sound. This project represents that state in a single, open,
