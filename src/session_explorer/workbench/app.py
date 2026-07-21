@@ -6,13 +6,16 @@ Run from the repo root:
 
 The sidebar's top control switches between two faces of the same data:
 
-- **Guided** (default) — a plain-language, story-first tour: an Overview with
-  one friendly card per DAW, the X04 "same idea in four DAWs" story, a
-  plain-words observability atlas, and the canonical graph. All Guided copy
-  lives in ``workbench/copy.py``.
-- **Expert** — the research workbench, unchanged: bundle multiselect, graph
-  layer, and the Canonical (Graph | Entity inspector | X04 alignment |
-  Observability atlas tabs) / Native / Evidence views.
+- **Guided** (default) — a plain-language, story-first tour across eight tabs:
+  an Overview with one friendly card per session, the X04 "same idea in four
+  DAWs" story, a plain-words observability atlas, the canonical graph, groups
+  & feedback, what one change does to the sound, how a song evolved, and how
+  the DAWs compare. All Guided copy lives in ``workbench/copy.py``.
+- **Expert** — the research workbench: bundle multiselect, graph layer, and
+  the Canonical / Native / Evidence views. Canonical holds nine tabs (Graph |
+  Entity inspector | X04 alignment | Observability atlas | State to audio |
+  Routing depth | Parameter influence | Session evolution | Adapter
+  comparison).
 
 The workbench is read-only by principle: it presents adapter exports, it
 never parses a DAW artifact.

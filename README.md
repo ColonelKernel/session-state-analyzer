@@ -49,8 +49,9 @@ small, reproducible template for the core question behind assistive music
 production — *how does a change to the session change the sound?*
 
 Everything above is browsable in the **Streamlit workbench** (a plain-language
-Guided mode and a research Expert mode); the four example sessions load on
-first visit. The canonical schema lives in `packages/canonical_snapshot/`
+Guided mode and a research Expert mode); the six example sessions load on
+first visit — one per adapter, plus a real captured session for Logic and for
+REAPER alongside their synthetic ones. The canonical schema lives in `packages/canonical_snapshot/`
 (v0.2). Adapters: [REAPER](https://github.com/ColonelKernel/session-state-explorer-reaper),
 [Cubase](https://github.com/ColonelKernel/session-state-explorer-cubase),
 [Ableton](https://github.com/ColonelKernel/session-state-explorer-ableton),
@@ -94,10 +95,10 @@ the default):
 ### Guided mode (default)
 
 A plain-language, story-first tour of the same data — no research vocabulary.
-Five tabs:
+Eight tabs, in order:
 
-- **Overview** — what the tool is, a "Load the four example sessions" button
-  (the fixture bundles auto-load on first visit), and one card per DAW:
+- **Overview** — what the tool is, a "Load all example sessions" button
+  (the fixture bundles auto-load on first visit), and one card per session:
   session name, counts in plain words ("9 tracks · 22 effects · 4 routing
   connections"), and a mini "how much can we see?" bar with a one-line
   readout derived from the measured atlas mix (e.g. REAPER: "Read directly
@@ -113,12 +114,21 @@ Five tabs:
   plus the expert drill-down behind a "Look closer" section.
 - **Explore the graph** — the canonical graph with relabeled layers ("How
   things are organized" / "How audio flows" / "Everything").
+- **Groups & feedback** — what a native "group" actually fuses (containment,
+  summing, VCA control, incoming routing), split back into those four facets,
+  plus the per-channel effect chain.
 - **What one change does to the sound** — the P9 state→audio experiment in
-  plain language: we added a reverb send to a vocal, and the tab walks the
-  three beats — what changed in the session, the path the vocal now travels
-  ("Lead Vox → FX 1 - Plate → REVerence → Stereo Out"), and how much the sound
-  changed (louder, with a wet tail) — with an honest note that the sessions
-  and audio are synthetic fixtures.
+  plain language, with a selector for either frozen experiment: a reverb send
+  added to a vocal (a routing change) or a delay's feedback turned up (a value
+  change). Each walks the same three beats — what changed in the session, the
+  path the signal now travels ("Lead Vox → FX 1 - Plate → REVerence → Stereo
+  Out"), and how much the sound changed (louder, with a wet tail) — with an
+  honest note that the sessions and audio are synthetic fixtures.
+- **How a song evolved** — a variant family (v1/v2/v3 of one song), its
+  lineage graph, and a diff of each adjacent pair.
+- **How the DAWs compare** — the per-DAW profiles dashboard in plain words:
+  one column per loaded session, one row per facet (coverage, evidence mix,
+  provenance, the compatibility-ladder chips). Explicitly *not* a ranking.
 
 A "What do these words mean?" glossary (evidence, availability, canonical vs
 native, provenance) lives in the Guided sidebar. All Guided wording is in
@@ -126,16 +136,16 @@ native, provenance) lives in the Guided sidebar. All Guided wording is in
 
 ### Expert mode
 
-The research workbench, unchanged. The sidebar selects bundles (discovered
-under `fixtures/adapters/`), the graph layer (`organizational` /
-`signal_flow` / `all`), and the view:
+The research workbench. The sidebar selects bundles (discovered under
+`fixtures/adapters/`), the graph layer (`organizational` / `signal_flow` /
+`processing` / `automation` / `variant` / `all`), and the view:
 
-- **Canonical** — five tabs: *Graph* (all selected snapshots side by side in
+- **Canonical** — nine tabs: *Graph* (all selected snapshots side by side in
   one canonical graph, coloured by entity type with observability overriding
   where a value is inferred/annotated/hidden); *Entity inspector* (one
   entity, three panels: canonical / native / evidence — every value traceable
   to its provenance record, every unobservable field stated); *X04 alignment*
-  (one production strategy, four native mechanisms, aligned); and
+  (one production strategy, four native mechanisms, aligned);
   *Observability atlas* (the P5 flagship — measured per-domain observability
   across the loaded DAWs as ten canonical domains × N columns, each cell a
   stacked observed/inferred/annotated/hidden/unsupported bar with direct,
@@ -144,12 +154,22 @@ under `fixtures/adapters/`), the graph layer (`organizational` /
   capability; an unknown-state map per DAW categorizes everything a snapshot
   admits it cannot see. Modulation, and Native Features where a DAW ships no
   extension payload, render NOT_APPLICABLE — the gaps are shown, not hidden);
-  and *State to audio* (the P9 controlled intervention: one semantic change —
-  a post-fader vocal→plate-reverb send — traced from the state delta, through
-  the signal-flow explanation and its path chain, to the acoustic delta
-  between the two renders. Loaded from `fixtures/experiments/effect_send`; the
-  inputs and renders are synthetic fixtures, reproducible via the Cubase
-  adapter).
+  *State to audio* (the P9 controlled intervention: one semantic change traced
+  from the state delta, through the signal-flow explanation and its path
+  chain, to the acoustic delta between the two renders. A selector picks
+  either frozen experiment — *Effect send*, a post-fader vocal→plate-reverb
+  send from `fixtures/experiments/effect_send`, or *Delay feedback*, a pure
+  parameter change from `fixtures/experiments/parameter_change`; the inputs
+  and renders are synthetic fixtures, reproducible via the Cubase adapter);
+  *Routing depth* (what a native "group" fuses — containment, summing, VCA
+  control, incoming routing — decomposed into those four facets, with the
+  per-channel processing chain); *Parameter influence* (which parameters
+  reach which targets, and by what path); *Session evolution* (variant
+  families, the lineage graph, and adjacent-version diffs); and *Adapter
+  comparison* (the per-DAW profiles dashboard — coverage, evidence mix,
+  provenance completeness, conformance, the L0–L6 ladder chips, declared
+  capability and alignment confidence — with downloadable metrics and ladder
+  documents. Profiles, never a ranking).
 - **Native** — the bundle's verbatim `native.json` beside the registry's
   per-DAW presentation vocabulary.
 - **Evidence** — the deduplicated provenance store as a table, plus the
@@ -161,5 +181,5 @@ under `fixtures/adapters/`), the graph layer (`organizational` /
 .venv/bin/python -m pytest tests/core tests/analyzer packages/canonical_snapshot/tests
 ```
 
-(`tests/drivers/` is being relocated into the adapter repositories; see
+(The former `tests/drivers/` suite now lives in the adapter repositories; see
 `docs/PIVOT.md`.)

@@ -1,8 +1,10 @@
 """Guided mode: the plain-language, story-first face of the workbench.
 
-Four tabs — an Overview with one friendly card per loaded DAW, the X04
-"same idea in four DAWs" story, a plain-words observability atlas, and the
-canonical graph — all in everyday language. Every sentence lives in
+Eight tabs — an Overview with one friendly card per loaded session, the X04
+"same idea in four DAWs" story, a plain-words observability atlas, the
+canonical graph, groups & feedback, what one change does to the sound, how a
+song evolved, and how the DAWs compare — all in everyday language, and each
+reusing the matching expert page. Every sentence lives in
 :mod:`session_explorer.workbench.copy`; this module only arranges measured
 data. It reuses the expert pages' internals (the alignment helpers, the atlas
 bars and drill-down, the canonical graph renderer) so Guided can never drift
@@ -402,7 +404,7 @@ def _render_graph(bundles: List[SnapshotBundle]) -> None:
 
 
 def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
-    """The whole Guided mode: four story tabs over the loaded bundles."""
+    """The whole Guided mode: eight story tabs over the loaded bundles."""
     atlas = build_atlas(bundles) if bundles else None
     (
         overview_tab,
