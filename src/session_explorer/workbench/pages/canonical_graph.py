@@ -22,8 +22,8 @@ from session_explorer.core.viz import (
     legend_entries,
     observability_legend,
 )
-from session_explorer.graph_layers import annotate_cycles, build_multi, detect_cycles
 from session_explorer.loaders import SnapshotBundle
+from session_explorer.workbench import compute
 
 _GRAPH_HEIGHT = 660
 
@@ -128,14 +128,12 @@ def render(bundles: List[SnapshotBundle], layer: str) -> None:
         st.info("Select at least one bundle in the sidebar.")
         return
 
-    graph = build_multi([bundle.snapshot for bundle in bundles], layer=layer)
-
-    # Feedback cycles are data, never a validation error: detect them on the
-    # routing subgraph, annotate the composed graph in place (so ``in_cycle``
-    # rides through the observability subgraph copy into both renderers), and
-    # surface the finding as a badge + highlight.
-    cycle_report = detect_cycles(graph)
-    annotate_cycles(graph, cycle_report)
+    # Feedback cycles are data, never a validation error: the cached builder
+    # composes the graph, detects cycles on the routing subgraph, and annotates
+    # the composed graph in place (so ``in_cycle`` rides through the
+    # observability subgraph copy into both renderers). Here we only surface the
+    # finding as a badge + highlight.
+    graph, cycle_report = compute.graph_for(bundles, layer)
     st.session_state["graph_has_cycles"] = cycle_report.has_cycles
     if cycle_report.has_cycles:
         _render_cycle_finding(graph, cycle_report)
