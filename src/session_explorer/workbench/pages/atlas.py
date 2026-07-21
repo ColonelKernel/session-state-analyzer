@@ -29,19 +29,19 @@ from session_explorer.atlas import (
     get_domain,
     unknown_state_map,
 )
-from session_explorer.core.viz import OBSERVABILITY_COLORS
-from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
+from session_explorer.workbench.ui import MIX_SEGMENT_COLORS, daw_label, require_bundle
 
-# Bar segment colours reuse the shared observability language so the atlas and
-# the graph cannot drift. inferred + annotation are blended into one "recovered
-# by inference/annotation" band; unsupported/unknown/not_present are the grey
-# "honest absence" tail.
-_SEG_OBSERVED = OBSERVABILITY_COLORS["observed"]
-_SEG_INFERRED = OBSERVABILITY_COLORS["inferred"]
-_SEG_ANNOTATION = OBSERVABILITY_COLORS["annotation"]
-_SEG_HIDDEN = OBSERVABILITY_COLORS["hidden"]
-_SEG_ABSENT = OBSERVABILITY_COLORS["unknown"]
+# Bar segment colours reuse the shared evidence-mix palette (defined once in
+# workbench.ui) so the atlas cell bars and the guided mini-bars cannot drift.
+# inferred + annotation stay distinct bands; unsupported/unknown/not_present are
+# the grey "honest absence" tail.
+_SEG_OBSERVED = MIX_SEGMENT_COLORS["observed"]
+_SEG_INFERRED = MIX_SEGMENT_COLORS["inferred"]
+_SEG_ANNOTATION = MIX_SEGMENT_COLORS["annotated"]
+_SEG_HIDDEN = MIX_SEGMENT_COLORS["hidden"]
+_SEG_ABSENT = MIX_SEGMENT_COLORS["absent"]
 
 
 def _bar_html(cell: AtlasCell) -> str:
@@ -86,13 +86,6 @@ def _ratio_caption(cell: AtlasCell) -> str:
     )
 
 
-def _daw_label(daw: str) -> str:
-    try:
-        return get_presentation(daw).display_name
-    except Exception:  # noqa: BLE001 - unknown daw still gets a column
-        return daw
-
-
 def _column_labels(atlas) -> dict[str, str]:
     """Column-key -> display label, disambiguated when a DAW loads twice.
 
@@ -105,7 +98,7 @@ def _column_labels(atlas) -> dict[str, str]:
         daw_totals[column.daw] = daw_totals.get(column.daw, 0) + 1
     labels: dict[str, str] = {}
     for column in atlas.columns:
-        name = _daw_label(column.daw)
+        name = daw_label(column.daw)
         if daw_totals[column.daw] > 1:
             name = f"{name} · {column.dir_name}"
         labels[column.key] = name
@@ -261,7 +254,7 @@ def _render_unknown_map(bundles: List[SnapshotBundle]) -> None:
         daw = bundle.snapshot.source.daw
         usm = unknown_state_map(bundle.snapshot)
         total = sum(len(v) for v in usm.values())
-        with st.expander(f"{_daw_label(daw)} — {total} unknown/hidden items"):
+        with st.expander(f"{daw_label(daw)} — {total} unknown/hidden items"):
             if total == 0:
                 st.caption("This snapshot claims nothing hidden or unknown.")
                 continue
@@ -281,8 +274,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
         "snapshot *measured*, and what its adapter *declares* it can read."
     )
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     atlas = compute.atlas_for(bundles)

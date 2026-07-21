@@ -14,13 +14,9 @@ import streamlit as st
 
 from canonical_snapshot import CanonicalDAWSnapshot, Entity
 from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.workbench.ui import bundle_label, require_bundle
 
 _AVAILABILITY_HIGHLIGHT = "background-color: #FDEBD0"  # amber: could-not-observe rows
-
-
-def _bundle_label(bundle: SnapshotBundle) -> str:
-    daw = bundle.snapshot.source.daw
-    return f"{get_presentation(daw).display_name} ({bundle.dir.name})"
 
 
 def _entity_label(entity: Entity) -> str:
@@ -154,14 +150,13 @@ def _evidence_section(entity: Entity, snapshot: CanonicalDAWSnapshot) -> None:
 
 def render(bundles: List[SnapshotBundle]) -> None:
     """Bundle → entity → canonical / native / evidence, side by side."""
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     bundle = st.selectbox(
         "Bundle",
         bundles,
-        format_func=_bundle_label,
+        format_func=bundle_label,
         key="inspector_bundle",
     )
     if bundle is None:  # pragma: no cover - selectbox always yields with options

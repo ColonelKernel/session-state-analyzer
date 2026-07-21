@@ -28,6 +28,7 @@ import streamlit as st
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
+from session_explorer.workbench.ui import bundle_label, require_bundle
 from session_explorer.workbench.pages import (
     alignment,
     atlas,
@@ -59,11 +60,6 @@ st.set_page_config(
     page_icon="🎛️",
     layout="wide",
 )
-
-
-def _bundle_label(bundle: SnapshotBundle) -> str:
-    daw = bundle.snapshot.source.daw
-    return f"{get_presentation(daw).display_name} ({bundle.dir.name})"
 
 
 # ---------------------------------------------------------------------------
@@ -152,13 +148,12 @@ if load_warnings:
 
 
 def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return None
     return st.selectbox(
         f"Bundle ({label_suffix})",
         bundles,
-        format_func=_bundle_label,
+        format_func=bundle_label,
         key=f"bundle_for_{label_suffix}",
     )
 

@@ -40,11 +40,12 @@ from session_explorer.compat import (
     assess_bundle,
     render_ladder_markdown,
 )
-from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.metrics import metrics_report
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
+from session_explorer.workbench.ui import daw_label, require_bundle
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
 
@@ -67,11 +68,6 @@ _NO_RED = "#C0392B"
 # ---------------------------------------------------------------------------
 
 
-def _daw_label(daw: str) -> str:
-    try:
-        return get_presentation(daw).display_name
-    except Exception:  # noqa: BLE001 - an unknown daw still gets a column
-        return daw
 
 
 def _pct(value: Optional[float]) -> str:
@@ -211,7 +207,7 @@ def _header_row(bundles: List[SnapshotBundle], col_header: str) -> None:
     header = st.columns([1.5] + [1] * len(bundles))
     header[0].markdown(f"**{col_header}**")
     for column, bundle in zip(header[1:], bundles):
-        column.markdown(f"**{_daw_label(bundle.snapshot.source.daw)}**")
+        column.markdown(f"**{daw_label(bundle.snapshot.source.daw)}**")
         column.caption(bundle.dir.name)
 
 
@@ -488,8 +484,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
     st.header(wcopy.COMPARISON["header"])
     st.markdown(wcopy.COMPARISON["intro"])
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     _dashboard(bundles, labels=_expert_labels(), plain=False, key_suffix="expert")

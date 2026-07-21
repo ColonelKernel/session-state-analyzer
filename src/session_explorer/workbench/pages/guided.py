@@ -23,6 +23,7 @@ from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.registry import get_registry
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench.ui import MIX_SEGMENT_COLORS, daw_label
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
 from session_explorer.workbench.pages import canonical_graph
@@ -30,16 +31,6 @@ from session_explorer.workbench.pages import comparison as comparison_page
 from session_explorer.workbench.pages import depth as depth_page
 from session_explorer.workbench.pages import intervention as intervention_page
 from session_explorer.workbench.pages import session_evolution as evolution_page
-
-# The mini-bar's colour language is the shared observability language; the
-# grey "absent" tail covers unsupported / not-present / unknown.
-_MIX_COLORS = {
-    "observed": OBSERVABILITY_COLORS["observed"],
-    "inferred": OBSERVABILITY_COLORS["inferred"],
-    "annotated": OBSERVABILITY_COLORS["annotation"],
-    "hidden": OBSERVABILITY_COLORS["hidden"],
-    "absent": OBSERVABILITY_COLORS["unknown"],
-}
 
 _ROUTING_RELS = ("CHANNEL_SENDS_TO", "CHANNEL_ROUTES_TO")
 
@@ -53,13 +44,6 @@ def _plural(count: int, unit: str) -> str:
     return f"{count} {unit}" + ("" if count == 1 else "s")
 
 
-def _daw_display(daw: str) -> str:
-    try:
-        return get_presentation(daw).display_name
-    except Exception:  # noqa: BLE001 - unknown daw still gets a name
-        return daw
-
-
 def _plain_legend_html(include_absent: bool) -> str:
     """Coloured squares + plain words, one line, dependency-free."""
     keys = ["observed", "inferred", "annotation", "hidden"]
@@ -71,7 +55,7 @@ def _plain_legend_html(include_absent: bool) -> str:
         )
     if include_absent:
         entries.append(
-            f"<span style='color:{_MIX_COLORS['absent']}'>■</span> "
+            f"<span style='color:{MIX_SEGMENT_COLORS['absent']}'>■</span> "
             f"{wcopy.OBS_PLAIN['absent']}"
         )
     return " &nbsp;·&nbsp; ".join(entries)
@@ -133,7 +117,7 @@ def _mix_bar_html(mix: dict[str, int]) -> str:
         pct = 100.0 * count / total
         spans.append(
             f"<span style='display:inline-block;width:{pct:.2f}%;height:12px;"
-            f"background:{_MIX_COLORS[key]}' title='{count}'></span>"
+            f"background:{MIX_SEGMENT_COLORS[key]}' title='{count}'></span>"
         )
     return (
         "<div style='width:100%;line-height:0;border-radius:3px;overflow:hidden;"
@@ -204,7 +188,7 @@ def _render_overview(
             daw = bundle.snapshot.source.daw
             mix = _aggregate_mix(atlas, col_key)
             with column, st.container(border=True):
-                st.markdown(f"**🎛️ {_daw_display(daw)}**")
+                st.markdown(f"**🎛️ {daw_label(daw)}**")
                 st.caption(_session_name(bundle))
                 st.markdown(_counts_line(bundle))
                 st.caption(wcopy.COPY["bar_question"])
@@ -246,7 +230,7 @@ def _render_x04() -> None:
     for column, name in zip(columns, order):
         bundle = bundles[name]
         daw = bundle.snapshot.source.daw
-        display[name] = _daw_display(daw)
+        display[name] = daw_label(daw)
         # The presentation vocabulary carries the friendly noun ("Return
         # Track"); the concept registry's native_noun is a machine-facing
         # native_type id ("return_track") and is only the fallback.
