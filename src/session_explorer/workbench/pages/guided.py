@@ -16,11 +16,12 @@ from typing import List, Optional
 import pandas as pd
 import streamlit as st
 
-from session_explorer.atlas import Atlas, build_atlas
+from session_explorer.atlas import Atlas
 from session_explorer.atlas.coverage import aggregate_mix
 from session_explorer.core.viz import OBSERVABILITY_COLORS
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.registry import get_registry
+from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
@@ -190,12 +191,18 @@ def _render_overview(
 
     st.markdown(_plain_legend_html(include_absent=True), unsafe_allow_html=True)
 
+    # The atlas is built from ``bundles`` in this order, so its columns align by
+    # index — use each bundle's own column key (not its ``daw``, which can
+    # repeat) so a real and a synthetic capture of the same DAW read distinct
+    # bars instead of colliding on one shared atlas cell.
+    column_keys = atlas.column_keys
     for start in range(0, len(bundles), 4):
         chunk = bundles[start : start + 4]
+        chunk_keys = column_keys[start : start + 4]
         columns = st.columns(4)
-        for column, bundle in zip(columns, chunk):
+        for column, bundle, col_key in zip(columns, chunk, chunk_keys):
             daw = bundle.snapshot.source.daw
-            mix = _aggregate_mix(atlas, daw)
+            mix = _aggregate_mix(atlas, col_key)
             with column, st.container(border=True):
                 st.markdown(f"**🎛️ {_daw_display(daw)}**")
                 st.caption(_session_name(bundle))
@@ -260,7 +267,7 @@ def _render_x04() -> None:
 
     # One friendly sentence per DAW pair.
     st.subheader(wcopy.COPY["x04_matches_header"])
-    rows = alignment_page.pair_rows(bundles, ("effect_return",))
+    rows = alignment_page.x04_pair_rows(("effect_return",))
     for row in rows:
         if row["concept"] != "effect_return":
             continue
@@ -299,9 +306,7 @@ def _render_x04() -> None:
             )
 
     with st.expander(wcopy.COPY["x04_table_expander"]):
-        full = alignment_page.pair_rows(
-            bundles, ("effect_return", "audio_source")
-        )
+        full = alignment_page.x04_pair_rows(("effect_return", "audio_source"))
         st.dataframe(pd.DataFrame(full), hide_index=True, width="stretch")
 
 
@@ -339,20 +344,21 @@ def _render_atlas(atlas: Optional[Atlas], bundles: List[SnapshotBundle]) -> None
 
     st.markdown(_plain_legend_html(include_absent=True), unsafe_allow_html=True)
 
-    header = st.columns([1.6] + [1] * len(atlas.daws))
+    col_labels = atlas_page._column_labels(atlas)
+    header = st.columns([1.6] + [1] * len(atlas.columns))
     header[0].markdown(f"**{wcopy.COPY['atlas_row_header']}**")
-    for column, daw in zip(header[1:], atlas.daws):
-        column.markdown(f"**{_daw_display(daw)}**")
+    for column, col in zip(header[1:], atlas.columns):
+        column.markdown(f"**{col_labels[col.key]}**")
 
     for domain_name in atlas.domains:
         label, subtitle = wcopy.ATLAS_ROWS.get(domain_name, (domain_name, ""))
-        row = st.columns([1.6] + [1] * len(atlas.daws))
+        row = st.columns([1.6] + [1] * len(atlas.columns))
         with row[0]:
             st.markdown(f"**{label}**")
             if subtitle:
                 st.caption(subtitle)
-        for column, daw in zip(row[1:], atlas.daws):
-            cell = atlas.cell(domain_name, daw)
+        for column, col in zip(row[1:], atlas.columns):
+            cell = atlas.cell(domain_name, col.key)
             with column:
                 # Reuse the expert page's bar so the two modes cannot drift.
                 st.markdown(atlas_page._bar_html(cell), unsafe_allow_html=True)
@@ -402,8 +408,8 @@ def _render_graph(bundles: List[SnapshotBundle]) -> None:
 
 
 def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
-    """The whole Guided mode: four story tabs over the loaded bundles."""
-    atlas = build_atlas(bundles) if bundles else None
+    """The whole Guided mode: eight story tabs over the loaded bundles."""
+    atlas = compute.atlas_for(bundles) if bundles else None
     (
         overview_tab,
         x04_tab,

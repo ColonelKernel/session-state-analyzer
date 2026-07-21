@@ -26,12 +26,12 @@ import streamlit as st
 from session_explorer.atlas import (
     ATLAS_DOMAINS,
     AtlasCell,
-    build_atlas,
     get_domain,
     unknown_state_map,
 )
 from session_explorer.core.viz import OBSERVABILITY_COLORS
 from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.workbench import compute
 
 # Bar segment colours reuse the shared observability language so the atlas and
 # the graph cannot drift. inferred + annotation are blended into one "recovered
@@ -93,6 +93,25 @@ def _daw_label(daw: str) -> str:
         return daw
 
 
+def _column_labels(atlas) -> dict[str, str]:
+    """Column-key -> display label, disambiguated when a DAW loads twice.
+
+    One bundle per DAW keeps the plain display name; when the same ``daw`` backs
+    more than one column (e.g. a synthetic and a real REAPER capture) each label
+    is qualified by its bundle directory so the columns stay tellable apart.
+    """
+    daw_totals: dict[str, int] = {}
+    for column in atlas.columns:
+        daw_totals[column.daw] = daw_totals.get(column.daw, 0) + 1
+    labels: dict[str, str] = {}
+    for column in atlas.columns:
+        name = _daw_label(column.daw)
+        if daw_totals[column.daw] > 1:
+            name = f"{name} · {column.dir_name}"
+        labels[column.key] = name
+    return labels
+
+
 def _render_grid(atlas) -> None:
     st.subheader("The grid — ten domains, measured across every loaded DAW")
     st.caption(
@@ -108,18 +127,19 @@ def _render_grid(atlas) -> None:
         unsafe_allow_html=True,
     )
 
-    header = st.columns([1.4] + [1] * len(atlas.daws))
+    labels = _column_labels(atlas)
+    header = st.columns([1.4] + [1] * len(atlas.columns))
     header[0].markdown("**Domain**")
-    for column, daw in zip(header[1:], atlas.daws):
-        column.markdown(f"**{_daw_label(daw)}**")
+    for column, col in zip(header[1:], atlas.columns):
+        column.markdown(f"**{labels[col.key]}**")
 
     for domain_name in atlas.domains:
-        row = st.columns([1.4] + [1] * len(atlas.daws))
+        row = st.columns([1.4] + [1] * len(atlas.columns))
         with row[0]:
             st.markdown(f"**{domain_name}**")
             st.caption(get_domain(domain_name).description)
-        for column, daw in zip(row[1:], atlas.daws):
-            cell = atlas.cell(domain_name, daw)
+        for column, col in zip(row[1:], atlas.columns):
+            cell = atlas.cell(domain_name, col.key)
             with column:
                 if not cell.applicable_present:
                     st.markdown(_bar_html(cell), unsafe_allow_html=True)
@@ -145,15 +165,16 @@ def _render_drilldown(atlas, bundles: List[SnapshotBundle]) -> None:
         "domain."
     )
 
+    labels = _column_labels(atlas)
     pick_domain, pick_daw = st.columns(2)
     domain_name = pick_domain.selectbox("Domain", ATLAS_DOMAINS, key="atlas_dd_domain")
-    daw = pick_daw.selectbox(
+    column_key = pick_daw.selectbox(
         "DAW",
-        atlas.daws,
-        format_func=_daw_label,
+        atlas.column_keys,
+        format_func=lambda key: labels.get(key, key),
         key="atlas_dd_daw",
     )
-    cell = atlas.cell(domain_name, daw)
+    cell = atlas.cell(domain_name, column_key)
 
     obs_col, ratio_col, hid_col = st.columns(3)
     obs_col.metric("Applicable", cell.measured.applicable)
@@ -264,7 +285,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
         st.info("Select at least one bundle in the sidebar.")
         return
 
-    atlas = build_atlas(bundles)
+    atlas = compute.atlas_for(bundles)
     _render_grid(atlas)
     _render_drilldown(atlas, bundles)
     _render_unknown_map(bundles)
