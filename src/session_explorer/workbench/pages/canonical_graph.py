@@ -24,6 +24,7 @@ from session_explorer.core.viz import (
 )
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
+from session_explorer.workbench.ui import require_bundle
 
 _GRAPH_HEIGHT = 660
 
@@ -124,8 +125,7 @@ def render(bundles: List[SnapshotBundle], layer: str) -> None:
     st.session_state["graph_backend"] = None
     st.session_state["graph_has_cycles"] = False
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     # Feedback cycles are data, never a validation error: the cached builder
