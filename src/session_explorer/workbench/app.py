@@ -123,8 +123,9 @@ if not bundle_names:
 selected_names = st.sidebar.multiselect(
     "Bundles", bundle_names, key="bundle_select"
 )
+_n_bundles = len(bundle_names)
 st.sidebar.button(
-    f"Load all {len(bundle_names) or 'the'}",
+    f"Load all {_n_bundles} bundles" if _n_bundles else "Load all bundles",
     on_click=lambda: st.session_state.update(bundle_select=list(bundle_names)),
     disabled=not bundle_names,
 )

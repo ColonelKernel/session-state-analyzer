@@ -18,7 +18,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from session_explorer.alignment import AlignmentResult, align, build_strips
+from session_explorer.alignment import align, build_strips
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.registry import get_registry
 from session_explorer.workbench import state
@@ -155,8 +155,7 @@ def render() -> None:
     st.caption(
         "One semantic production strategy — *a vocal source sends to a shared "
         "reverb destination that routes to the main output* — implemented by "
-        "four different native mechanisms, analyzed as one representation. "
-        f"Bundles: `{X04_BUNDLES}`."
+        "four different native mechanisms, analyzed as one representation."
     )
 
     bundles = _load_x04_bundles()

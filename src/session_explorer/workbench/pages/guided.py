@@ -158,16 +158,23 @@ def _render_overview(
     st.header(wcopy.COPY["overview_title"])
     st.markdown(wcopy.COPY["overview_intro"])
 
-    st.button(
-        wcopy.COPY["load_examples"],
-        type="primary",
-        disabled=not all_bundle_names,
-        on_click=lambda: st.session_state.update(
-            bundle_select=list(all_bundle_names)
-        ),
-    )
-    if bundles and set(all_bundle_names) <= {b.dir.name for b in bundles}:
+    # On the default screen every session is already loaded, so the primary
+    # button would be a no-op — show the confirmation instead, and only offer
+    # the button when the user has actually deselected something to reload.
+    all_loaded = bool(bundles) and set(all_bundle_names) <= {
+        b.dir.name for b in bundles
+    }
+    if all_loaded:
         st.caption(wcopy.COPY["all_loaded"].format(n=len(all_bundle_names)))
+    else:
+        st.button(
+            wcopy.COPY["load_examples"],
+            type="primary",
+            disabled=not all_bundle_names,
+            on_click=lambda: st.session_state.update(
+                bundle_select=list(all_bundle_names)
+            ),
+        )
 
     if not bundles or atlas is None:
         st.info(wcopy.COPY["no_bundles"])
@@ -383,7 +390,12 @@ def _render_graph(bundles: List[SnapshotBundle]) -> None:
         + _plain_legend_html(include_absent=False),
         unsafe_allow_html=True,
     )
-    canonical_graph.render(bundles, wcopy.GRAPH_LAYERS[label])
+    canonical_graph.render(
+        bundles,
+        wcopy.GRAPH_LAYERS[label],
+        layer_label=label,
+        obs_labels=wcopy.OBS_PLAIN,
+    )
 
 
 # ---------------------------------------------------------------------------
