@@ -32,9 +32,10 @@ from session_explorer.graph_layers import (
     decompose_group,
     find_group_entities,
 )
-from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench.ui import bundle_label, require_bundle
 
 from .canonical_graph import _GRAPH_HEIGHT, _embed_html
 from .intervention import _static_table
@@ -45,15 +46,6 @@ _GROUP_GRAPH_HEIGHT = 420
 # ---------------------------------------------------------------------------
 # Shared helpers (used by both the Expert and Guided faces)
 # ---------------------------------------------------------------------------
-
-
-def _bundle_label(bundle: SnapshotBundle) -> str:
-    daw = bundle.snapshot.source.daw
-    try:
-        display = get_presentation(daw).display_name
-    except Exception:  # noqa: BLE001 - unknown daw still gets a label
-        display = daw
-    return f"{display} ({bundle.dir.name})"
 
 
 def _entity_label(snapshot: CanonicalDAWSnapshot, entity_id: str) -> str:
@@ -100,7 +92,7 @@ def _pick_bundle(bundles: List[SnapshotBundle], key: str) -> Optional[SnapshotBu
     if len(bundles) == 1:
         return bundles[0]
     return st.selectbox(
-        "Session", bundles, format_func=_bundle_label, key=key
+        "Session", bundles, format_func=bundle_label, key=key
     )
 
 
@@ -163,8 +155,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
     st.header(wcopy.DEPTH["header"])
     st.caption(wcopy.DEPTH["intro"])
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     bundle = _pick_bundle(bundles, key="depth_bundle_expert")

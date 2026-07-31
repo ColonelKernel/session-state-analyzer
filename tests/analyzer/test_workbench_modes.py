@@ -66,8 +66,8 @@ def _caption_text(at) -> str:
 
 
 def test_boots_guided_by_default_with_overview_cards():
-    """Fresh boot: Guided mode, guided tabs, all four bundles auto-loaded,
-    one overview card per DAW."""
+    """Fresh boot: Guided mode, guided tabs, every discovered bundle
+    auto-loaded, one overview card per DAW."""
     from session_explorer.workbench import copy as wcopy
 
     at = _apptest()
@@ -95,9 +95,12 @@ def test_boots_guided_by_default_with_overview_cards():
     for display_name in ("Ableton Live", "REAPER", "Cubase", "Logic Pro"):
         assert display_name in body
 
-    # The prominent load button exists.
+    # On the default screen every session is already loaded, so the no-op
+    # "Load all" button is hidden and the confirmation caption is shown instead.
     button_labels = {b.label for b in at.button}
-    assert wcopy.COPY["load_examples"] in button_labels
+    assert wcopy.COPY["load_examples"] not in button_labels
+    caption_text = " ".join(str(c.value) for c in getattr(at, "caption", []))
+    assert wcopy.COPY["all_loaded"].format(n=len(DAWS)) in (body + " " + caption_text)
 
 
 def test_mode_switch_to_expert_shows_the_four_research_tabs():

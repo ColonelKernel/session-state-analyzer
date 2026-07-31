@@ -24,6 +24,7 @@ from session_explorer.core.viz import (
 )
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
+from session_explorer.workbench.ui import require_bundle
 
 _GRAPH_HEIGHT = 660
 
@@ -118,14 +119,24 @@ def _render_cycle_finding(graph: nx.DiGraph, report) -> None:
                 st.markdown(f"- {ring}")
 
 
-def render(bundles: List[SnapshotBundle], layer: str) -> None:
-    """The canonical graph over the selected bundles for the chosen layer."""
+def render(
+    bundles: List[SnapshotBundle],
+    layer: str,
+    *,
+    layer_label: str | None = None,
+    obs_labels: dict[str, str] | None = None,
+) -> None:
+    """The canonical graph over the selected bundles for the chosen layer.
+
+    ``layer_label`` and ``obs_labels`` let Guided mode pass plain-language names
+    for the layer and the observability-filter checkboxes; Expert leaves them
+    ``None`` and shows the raw canonical ids.
+    """
     st.session_state["graph_html_chars"] = 0
     st.session_state["graph_backend"] = None
     st.session_state["graph_has_cycles"] = False
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     # Feedback cycles are data, never a validation error: the cached builder
@@ -147,19 +158,25 @@ def render(bundles: List[SnapshotBundle], layer: str) -> None:
     keep: set[str] = set()
     for column, obs_class in zip(columns, present):
         color = OBSERVABILITY_COLORS.get(obs_class, "#7F8C8D")
+        label = obs_labels.get(obs_class, obs_class) if obs_labels else obs_class
         with column:
-            if st.checkbox(obs_class, value=True, key=f"obs_{obs_class}"):
+            # Key stays on the raw class so filter state persists across a mode
+            # switch even when the visible label differs.
+            if st.checkbox(label, value=True, key=f"obs_{obs_class}"):
                 keep.add(obs_class)
             st.markdown(
                 f'<span style="color:{color}">■</span>', unsafe_allow_html=True
             )
     display_graph = _filter_by_observability(graph, keep)
 
+    # Dedupe the DAW list: two bundles of the same DAW (a synthetic + a real
+    # capture) would otherwise repeat the id, e.g. "logic_pro, logic_pro".
+    daws = list(dict.fromkeys(str(d) for d in graph.graph.get("daws", [])))
     st.caption(
-        f"Layer **{graph.graph.get('layer')}** · "
+        f"Layer **{layer_label or graph.graph.get('layer')}** · "
         f"{display_graph.number_of_nodes()} nodes · "
         f"{display_graph.number_of_edges()} edges · "
-        f"DAWs: {', '.join(str(d) for d in graph.graph.get('daws', []))}"
+        f"DAWs: {', '.join(daws)}"
     )
 
     if display_graph.number_of_nodes() == 0:

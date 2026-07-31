@@ -22,8 +22,9 @@ from typing import List, Optional
 import streamlit as st
 
 from canonical_snapshot import CanonicalDAWSnapshot
-from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench.ui import bundle_label, require_bundle
 
 from .intervention import _fmt_value, _static_table
 
@@ -255,15 +256,6 @@ def _target_option_label(snapshot: CanonicalDAWSnapshot, target_id: str) -> str:
     return f"{entity.entity_type} · {entity.name or target_id}{flag}"
 
 
-def _bundle_label(bundle: SnapshotBundle) -> str:
-    daw = bundle.snapshot.source.daw
-    try:
-        display = get_presentation(daw).display_name
-    except Exception:  # noqa: BLE001 - unknown daw still gets a label
-        display = daw
-    return f"{display} ({bundle.dir.name})"
-
-
 def _automation_rows(influence: ParameterInfluence) -> list[dict]:
     rows = []
     for a in influence.automation:
@@ -301,15 +293,14 @@ def render(bundles: List[SnapshotBundle]) -> None:
     st.header(wcopy.PARAM_INFLUENCE["header"])
     st.caption(wcopy.PARAM_INFLUENCE["intro"])
 
-    if not bundles:
-        st.info("Select at least one bundle in the sidebar.")
+    if not require_bundle(bundles):
         return
 
     bundle = (
         bundles[0]
         if len(bundles) == 1
         else st.selectbox(
-            "Session", bundles, format_func=_bundle_label, key="param_influence_bundle"
+            "Session", bundles, format_func=bundle_label, key="param_influence_bundle"
         )
     )
     if bundle is None:
