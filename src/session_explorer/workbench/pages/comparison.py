@@ -32,7 +32,7 @@ from typing import List, Optional
 
 import streamlit as st
 
-from session_explorer.atlas import AtlasCell, MeasuredCoverage, build_atlas
+from session_explorer.atlas import AtlasCell, MeasuredCoverage
 from session_explorer.atlas.coverage import aggregate_mix
 from session_explorer.compat import (
     LEVEL_META,
@@ -42,7 +42,9 @@ from session_explorer.compat import (
 )
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.metrics import metrics_report
+from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench import state
 from session_explorer.workbench.pages import alignment as alignment_page
 from session_explorer.workbench.pages import atlas as atlas_page
 
@@ -247,13 +249,17 @@ def _dashboard(
     vocabulary for plain language, ``plain`` swaps the ladder-chip tooltips,
     and ``key_suffix`` keeps the two modes' download-button keys distinct.
     """
-    atlas = build_atlas(bundles)
+    atlas = compute.atlas_for(bundles)
     x04 = alignment_page.load_x04_bundles()
     align_rows = (
-        alignment_page.pair_rows(x04, (_X04_CONCEPT,)) if x04 else []
+        alignment_page.x04_pair_rows((_X04_CONCEPT,)) if x04 else []
     )
     profiles = [assess_bundle(bundle) for bundle in bundles]
-    mixes = [aggregate_mix(atlas, b.snapshot.source.daw) for b in bundles]
+    # ``atlas`` was built from ``bundles`` in this order, so its column keys line
+    # up by index — key each bundle's mix on its own column (not its ``daw``,
+    # which repeats when a DAW loads twice) so duplicate-DAW columns don't
+    # collapse onto one shared cell.
+    mixes = [aggregate_mix(atlas, key) for key in atlas.column_keys]
 
     # The load-bearing disclaimer — prominent, master-prompt §50.
     st.info(labels["not_ranking"])
@@ -344,6 +350,24 @@ def _provenance(bundle: SnapshotBundle) -> Optional[float]:
     return compute_provenance_completeness(bundle.snapshot).completeness
 
 
+@st.cache_data(show_spinner=False)
+def _metrics_json_cached(
+    bundle_keys: tuple[tuple[str, int], ...],
+    x04_signature: tuple[tuple[str, int], ...],
+) -> str:
+    """The full metrics report as JSON, memoized on the loaded inputs.
+
+    ``metrics_report`` rebuilds the atlas and re-runs the six-pair alignment; it
+    otherwise recomputed on every rerun purely to feed a download button.
+    ``x04_signature`` participates in the key only — the X04 bundles are reloaded
+    inside on a miss.
+    """
+    bundles = [state.load_bundle_cached(dir_str) for dir_str, _ in bundle_keys]
+    x04 = alignment_page.load_x04_bundles()
+    report = metrics_report(bundles, x04_bundles=x04 or None)
+    return report.model_dump_json(indent=2)
+
+
 def _downloads(
     bundles: List[SnapshotBundle],
     x04: dict[str, SnapshotBundle],
@@ -357,8 +381,10 @@ def _downloads(
 
     with metrics_col:
         try:
-            report = metrics_report(bundles, x04_bundles=x04 or None)
-            metrics_json = report.model_dump_json(indent=2)
+            metrics_json = _metrics_json_cached(
+                tuple(state.bundle_key(b) for b in bundles),
+                alignment_page._x04_signature(),
+            )
         except Exception as exc:  # noqa: BLE001 - a download must not kill the page
             st.caption(f"Metrics report unavailable: {exc}")
         else:

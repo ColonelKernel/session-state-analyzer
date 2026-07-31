@@ -12,6 +12,7 @@ from __future__ import annotations
 from .coverage import (
     Atlas,
     AtlasCell,
+    AtlasColumn,
     DeclaredCoverage,
     DeclaredFieldCapability,
     MeasuredCoverage,
@@ -37,6 +38,7 @@ __all__ = [
     "get_domain",
     "Atlas",
     "AtlasCell",
+    "AtlasColumn",
     "MeasuredCoverage",
     "DeclaredCoverage",
     "DeclaredFieldCapability",

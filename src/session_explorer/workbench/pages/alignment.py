@@ -87,6 +87,42 @@ def _column(bundle: SnapshotBundle, concept_id: str, concept_label: str) -> None
         st.caption(strip.concept_detail)
 
 
+def _x04_signature() -> tuple[tuple[str, int], ...]:
+    """A hashable fingerprint of the on-disk X04 bundles (name, snapshot mtime).
+
+    Keys the alignment cache so editing a cross-DAW fixture invalidates it,
+    while a plain rerun reuses the six-pair result instead of re-aligning.
+    """
+    if not X04_BUNDLES.is_dir():
+        return ()
+    signature: list[tuple[str, int]] = []
+    for name in _DAW_ORDER:
+        snapshot = X04_BUNDLES / name / state.SNAPSHOT_FILE
+        if snapshot.is_file():
+            signature.append((name, snapshot.stat().st_mtime_ns))
+    return tuple(signature)
+
+
+@st.cache_data(show_spinner=False)
+def _x04_pair_rows_cached(
+    signature: tuple[tuple[str, int], ...], concepts: tuple[str, ...]
+) -> list[dict]:
+    # ``signature`` participates in the cache key only; the rows are recomputed
+    # from the freshly loaded X04 bundles on a miss.
+    return _pair_rows(_load_x04_bundles(), concepts)
+
+
+def _x04_pair_rows(concepts: tuple[str, ...]) -> list[dict]:
+    """The six-pair X04 alignment rows for ``concepts`` — memoized across reruns.
+
+    Every workbench surface that needs the cross-DAW alignment (this page, the
+    guided X04 story, the comparison dashboard) aligns the *same* fixed X04
+    bundles, so routing them through one cache collapses the three-times-a-rerun
+    recompute into a single aligned pass.
+    """
+    return _x04_pair_rows_cached(_x04_signature(), tuple(concepts))
+
+
 def _pair_rows(
     bundles: dict[str, SnapshotBundle], concepts: tuple[str, ...]
 ) -> list[dict]:
@@ -155,7 +191,7 @@ def render() -> None:
         ("effect_return", "audio_source", "main_output"),
         default=["effect_return", "audio_source"],
     )
-    rows = _pair_rows(bundles, tuple(concept_filter))
+    rows = _x04_pair_rows(tuple(concept_filter))
     if not rows:
         st.info("No alignment rows for the selected concepts.")
         return
@@ -194,3 +230,4 @@ DAW_ORDER = _DAW_ORDER
 load_x04_bundles = _load_x04_bundles
 concept_strip = _concept_strip
 pair_rows = _pair_rows
+x04_pair_rows = _x04_pair_rows

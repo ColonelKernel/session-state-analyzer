@@ -23,8 +23,9 @@ from typing import List
 
 import streamlit as st
 
-from session_explorer.loaders import SnapshotBundle, load_bundle
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench import state
 
 from .canonical_graph import _embed_html
 from .intervention import _fmt_value, _static_table
@@ -50,7 +51,7 @@ def _discover_variant_bundles() -> List[SnapshotBundle]:
     bundles: List[SnapshotBundle] = []
     for snapshot_path in sorted(_VARIANTS_ROOT.rglob("canonical.snapshot.json")):
         try:
-            bundles.append(load_bundle(snapshot_path.parent))
+            bundles.append(state.load_bundle_cached(snapshot_path.parent))
         except Exception:  # noqa: BLE001 - a bad bundle must not kill the page
             continue
     return bundles

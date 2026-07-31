@@ -199,11 +199,21 @@ def _ladder_reached(bundle: SnapshotBundle, context: Any = None) -> list[int]:
 
 
 def compute_bundle_metrics(
-    bundle: SnapshotBundle, atlas: Atlas, context: Any = None
+    bundle: SnapshotBundle,
+    atlas: Atlas,
+    context: Any = None,
+    column_key: Optional[str] = None,
 ) -> BundleMetrics:
-    """Assemble one bundle's full :class:`BundleMetrics` from a built atlas."""
+    """Assemble one bundle's full :class:`BundleMetrics` from a built atlas.
+
+    ``column_key`` indexes this bundle's atlas column; it defaults to the DAW id
+    (correct for a one-bundle-per-DAW atlas) but must be supplied when the atlas
+    holds two bundles of the same ``daw``, so each reads its own column instead
+    of colliding on the first.
+    """
     snap = bundle.snapshot
     daw = snap.source.daw
+    key = column_key or daw
     warnings = list(bundle.validation.warnings) + list(bundle.load_warnings)
     return BundleMetrics(
         daw=daw,
@@ -212,8 +222,8 @@ def compute_bundle_metrics(
         warnings=warnings,
         native_preservation=compute_native_preservation(bundle),
         ladder_reached=_ladder_reached(bundle, context),
-        domains=compute_domain_metrics(atlas, daw),
-        evidence_ratios=compute_evidence_ratios(atlas, daw),
+        domains=compute_domain_metrics(atlas, key),
+        evidence_ratios=compute_evidence_ratios(atlas, key),
         provenance=compute_provenance_completeness(snap),
     )
 
@@ -248,8 +258,8 @@ def _aggregate(
     atlas: Atlas, bundle_metrics: list[BundleMetrics], alignment: list[AlignmentMetric]
 ) -> AggregateMetrics:
     totals = {key: 0 for key in ("observed", "inferred", "annotated", "hidden", "absent", "applicable")}
-    for daw in atlas.daws:
-        mix = aggregate_mix(atlas, daw)
+    for column_key in atlas.column_keys:
+        mix = aggregate_mix(atlas, column_key)
         for key in totals:
             totals[key] += mix[key]
 
@@ -277,7 +287,10 @@ def metrics_report(
     """
     atlas = build_atlas(bundles)
     context = experiment_ctx if isinstance(experiment_ctx, dict) else None
-    bundle_metrics = [compute_bundle_metrics(b, atlas, context) for b in bundles]
+    bundle_metrics = [
+        compute_bundle_metrics(b, atlas, context, key)
+        for b, key in zip(bundles, atlas.column_keys)
+    ]
     alignment = compute_alignment_metrics(x04_bundles)
     aggregate = _aggregate(atlas, bundle_metrics, alignment)
 

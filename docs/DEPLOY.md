@@ -1,10 +1,11 @@
 # Deploying the workbench to Streamlit Community Cloud
 
 The repo is deploy-ready: `requirements.txt` (editable installs of the schema
-package and the app with `ui`/`audio`/`midi`/`score` extras), `packages.txt`
-(`libsndfile1` for audio loading), and `.streamlit/config.toml` are all in
-place, and the four example bundles under `fixtures/` auto-load on first visit.
-Verified locally: the app boots headless and serves HTTP 200.
+package and the app with only the `ui` extra — the workbench renders
+pre-computed descriptor fixtures and never decodes audio, so no audio system
+libraries are needed) and `.streamlit/config.toml` are in place, and the
+example bundles under `fixtures/` auto-load on first visit. Verified locally:
+the app boots headless and serves HTTP 200.
 
 ## One-time deploy (about 2 minutes, needs a browser + GitHub login)
 
@@ -17,8 +18,8 @@ Verified locally: the app boots headless and serves HTTP 200.
    - **Main file path:** `src/session_explorer/workbench/app.py`
 4. (Optional) Under **Advanced settings**, set Python version to **3.11**.
 5. Click **Deploy**. First build takes a few minutes (it compiles the editable
-   installs and installs `libsndfile1`). When it finishes you'll get a public
-   URL like `https://<something>.streamlit.app`.
+   installs). When it finishes you'll get a public URL like
+   `https://<something>.streamlit.app`.
 
 ## After it's live
 
@@ -31,12 +32,10 @@ Verified locally: the app boots headless and serves HTTP 200.
 
 - **Import error on `canonical_snapshot`** — confirm the `-e packages/canonical_snapshot`
   line is first in `requirements.txt`.
-- **`libsndfile` / audio load error** — confirm `packages.txt` contains
-  `libsndfile1`; add `ffmpeg` if any bundle ships non-WAV renders.
 - **Editable install rejected** — as a fallback, replace the two `-e` lines with
-  non-editable installs (`./packages/canonical_snapshot` and `.[ui,audio,midi,score]`)
-  and set `PYTHONPATH=src` under Advanced settings so the fixture paths still
-  resolve to this checkout.
+  non-editable installs (`./packages/canonical_snapshot` and `.[ui]`) and set
+  `PYTHONPATH=src` under Advanced settings so the fixture paths still resolve to
+  this checkout.
 
 ## Alternative host
 
