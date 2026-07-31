@@ -126,12 +126,13 @@ Enough to read the UI; full depth is in [`docs/CONTRACT.md`](CONTRACT.md).
 
 Under `fixtures/`:
 
-**`fixtures/adapters/*`** — the five frozen reference bundles the conformance suite and workbench treat as inputs:
+**`fixtures/adapters/*`** — the six frozen reference bundles the conformance suite and workbench treat as inputs (four adapters; Logic and REAPER each ship a synthetic bundle *and* a real captured one):
 - **`ableton`** — synthetic/demo-derived input through the real Ableton adapter. Shows **TRACK ≠ CHANNEL** (6 TRACK vs. 9 CHANNEL).
 - **`cubase`** — synthetic `.dawproject` through the real DAWproject pipeline (`OFFICIAL_EXPORT`); hidden plug-in params surface as `INACCESSIBLE`. Carries one real automation lane (vocal Volume).
 - **`logic`** — synthetic audio through the real Logic **evidence** pipeline; showcases `INFERRED`/`ANNOTATED`/`HIDDEN` and availability, with TRACK-only entities (`channel: UNKNOWN`). No Logic project file is ever read.
-- **`logic_real`** — the **only real captured session** ("Lincoln's Come in Fives"). Demonstrates every evidence class on real material, including an honest negative `OBSERVATION` (stems barely explain the bounce). Metadata/descriptors only; audio not committed. The real-capture flagship.
+- **`logic_real`** — a **real captured session** ("Lincoln's Come in Fives"), captured as staged multi-source evidence. Demonstrates every evidence class on real material, including an honest negative `OBSERVATION` (stems barely explain the bounce). Metadata/descriptors only; audio not committed. The evidence-pipeline flagship.
 - **`reaper`** — synthetic 9-track demo `.rpp` through the real `.rpp` parser.
+- **`reaper_real`** — a **real captured session** ("Planet Telex Scheffler", REAPER `5.93/x64`) through the ordinary file-parse pathway: one `.rpp`, parsed, no DAW running. 25 TRACKs / 19 PROCESSORs. Exercises on genuine material what the synthetic demo cannot — folder hierarchy decoded from ISBUS depth deltas, real send wiring with decoded AUXRECV channel specs, and the per-child summing-gate limitation observed in the wild. The file-parse counterpart to `logic_real`.
 
 **`fixtures/cross-daw/*`** — intent-defined, capture-replaceable:
 - **`X04_effect_return`** — the **flagship** alignment fixture: one intent (vocal → shared reverb return → main out) realized four ways (Ableton Return Track, Cubase FX Channel, REAPER receive track, Logic aux — annotated, never observed). Full 5-file bundles for all four DAWs; the alignment engine matches the reverb return across all six DAW pairs.
@@ -231,7 +232,7 @@ md = render_ladder_markdown(assess_fixtures())
 print(md.splitlines()[0])                                # -> # Compatibility Ladder
 ```
 
-Levels run `L0_LOADABLE` (0) … `L6_CONTROLLED_INTERVENTION` (6). `assess_fixtures()` yields six profiles: `ableton`, `cubase`, `logic`, `logic_real`, `reaper`, and `effect_send/after` (reaches L6 via injected context). Logic reaching `[0, 1, 5]` — acoustic-outcome-linked without signal-flow or temporal — is the load-bearing "profiles, not ranks" result.
+Levels run `L0_LOADABLE` (0) … `L6_CONTROLLED_INTERVENTION` (6). `assess_fixtures()` yields seven profiles: `ableton`, `cubase`, `logic`, `logic_real`, `reaper`, `reaper_real`, and `effect_send/after` (reaches L6 via injected context). Logic reaching `[0, 1, 5]` — acoustic-outcome-linked without signal-flow or temporal — is the load-bearing "profiles, not ranks" result.
 
 ### Metrics report
 
