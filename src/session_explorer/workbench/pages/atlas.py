@@ -143,26 +143,85 @@ def _render_grid(atlas) -> None:
                     st.caption(_ratio_caption(cell))
 
 
-def _refs_frame(refs) -> pd.DataFrame:
+def _refs_frame(
+    refs, entity_col: str = "entity / source", field_col: str = "field"
+) -> pd.DataFrame:
     return pd.DataFrame(
-        [{"entity / source": e, "field": f} for e, f in refs]
+        [{entity_col: e, field_col: f} for e, f in refs]
     )
 
 
-def _render_drilldown(atlas, bundles: List[SnapshotBundle]) -> None:
-    st.divider()
-    st.subheader("Drill-down — click a domain and DAW")
-    st.caption(
+# The drill-down's research-voice wording. Guided passes
+# ``wcopy.ATLAS_DRILLDOWN`` over these key-for-key (plus ``domain_labels`` for
+# the friendly row names); Expert passes nothing and reads these verbatim.
+# ``status_<STATUS>`` keys are optional — when absent the raw ``AtlasCell.status``
+# is prettified instead — and ``support_<KEY>`` keys likewise fall back to the
+# manifest's raw FULL/PARTIAL/NONE.
+_DRILLDOWN_TEXT: dict[str, str] = {
+    "header": "Drill-down — click a domain and DAW",
+    "caption": (
         "The measured reading (which entities and fields, in which epistemic "
         "bucket) beside the adapter's *declared* read capability for the same "
         "domain."
-    )
+    ),
+    "pick_domain": "Domain",
+    "pick_daw": "DAW",
+    "metric_applicable": "Applicable",
+    "metric_direct": "Direct observability",
+    "metric_hidden": "Hidden",
+    "profile_label": "Profile",
+    "measured_header": "**Measured** — entities and fields behind the numbers",
+    "bucket_observed": "observed",
+    "bucket_inferred": "inferred",
+    "bucket_annotated": "annotated",
+    "bucket_hidden": "hidden",
+    "bucket_absent": "unsupported / not-present / unknown",
+    "measured_empty": (
+        "No measured items — this domain has no scope in this snapshot."
+    ),
+    "declared_header": "**Declared** — the adapter's read capability manifest",
+    "declared_none": (
+        "The adapter declares no read capability that maps to this domain."
+    ),
+    "declared_caption": "{n} declared fields · support {tally}",
+    "col_domain": "domain",
+    "col_field": "field",
+    "col_support": "support",
+    "col_capture": "capture_method",
+    "col_stability": "source_stability",
+    "col_validation": "validation",
+    "refs_entity": "entity / source",
+    "refs_field": "field",
+}
+
+
+def _render_drilldown(
+    atlas,
+    bundles: List[SnapshotBundle],
+    *,
+    text: dict[str, str] | None = None,
+    domain_labels: dict[str, str] | None = None,
+) -> None:
+    t = {**_DRILLDOWN_TEXT, **(text or {})}
+    domain_labels = domain_labels or {}
+
+    st.divider()
+    st.subheader(t["header"])
+    st.caption(t["caption"])
 
     labels = _column_labels(atlas)
     pick_domain, pick_daw = st.columns(2)
-    domain_name = pick_domain.selectbox("Domain", ATLAS_DOMAINS, key="atlas_dd_domain")
+    # Keys are shared across the two modes (only one renders per run), so the
+    # picked cell survives a Guided <-> Expert switch; options stay the raw
+    # domain ids with the friendly name applied as a format_func.
+    domain_name = pick_domain.selectbox(
+        t["pick_domain"],
+        ATLAS_DOMAINS,
+        format_func=lambda name: domain_labels.get(name, name),
+        key="atlas_dd_domain",
+    )
     column_key = pick_daw.selectbox(
-        "DAW",
+        t["pick_daw"],
         atlas.column_keys,
         format_func=lambda key: labels.get(key, key),
         key="atlas_dd_daw",
@@ -170,29 +229,32 @@ def _render_drilldown(atlas, bundles: List[SnapshotBundle]) -> None:
     cell = atlas.cell(domain_name, column_key)
 
     obs_col, ratio_col, hid_col = st.columns(3)
-    obs_col.metric("Applicable", cell.measured.applicable)
+    obs_col.metric(t["metric_applicable"], cell.measured.applicable)
     ratio_col.metric(
-        "Direct observability",
+        t["metric_direct"],
         "—" if cell.direct_observability is None else f"{cell.direct_observability:.0%}",
     )
     hid_col.metric(
-        "Hidden",
+        t["metric_hidden"],
         "—" if cell.hidden_ratio is None else f"{cell.hidden_ratio:.0%}",
     )
-    st.caption(f"Profile: **{cell.status.replace('_', ' ').lower()}**")
+    status_text = t.get(f"status_{cell.status}") or cell.status.replace(
+        "_", " "
+    ).lower()
+    st.caption(f"{t['profile_label']}: **{status_text}**")
 
     measured_col, declared_col = st.columns(2)
 
     with measured_col:
-        st.markdown("**Measured** — entities and fields behind the numbers")
+        st.markdown(t["measured_header"])
         m = cell.measured
         buckets = [
-            ("observed", m.observed_refs, m.field_refs.get("observed", [])),
-            ("inferred", m.inferred_refs, m.field_refs.get("inferred", [])),
-            ("annotated", m.annotated_refs, m.field_refs.get("annotated", [])),
-            ("hidden", m.hidden_refs, m.field_refs.get("hidden", [])),
+            (t["bucket_observed"], m.observed_refs, m.field_refs.get("observed", [])),
+            (t["bucket_inferred"], m.inferred_refs, m.field_refs.get("inferred", [])),
+            (t["bucket_annotated"], m.annotated_refs, m.field_refs.get("annotated", [])),
+            (t["bucket_hidden"], m.hidden_refs, m.field_refs.get("hidden", [])),
             (
-                "unsupported / not-present / unknown",
+                t["bucket_absent"],
                 m.unsupported_refs + m.not_present_refs + m.unknown_refs,
                 [],
             ),
@@ -205,34 +267,54 @@ def _render_drilldown(atlas, bundles: List[SnapshotBundle]) -> None:
             any_shown = True
             with st.expander(f"{label} ({len(combined)})"):
                 st.dataframe(
-                    _refs_frame(combined), hide_index=True, width="stretch"
+                    _refs_frame(combined, t["refs_entity"], t["refs_field"]),
+                    hide_index=True,
+                    width="stretch",
                 )
         if not any_shown:
-            st.info("No measured items — this domain has no scope in this snapshot.")
+            st.info(t["measured_empty"])
 
     with declared_col:
-        st.markdown("**Declared** — the adapter's read capability manifest")
+        st.markdown(t["declared_header"])
         declared = cell.declared
         if declared is None:
-            st.info(
-                "The adapter declares no read capability that maps to this "
-                "domain."
-            )
+            st.info(t["declared_none"])
         else:
-            st.caption(
-                f"{declared.field_count} declared fields · support "
-                + ", ".join(f"{k} {v}" for k, v in sorted(declared.support.items()))
+            tally = ", ".join(
+                f"{t.get(f'support_{k}', k)} {v}"
+                for k, v in sorted(declared.support.items())
             )
+            st.caption(
+                t["declared_caption"].format(n=declared.field_count, tally=tally)
+            )
+
+            # With the "plain_values" marker (Guided), the table's cell values
+            # are translated too — support through the support_* words, the
+            # other manifest tokens prettified from SHOUTY_SNAKE — so the table
+            # never shows "FULL" one line under a caption that said "fully".
+            # Expert has no marker and shows the manifest tokens verbatim.
+            plain = "plain_values" in t
+
+            def _value(token: str | None) -> str:
+                if not token:
+                    return "—"
+                return token.replace("_", " ").lower() if plain else token
+
+            def _support_value(token: str) -> str:
+                if plain:
+                    return t.get(f"support_{token}", _value(token))
+                return token
+
             st.dataframe(
                 pd.DataFrame(
                     [
                         {
-                            "domain": row.capability_domain,
-                            "field": row.field_name,
-                            "support": row.support,
-                            "capture_method": row.capture_method or "—",
-                            "source_stability": row.source_stability or "—",
-                            "validation": row.validation_status,
+                            t["col_domain"]: _value(row.capability_domain),
+                            t["col_field"]: _value(row.field_name),
+                            t["col_support"]: _support_value(row.support),
+                            t["col_capture"]: _value(row.capture_method),
+                            t["col_stability"]: _value(row.source_stability),
+                            t["col_validation"]: _value(row.validation_status),
                         }
                         for row in declared.fields
                     ]

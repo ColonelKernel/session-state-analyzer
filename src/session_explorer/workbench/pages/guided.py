@@ -361,8 +361,17 @@ def _render_atlas(atlas: Optional[Atlas], bundles: List[SnapshotBundle]) -> None
     st.subheader(wcopy.COPY["atlas_closer"])
     st.caption(wcopy.COPY["atlas_closer_caption"])
     _glossary_expander()
-    # The expert drill-down, verbatim: same widgets, same numbers.
-    atlas_page._render_drilldown(atlas, bundles)
+    # The expert drill-down — same widgets, same numbers, plain words: the
+    # ATLAS_DRILLDOWN strings override the research voice, and the domain
+    # picker shows the same friendly row names as the grid above it.
+    atlas_page._render_drilldown(
+        atlas,
+        bundles,
+        text=wcopy.ATLAS_DRILLDOWN,
+        domain_labels={
+            name: label for name, (label, _subtitle) in wcopy.ATLAS_ROWS.items()
+        },
+    )
 
 
 # ---------------------------------------------------------------------------

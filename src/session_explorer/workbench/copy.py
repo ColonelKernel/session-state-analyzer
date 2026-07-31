@@ -268,10 +268,80 @@ OBS_PLAIN: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
+# The atlas drill-down ("Look closer"), in plain language. Overrides the
+# expert wording in pages/atlas.py::_DRILLDOWN_TEXT key-for-key; the bucket
+# words reuse OBS_PLAIN so the legend, the bars, and the drill-down can never
+# use different words for the same idea.
+# ---------------------------------------------------------------------------
+
+ATLAS_DRILLDOWN: dict[str, str] = {
+    # "DAW", not "session": the grid intro and the "Look closer" caption both
+    # call the columns DAWs, and the picker's options are the column headers.
+    # "Adapter" matches the comparison tab's established word for the same
+    # concept (see COMPARISON["grow_capabilities_desc"]) and the glossary.
+    "header": "Pick one row and one DAW",
+    "caption": (
+        "Two sides of the same choice: what we actually found in this "
+        "session, and what this DAW's adapter says it is able to read — in "
+        "any session, not just this one."
+    ),
+    "pick_domain": "What kind of information?",
+    "pick_daw": "Which DAW?",
+    "metric_applicable": "Things to look at",
+    "metric_direct": "Read directly",
+    "metric_hidden": "Locked away",
+    "profile_label": "In short",
+    # One plain phrase per measured-cell profile (AtlasCell.status).
+    "status_NOT_APPLICABLE": "nothing to look at yet",
+    "status_DECLARED_ONLY": "possible, but nothing in this session",
+    "status_MOSTLY_HIDDEN": "mostly locked away",
+    "status_FULLY_OBSERVED": "all of it read directly",
+    "status_FULLY_RECOVERED": "all of it recovered, one way or another",
+    "status_MOSTLY_OBSERVED": "mostly read directly",
+    "status_MOSTLY_INFERRED": "mostly pieced together",
+    "status_PARTIAL": "partly recovered",
+    "measured_header": "**What we found** — the exact pieces behind the bar",
+    "bucket_observed": OBS_PLAIN["observed"],
+    "bucket_inferred": OBS_PLAIN["inferred"],
+    "bucket_annotated": OBS_PLAIN["annotation"],
+    "bucket_hidden": OBS_PLAIN["hidden"],
+    "bucket_absent": OBS_PLAIN["absent"],
+    "measured_empty": "Nothing of this kind exists in this session.",
+    "declared_header": (
+        "**What this DAW's adapter says it can read** — its abilities, "
+        "independent of this session"
+    ),
+    "declared_none": (
+        "This DAW's adapter doesn't cover this kind of information."
+    ),
+    "declared_caption": "{n} kinds of value · {tally}",
+    # Marker: translate the declared table's cell values too (support via the
+    # support_* words; other status tokens prettified from SHOUTY_CASE), so the
+    # table cannot show "FULL" one line under a caption that says "fully".
+    "plain_values": "yes",
+    "support_FULL": "fully",
+    "support_PARTIAL": "partly",
+    "support_NONE": "not at all",
+    "col_domain": "area",
+    "col_field": "value",
+    "col_support": "how much",
+    "col_capture": "how it's read",
+    "col_stability": "how reliable",
+    "col_validation": "checked?",
+    "refs_entity": "where in the session",
+    "refs_field": "which part",
+}
+
+# ---------------------------------------------------------------------------
 # Glossary: term -> plain definition
 # ---------------------------------------------------------------------------
 
 GLOSSARY: dict[str, str] = {
+    "Adapter": (
+        "The small reader program for one DAW. It opens that DAW's sessions "
+        "(or their exports), captures whatever it can see, and hands the "
+        "result to this tool — the tool itself never reads a DAW directly."
+    ),
     "Evidence": (
         "How a fact got here: read directly from the DAW (observed), worked "
         "out from other clues (inferred), written down by you (annotated), "
