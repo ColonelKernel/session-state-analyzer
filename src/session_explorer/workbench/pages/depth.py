@@ -35,10 +35,13 @@ from session_explorer.graph_layers import (
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
-from session_explorer.workbench.ui import pick_bundle, require_bundle
-
-from .canonical_graph import _GRAPH_HEIGHT, _embed_html
-from .intervention import _static_table
+from session_explorer.workbench.ui import (
+    GRAPH_HEIGHT as _GRAPH_HEIGHT,
+    embed_html as _embed_html,
+    pick_bundle,
+    require_bundle,
+    static_table as _static_table,
+)
 
 _GROUP_GRAPH_HEIGHT = 420
 

@@ -1,12 +1,15 @@
 """Small presentation helpers shared across the workbench pages.
 
 Consolidates the copies that had drifted into nearly every page module — the
-bundle/DAW label formatters, the "nothing selected" guard, and the evidence-mix
-segment palette — so each has a single definition and cannot diverge.
+bundle/DAW label formatters, the "nothing selected" guard, the evidence-mix
+segment palette, and the cross-page render helpers (the HTML embed, the
+static table, the value formatter) — so each has a single definition and
+cannot diverge.
 """
 
 from __future__ import annotations
 
+import html as _html
 from typing import Sequence
 
 import streamlit as st
@@ -121,3 +124,81 @@ def pick_bundle(bundles: Sequence[SnapshotBundle], key: str) -> SnapshotBundle:
         help=PICK_BUNDLE_HELP,
     )
     return by_name[name]
+
+
+def keep(*keys: str) -> None:
+    """Defeat widget-state garbage collection for the given session keys.
+
+    A widget's state is dropped on any run where the widget is not
+    instantiated — e.g. the Expert graph-layer radio on a run showing the
+    Native view, or (after the pages migration) any widget on a non-active
+    page. Re-assigning the value marks it programmatically-set, so Streamlit
+    keeps it alive; the widget then resumes from the preserved value when it
+    is next instantiated.
+
+    Must run BEFORE any widget with these keys is created in the current run
+    (call it once, early in the entry script).
+    """
+    for key in keys:
+        if key in st.session_state:
+            st.session_state[key] = st.session_state[key]
+
+
+# Default embed height for PyVis graph HTML, shared by every graph surface.
+GRAPH_HEIGHT = 660
+
+
+def embed_html(html: str, height: int = GRAPH_HEIGHT) -> None:
+    """Embed standalone PyVis HTML (st.iframe; components.html on older Streamlit)."""
+    if hasattr(st, "iframe"):
+        st.iframe(html, height=height, width="stretch")
+    else:  # pragma: no cover - older streamlit
+        st.components.v1.html(html, height=height, scrolling=False)
+
+
+def static_table(rows: list[dict]) -> None:
+    """Render a small fixed table as static HTML (immediate first-frame paint).
+
+    ``st.dataframe`` draws to a lazily-painted canvas grid: for these tiny
+    fixed tables it flashes an empty box for ~a second before the rows appear.
+    These tables never scroll, sort, or resize, so a plain server-rendered
+    ``<table>`` is both correct and instant. Cell text is escaped — entity
+    names ultimately come from DAW session data.
+    """
+    if not rows:
+        return
+    cols = list(rows[0].keys())
+    head = "".join(
+        "<th style='text-align:left;padding:6px 10px;font-weight:600;"
+        "font-size:0.78rem;opacity:0.7;"
+        "border-bottom:1px solid rgba(128,128,128,0.35)'>"
+        f"{_html.escape(str(c))}</th>"
+        for c in cols
+    )
+    body = "".join(
+        "<tr>"
+        + "".join(
+            "<td style='padding:6px 10px;font-size:0.85rem;"
+            "border-bottom:1px solid rgba(128,128,128,0.15)'>"
+            f"{_html.escape(str(row.get(c, '')))}</td>"
+            for c in cols
+        )
+        + "</tr>"
+        for row in rows
+    )
+    st.markdown(
+        "<table style='width:100%;border-collapse:collapse;margin:2px 0 8px'>"
+        f"<thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>",
+        unsafe_allow_html=True,
+    )
+
+
+def fmt_value(value) -> str:
+    """A parameter/metric value as a short human string ("—", "on", "0.7")."""
+    if value is None:
+        return "—"
+    if isinstance(value, bool):
+        return "on" if value else "off"
+    if isinstance(value, float):
+        return f"{value:g}"
+    return str(value)
