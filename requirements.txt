@@ -5,5 +5,10 @@
 # session_explorer and canonical_snapshot must import from this checkout — not
 # from a separate copy in site-packages. Editable (-e) keeps the code and the
 # committed fixtures/ tree in the same place.
+#
+# Only the `ui` extra: the workbench renders pre-computed descriptor fixtures and
+# never decodes audio, so the heavy audio/midi/score stacks (librosa, soundfile,
+# music21, …) are deliberately kept out of the deploy build. Fixture regeneration
+# uses `.[audio]` locally; see pyproject.toml.
 -e packages/canonical_snapshot
--e .[ui,audio,midi,score]
+-e .[ui]
