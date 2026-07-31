@@ -14,6 +14,11 @@ from session_explorer.loaders import SnapshotBundle, load_bundle
 
 SNAPSHOT_FILE = "canonical.snapshot.json"
 
+# Where the workbench discovers adapter bundles. Shared by the entry script
+# and the navigation page bodies (which load bundles themselves).
+REPO_ROOT = Path(__file__).resolve().parents[3]
+FIXTURES_ROOT = REPO_ROOT / "fixtures" / "adapters"
+
 
 @st.cache_data(show_spinner="Loading snapshot bundle…")
 def _load_bundle(path_str: str, mtime_ns: int) -> SnapshotBundle:

@@ -74,7 +74,7 @@ PICK_BUNDLE_HELP = (
 
 
 def pick_bundle(bundles: Sequence[SnapshotBundle], key: str) -> SnapshotBundle:
-    """A bundle selectbox whose choice follows the user across tabs.
+    """A bundle selectbox whose choice follows the user across pages.
 
     Every per-bundle surface used to keep its own selection, so picking Cubase
     in the Entity inspector still showed Ableton in Routing depth. All surfaces
@@ -82,12 +82,12 @@ def pick_bundle(bundles: Sequence[SnapshotBundle], key: str) -> SnapshotBundle:
     carry the same label + hint so the follow behaviour is legible as one
     control.
 
-    ``st.tabs`` renders every tab body each run, so the pickers coexist in one
-    run and must keep **distinct widget keys** (one shared key would raise
-    DuplicateWidgetID). The sync goes through session state instead: before a
-    picker is instantiated its stored value is repaired to the shared focus,
-    and its ``on_change`` writes the new choice back. Options are directory
-    names (stable across the cached loader's copies); the label stays friendly.
+    Each picker keeps its own widget key: only one page renders per run, but a
+    widget key's state dies with its widget on navigate-away, so the durable
+    truth is the plain ``focus_bundle`` value. Before a picker is instantiated
+    its stored value is repaired to the shared focus, and its ``on_change``
+    writes the new choice back. Options are directory names (stable across
+    the cached loader's copies); the label stays friendly.
 
     The focus is kept equal to what is actually displayed: when the focused
     bundle is unloaded, the focus itself moves to the fallback — a stale focus

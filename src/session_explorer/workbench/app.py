@@ -1,21 +1,20 @@
-"""Session State Analyzer workbench — single entry point, two modes.
+"""Session State Analyzer workbench — single entry point, one page tree.
 
 Run from the repo root:
 
     streamlit run src/session_explorer/workbench/app.py
 
-The sidebar's top control switches between two faces of the same data:
+Navigation is a sidebar table of contents (``st.navigation``) built from the
+plain-data registry in :mod:`session_explorer.workbench.nav`. The sidebar's
+**Mode** radio switches the *wording* of the tree, not the tree itself:
 
-- **Guided** (default) — a plain-language, story-first tour across eight tabs:
-  an Overview with one friendly card per session, the X04 "same idea in four
-  DAWs" story, a plain-words observability atlas, the canonical graph, groups
-  & feedback, what one change does to the sound, how a song evolved, and how
-  the DAWs compare. All Guided copy lives in ``workbench/copy.py``.
-- **Expert** — the research workbench: bundle multiselect, graph layer, and
-  the Canonical / Native / Evidence views. Canonical holds nine tabs (Graph |
-  Entity inspector | X04 alignment | Observability atlas | State to audio |
-  Routing depth | Parameter influence | Session evolution | Adapter
-  comparison).
+- **Guided** (default) — the plain-language tour, eight story pages.
+- **Expert** — the research workbench, eleven pages in two sections
+  (Canonical, Source).
+
+Shared pages keep one stable URL across modes (``/atlas``, ``/same-idea``,
+``/state-to-audio``, …), so switching mode stays on the same page — re-worded
+— and every exhibit is deep-linkable. Exactly one page executes per rerun.
 
 The workbench is read-only by principle: it presents adapter exports, it
 never parses a DAW artifact.
@@ -23,41 +22,12 @@ never parses a DAW artifact.
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import streamlit as st
 
-from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench import nav
 from session_explorer.workbench import state
 from session_explorer.workbench import ui
-from session_explorer.workbench.pages import (
-    alignment,
-    atlas,
-    canonical_graph,
-    comparison,
-    depth,
-    entity_inspector,
-    evidence,
-    guided,
-    intervention,
-    native,
-    parameter_influence,
-    session_evolution,
-)
-
-REPO_ROOT = Path(__file__).resolve().parents[3]
-FIXTURES_ROOT = REPO_ROOT / "fixtures" / "adapters"
-
-LAYER_OPTIONS = (
-    "organizational",
-    "signal_flow",
-    "processing",
-    "automation",
-    "variant",
-    "all",
-)
-VIEW_OPTIONS = ("Canonical", "Native", "Evidence")
 
 st.set_page_config(
     page_title="Session State Analyzer",
@@ -65,20 +35,32 @@ st.set_page_config(
     layout="wide",
 )
 
+bundle_names = nav.discovered_bundle_names()
 
-# ---------------------------------------------------------------------------
-# Sidebar top: the mode switch (Guided is the default)
-# ---------------------------------------------------------------------------
+# Widget keys living inside page bodies would have their state
+# garbage-collected on every run where their page is not the active one;
+# keep() re-asserts them before any page runs. ``bundle_select`` is included
+# because its widget (the Expert multiselect) is absent on Guided runs — a
+# narrowed selection must survive a mode round trip, not reset to all.
+ui.keep("bundle_select", *nav.KEEP_KEYS)
 
-bundle_dirs = state.discover_bundle_dirs(FIXTURES_ROOT)
-bundle_names = [path.name for path in bundle_dirs]
+# Shared bundle selection: every discovered bundle auto-loads on first visit;
+# Expert's multiselect binds to the same key, so the two modes always agree
+# about what is loaded.
+if "bundle_select" not in st.session_state:
+    st.session_state["bundle_select"] = list(bundle_names)
 
-# Widget keys whose widgets are not instantiated on every run (e.g. the Expert
-# graph-layer radio while the Native view — or Guided mode — is showing) would
-# otherwise have their state garbage-collected; keep() preserves them. Runs
-# before any of these widgets exist in the current run. The navigation
-# migration extends this list to every in-page widget key.
-ui.keep("graph_layer_expert")
+# A fresh session deep-linking an Expert-only page (/inspector, /native, …)
+# must boot into Expert mode — the Guided tree doesn't contain those slugs,
+# so the link would otherwise 404 into the Guided Overview.
+if "app_mode" not in st.session_state:
+    try:
+        _requested = str(getattr(st.context, "url", "") or "")
+    except Exception:  # noqa: BLE001 - context is absent under bare execution
+        _requested = ""
+    _seeded_mode = nav.mode_for_requested_path(_requested)
+    if _seeded_mode is not None:
+        st.session_state["app_mode"] = _seeded_mode
 
 st.sidebar.title("Session State Analyzer")
 mode = st.sidebar.radio(
@@ -89,134 +71,41 @@ mode = st.sidebar.radio(
     help=wcopy.COPY["mode_help"],
 )
 
-# Shared bundle selection: Guided auto-loads every discovered bundle on first
-# visit; Expert's multiselect binds to the same key, so the two modes always
-# agree about what is loaded.
-if "bundle_select" not in st.session_state:
-    st.session_state["bundle_select"] = list(bundle_names)
-
-
-def _load_bundles(names: list[str]) -> list[SnapshotBundle]:
-    loaded: list[SnapshotBundle] = []
-    for name in names:
-        try:
-            loaded.append(state.load_bundle_cached(FIXTURES_ROOT / name))
-        except Exception as exc:  # noqa: BLE001 - a bad bundle must not kill the app
-            st.sidebar.error(f"Failed to load bundle '{name}': {exc}")
-    return loaded
-
-
-# ---------------------------------------------------------------------------
-# Guided mode
-# ---------------------------------------------------------------------------
-
 if mode == wcopy.COPY["mode_guided"]:
     st.sidebar.caption(wcopy.COPY["guided_tagline"])
     with st.sidebar.expander(wcopy.COPY["glossary_title"]):
         for term, definition in wcopy.GLOSSARY.items():
             st.markdown(f"**{term}** — {definition}")
+    # Surface any broken bundle exactly once per run (page bodies load
+    # silently through the cache).
+    nav.load_current_bundles(report_errors=True)
+else:
+    st.sidebar.caption("Four observation instruments, one analysis contract.")
+    st.sidebar.caption(wcopy.COPY["expert_switch_hint"])
 
-    guided_bundles = _load_bundles(st.session_state.get("bundle_select", []))
-    guided.render(guided_bundles, bundle_names)
-    st.stop()
-
-
-# ---------------------------------------------------------------------------
-# Expert mode — the research workbench, unchanged below this line
-# ---------------------------------------------------------------------------
-
-st.sidebar.caption("Four observation instruments, one analysis contract.")
-st.sidebar.caption(wcopy.COPY["expert_switch_hint"])
-
-if not bundle_names:
-    st.sidebar.error(f"No snapshot bundles found under {FIXTURES_ROOT}.")
-
-selected_names = st.sidebar.multiselect(
-    "Bundles", bundle_names, key="bundle_select"
-)
-_n_bundles = len(bundle_names)
-st.sidebar.button(
-    f"Load all {_n_bundles} bundles" if _n_bundles else "Load all bundles",
-    on_click=lambda: st.session_state.update(bundle_select=list(bundle_names)),
-    disabled=not bundle_names,
-)
-
-view = st.sidebar.radio("View", VIEW_OPTIONS, index=0)
-
-bundles: list[SnapshotBundle] = _load_bundles(selected_names)
-
-load_warnings = [
-    f"[{bundle.dir.name}] {warning}"
-    for bundle in bundles
-    for warning in bundle.load_warnings
-]
-if load_warnings:
-    with st.sidebar.expander(f"Load warnings ({len(load_warnings)})"):
-        for warning in load_warnings:
-            st.caption(warning)
-
-
-# ---------------------------------------------------------------------------
-# Main area
-# ---------------------------------------------------------------------------
-
-if view == "Canonical":
-    (
-        graph_tab,
-        inspector_tab,
-        alignment_tab,
-        atlas_tab,
-        intervention_tab,
-        depth_tab,
-        param_tab,
-        evolution_tab,
-        comparison_tab,
-    ) = st.tabs(
-        [
-            "Graph",
-            "Entity inspector",
-            "X04 alignment",
-            "Observability atlas",
-            "State to audio",
-            "Routing depth",
-            "Parameter influence",
-            "Session evolution",
-            "Adapter comparison",
-        ]
-    )
-    with graph_tab:
-        # The layer choice affects only this tab, so it lives here rather than
-        # in the sidebar (where it read as a global control that ignored the
-        # other eight tabs). The widget only exists under the Canonical view;
-        # the ui.keep() call at the top of this script preserves its state
-        # across Native/Evidence (and Guided) round trips.
-        layer = st.radio(
-            "Graph layer",
-            LAYER_OPTIONS,
-            index=LAYER_OPTIONS.index("all"),
-            horizontal=True,
-            key="graph_layer_expert",
+    if not bundle_names:
+        st.sidebar.error(
+            f"No snapshot bundles found under {state.FIXTURES_ROOT}."
         )
-        canonical_graph.render(bundles, layer)
-    with inspector_tab:
-        entity_inspector.render(bundles)
-    with alignment_tab:
-        alignment.render()
-    with atlas_tab:
-        atlas.render(bundles)
-    with intervention_tab:
-        intervention.render_expert()
-    with depth_tab:
-        depth.render(bundles)
-    with param_tab:
-        parameter_influence.render(bundles)
-    with evolution_tab:
-        session_evolution.render(bundles)
-    with comparison_tab:
-        comparison.render(bundles)
 
-elif view == "Native":
-    native.render(bundles)
+    st.sidebar.multiselect("Bundles", bundle_names, key="bundle_select")
+    _n_bundles = len(bundle_names)
+    st.sidebar.button(
+        f"Load all {_n_bundles} bundles" if _n_bundles else "Load all bundles",
+        on_click=lambda: st.session_state.update(
+            bundle_select=list(bundle_names)
+        ),
+        disabled=not bundle_names,
+    )
 
-else:  # Evidence
-    evidence.render(bundles)
+    load_warnings = [
+        f"[{bundle.dir.name}] {warning}"
+        for bundle in nav.load_current_bundles(report_errors=True)
+        for warning in bundle.load_warnings
+    ]
+    if load_warnings:
+        with st.sidebar.expander(f"Load warnings ({len(load_warnings)})"):
+            for warning in load_warnings:
+                st.caption(warning)
+
+nav.build_navigation(mode).run()

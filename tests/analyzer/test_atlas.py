@@ -303,11 +303,16 @@ def test_workbench_boots_with_atlas_tab():
         / "workbench"
         / "app.py"
     )
+    from tests.analyzer.nav_testing import goto
+
     at = AppTest.from_file(str(app_path), default_timeout=60)
     at.run()
-    # P6 two-mode workbench: the app boots into Guided mode; the atlas tab
-    # lives in Expert mode, so flip the sidebar mode radio first.
+    # The app boots into Guided mode; the Expert atlas page lives at the
+    # shared /atlas slug — switch mode, then navigate to it.
     at.sidebar.radio[0].set_value("Expert").run()
     assert not at.exception, at.exception
-    tab_labels = {tab.label for tab in at.tabs}
-    assert "Observability atlas" in tab_labels
+    goto(at, "atlas")
+    at.run()
+    assert not at.exception, at.exception
+    headers = " ".join(str(h.value) for h in at.header)
+    assert "Observability atlas" in headers

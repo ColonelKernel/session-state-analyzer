@@ -81,7 +81,7 @@ All ratio fields are bounded to `[0, 1]`; `EvidenceRatios.applicable` and every
 from pathlib import Path
 from session_explorer.loaders.bundle import load_bundle
 from session_explorer.metrics import metrics_report, write_metrics
-from session_explorer.workbench.pages import alignment as alignment_page
+from session_explorer.workbench.views import alignment as alignment_page
 
 daws = ("reaper", "ableton", "cubase", "logic")
 bundles = [load_bundle(Path("fixtures/adapters") / d) for d in daws]

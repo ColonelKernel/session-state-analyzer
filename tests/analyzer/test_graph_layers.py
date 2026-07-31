@@ -406,13 +406,12 @@ def _apptest():
 
 
 def _run_expert(at):
-    """P6 two-mode workbench: the app now boots into Guided mode by default.
-
-    These smokes assert the Expert views, so they flip the sidebar mode radio
-    (always ``sidebar.radio[0]``) to Expert first. The Expert sidebar then
-    holds only Mode and View — the layer radio lives inside the Graph tab
-    (key ``graph_layer_expert``) — so tests find radios by label or key,
-    never by position.
+    """The app boots into Guided mode by default; these smokes flip the
+    sidebar mode radio (always ``sidebar.radio[0]``, the only sidebar radio)
+    to Expert. Under st.navigation the Expert default page is Graph, so the
+    graph assertions need no further navigation; the layer radio lives on the
+    Graph page (key ``graph_layer_expert``) — find widgets by key, never by
+    position.
     """
     at.run()
     at.sidebar.radio[0].set_value("Expert").run()
@@ -448,15 +447,15 @@ def test_workbench_layer_switch():
 
 @workbench
 def test_workbench_native_and_evidence_views():
+    from tests.analyzer.nav_testing import goto
+
     at = _run_expert(_apptest())
-    # Find the View radio by label — the sidebar holds only Mode and View now
-    # that the layer radio moved into the Graph tab.
-    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
-    view.set_value("Native")
+    # Native and Evidence are Source-section pages now (the View radio is
+    # gone) — drive them by slug.
+    goto(at, "native")
     at.run()
     assert not at.exception, [e.value for e in at.exception]
-    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
-    view.set_value("Evidence")
+    goto(at, "evidence")
     at.run()
     assert not at.exception, [e.value for e in at.exception]
     # The provenance store dataframe is on screen.

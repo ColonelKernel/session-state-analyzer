@@ -26,13 +26,9 @@ from session_explorer.registry import get_registry
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench.ui import MIX_SEGMENT_COLORS, daw_label
-from session_explorer.workbench.pages import alignment as alignment_page
-from session_explorer.workbench.pages import atlas as atlas_page
-from session_explorer.workbench.pages import canonical_graph
-from session_explorer.workbench.pages import comparison as comparison_page
-from session_explorer.workbench.pages import depth as depth_page
-from session_explorer.workbench.pages import intervention as intervention_page
-from session_explorer.workbench.pages import session_evolution as evolution_page
+from session_explorer.workbench.views import alignment as alignment_page
+from session_explorer.workbench.views import atlas as atlas_page
+from session_explorer.workbench.views import canonical_graph
 
 _ROUTING_RELS = ("CHANNEL_SENDS_TO", "CHANNEL_ROUTES_TO")
 
@@ -410,47 +406,32 @@ def _render_graph(bundles: List[SnapshotBundle]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Entry point
+# Page bodies — the navigation renders each Guided story as its own page
+# (workbench/nav.py); the four surfaces unique to Guided are exposed here.
+# The other four stories dispatch straight to the shared page modules'
+# ``render_guided`` entry points.
 # ---------------------------------------------------------------------------
 
 
-def render(bundles: List[SnapshotBundle], all_bundle_names: List[str]) -> None:
-    """The whole Guided mode: eight story tabs over the loaded bundles."""
+def render_overview(
+    bundles: List[SnapshotBundle], all_bundle_names: List[str]
+) -> None:
+    """The Overview page: one friendly card per loaded session."""
     atlas = compute.atlas_for(bundles) if bundles else None
-    (
-        overview_tab,
-        x04_tab,
-        atlas_tab,
-        graph_tab,
-        grouping_tab,
-        intervention_tab,
-        evolution_tab,
-        comparison_tab,
-    ) = st.tabs(
-        [
-            wcopy.COPY["tab_overview"],
-            wcopy.COPY["tab_x04"],
-            wcopy.COPY["tab_atlas"],
-            wcopy.COPY["tab_graph"],
-            wcopy.COPY["tab_grouping"],
-            wcopy.COPY["tab_intervention"],
-            wcopy.COPY["tab_evolution"],
-            wcopy.COPY["tab_comparison"],
-        ]
-    )
-    with overview_tab:
-        _render_overview(bundles, all_bundle_names, atlas)
-    with x04_tab:
-        _render_x04()
-    with atlas_tab:
-        _render_atlas(atlas, bundles)
-    with graph_tab:
-        _render_graph(bundles)
-    with grouping_tab:
-        depth_page.render_guided(bundles)
-    with intervention_tab:
-        intervention_page.render_guided()
-    with evolution_tab:
-        evolution_page.render_guided(bundles)
-    with comparison_tab:
-        comparison_page.render_guided(bundles)
+    _render_overview(bundles, all_bundle_names, atlas)
+
+
+def render_x04() -> None:
+    """The "same idea in four DAWs" story page."""
+    _render_x04()
+
+
+def render_atlas(bundles: List[SnapshotBundle]) -> None:
+    """The plain-words observability atlas page."""
+    atlas = compute.atlas_for(bundles) if bundles else None
+    _render_atlas(atlas, bundles)
+
+
+def render_graph(bundles: List[SnapshotBundle]) -> None:
+    """The plain-language canonical-graph page."""
+    _render_graph(bundles)

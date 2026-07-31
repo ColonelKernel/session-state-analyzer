@@ -1,6 +1,14 @@
-# The workbench is a single-entry-point app (app.py dispatches its two pages
-# as tabs). Its pages/ directory holds plain render modules, not Streamlit
-# multipage scripts — keep Streamlit from auto-building sidebar navigation
-# out of them.
-[client]
-showSidebarNavigation = false
+# Workbench Streamlit configuration.
+#
+# Two hard-won constraints, both enforced by canary tests:
+#
+# 1. Do NOT set client.showSidebarNavigation = false. Despite its docstring
+#    claiming it only affects pages/-directory apps, it also silently hides an
+#    explicit st.navigation(position="sidebar") — the app would render with no
+#    navigation and no error (streamlit navigation.py:413-418).
+#
+# 2. Do NOT create a directory named "pages" next to workbench/app.py. Streamlit
+#    auto-detects a sibling pages/ directory as a V1 multipage app; a fresh
+#    session that deep-links a slug matching one of those filenames executes
+#    that file INSTEAD of app.py — for a plain render module that means a blank
+#    page. The render modules therefore live in workbench/views/.

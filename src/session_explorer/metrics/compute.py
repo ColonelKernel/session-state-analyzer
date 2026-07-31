@@ -240,7 +240,7 @@ def compute_alignment_metrics(
     """
     if not x04_bundles:
         return []
-    from session_explorer.workbench.pages import alignment as alignment_page
+    from session_explorer.workbench.views import alignment as alignment_page
 
     rows = alignment_page.pair_rows(x04_bundles, concepts)
     return [

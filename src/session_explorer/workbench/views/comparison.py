@@ -46,8 +46,8 @@ from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
 from session_explorer.workbench.ui import daw_label, require_bundle
-from session_explorer.workbench.pages import alignment as alignment_page
-from session_explorer.workbench.pages import atlas as atlas_page
+from session_explorer.workbench.views import alignment as alignment_page
+from session_explorer.workbench.views import atlas as atlas_page
 
 # The concept the X04 alignment engine measures across the four native
 # mechanisms; the dashboard reads its confidence as the alignment column.
