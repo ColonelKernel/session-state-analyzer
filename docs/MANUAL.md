@@ -67,7 +67,7 @@ Run the tests (optional):
 A **Mode** radio in the sidebar switches between **Guided** (default) and **Expert**.
 
 - **Guided** — a plain-language tour. It auto-loads every discovered bundle on first visit and renders eight friendly tabs.
-- **Expert** — the research workbench. Adds a **View** radio (`Canonical` [default] · `Native` · `Evidence`), a **Graph layer** radio (`organizational` · `signal_flow` · `processing` · `automation` · `variant` · `all` [default]), and a **Bundles** multiselect.
+- **Expert** — the research workbench. Adds a **View** radio (`Canonical` [default] · `Native` · `Evidence`) and a **Bundles** multiselect to the sidebar; the **Graph layer** radio (`organizational` · `signal_flow` · `processing` · `automation` · `variant` · `all` [default]) sits inside the Graph tab, the one place it applies.
 
 Both modes share the same loaded-bundle selection, so switching modes keeps your data. **The nine Expert tabs below appear only under the Canonical view** — switching View to Native or Evidence replaces the tabs with a single payload/provenance pane.
 

@@ -28,7 +28,7 @@ import streamlit as st
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
-from session_explorer.workbench.ui import bundle_label, require_bundle
+from session_explorer.workbench.ui import pick_bundle, require_bundle
 from session_explorer.workbench.pages import (
     alignment,
     atlas,
@@ -130,9 +130,6 @@ st.sidebar.button(
     disabled=not bundle_names,
 )
 
-layer = st.sidebar.radio(
-    "Graph layer", LAYER_OPTIONS, index=LAYER_OPTIONS.index("all")
-)
 view = st.sidebar.radio("View", VIEW_OPTIONS, index=0)
 
 bundles: list[SnapshotBundle] = _load_bundles(selected_names)
@@ -151,12 +148,7 @@ if load_warnings:
 def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
     if not require_bundle(bundles):
         return None
-    return st.selectbox(
-        f"Bundle ({label_suffix})",
-        bundles,
-        format_func=bundle_label,
-        key=f"bundle_for_{label_suffix}",
-    )
+    return pick_bundle(bundles, f"bundle_for_{label_suffix}")
 
 
 # ---------------------------------------------------------------------------
@@ -188,6 +180,23 @@ if view == "Canonical":
         ]
     )
     with graph_tab:
+        # The layer choice affects only this tab, so it lives here rather than
+        # in the sidebar (where it read as a global control that ignored the
+        # other eight tabs). The widget only exists under the Canonical view,
+        # so a Native/Evidence round trip would garbage-collect its state and
+        # silently reset the choice to "all" — a plain mirror key survives the
+        # trip and reseeds the radio's default.
+        _layer_default = st.session_state.get("graph_layer_last", "all")
+        layer = st.radio(
+            "Graph layer",
+            LAYER_OPTIONS,
+            index=LAYER_OPTIONS.index(_layer_default),
+            horizontal=True,
+            key="graph_layer_expert",
+            on_change=lambda: st.session_state.update(
+                graph_layer_last=st.session_state["graph_layer_expert"]
+            ),
+        )
         canonical_graph.render(bundles, layer)
     with inspector_tab:
         entity_inspector.render(bundles)

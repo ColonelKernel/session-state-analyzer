@@ -24,7 +24,7 @@ import streamlit as st
 from canonical_snapshot import CanonicalDAWSnapshot
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
-from session_explorer.workbench.ui import bundle_label, require_bundle
+from session_explorer.workbench.ui import pick_bundle, require_bundle
 
 from .intervention import _fmt_value, _static_table
 
@@ -296,13 +296,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
     if not require_bundle(bundles):
         return
 
-    bundle = (
-        bundles[0]
-        if len(bundles) == 1
-        else st.selectbox(
-            "Session", bundles, format_func=bundle_label, key="param_influence_bundle"
-        )
-    )
+    bundle = pick_bundle(bundles, "param_influence_bundle")
     if bundle is None:
         return
     snapshot = bundle.snapshot

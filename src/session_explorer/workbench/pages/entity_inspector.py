@@ -14,7 +14,7 @@ import streamlit as st
 
 from canonical_snapshot import CanonicalDAWSnapshot, Entity
 from session_explorer.loaders import SnapshotBundle, get_presentation
-from session_explorer.workbench.ui import bundle_label, require_bundle
+from session_explorer.workbench.ui import pick_bundle, require_bundle
 
 _AVAILABILITY_HIGHLIGHT = "background-color: #FDEBD0"  # amber: could-not-observe rows
 
@@ -153,14 +153,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
     if not require_bundle(bundles):
         return
 
-    bundle = st.selectbox(
-        "Bundle",
-        bundles,
-        format_func=bundle_label,
-        key="inspector_bundle",
-    )
-    if bundle is None:  # pragma: no cover - selectbox always yields with options
-        return
+    bundle = pick_bundle(bundles, "inspector_bundle")
     snapshot = bundle.snapshot
 
     entity: Optional[Entity] = st.selectbox(
