@@ -55,3 +55,69 @@ def require_bundle(bundles: Sequence[SnapshotBundle]) -> bool:
         st.info(SELECT_BUNDLE_HINT)
         return False
     return True
+
+
+# The one bundle the user is currently focused on, shared by every per-bundle
+# surface (Entity inspector, Routing depth, Parameter influence, Native,
+# Evidence, and Guided's Groups & feedback). Holds a bundle directory name.
+FOCUS_BUNDLE_KEY = "focus_bundle"
+
+# Every picker carries the same label and hint so the cross-tab follow reads
+# as one control, not as state leaking between unrelated widgets.
+PICK_BUNDLE_LABEL = "Session"
+PICK_BUNDLE_HELP = (
+    "One shared choice — every per-session view follows it across tabs."
+)
+
+
+def pick_bundle(bundles: Sequence[SnapshotBundle], key: str) -> SnapshotBundle:
+    """A bundle selectbox whose choice follows the user across tabs.
+
+    Every per-bundle surface used to keep its own selection, so picking Cubase
+    in the Entity inspector still showed Ableton in Routing depth. All surfaces
+    now read and write one shared focus (:data:`FOCUS_BUNDLE_KEY`), and all
+    carry the same label + hint so the follow behaviour is legible as one
+    control.
+
+    ``st.tabs`` renders every tab body each run, so the pickers coexist in one
+    run and must keep **distinct widget keys** (one shared key would raise
+    DuplicateWidgetID). The sync goes through session state instead: before a
+    picker is instantiated its stored value is repaired to the shared focus,
+    and its ``on_change`` writes the new choice back. Options are directory
+    names (stable across the cached loader's copies); the label stays friendly.
+
+    The focus is kept equal to what is actually displayed: when the focused
+    bundle is unloaded, the focus itself moves to the fallback — a stale focus
+    would otherwise snap every picker back the moment that bundle reloads
+    (e.g. via "Load all"), mid-analysis and without warning.
+
+    Callers guard for emptiness first (``require_bundle``); with exactly one
+    bundle there is nothing to pick, so a caption naming it replaces the
+    widget — every surface still states what it is showing.
+    """
+    by_name = {bundle.dir.name: bundle for bundle in bundles}
+    if len(by_name) == 1:
+        only = next(iter(by_name.values()))
+        st.caption(f"{PICK_BUNDLE_LABEL}: {bundle_label(only)}")
+        return only
+    names = list(by_name)
+
+    focus = st.session_state.get(FOCUS_BUNDLE_KEY)
+    if focus not in by_name:
+        focus = names[0]
+        st.session_state[FOCUS_BUNDLE_KEY] = focus
+    if st.session_state.get(key) != focus:
+        st.session_state[key] = focus
+
+    def _sync() -> None:
+        st.session_state[FOCUS_BUNDLE_KEY] = st.session_state[key]
+
+    name = st.selectbox(
+        PICK_BUNDLE_LABEL,
+        names,
+        format_func=lambda n: bundle_label(by_name[n]),
+        key=key,
+        on_change=_sync,
+        help=PICK_BUNDLE_HELP,
+    )
+    return by_name[name]

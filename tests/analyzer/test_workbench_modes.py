@@ -113,6 +113,103 @@ def test_mode_switch_to_expert_shows_the_four_research_tabs():
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")
 
 
+def test_graph_layer_radio_lives_in_the_graph_tab_not_the_sidebar():
+    """The layer choice affects only the Graph tab, so it lives there."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert [str(r.label) for r in at.sidebar.radio] == ["Mode", "View"]
+    layer = [r for r in at.radio if r.key == "graph_layer_expert"]
+    assert len(layer) == 1
+    assert layer[0].value == "all"
+
+
+def test_bundle_focus_is_shared_across_expert_per_bundle_tabs():
+    """Picking a bundle in one tab moves every other per-bundle picker too."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    def picker(key):
+        return [s for s in at.selectbox if s.key == key][0]
+
+    picker("inspector_bundle").set_value("cubase")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert at.session_state["focus_bundle"] == "cubase"
+    assert picker("depth_bundle_expert").value == "cubase"
+    assert picker("param_influence_bundle").value == "cubase"
+
+    # And back the other way: a pick in Routing depth moves the inspector.
+    picker("depth_bundle_expert").set_value("reaper_real")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert picker("inspector_bundle").value == "reaper_real"
+
+    # The Native view's picker follows the same focus.
+    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
+    view.set_value("Native")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert picker("bundle_for_native").value == "reaper_real"
+
+
+def test_unloading_the_focused_bundle_moves_the_focus_with_the_display():
+    """Focus always equals what is displayed: unloading the focused bundle
+    moves the focus to the fallback, so re-loading the old bundle later does
+    not snap every picker back mid-analysis."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    def picker(key):
+        return [s for s in at.selectbox if s.key == key][0]
+
+    picker("inspector_bundle").set_value("cubase")
+    at.run()
+    assert at.session_state["focus_bundle"] == "cubase"
+
+    # Unload cubase: the pickers fall back AND the focus follows the display.
+    remaining = [n for n in at.session_state["bundle_select"] if n != "cubase"]
+    at.sidebar.multiselect[0].set_value(remaining).run()
+    assert not at.exception, [e.value for e in at.exception]
+    displayed = picker("inspector_bundle").value
+    assert displayed != "cubase"
+    assert at.session_state["focus_bundle"] == displayed
+
+    # Re-adding cubase must not steal the focus back.
+    at.sidebar.multiselect[0].set_value(remaining + ["cubase"]).run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert picker("inspector_bundle").value == displayed
+
+
+def test_graph_layer_choice_survives_a_view_round_trip():
+    """The layer radio exists only under the Canonical view; the mirror key
+    must carry the choice across a Native/Evidence round trip."""
+    at = _apptest()
+    at.run()
+    at.sidebar.radio[0].set_value("Expert").run()
+
+    layer = [r for r in at.radio if r.key == "graph_layer_expert"][0]
+    layer.set_value("processing")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
+    view.set_value("Native")
+    at.run()
+    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
+    view.set_value("Canonical")
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+
+    layer = [r for r in at.radio if r.key == "graph_layer_expert"][0]
+    assert layer.value == "processing"
+
+
 def test_guided_x04_story_renders_the_four_columns():
     """The four native-mechanism cards: each DAW's own noun on screen."""
     at = _apptest()

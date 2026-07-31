@@ -35,7 +35,7 @@ from session_explorer.graph_layers import (
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
-from session_explorer.workbench.ui import bundle_label, require_bundle
+from session_explorer.workbench.ui import pick_bundle, require_bundle
 
 from .canonical_graph import _GRAPH_HEIGHT, _embed_html
 from .intervention import _static_table
@@ -89,11 +89,9 @@ def _embed_channel_processing(
 
 
 def _pick_bundle(bundles: List[SnapshotBundle], key: str) -> Optional[SnapshotBundle]:
-    if len(bundles) == 1:
-        return bundles[0]
-    return st.selectbox(
-        "Session", bundles, format_func=bundle_label, key=key
-    )
+    # Shared focus: the choice made here follows the user to the other
+    # per-bundle tabs (and vice versa) via ui.pick_bundle's synced state.
+    return pick_bundle(bundles, key)
 
 
 # ---------------------------------------------------------------------------

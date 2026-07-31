@@ -409,8 +409,10 @@ def _run_expert(at):
     """P6 two-mode workbench: the app now boots into Guided mode by default.
 
     These smokes assert the Expert views, so they flip the sidebar mode radio
-    (always ``sidebar.radio[0]``) to Expert first; the Expert sidebar's layer
-    radio becomes ``sidebar.radio[1]`` and the view radio ``sidebar.radio[2]``.
+    (always ``sidebar.radio[0]``) to Expert first. The Expert sidebar then
+    holds only Mode and View — the layer radio lives inside the Graph tab
+    (key ``graph_layer_expert``) — so tests find radios by label or key,
+    never by position.
     """
     at.run()
     at.sidebar.radio[0].set_value("Expert").run()
@@ -435,7 +437,11 @@ def test_workbench_boots_with_all_bundles():
 @workbench
 def test_workbench_layer_switch():
     at = _run_expert(_apptest())
-    at.sidebar.radio[1].set_value("signal_flow").run()
+    # The layer radio lives inside the Graph tab (not the sidebar) — find it
+    # by key, like the guided layer test does.
+    layer = [r for r in at.radio if r.key == "graph_layer_expert"][0]
+    layer.set_value("signal_flow")
+    at.run()
     assert not at.exception, [e.value for e in at.exception]
     assert at.session_state["graph_backend"] in ("pyvis", "plotly")
 
@@ -443,9 +449,15 @@ def test_workbench_layer_switch():
 @workbench
 def test_workbench_native_and_evidence_views():
     at = _run_expert(_apptest())
-    at.sidebar.radio[2].set_value("Native").run()
+    # Find the View radio by label — the sidebar holds only Mode and View now
+    # that the layer radio moved into the Graph tab.
+    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
+    view.set_value("Native")
+    at.run()
     assert not at.exception, [e.value for e in at.exception]
-    at.sidebar.radio[2].set_value("Evidence").run()
+    view = [r for r in at.sidebar.radio if str(r.label) == "View"][0]
+    view.set_value("Evidence")
+    at.run()
     assert not at.exception, [e.value for e in at.exception]
     # The provenance store dataframe is on screen.
     assert len(at.dataframe) >= 1
