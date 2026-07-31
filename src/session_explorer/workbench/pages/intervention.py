@@ -18,6 +18,7 @@ loads the frozen fixture itself and is read-only.
 from __future__ import annotations
 
 import html as _html
+from pathlib import Path
 
 import streamlit as st
 
@@ -27,6 +28,8 @@ from session_explorer.interventions import (
     build_parameter_experiment,
 )
 from session_explorer.workbench import copy as wcopy
+
+_EXPERIMENTS_ROOT = Path(__file__).resolve().parents[4] / "fixtures" / "experiments"
 
 # The shared signal-flow language colour (same teal as CHANNEL nodes).
 _CHAIN_COLOR = "#2A9D8F"
@@ -42,11 +45,39 @@ _EXPERIMENTS = {
 }
 
 
-def _load(builder=build_effect_send_experiment) -> InterventionComparison | None:
+def _experiments_signature() -> tuple[tuple[str, int], ...]:
+    """Fingerprint the frozen experiment fixtures (relative path, mtime).
+
+    Keys the loader cache so editing a fixture invalidates it; a plain rerun
+    reuses the parsed ``InterventionComparison`` instead of re-reading the four
+    bundles and descriptor files off disk.
+    """
+    if not _EXPERIMENTS_ROOT.is_dir():
+        return ()
+    return tuple(
+        (str(path.relative_to(_EXPERIMENTS_ROOT)), path.stat().st_mtime_ns)
+        for path in sorted(_EXPERIMENTS_ROOT.rglob("*.json"))
+    )
+
+
+@st.cache_data(show_spinner=False)
+def _load_experiment(
+    kind: str, signature: tuple[tuple[str, int], ...]
+) -> InterventionComparison | None:
+    builder = (
+        build_parameter_experiment
+        if kind == "parameter"
+        else build_effect_send_experiment
+    )
     try:
         return builder()
     except Exception:  # noqa: BLE001 - a missing fixture must not kill the app
         return None
+
+
+def _load(builder=build_effect_send_experiment) -> InterventionComparison | None:
+    kind = "parameter" if builder is build_parameter_experiment else "effect_send"
+    return _load_experiment(kind, _experiments_signature())
 
 
 def _path_chain_html(path: list[str]) -> str:

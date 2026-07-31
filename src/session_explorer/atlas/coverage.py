@@ -331,45 +331,96 @@ class AtlasCell:
 
 
 @dataclass
+class AtlasColumn:
+    """One atlas column: a stable ``key`` distinct per bundle, plus its ``daw``.
+
+    Two bundles can report the same ``source.daw`` (e.g. a synthetic ``reaper``
+    fixture next to a real ``reaper`` capture). Keying cells by ``daw`` alone
+    silently collapsed them into one column; ``key`` — the bundle directory name
+    — keeps every loaded bundle its own column. ``daw`` remains available for
+    colour/label logic; ``dir_name`` lets a page disambiguate the label when the
+    same ``daw`` appears more than once.
+    """
+
+    key: str
+    daw: str
+    dir_name: str
+
+
+@dataclass
 class Atlas:
-    """The full observability atlas: ten domains x N DAWs of cells."""
+    """The full observability atlas: ten domains x N columns of cells."""
 
     domains: list[str]
-    daws: list[str]
+    columns: list[AtlasColumn]
     cells: dict[tuple[str, str], AtlasCell]
 
-    def cell(self, domain_name: str, daw: str) -> AtlasCell:
-        """The cell at (domain, daw) (KeyError if not built)."""
-        return self.cells[(domain_name, daw)]
+    def cell(self, domain_name: str, column: str) -> AtlasCell:
+        """The cell at (domain, column-key) (KeyError if not built).
+
+        ``column`` is a column ``key``; for the common case of one bundle per
+        DAW the key *is* the ``daw`` id, so ``cell("Routing", "reaper")`` keeps
+        working unchanged.
+        """
+        return self.cells[(domain_name, column)]
+
+    @property
+    def daws(self) -> list[str]:
+        """The columns' DAW ids, in order (may repeat when a DAW loads twice).
+
+        Back-compat accessor. Prefer :attr:`columns` / :attr:`column_keys` when
+        you need to *index* a cell — DAW ids are not unique, column keys are.
+        """
+        return [column.daw for column in self.columns]
+
+    @property
+    def column_keys(self) -> list[str]:
+        """The stable per-column keys, in order — always unique."""
+        return [column.key for column in self.columns]
 
 
 def _bundle_daw(bundle) -> str:
     return bundle.snapshot.source.daw
 
 
+def _bundle_dir_name(bundle) -> str:
+    directory = getattr(bundle, "dir", None)
+    return getattr(directory, "name", None) or _bundle_daw(bundle)
+
+
 def build_atlas(bundles: list) -> Atlas:
     """Assemble the atlas over a list of loaded ``SnapshotBundle``s.
 
-    Rows are always the ten :data:`ATLAS_DOMAINS`; columns are the DAWs of the
-    given bundles, in the order supplied. Every (domain, daw) pair gets a cell,
-    including NOT_APPLICABLE ones — the grid is dense on purpose.
+    Rows are always the ten :data:`ATLAS_DOMAINS`; columns are the bundles in
+    the order supplied — one per bundle, keyed by a stable, unique column key
+    (the bundle directory name; the ``daw`` id itself when that DAW appears
+    once). Every (domain, column) pair gets a cell, including NOT_APPLICABLE
+    ones — the grid is dense on purpose.
     """
-    daws = [_bundle_daw(b) for b in bundles]
+    columns: list[AtlasColumn] = []
+    daw_counts: dict[str, int] = {}
     cells: dict[tuple[str, str], AtlasCell] = {}
     for bundle in bundles:
         daw = _bundle_daw(bundle)
+        dir_name = _bundle_dir_name(bundle)
+        daw_counts[daw] = daw_counts.get(daw, 0) + 1
+        # First bundle for a DAW keeps the bare daw id as its key (so the common
+        # one-bundle-per-DAW case is unchanged); later duplicates are qualified
+        # by their directory name, which is unique among sibling bundles.
+        key = daw if daw_counts[daw] == 1 else f"{daw}::{dir_name}"
+        columns.append(AtlasColumn(key=key, daw=daw, dir_name=dir_name))
         snapshot = bundle.snapshot
         manifest = bundle.capabilities
         for domain in atlas_domains():
             measured = measure_domain(snapshot, domain)
             declared = declared_domain(manifest, domain)
-            cells[(domain.name, daw)] = AtlasCell(
+            cells[(domain.name, key)] = AtlasCell(
                 domain_name=domain.name,
                 daw=daw,
                 measured=measured,
                 declared=declared,
             )
-    return Atlas(domains=list(ATLAS_DOMAINS), daws=daws, cells=cells)
+    return Atlas(domains=list(ATLAS_DOMAINS), columns=columns, cells=cells)
 
 
 # --- whole-session evidence mix (shared by guided + metrics) --------------
@@ -381,9 +432,12 @@ def build_atlas(bundles: list) -> Atlas:
 MIX_KEYS = ("observed", "inferred", "annotated", "hidden", "absent", "applicable")
 
 
-def aggregate_mix(atlas: Atlas, daw: str) -> dict[str, int]:
-    """The whole-session epistemic mix for one DAW: measured atlas counts
+def aggregate_mix(atlas: Atlas, column: str) -> dict[str, int]:
+    """The whole-session epistemic mix for one column: measured atlas counts
     summed across all ten domains.
+
+    ``column`` is a column ``key`` (see :class:`AtlasColumn`); passing a bare
+    ``daw`` id still resolves the column for the one-bundle-per-DAW case.
 
     Returns the six :data:`MIX_KEYS` buckets: ``observed`` / ``inferred`` /
     ``annotated`` are the evidence classes that entered the snapshot;
@@ -396,7 +450,7 @@ def aggregate_mix(atlas: Atlas, daw: str) -> dict[str, int]:
     """
     totals = {key: 0 for key in MIX_KEYS}
     for domain_name in atlas.domains:
-        m = atlas.cell(domain_name, daw).measured
+        m = atlas.cell(domain_name, column).measured
         totals["observed"] += m.observed
         totals["inferred"] += m.inferred
         totals["annotated"] += m.annotated

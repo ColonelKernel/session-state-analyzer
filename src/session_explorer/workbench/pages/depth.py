@@ -29,11 +29,11 @@ from session_explorer.core.viz import (
     build_pyvis_html,
 )
 from session_explorer.graph_layers import (
-    build_graph,
     decompose_group,
     find_group_entities,
 )
 from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.workbench import compute
 from session_explorer.workbench import copy as wcopy
 
 from .canonical_graph import _GRAPH_HEIGHT, _embed_html
@@ -77,10 +77,12 @@ def _facet_rows(snapshot: CanonicalDAWSnapshot, ids: List[str]) -> list[dict]:
 
 
 def _embed_channel_processing(
-    snapshot: CanonicalDAWSnapshot, channel_id: str, height: int
+    bundle: SnapshotBundle, channel_id: str, height: int
 ) -> None:
     """The processing-layer subgraph rooted at one channel (devices in order)."""
-    graph = build_graph(snapshot, layer="processing")
+    # Memoized per bundle: switching channel filters the same processing graph,
+    # so it need not be rebuilt each time the channel selector changes.
+    graph = compute.processing_graph_for(bundle)
     filters = GraphFilters(only_subtree=channel_id)
     try:
         html = build_pyvis_html(
@@ -201,7 +203,7 @@ def render(bundles: List[SnapshotBundle]) -> None:
         format_func=lambda e: e.name or e.id,
         key="depth_channel_expert",
     )
-    _embed_channel_processing(snapshot, channel.id, _GRAPH_HEIGHT - 200)
+    _embed_channel_processing(bundle, channel.id, _GRAPH_HEIGHT - 200)
 
 
 # ---------------------------------------------------------------------------
