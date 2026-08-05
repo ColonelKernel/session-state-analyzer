@@ -25,13 +25,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pandas as pd
 import streamlit as st
 
-from session_explorer.loaders import SnapshotBundle, get_presentation
+from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
-from session_explorer.workbench.ui import pick_bundle, require_bundle
+from session_explorer.workbench import ui
 from session_explorer.workbench.pages import (
     alignment,
     atlas,
@@ -39,8 +38,10 @@ from session_explorer.workbench.pages import (
     comparison,
     depth,
     entity_inspector,
+    evidence,
     guided,
     intervention,
+    native,
     parameter_influence,
     session_evolution,
 )
@@ -71,6 +72,13 @@ st.set_page_config(
 
 bundle_dirs = state.discover_bundle_dirs(FIXTURES_ROOT)
 bundle_names = [path.name for path in bundle_dirs]
+
+# Widget keys whose widgets are not instantiated on every run (e.g. the Expert
+# graph-layer radio while the Native view — or Guided mode — is showing) would
+# otherwise have their state garbage-collected; keep() preserves them. Runs
+# before any of these widgets exist in the current run. The navigation
+# migration extends this list to every in-page widget key.
+ui.keep("graph_layer_expert")
 
 st.sidebar.title("Session State Analyzer")
 mode = st.sidebar.radio(
@@ -148,12 +156,6 @@ if load_warnings:
             st.caption(warning)
 
 
-def _select_bundle(label_suffix: str) -> SnapshotBundle | None:
-    if not require_bundle(bundles):
-        return None
-    return pick_bundle(bundles, f"bundle_for_{label_suffix}")
-
-
 # ---------------------------------------------------------------------------
 # Main area
 # ---------------------------------------------------------------------------
@@ -185,20 +187,15 @@ if view == "Canonical":
     with graph_tab:
         # The layer choice affects only this tab, so it lives here rather than
         # in the sidebar (where it read as a global control that ignored the
-        # other eight tabs). The widget only exists under the Canonical view,
-        # so a Native/Evidence round trip would garbage-collect its state and
-        # silently reset the choice to "all" — a plain mirror key survives the
-        # trip and reseeds the radio's default.
-        _layer_default = st.session_state.get("graph_layer_last", "all")
+        # other eight tabs). The widget only exists under the Canonical view;
+        # the ui.keep() call at the top of this script preserves its state
+        # across Native/Evidence (and Guided) round trips.
         layer = st.radio(
             "Graph layer",
             LAYER_OPTIONS,
-            index=LAYER_OPTIONS.index(_layer_default),
+            index=LAYER_OPTIONS.index("all"),
             horizontal=True,
             key="graph_layer_expert",
-            on_change=lambda: st.session_state.update(
-                graph_layer_last=st.session_state["graph_layer_expert"]
-            ),
         )
         canonical_graph.render(bundles, layer)
     with inspector_tab:
@@ -219,81 +216,7 @@ if view == "Canonical":
         comparison.render(bundles)
 
 elif view == "Native":
-    st.header("Native payload")
-    bundle = _select_bundle("native")
-    if bundle is not None:
-        daw = bundle.snapshot.source.daw
-        presentation = get_presentation(daw)
-        vocab_col, payload_col = st.columns([1, 2])
-        with vocab_col:
-            st.subheader(f"{presentation.display_name} vocabulary")
-            st.caption(
-                "How this DAW names the canonical concepts — presentation "
-                "only, never acquisition."
-            )
-            st.dataframe(
-                pd.DataFrame(
-                    sorted(presentation.native_vocab.items()),
-                    columns=["canonical concept", f"{presentation.display_name} noun"],
-                ),
-                hide_index=True,
-                width="stretch",
-            )
-        with payload_col:
-            st.subheader("native.json")
-            native = bundle.native  # lazy: loads the sidecar on first access
-            if native is None:
-                st.warning(
-                    "This bundle ships no native.json sidecar; native "
-                    "drill-down is unavailable."
-                )
-            else:
-                st.caption(
-                    "The verbatim DAW-native payload, exactly as the adapter "
-                    "exported it."
-                )
-                st.json(native, expanded=1)
+    native.render(bundles)
 
 else:  # Evidence
-    st.header("Evidence — the provenance store")
-    bundle = _select_bundle("evidence")
-    if bundle is not None:
-        snapshot = bundle.snapshot
-        store = pd.DataFrame(
-            [
-                {
-                    "id": record.id,
-                    "evidence": record.evidence,
-                    "capture_method": record.capture_method,
-                    "source_stability": record.source_stability,
-                    "confidence": record.confidence,
-                    "explanation": record.explanation or "",
-                }
-                for record in snapshot.provenance
-            ]
-        )
-        st.caption(
-            f"{len(store)} deduplicated provenance records; every entity "
-            "field resolves into this table by id."
-        )
-        st.dataframe(store, hide_index=True, width="stretch")
-
-        warn_col, fail_col = st.columns(2)
-        with warn_col:
-            st.subheader(f"Warnings ({len(snapshot.warnings)})")
-            if snapshot.warnings:
-                for warning in snapshot.warnings:
-                    st.warning(warning)
-            else:
-                st.caption("The adapter recorded no warnings.")
-        with fail_col:
-            st.subheader(f"Failures ({len(snapshot.failures)})")
-            if snapshot.failures:
-                for failure in snapshot.failures:
-                    st.error(f"[{failure.stage}] {failure.message}")
-                    if failure.detail:
-                        st.caption(failure.detail)
-            else:
-                st.caption(
-                    "The adapter recorded no acquisition/mapping failures."
-                )
+    evidence.render(bundles)

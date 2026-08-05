@@ -189,6 +189,7 @@ def render() -> None:
         "Concepts",
         ("effect_return", "audio_source", "main_output"),
         default=["effect_return", "audio_source"],
+        key="alignment_concepts",
     )
     rows = _x04_pair_rows(tuple(concept_filter))
     if not rows:

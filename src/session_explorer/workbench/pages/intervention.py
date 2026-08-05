@@ -17,7 +17,6 @@ loads the frozen fixture itself and is read-only.
 
 from __future__ import annotations
 
-import html as _html
 from pathlib import Path
 
 import streamlit as st
@@ -28,6 +27,10 @@ from session_explorer.interventions import (
     build_parameter_experiment,
 )
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench.ui import (
+    fmt_value as _fmt_value,
+    static_table as _static_table,
+)
 
 _EXPERIMENTS_ROOT = Path(__file__).resolve().parents[4] / "fixtures" / "experiments"
 
@@ -93,53 +96,6 @@ def _path_chain_html(path: list[str]) -> str:
         )
     arrow = "<span style='color:#9AA0A6;margin:0 2px'>→</span>"
     return "<div style='line-height:1.9'>" + arrow.join(pills) + "</div>"
-
-
-def _static_table(rows: list[dict]) -> None:
-    """Render a small fixed table as static HTML (immediate first-frame paint).
-
-    ``st.dataframe`` draws to a lazily-painted canvas grid: for these tiny
-    fixed tables it flashes an empty box for ~a second before the rows appear.
-    These tables never scroll, sort, or resize, so a plain server-rendered
-    ``<table>`` is both correct and instant. Cell text is escaped — entity
-    names ultimately come from DAW session data.
-    """
-    if not rows:
-        return
-    cols = list(rows[0].keys())
-    head = "".join(
-        "<th style='text-align:left;padding:6px 10px;font-weight:600;"
-        "font-size:0.78rem;opacity:0.7;"
-        "border-bottom:1px solid rgba(128,128,128,0.35)'>"
-        f"{_html.escape(str(c))}</th>"
-        for c in cols
-    )
-    body = "".join(
-        "<tr>"
-        + "".join(
-            "<td style='padding:6px 10px;font-size:0.85rem;"
-            "border-bottom:1px solid rgba(128,128,128,0.15)'>"
-            f"{_html.escape(str(row.get(c, '')))}</td>"
-            for c in cols
-        )
-        + "</tr>"
-        for row in rows
-    )
-    st.markdown(
-        "<table style='width:100%;border-collapse:collapse;margin:2px 0 8px'>"
-        f"<thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>",
-        unsafe_allow_html=True,
-    )
-
-
-def _fmt_value(value) -> str:
-    if value is None:
-        return "—"
-    if isinstance(value, bool):
-        return "on" if value else "off"
-    if isinstance(value, float):
-        return f"{value:g}"
-    return str(value)
 
 
 def _param_change_rows(comparison: InterventionComparison) -> list[dict]:

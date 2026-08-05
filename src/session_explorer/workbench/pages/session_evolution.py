@@ -27,8 +27,11 @@ from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
 
-from .canonical_graph import _embed_html
-from .intervention import _fmt_value, _static_table
+from session_explorer.workbench.ui import (
+    embed_html as _embed_html,
+    fmt_value as _fmt_value,
+    static_table as _static_table,
+)
 
 _REPO_ROOT = Path(__file__).resolve().parents[4]
 _VARIANTS_ROOT = _REPO_ROOT / "fixtures" / "variants"

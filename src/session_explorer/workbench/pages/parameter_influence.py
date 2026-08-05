@@ -24,9 +24,12 @@ import streamlit as st
 from canonical_snapshot import CanonicalDAWSnapshot
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
-from session_explorer.workbench.ui import pick_bundle, require_bundle
-
-from .intervention import _fmt_value, _static_table
+from session_explorer.workbench.ui import (
+    fmt_value as _fmt_value,
+    pick_bundle,
+    require_bundle,
+    static_table as _static_table,
+)
 
 _CONTROL_SOURCE_TYPES = ("AUTOMATION", "MODULATION")
 

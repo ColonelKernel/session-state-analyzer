@@ -24,9 +24,11 @@ from session_explorer.core.viz import (
 )
 from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import compute
-from session_explorer.workbench.ui import require_bundle
-
-_GRAPH_HEIGHT = 660
+from session_explorer.workbench.ui import (
+    GRAPH_HEIGHT as _GRAPH_HEIGHT,
+    embed_html as _embed_html,
+    require_bundle,
+)
 
 # Entity types the P3 snapshot builder emits, in legend order.
 _SNAPSHOT_LEGEND_TYPES = (
@@ -51,14 +53,6 @@ def _filter_by_observability(graph: nx.DiGraph, keep: set[str]) -> nx.DiGraph:
     filtered = graph.subgraph(nodes).copy()
     filtered.graph.update(graph.graph)
     return filtered
-
-
-def _embed_html(html: str, height: int = _GRAPH_HEIGHT) -> None:
-    """Embed standalone PyVis HTML (st.iframe; components.html on older Streamlit)."""
-    if hasattr(st, "iframe"):
-        st.iframe(html, height=height, width="stretch")
-    else:  # pragma: no cover - older streamlit
-        st.components.v1.html(html, height=height, scrolling=False)
 
 
 def _render_legend(graph: nx.DiGraph) -> None:
