@@ -48,8 +48,8 @@ Verify the two packages imported cleanly:
 ```
 
 **Notes / caveats**
-- Install extras **explicitly** (`.[ui]`, `.[audio]`, `.[midi]`, `.[score]`). Do **not** use `.[full]` — that extra is malformed and resolution will fail.
-- There is **no working command-line entry point**. The packaged `session-explorer` script is broken; the only supported entry point is the Streamlit workbench (plus the two regeneration modules in §7 and the Python API in §6).
+- Available extras: `.[ui]` (the workbench), `.[audio]` (offline fixture regeneration only — the deployed app never decodes audio), `.[essentia]`, `.[full]` (= `ui` + `audio`), and `.[dev]` (pytest — what the install command above adds).
+- There is **no command-line entry point**; the supported entry point is the Streamlit workbench (plus the two regeneration modules in §7 and the Python API in §6).
 - The workbench auto-discovers bundles under `fixtures/adapters/` — no configuration needed on first run.
 
 Run the tests (optional):
@@ -62,37 +62,64 @@ Run the tests (optional):
 
 ## 3. The workbench
 
-### Two modes
+### Navigation: one page tree, two wordings
 
-A **Mode** radio in the sidebar switches between **Guided** (default) and **Expert**.
+Navigation is a **sidebar table of contents** (`st.navigation`), built from the
+page registry in `src/session_explorer/workbench/nav.py`. A **Mode** radio in
+the sidebar switches between **Guided** (default) and **Expert** — it changes
+the *wording* of the tree, not the tree itself: switching mode stays on the
+same page, re-worded, and a shared page keeps the same address in both modes
+(one exception: the graph page is Expert's home — `/` there, `/graph` in
+Guided). Exactly one page executes per rerun.
 
-- **Guided** — a plain-language tour. It auto-loads every discovered bundle on first visit and renders eight friendly tabs.
-- **Expert** — the research workbench. Adds a **View** radio (`Canonical` [default] · `Native` · `Evidence`) and a **Bundles** multiselect to the sidebar; the **Graph layer** radio (`organizational` · `signal_flow` · `processing` · `automation` · `variant` · `all` [default]) sits inside the Graph tab, the one place it applies.
+- **Guided** — a plain-language tour of eight pages, rendered flat in tour
+  order. Every discovered bundle auto-loads on first visit.
+- **Expert** — the research workbench: eleven pages in two sidebar sections
+  (**Canonical**, **Source**). The sidebar gains the **Bundles** multiselect;
+  the **Graph layer** radio (`organizational` · `signal_flow` · `processing` ·
+  `automation` · `variant` · `all` [default]) sits on the Graph page, the one
+  place it applies.
 
-Both modes share the same loaded-bundle selection, so switching modes keeps your data. **The nine Expert tabs below appear only under the Canonical view** — switching View to Native or Evidence replaces the tabs with a single payload/provenance pane.
+Both modes share the loaded-bundle selection and the focused-session choice, so
+switching modes keeps your data and your place.
 
-### Expert tabs (Canonical view, in order)
+### Expert pages (Canonical section, in sidebar order)
 
-1. **Graph** — *(flagship: the four-DAW graph)* all loaded snapshots as one layered, namespaced graph; nodes colored by observability (falling back to entity type), with per-observability-class checkboxes and a legend. When routing feedback exists, a **cycle badge** warns "Feedback loop detected: N cycle(s)…" — framed as *a finding, not an error* — with an expander listing each ring as `A → B → … → A`.
-2. **Entity inspector** — pick a bundle, then an entity (grouped by type); see it three ways side by side: Canonical (properties + availability), Native (DAW-native identity), Evidence (per-field provenance table).
-3. **X04 alignment** — *(flagship)* one production strategy (a vocal → shared-reverb effect return) shown as four native mechanisms across four DAWs, plus the pairwise alignment table over the six DAW pairs, each claim with its reasons.
-4. **Observability atlas** — *(flagship)* a 10-domain × loaded-DAW grid of stacked epistemic-mix bars, a click-to-drill domain × DAW panel (measured vs. declared capability), and a per-DAW unknown-state map.
-5. **State to audio** — *(flagship)* one controlled A/B in three panels (state change → signal-flow explanation → acoustic delta before/after). An **Experiment** radio selects `Effect send` or `Delay feedback`.
-6. **Routing depth** — group decomposition (one native "group" fanned into **Contains / Sums in / Controls (VCA) / Routes in**, with a multi-concept finding badge) plus the ordered per-channel processing chain.
-7. **Parameter influence** — for one parameter or automated field: base value, automation lane, modulation source, and an honest effective value reported as a **range** (never a value at instant *t*).
-8. **Session evolution** — a variant family's lineage graph and the diff of each adjacent version pair. A **Version family** selectbox chooses the family. Degrades to an info note when the variants module/fixtures are absent.
-9. **Adapter comparison** — *(flagship: the ladder)* every loaded DAW as a column, eight measurable facets as rows (schema, coverage, evidence mix, provenance, conformance, compatibility ladder, declared capability, alignment confidence). Explicitly **"profiles, not a ranking,"** with metrics/ladder downloads.
+1. **Graph** (`/`) — *(flagship: the four-DAW graph)* all loaded snapshots as one layered, namespaced graph; nodes colored by observability (falling back to entity type), with per-observability-class checkboxes and a legend. When routing feedback exists, a **cycle badge** warns "Feedback loop detected: N cycle(s)…" — framed as *a finding, not an error* — with an expander listing each ring as `A → B → … → A`.
+2. **Entity inspector** (`/inspector`) — pick a session, then an entity (grouped by type); see it three ways side by side: Canonical (properties + availability), Native (DAW-native identity), Evidence (per-field provenance table).
+3. **X04 alignment** (`/same-idea`) — *(flagship)* one production strategy (a vocal → shared-reverb effect return) shown as four native mechanisms across four DAWs, plus the pairwise alignment table over the six DAW pairs, each claim with its reasons.
+4. **Observability atlas** (`/atlas`) — *(flagship)* a 10-domain × loaded-session grid of stacked epistemic-mix bars, a click-to-drill panel (measured vs. declared capability), and a per-DAW unknown-state map.
+5. **State to audio** (`/state-to-audio`) — *(flagship)* one controlled A/B in three panels (state change → signal-flow explanation → acoustic delta before/after). An **Experiment** radio selects `Effect send` or `Delay feedback`.
+6. **Routing depth** (`/routing-depth`) — group decomposition (one native "group" fanned into **Contains / Sums in / Controls (VCA) / Routes in**, with a multi-concept finding badge) plus the ordered per-channel processing chain.
+7. **Parameter influence** (`/parameter-influence`) — for one parameter or automated field: base value, automation lane, modulation source, and an honest effective value reported as a **range** (never a value at instant *t*).
+8. **Session evolution** (`/evolution`) — a variant family's lineage graph and the diff of each adjacent version pair. A **Version family** selectbox chooses the family. Degrades to an info note when the variants module/fixtures are absent.
+9. **Adapter comparison** (`/comparison`) — *(flagship: the ladder)* every loaded session as a column, eight measurable facets as rows (schema, coverage, evidence mix, provenance, conformance, compatibility ladder, declared capability, alignment confidence). Explicitly **"profiles, not a ranking,"** with metrics/ladder downloads.
 
-### Guided tabs (in order)
+**Source section:** **Native payload** (`/native`) — the bundle's verbatim `native.json` beside the registry's per-DAW presentation vocabulary · **Evidence** (`/evidence`) — the deduplicated provenance store as a table, plus the adapter's recorded warnings and failures.
 
-1. **Overview** — a "Load all example sessions" button and one friendly card per DAW (session name, plain entity counts, a "How much can we see?" mini evidence bar).
-2. **The same idea in four DAWs** — the X04 effect-return story in plain words, with an expander for the full comparison table.
-3. **What each DAW lets us see** — the observability atlas with friendly labels and per-cell captions ("X read directly · Y pieced together · Z locked away").
-4. **Explore the graph** — the canonical graph with a plain-language layer picker (default "Everything"). Reuses the Graph view, so the same feedback-loop cycle badge can appear here.
-5. **Groups & feedback** — group decomposition in plain columns (**Holds these tracks / Mixes these together / Controls the level of / Receives audio from**) plus a section explaining feedback loops.
-6. **What one change does to the sound** — the intervention A/B in three plain beats. A "Which experiment?" radio selects `Reverb send` or `Delay feedback`.
-7. **How a song evolved** — the variant lineage plus step-by-step diffs, plain framing.
-8. **How the DAWs compare** — the Adapter comparison dashboard with plain-language row questions and "not a scoreboard" framing.
+### Guided pages (in tour order)
+
+1. **Overview** (`/`) — one friendly card per session (name, plain entity counts, a "How much can we see?" mini evidence bar); the load-all affordance appears when something is deselected.
+2. **The same idea in four DAWs** (`/same-idea`) — the X04 effect-return story in plain words, with an expander for the full comparison table.
+3. **What each DAW lets us see** (`/atlas`) — the observability atlas with friendly labels, per-cell captions ("X read directly · Y pieced together · Z locked away"), and the plain-language drill-down under "Look closer".
+4. **Explore the graph** (`/graph`) — the canonical graph with a plain-language layer picker (default "Everything"). Reuses the Graph view, so the same feedback-loop cycle badge can appear here.
+5. **Groups & feedback** (`/routing-depth`) — group decomposition in plain columns (**Holds these tracks / Mixes these together / Controls the level of / Receives audio from**) plus a section explaining feedback loops.
+6. **What one change does to the sound** (`/state-to-audio`) — the intervention A/B in three plain beats. A "Which experiment?" radio selects `Reverb send` or `Delay feedback`.
+7. **How a song evolved** (`/evolution`) — the variant lineage plus step-by-step diffs, plain framing.
+8. **How the DAWs compare** (`/comparison`) — the Adapter comparison dashboard with plain-language row questions and "not a scoreboard" framing.
+
+### Deep links and modes in URLs
+
+Every page is addressable by the paths above. Guided is the default wording;
+`?mode=expert` opens a shared page in research wording (the Mode radio keeps
+the parameter in sync), and the four Expert-only paths (`/inspector`,
+`/parameter-influence`, `/native`, `/evidence`) imply Expert on their own.
+One exception: the graph page in Expert is the home page — link it as
+`/?mode=expert`, not `/graph?mode=expert` (Streamlit drops a default page's
+path, so the latter shows a "Page not found" notice before falling back).
+Fixture-backed exhibits (X04, State to audio, Session evolution) carry a
+one-line scope caption — they are built from frozen fixtures and do not change
+with the sidebar's bundle selection; every other page guards on it.
 
 ---
 
@@ -341,7 +368,7 @@ Both builders are deterministic and default to `fixtures/experiments/effect_send
 
 > Both emit a benign `RuntimeWarning` from `runpy`; output is unaffected. These are the only two module `__main__` entry points.
 
-**Metrics JSON** — there is no module entry point for metrics. Produce it either from the API (`metrics_report(...)` then `write_metrics(report, out_dir)` — the second arg is an output **directory**; §6) or from the workbench **Adapter comparison** tab's download button. The narrative doc is [`docs/METRICS.md`](METRICS.md).
+**Metrics JSON** — there is no module entry point for metrics. Produce it either from the API (`metrics_report(...)` then `write_metrics(report, out_dir)` — the second arg is an output **directory**; §6) or from the download button on the workbench **Adapter comparison** page (`/comparison`, Expert mode). The narrative doc is [`docs/METRICS.md`](METRICS.md).
 
 **Dataset export tree** — build the descriptors-only dataset from the API (`build_dataset(...)`, §6). It never copies WAVs and is deterministic.
 

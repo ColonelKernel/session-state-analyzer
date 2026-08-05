@@ -60,7 +60,7 @@ REAPER alongside their synthetic ones. The canonical schema lives in `packages/c
 ---
 
 **New here? Start with the [User Manual](docs/MANUAL.md)** — install, run the
-workbench, a tour of every tab (both modes), the Python API, and how a new
+workbench, a tour of every page (both modes), the Python API, and how a new
 session becomes a bundle. This repository contains no DAW parsing code; see
 `docs/PIVOT.md` for the architecture and `packages/canonical_snapshot/` for the
 v0.2 contract the adapters emit. The distribution is `session-state-analyzer`;
@@ -89,91 +89,72 @@ DAW artifact. Install the UI extras and run the single entry point:
 .venv/bin/python -m streamlit run src/session_explorer/workbench/app.py
 ```
 
-The workbench has two modes, switched at the top of the sidebar (Guided is
-the default):
+Navigation is a sidebar table of contents (`st.navigation`); a **Mode** radio
+switches the *wording* of the page tree, not the tree itself. Switching mode
+stays on the same page — re-worded — and every exhibit is deep-linkable from
+the live demo. Shared pages keep the same address in both modes, with one
+exception: the graph page is Expert's home, so its address there is `/`
+(Guided: `/graph`).
 
 ### Guided mode (default)
 
-A plain-language, story-first tour of the same data — no research vocabulary.
-Eight tabs, in order:
+A plain-language, story-first tour — no research vocabulary. Eight pages, in
+tour order:
 
-- **Overview** — what the tool is, a "Load all example sessions" button
-  (the fixture bundles auto-load on first visit), and one card per session:
-  session name, counts in plain words ("9 tracks · 22 effects · 4 routing
-  connections"), and a mini "how much can we see?" bar with a one-line
-  readout derived from the measured atlas mix (e.g. REAPER: "Read directly
-  from the project file"; Logic: "Mostly reconstructed from exported audio
-  and your notes — the DAW itself stays closed").
-- **The same idea in four DAWs** — the X04 effect-return story: what each
-  DAW calls the same mechanism ("What Ableton Live calls it: Return Track"),
-  one friendly sentence per DAW pair with the match confidence and the top
-  two reasons in plain words, and the full comparison table in an expander.
-- **What each DAW lets us see** — the observability atlas with friendly row
-  labels ("Tracks & layout", "Signal routing", …) and a plain-words legend
-  (observed = "read directly", hidden = "exists but the DAW won't show it"),
-  plus the expert drill-down behind a "Look closer" section.
-- **Explore the graph** — the canonical graph with relabeled layers ("How
-  things are organized" / "How audio flows" / "Everything").
-- **Groups & feedback** — what a native "group" actually fuses (containment,
-  summing, VCA control, incoming routing), split back into those four facets,
-  plus the per-channel effect chain.
-- **What one change does to the sound** — the P9 state→audio experiment in
-  plain language, with a selector for either frozen experiment: a reverb send
-  added to a vocal (a routing change) or a delay's feedback turned up (a value
-  change). Each walks the same three beats — what changed in the session, the
-  path the signal now travels ("Lead Vox → FX 1 - Plate → REVerence → Stereo
-  Out"), and how much the sound changed (louder, with a wet tail) — with an
-  honest note that the sessions and audio are synthetic fixtures.
-- **How a song evolved** — a variant family (v1/v2/v3 of one song), its
-  lineage graph, and a diff of each adjacent pair.
-- **How the DAWs compare** — the per-DAW profiles dashboard in plain words:
-  one column per loaded session, one row per facet (coverage, evidence mix,
-  provenance, the compatibility-ladder chips). Explicitly *not* a ranking.
+- **Overview** (`/`) — what the tool is, one card per loaded session (plain
+  entity counts, a "how much can we see?" mini bar with a one-line readout
+  derived from the measured atlas mix), and the load-all affordance when
+  something is deselected.
+- **The same idea in four DAWs** (`/same-idea`) — the effect-return story:
+  what each DAW calls the same mechanism, one friendly sentence per DAW pair
+  with match confidence, and the full comparison table in an expander.
+- **What each DAW lets us see** (`/atlas`) — the observability atlas with
+  friendly row labels and a plain-words legend, plus the plain-language
+  drill-down under "Look closer".
+- **Explore the graph** (`/graph`) — the canonical graph with relabeled
+  layers ("How things are organized" / "How audio flows" / "Everything").
+- **Groups & feedback** (`/routing-depth`) — what a native "group" fuses
+  (containment, summing, VCA control, incoming routing), split into four
+  plain columns, plus the feedback-loop explanation.
+- **What one change does to the sound** (`/state-to-audio`) — the state→audio
+  experiment in plain language, with a selector for either frozen experiment
+  (reverb send or delay feedback), walking three beats: what changed, the
+  path the signal travels, how the sound changed.
+- **How a song evolved** (`/evolution`) — a variant family, its lineage
+  graph, and a diff of each adjacent pair.
+- **How the DAWs compare** (`/comparison`) — the per-DAW profiles dashboard
+  in plain words. Explicitly *not* a ranking.
 
-A "What do these words mean?" glossary (evidence, availability, canonical vs
-native, provenance) lives in the Guided sidebar. All Guided wording is in
-`src/session_explorer/workbench/copy.py`.
+A "What do these words mean?" glossary lives in the Guided sidebar. All
+Guided wording is in `src/session_explorer/workbench/copy.py`.
 
 ### Expert mode
 
-The research workbench. The sidebar selects bundles (discovered under
-`fixtures/adapters/`), the graph layer (`organizational` / `signal_flow` /
-`processing` / `automation` / `variant` / `all`), and the view:
+The research workbench: eleven pages in two sidebar sections — the shared
+pages re-worded (Overview is Guided-only) plus four Expert-only pages. The
+sidebar gains the **Bundles** multiselect (discovered under
+`fixtures/adapters/`).
 
-- **Canonical** — nine tabs: *Graph* (all selected snapshots side by side in
-  one canonical graph, coloured by entity type with observability overriding
-  where a value is inferred/annotated/hidden); *Entity inspector* (one
-  entity, three panels: canonical / native / evidence — every value traceable
-  to its provenance record, every unobservable field stated); *X04 alignment*
-  (one production strategy, four native mechanisms, aligned);
-  *Observability atlas* (the P5 flagship — measured per-domain observability
-  across the loaded DAWs as ten canonical domains × N columns, each cell a
-  stacked observed/inferred/annotated/hidden/unsupported bar with direct,
-  recovered, and hidden ratios. Click a domain × DAW to drill into the exact
-  entities and fields behind the numbers beside the adapter's *declared* read
-  capability; an unknown-state map per DAW categorizes everything a snapshot
-  admits it cannot see. Modulation, and Native Features where a DAW ships no
-  extension payload, render NOT_APPLICABLE — the gaps are shown, not hidden);
-  *State to audio* (the P9 controlled intervention: one semantic change traced
-  from the state delta, through the signal-flow explanation and its path
-  chain, to the acoustic delta between the two renders. A selector picks
-  either frozen experiment — *Effect send*, a post-fader vocal→plate-reverb
-  send from `fixtures/experiments/effect_send`, or *Delay feedback*, a pure
-  parameter change from `fixtures/experiments/parameter_change`; the inputs
-  and renders are synthetic fixtures, reproducible via the Cubase adapter);
-  *Routing depth* (what a native "group" fuses — containment, summing, VCA
-  control, incoming routing — decomposed into those four facets, with the
-  per-channel processing chain); *Parameter influence* (which parameters
-  reach which targets, and by what path); *Session evolution* (variant
-  families, the lineage graph, and adjacent-version diffs); and *Adapter
-  comparison* (the per-DAW profiles dashboard — coverage, evidence mix,
-  provenance completeness, conformance, the L0–L6 ladder chips, declared
-  capability and alignment confidence — with downloadable metrics and ladder
-  documents. Profiles, never a ranking).
-- **Native** — the bundle's verbatim `native.json` beside the registry's
-  per-DAW presentation vocabulary.
-- **Evidence** — the deduplicated provenance store as a table, plus the
-  adapter's warnings and failures.
+- **Canonical:** *Graph* (`/`; the layered canonical graph with the
+  graph-layer radio and per-observability-class filters) · *Entity inspector*
+  (`/inspector`) · *X04 alignment* (`/same-idea`) · *Observability atlas*
+  (`/atlas`) · *State to audio* (`/state-to-audio`) · *Routing depth*
+  (`/routing-depth`) · *Parameter influence* (`/parameter-influence`) ·
+  *Session evolution* (`/evolution`) · *Adapter comparison* (`/comparison`).
+- **Source:** *Native payload* (`/native`) — the bundle's verbatim
+  `native.json` beside the registry's presentation vocabulary · *Evidence*
+  (`/evidence`) — the deduplicated provenance store plus the adapter's
+  warnings and failures.
+
+### Deep links
+
+Every page above is addressable by its path. Guided is the default; append
+`?mode=expert` to open a shared page in research wording (the mode radio
+keeps the URL in sync), and Expert-only paths imply Expert on their own. One
+exception: the graph page in Expert is the home page, so link it as
+`/?mode=expert` — `/graph?mode=expert` shows a "Page not found" notice before
+falling back to it (Streamlit drops a default page's path). The page registry
+lives in `src/session_explorer/workbench/nav.py`.
 
 ## Tests
 

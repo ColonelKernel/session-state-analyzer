@@ -50,15 +50,19 @@ ui.keep("bundle_select", *nav.KEEP_KEYS)
 if "bundle_select" not in st.session_state:
     st.session_state["bundle_select"] = list(bundle_names)
 
-# A fresh session deep-linking an Expert-only page (/inspector, /native, …)
-# must boot into Expert mode — the Guided tree doesn't contain those slugs,
-# so the link would otherwise 404 into the Guided Overview.
+# A fresh session's mode can be named by the URL: an explicit ?mode= wins
+# (it is how a shared-page link like /atlas?mode=expert carries its wording),
+# and a deep link to an Expert-only page (/inspector, /native, …) implies
+# Expert — the Guided tree doesn't contain those slugs, so the link would
+# otherwise 404 into the Guided Overview.
 if "app_mode" not in st.session_state:
-    try:
-        _requested = str(getattr(st.context, "url", "") or "")
-    except Exception:  # noqa: BLE001 - context is absent under bare execution
-        _requested = ""
-    _seeded_mode = nav.mode_for_requested_path(_requested)
+    _seeded_mode = nav.mode_from_query(st.query_params)
+    if _seeded_mode is None:
+        try:
+            _requested = str(getattr(st.context, "url", "") or "")
+        except Exception:  # noqa: BLE001 - context absent under bare execution
+            _requested = ""
+        _seeded_mode = nav.mode_for_requested_path(_requested)
     if _seeded_mode is not None:
         st.session_state["app_mode"] = _seeded_mode
 
@@ -70,6 +74,21 @@ mode = st.sidebar.radio(
     horizontal=True,
     help=wcopy.COPY["mode_help"],
 )
+
+# Keep the URL shareable: reflect a non-default mode in the query string so a
+# copied link reopens in the same wording (Guided is the default and carries
+# no parameter). Every st.query_params write or delete makes the frontend push
+# a browser-history entry — even when the URL doesn't change — so both branches
+# are guarded on the parsed value: a URL already naming the current mode (each
+# Expert rerun; a hand-made ?mode=guided link) is left untouched, or every
+# interaction and every Back press would push a duplicate entry and trap the
+# Back button. Only a stale or unrecognized value is dropped.
+_url_mode = nav.mode_from_query(st.query_params)
+if mode == wcopy.COPY["mode_expert"]:
+    if _url_mode != nav.EXPERT:
+        st.query_params["mode"] = "expert"
+elif _url_mode != nav.GUIDED and "mode" in st.query_params:
+    del st.query_params["mode"]
 
 if mode == wcopy.COPY["mode_guided"]:
     st.sidebar.caption(wcopy.COPY["guided_tagline"])

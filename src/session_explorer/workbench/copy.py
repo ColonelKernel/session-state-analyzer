@@ -120,6 +120,11 @@ COPY: dict[str, str] = {
     ),
     "graph_layer_question": "What do you want to see?",
     "graph_legend_title": "What the colours mean:",
+    # -- fixture-backed exhibits ---------------------------------------------------
+    "fixture_scope": (
+        "Built from frozen example data — this story doesn't change with the "
+        "sessions loaded in the sidebar."
+    ),
 }
 
 # ---------------------------------------------------------------------------

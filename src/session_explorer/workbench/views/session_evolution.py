@@ -27,6 +27,7 @@ from session_explorer.loaders import SnapshotBundle
 from session_explorer.workbench import copy as wcopy
 from session_explorer.workbench import state
 
+from session_explorer.workbench import ui
 from session_explorer.workbench.ui import (
     embed_html as _embed_html,
     fmt_value as _fmt_value,
@@ -125,9 +126,10 @@ def _render_diffs(variants, members) -> None:
             st.caption(f"Diff unavailable ({exc}).")
 
 
-def _render(header: str, intro: str) -> None:
+def _render(header: str, intro: str, scope_note: str) -> None:
     st.header(header)
     st.markdown(intro)
+    st.caption(scope_note)
 
     variants = _load_variants_module()
     variant_bundles = _discover_variant_bundles()
@@ -163,9 +165,15 @@ def _render(header: str, intro: str) -> None:
 
 def render(bundles: List[SnapshotBundle]) -> None:
     """Expert 'Session evolution' tab."""
-    _render(wcopy.EVOLUTION["header"], wcopy.EVOLUTION["intro"])
+    _render(
+        wcopy.EVOLUTION["header"], wcopy.EVOLUTION["intro"], ui.FIXTURE_SCOPE_NOTE
+    )
 
 
 def render_guided(bundles: List[SnapshotBundle]) -> None:
     """Guided 'How a song evolved' tab (same data, plain-language framing)."""
-    _render(wcopy.EVOLUTION["guided_header"], wcopy.EVOLUTION["guided_intro"])
+    _render(
+        wcopy.EVOLUTION["guided_header"],
+        wcopy.EVOLUTION["guided_intro"],
+        wcopy.COPY["fixture_scope"],
+    )

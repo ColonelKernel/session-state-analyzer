@@ -22,6 +22,7 @@ from session_explorer.alignment import align, build_strips
 from session_explorer.loaders import SnapshotBundle, get_presentation
 from session_explorer.registry import get_registry
 from session_explorer.workbench import state
+from session_explorer.workbench import ui
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 X04_BUNDLES = REPO_ROOT / "fixtures" / "cross-daw" / "X04_effect_return" / "bundles"
@@ -157,6 +158,7 @@ def render() -> None:
         "reverb destination that routes to the main output* — implemented by "
         "four different native mechanisms, analyzed as one representation."
     )
+    ui.fixture_scope_caption()
 
     bundles = _load_x04_bundles()
     if not bundles:
