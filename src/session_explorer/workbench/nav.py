@@ -8,7 +8,7 @@ registry into ``st.navigation`` for the current mode.
 The unifying idea: Guided and Expert are **two wordings of one tree**, not two
 trees. A shared page keeps one stable ``url_path`` across modes, so switching
 mode stays on the same page — re-worded — and every exhibit is deep-linkable
-(``/atlas``, ``/same-idea``, ``/state-to-audio``). Four pages are
+(``/atlas``, ``/same-idea``, ``/state-to-audio``). Five pages are
 mode-exclusive: Overview exists only in Guided; Entity inspector, Parameter
 influence, Native payload, and Evidence only in Expert. Each mode's *default*
 page (Guided: Overview; Expert: Graph) also serves at the app root; every page
@@ -360,6 +360,24 @@ def mode_for_requested_path(path: str | None) -> str | None:
         return None
     slug = path.strip("/").split("/")[-1].split("?")[0]
     return EXPERT if slug in EXPERT_ONLY_SLUGS else None
+
+
+def mode_from_query(params) -> str | None:
+    """The mode named by a ``?mode=`` query parameter, or None.
+
+    Accepts anything mapping-like (``st.query_params`` or a plain dict). An
+    explicit ``?mode=`` beats path inference — it is how a shared-page link
+    (``/atlas?mode=expert``) carries its wording across.
+    """
+    try:
+        value = str(params.get("mode", "") or "").strip().lower()
+    except Exception:  # noqa: BLE001 - malformed params never break boot
+        return None
+    if value == "expert":
+        return EXPERT
+    if value == "guided":
+        return GUIDED
+    return None
 
 
 # Sidebar order per mode — the two faces tell the same story in a different

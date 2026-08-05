@@ -291,6 +291,73 @@ def test_bundle_narrowing_survives_a_mode_round_trip():
     assert list(at.sidebar.multiselect[0].value) == ["reaper"]
 
 
+def test_mode_query_param_seeds_and_reflects():
+    """?mode=expert boots a fresh session into Expert; the mode radio keeps
+    the URL shareable by reflecting a non-default mode back into the query
+    string. A URL that already names the current mode is never rewritten —
+    every query-param write or delete pushes a browser-history entry, so
+    rewriting on each rerun (or canonicalizing away an explicit ?mode=guided)
+    would trap the Back button."""
+    from session_explorer.workbench import nav
+
+    # Seeding: a fresh session with ?mode=expert boots into Expert.
+    at = _apptest()
+    at.query_params["mode"] = "expert"
+    at.run()
+    assert not at.exception, [e.value for e in at.exception]
+    assert at.session_state["app_mode"] == "Expert"
+    assert at.session_state["graph_backend"] in ("pyvis", "plotly")
+    # Steady state: the parameter stays put across reruns.
+    at.run()
+    assert at.query_params.get("mode") in ("expert", ["expert"])
+
+    # Helper contract (query beats path inference; unknown values ignored).
+    assert nav.mode_from_query({"mode": "expert"}) == nav.EXPERT
+    assert nav.mode_from_query({"mode": "Guided"}) == nav.GUIDED
+    assert nav.mode_from_query({"mode": "banana"}) is None
+    assert nav.mode_from_query({}) is None
+
+    # Reflection: switching modes rewrites the query string. A stale
+    # "expert" is dropped when the radio goes back to Guided (the default
+    # carries no parameter).
+    at2 = _apptest()
+    at2.run()
+    assert "mode" not in at2.query_params  # Guided default carries no param
+    at2.sidebar.radio[0].set_value("Expert").run()
+    assert at2.query_params.get("mode") in ("expert", ["expert"])
+    at2.sidebar.radio[0].set_value("Guided").run()
+    assert "mode" not in at2.query_params
+
+    # An explicit ?mode=guided seeds Guided and STAYS in the URL — deleting
+    # it would push a canonicalized history entry on every Back press.
+    at3 = _apptest()
+    at3.query_params["mode"] = "guided"
+    at3.run()
+    assert not at3.exception, [e.value for e in at3.exception]
+    assert at3.session_state["app_mode"] == "Guided"
+    assert at3.query_params.get("mode") in ("guided", ["guided"])
+
+
+def test_fixture_backed_pages_declare_their_scope():
+    """The empty-state rule: fixture-backed exhibits always render, and say
+    so — a one-line caption declares independence from the sidebar selection
+    on all three surfaces, in both modes' wording."""
+    from session_explorer.workbench import copy as wcopy
+    from session_explorer.workbench import ui as wui
+
+    for slug in ("same-idea", "state-to-audio", "evolution"):
+        at = _apptest()
+        at.run()
+        goto(at, slug)
+        at.run()
+        assert not at.exception, [e.value for e in at.exception]
+        assert wcopy.COPY["fixture_scope"] in _caption_text(at), slug
+
+        at.sidebar.radio[0].set_value("Expert").run()
+        assert not at.exception, [e.value for e in at.exception]
+        assert wui.FIXTURE_SCOPE_NOTE in _caption_text(at), slug
+
+
 def test_expert_only_deep_links_seed_expert_mode():
     """A fresh session deep-linking an Expert-only slug must boot into Expert
     (the Guided tree lacks the slug; the link would 404 into Overview).

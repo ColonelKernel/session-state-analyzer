@@ -21,6 +21,21 @@ from session_explorer.loaders import SnapshotBundle, get_presentation
 # none is selected.
 SELECT_BUNDLE_HINT = "Select at least one bundle in the sidebar."
 
+# The empty-state rule has two declared classes of page: session-scoped pages
+# guard with require_bundle; fixture-backed pages (X04 alignment, the
+# intervention experiments, session evolution) always render and declare their
+# scope with this caption instead — making it legible why they show content
+# while a sibling page asks for a bundle.
+FIXTURE_SCOPE_NOTE = (
+    "Built from frozen fixtures — this exhibit does not change with the "
+    "sessions loaded in the sidebar."
+)
+
+
+def fixture_scope_caption(text: str = FIXTURE_SCOPE_NOTE) -> None:
+    """The standard one-line scope declaration for fixture-backed pages."""
+    st.caption(text)
+
 # The five-bucket evidence-mix palette shared by the atlas cell bars and the
 # guided overview mini-bars. ``inferred`` and ``annotated`` stay distinct; the
 # grey ``absent`` tail folds unsupported / not-present / unknown. Keyed exactly

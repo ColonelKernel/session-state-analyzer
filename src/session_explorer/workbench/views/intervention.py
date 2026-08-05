@@ -27,6 +27,7 @@ from session_explorer.interventions import (
     build_parameter_experiment,
 )
 from session_explorer.workbench import copy as wcopy
+from session_explorer.workbench import ui
 from session_explorer.workbench.ui import (
     fmt_value as _fmt_value,
     static_table as _static_table,
@@ -198,6 +199,7 @@ def _panel_state_change_expert(comparison: InterventionComparison) -> None:
 def render_expert() -> None:
     """Expert 'State to audio' tab: the three panels in research vocabulary."""
     st.header("State → audio: one controlled intervention")
+    ui.fixture_scope_caption()
 
     choice = st.radio(
         "Experiment",
@@ -268,6 +270,7 @@ def render_guided() -> None:
     C = wcopy.INTERVENTION
     st.header(C["title"])
     st.markdown(C["intro"])
+    st.caption(wcopy.COPY["fixture_scope"])
 
     choice = st.radio(
         C["experiment_label"],

@@ -219,6 +219,7 @@ def _plain_reason(reason: str) -> str:
 def _render_x04() -> None:
     st.header(wcopy.COPY["tab_x04"])
     st.markdown(wcopy.COPY["x04_intro"])
+    st.caption(wcopy.COPY["fixture_scope"])
 
     bundles = alignment_page.load_x04_bundles()
     if not bundles:
