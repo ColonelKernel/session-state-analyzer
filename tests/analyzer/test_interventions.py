@@ -280,26 +280,29 @@ def _apptest():
 
 
 @workbench
-def test_guided_intervention_tab_renders():
-    from session_explorer.workbench import copy as wcopy
-
+def test_guided_intervention_page_renders():
     at = _apptest()
     at.run()
+    from tests.analyzer.nav_testing import goto
+
+    goto(at, "state-to-audio")
+    at.run()
     assert not at.exception, [e.value for e in at.exception]
-    # The guided intervention tab is present and its plain-language story ran.
-    assert wcopy.COPY["tab_intervention"] in [tab.label for tab in at.tabs]
     body = " ".join(str(m.value) for m in at.markdown)
     assert "REVerence" in body
     assert "Lead Vox" in body
 
 
 @workbench
-def test_expert_state_to_audio_tab_renders():
+def test_expert_state_to_audio_page_renders():
     at = _apptest()
     at.run()
     at.sidebar.radio[0].set_value("Expert").run()
+    from tests.analyzer.nav_testing import goto
+
+    goto(at, "state-to-audio")
+    at.run()
     assert not at.exception, [e.value for e in at.exception]
-    assert "State to audio" in {tab.label for tab in at.tabs}
     body = " ".join(str(m.value) for m in at.markdown)
     # The signal-flow explanation reached the expert panel.
     assert "REVerence" in body

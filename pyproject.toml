@@ -19,7 +19,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-ui = ["streamlit>=1.32", "plotly>=5.18", "pyvis>=0.3.2"]
+# streamlit floor: the workbench uses st.navigation/st.Page (1.36+) AND the
+# width="stretch" literal on st.dataframe/st.iframe, which requires >=1.49.
+ui = ["streamlit>=1.49", "plotly>=5.18", "pyvis>=0.3.2"]
 # The workbench renders pre-computed descriptor fixtures and never decodes audio,
 # so the UI/deploy path (requirements.txt) installs only `ui`. `audio` is an
 # opt-in extra for the offline fixture-generation scripts (fixtures/**/make_inputs.py)

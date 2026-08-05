@@ -238,7 +238,7 @@ Levels run `L0_LOADABLE` (0) … `L6_CONTROLLED_INTERVENTION` (6). `assess_fixtu
 
 ```python
 from session_explorer.metrics import metrics_report, write_metrics
-from session_explorer.workbench.pages.alignment import load_x04_bundles
+from session_explorer.workbench.views.alignment import load_x04_bundles
 rep = metrics_report(
     [load_bundle(f"fixtures/adapters/{d}") for d in ("ableton","cubase","logic","reaper")],
     load_x04_bundles(),
@@ -274,12 +274,12 @@ res = align(load_bundle("fixtures/adapters/ableton").snapshot,
             load_bundle("fixtures/adapters/logic").snapshot)
 print(len(res), res[0].status, res[0].confidence)        # -> 9 CONFLICTING 0.7
 
-from session_explorer.workbench.pages.alignment import load_x04_bundles, pair_rows
+from session_explorer.workbench.views.alignment import load_x04_bundles, pair_rows
 rows = pair_rows(load_x04_bundles(), ("effect_return","audio_source"))
 print(len(rows), rows[0]["pair"], rows[0]["status"])     # -> 12 'ableton → reaper' PROBABLE
 ```
 
-`align` is directional (one result per strip of `a`); `confirm(result)` is the sole path to `CONFIRMED`. Concept ids are **bare tokens** (`effect_return`, `audio_source`, `main_output`) — not `concept:`-prefixed. Importing `session_explorer.workbench.pages.alignment` pulls in Streamlit and prints harmless "missing ScriptRunContext" warnings when run outside `streamlit run`.
+`align` is directional (one result per strip of `a`); `confirm(result)` is the sole path to `CONFIRMED`. Concept ids are **bare tokens** (`effect_return`, `audio_source`, `main_output`) — not `concept:`-prefixed. Importing `session_explorer.workbench.views.alignment` pulls in Streamlit and prints harmless "missing ScriptRunContext" warnings when run outside `streamlit run`.
 
 ### Graph, cycles, grouping
 

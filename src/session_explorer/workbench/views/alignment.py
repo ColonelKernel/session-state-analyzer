@@ -221,7 +221,7 @@ def render() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Public aliases — Guided mode (workbench/pages/guided.py) reuses these
+# Public aliases — Guided mode (workbench/views/guided.py) reuses these
 # internals to tell the same X04 story in plain language. The aliases are the
 # supported surface; the underscore names stay private to this page.
 # ---------------------------------------------------------------------------

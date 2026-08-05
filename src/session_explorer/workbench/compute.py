@@ -1,10 +1,11 @@
 """Rerun-stable memoization for the workbench's heavy computations.
 
-Streamlit re-executes the whole script — and *every* ``st.tabs`` body, since
-tabs are hidden with CSS, not rendered lazily — on each widget interaction. So
-anything below the bundle loader recomputes on every click: the atlas is rebuilt
-in three tabs, the six-pair X04 alignment runs three times, the canonical graph
-is recomposed and its cycles re-detected. None of it is keyed on anything.
+Streamlit re-executes the active page on every widget interaction, and users
+move between pages that need the same derived data (the atlas backs the
+Overview, the atlas page, and the comparison dashboard; the graph is
+recomposed per layer). Without caching, every interaction and every page
+switch would rebuild the atlas, re-run the six-pair X04 alignment, and
+recompose the canonical graph from scratch.
 
 The builders in :mod:`session_explorer` take Pydantic snapshots / ``SnapshotBundle``
 objects, which Streamlit cannot hash, and ``st.cache_data`` hands back a *copy*
