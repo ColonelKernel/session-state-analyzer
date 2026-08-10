@@ -51,6 +51,17 @@ adapters' internal intermediate; the wire format is the flat v0.2
 
 The DAW-agnostic analysis services built during the monorepo phase are exactly
 the analyzer-layer assets and stayed: graph construction, visualization themes
-and renderers, PROV-O export, structural diff, fingerprinting, the rule engine
-(re-scoped to `explain/`), role inference (MedleyDB-benchmarked), token
-matching, and audio descriptors/signal comparisons.
+and renderers, PROV-O export, structural diff, fingerprinting, the rule engine,
+role inference (MedleyDB-benchmarked), token matching, and audio
+descriptors/signal comparisons.
+
+**Later correction (2026-08).** Five of those had no consumer once the
+workbench became the only entry point, and the redundancy pass (PR #5,
+`7e59eb2`) deleted them: `core/graph.py`, `core/export.py` (the PROV-O bundle
+export), `core/diff.py`, `core/fingerprint.py`, and `core/recommend.py` (the
+rule engine — the `explain/` re-scoping the original text promised never
+happened; no such package ever existed). Graph construction itself lives on as
+`graph_layers/`, rebuilt against the flat v0.2 contract rather than the nested
+models. What remains under `core/` is visualization, role inference, token
+matching, audio descriptors/signal comparisons, and the small `ids` /
+`matching` / `models` / `provenance` helpers.

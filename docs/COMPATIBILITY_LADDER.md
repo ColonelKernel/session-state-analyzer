@@ -9,21 +9,21 @@
 
 Each column is a **profile**, not a rank. A ladder records *what a bundle's data demonstrates*, rung by rung — it is not a leaderboard, and “higher” is not “better”.
 
-| Rung | ableton | cubase | logic | logic_real | reaper | effect_send/after |
-|---|:--:|:--:|:--:|:--:|:--:|:--:|
-| L0 Loadable | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| L1 Structural | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| L2 Signal-flow | ✓ | ✓ | · | · | ✓ | ✓ |
-| L3 Temporal | ✓ | ✓ | · | · | ✓ | ✓ |
-| L4 Behavioral | ~ | · | · | · | · | · |
-| L5 Acoustic-outcome-linked | · | · | ✓ | ✓ | · | ✓ |
-| L6 Controlled intervention | · | · | · | · | · | ✓ |
+| Rung | ableton | cubase | logic | logic_real | reaper | reaper_real | effect_send/after |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| L0 Loadable | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| L1 Structural | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| L2 Signal-flow | ✓ | ✓ | · | · | ✓ | ✓ | ✓ |
+| L3 Temporal | ✓ | ✓ | · | · | ✓ | ✓ | ✓ |
+| L4 Behavioral | ~ | · | · | · | · | · | · |
+| L5 Acoustic-outcome-linked | · | · | ✓ | ✓ | · | · | ✓ |
+| L6 Controlled intervention | · | · | · | · | · | · | ✓ |
 
 Legend: `✓` reached · `~` reached (provisional, evidence base still growing) · `·` not reached.
 
-| source.daw | ableton_live | cubase | logic_pro | logic_pro | reaper | cubase |
-|---|:--:|:--:|:--:|:--:|:--:|:--:|
-| reached set | {L0,L1,L2,L3,L4} | {L0,L1,L2,L3} | {L0,L1,L5} | {L0,L1,L5} | {L0,L1,L2,L3} | {L0,L1,L2,L3,L5,L6} |
+| source.daw | ableton_live | cubase | logic_pro | logic_pro | reaper | reaper | cubase |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| reached set | {L0,L1,L2,L3,L4} | {L0,L1,L2,L3} | {L0,L1,L5} | {L0,L1,L5} | {L0,L1,L2,L3} | {L0,L1,L2,L3} | {L0,L1,L2,L3,L5,L6} |
 
 ## Rungs
 
@@ -119,6 +119,23 @@ The rungs are **independent measurements**, not a score to maximize. Real profil
     - structure recovered: 9 TRACK, 9 CHANNEL, 22 PROCESSOR
 - `✓` **L2 Signal-flow**
     - routing graph present: 3x CHANNEL_SENDS_TO, 1x CHANNEL_ROUTES_TO, 9x TRACK_USES_CHANNEL
+- `✓` **L3 Temporal**
+    - timeline present: 7 TEMPORAL_OBJECT
+- `·` **L4 Behavioral**
+    - missing: no scenes, MODULATION, or VARIANT entities; provisional rung: strengthens as variant-evolution / modulation data lands
+- `·` **L5 Acoustic-outcome-linked**
+    - missing: no RENDER / OBSERVATION entities and no render supplied
+- `·` **L6 Controlled intervention**
+    - missing: standalone bundle: no controlled intervention pairs this state with a known change
+
+### reaper_real  (`reaper`)  — reached {L0,L1,L2,L3}
+
+- `✓` **L0 Loadable**
+    - re-validated against schema v0.2 with 0 errors (0 warning(s))
+- `✓` **L1 Structural**
+    - structure recovered: 25 TRACK, 25 CHANNEL, 19 PROCESSOR
+- `✓` **L2 Signal-flow**
+    - routing graph present: 12x CHANNEL_SENDS_TO, 18x CHANNEL_ROUTES_TO, 25x TRACK_USES_CHANNEL, 18x SUMS_TO
 - `✓` **L3 Temporal**
     - timeline present: 7 TEMPORAL_OBJECT
 - `·` **L4 Behavioral**
