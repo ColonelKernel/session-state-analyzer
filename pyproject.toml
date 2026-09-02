@@ -35,4 +35,8 @@ dev = ["pytest>=7.4"]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+# The vendored contract package's own suite is listed here so a bare `pytest`
+# collects it too. It is the only direct coverage of the v0.2 models and
+# validation — the interface four adapter repos build against — and leaving it
+# out let a habitual bare run stay green while the contract regressed.
+testpaths = ["tests", "packages/canonical_snapshot/tests"]

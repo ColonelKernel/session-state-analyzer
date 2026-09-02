@@ -1,7 +1,8 @@
 """Snapshot → layered ``networkx`` graph (the snapshot-era graph builder).
 
-The sibling of ``core.graph.build_session_graph`` for the flat v0.2 wire
-format: entities become nodes as-is (UPPERCASE ``entity_type`` preserved),
+The successor to the monorepo-era ``core.graph.build_session_graph`` (deleted
+once nothing consumed it): entities become nodes as-is (UPPERCASE
+``entity_type`` preserved),
 relationships become typed edges, and every node carries an ``observability``
 tag derived from its entity-level provenance record so the existing viz
 colour channels apply unchanged.

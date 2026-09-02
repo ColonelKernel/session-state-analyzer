@@ -1,0 +1,75 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  # Deliberately unfiltered: a PR stacked on another feature branch (the shape
+  # the #11 -> #12 -> #13 migration used) would get no checks at all under a
+  # `branches: [main]` filter, and an empty checks list reads as "nothing to
+  # run" rather than as a gap.
+  pull_request:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The ends of the supported range: the floor declared in pyproject
+        # (requires-python >= 3.10) and the version the manual documents as
+        # verified. A failure at either end is a real claim to fix.
+        python-version: ["3.10", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install both packages editable
+        # Mirrors the dev setup in README/MANUAL §2 — the vendored contract
+        # package plus the analyzer. `audio` is included so the core/audio
+        # tests actually run here; they `importorskip` and would otherwise
+        # skip silently in CI while passing locally.
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e packages/canonical_snapshot -e ".[ui,audio,dev]"
+
+      - name: Run the documented suite
+        # The same three paths README and MANUAL §2 prescribe. Passing them
+        # explicitly keeps CI honest even if pytest's testpaths ever narrow.
+        run: pytest tests/core tests/analyzer packages/canonical_snapshot/tests -q
+
+  deploy-closure:
+    # The job above installs the audio stack, so it cannot see a dependency the
+    # deployed app lacks. This one builds the environment Streamlit Cloud
+    # actually builds — requirements.txt, i.e. `[ui]` without `audio` — so a
+    # top-level `import librosa` reaching any module the workbench imports
+    # fails here instead of at boot on the live demo. The audio tests are
+    # `importorskip`-guarded and skip cleanly.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install exactly what the deploy installs
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run the suite against the deploy closure
+        run: pytest tests/core tests/analyzer packages/canonical_snapshot/tests -q

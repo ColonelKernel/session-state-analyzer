@@ -17,12 +17,14 @@ from pathlib import Path
 import pytest
 
 from session_explorer.compat.ladder import (
+    DEFAULT_DOC_PATH,
     LEVEL_META,
     LadderContext,
     LadderLevel,
     LadderProfile,
     assess_bundle,
     assess_fixtures,
+    render_ladder_document,
     render_ladder_markdown,
 )
 from session_explorer.interventions.experiment import build_effect_send_experiment
@@ -258,3 +260,21 @@ def test_markdown_renders_for_all_profiles(all_profiles):
     assert "Profiles, not rankings" in md
     assert "not a rank" in md
     assert "✓" in md and "·" in md and "~" in md
+
+
+def test_committed_ladder_doc_is_in_sync_with_the_generator():
+    """docs/COMPATIBILITY_LADDER.md is generated output; drift means a fixture
+    changed without a regeneration.
+
+    Mirrors ``test_concepts_yaml_is_in_sync_with_python_source``. Without this
+    the doc went stale silently for 25 commits after ``reaper_real`` landed —
+    the whole column was missing while the suite stayed green, because the
+    other ladder tests only assert on the in-memory render.
+    """
+    assert DEFAULT_DOC_PATH.is_file(), (
+        "regenerate: python -m session_explorer.compat.ladder"
+    )
+    assert DEFAULT_DOC_PATH.read_text(encoding="utf-8") == render_ladder_document(), (
+        "COMPATIBILITY_LADDER.md is stale — "
+        "regenerate: python -m session_explorer.compat.ladder"
+    )

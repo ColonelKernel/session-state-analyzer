@@ -34,4 +34,12 @@ Install (from the analyzer repo root):
 pip install -e packages/canonical_snapshot
 ```
 
-Adapters pin by git subdirectory tag (`@schema-v0.2.0`) or editable path.
+Adapters pin the same package straight from this repo, by git subdirectory at
+the contract tag:
+
+```
+pip install "canonical-snapshot @ git+https://github.com/ColonelKernel/session-state-analyzer@schema-v0.2.0#subdirectory=packages/canonical_snapshot"
+```
+
+An editable path to a local checkout works too, and is what the adapter repos'
+own dev setups use.

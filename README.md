@@ -76,8 +76,16 @@ python -m venv .venv
 .venv/bin/pip install -e packages/canonical_snapshot -e ".[dev]"
 ```
 
-Adapters depend on `canonical-snapshot` via a git-subdirectory pin
-(`@schema-v0.2.0` tag) or an editable path to `packages/canonical_snapshot`.
+Adapters depend on `canonical-snapshot` from this repo, pinned by git
+subdirectory at the contract tag:
+
+```
+pip install "canonical-snapshot @ git+https://github.com/ColonelKernel/session-state-analyzer@schema-v0.2.0#subdirectory=packages/canonical_snapshot"
+```
+
+An editable path to `packages/canonical_snapshot` works too. The tag moves only
+when the wire contract changes, so a pinned adapter keeps building against the
+schema it was written for.
 
 ## Workbench
 
